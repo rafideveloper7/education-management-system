@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login - Kohat Institute of Modern Sciences (KIMS) School</title>
+    <meta name="description" content="Access the KIMS School Digital Portal for students, parents, teachers, and administration. Check attendance, examination results, fee challans, and daily home diary.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .portal-bg-pattern {
+            background-color: #022c22;
+            background-image: radial-gradient(rgba(5, 150, 105, 0.25) 1px, transparent 1px), radial-gradient(rgba(245, 158, 11, 0.15) 1px, #022c22 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Top Simplified Bar -->
+    <nav class="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-xl object-cover">
+                </div>
+                <div>
+                    <span class="font-black text-slate-900 text-xl tracking-tight leading-none block">KIMS</span>
+                    <span class="text-[10px] text-emerald-700 font-bold uppercase tracking-wider">Digital Campus Portal</span>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="index.html" class="text-slate-600 hover:text-kimsEmerald transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i> Return to Website
+                </a>
+                <a href="admissions.html" class="hidden sm:inline-block bg-emerald-50 text-kimsEmerald hover:bg-emerald-100 border border-emerald-200 px-3.5 py-1.5 rounded-lg transition">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-10">
+        <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px]">
+            
+            <!-- Left Side: Brand Visual & Portal Features (Desktop 5 Cols) -->
+            <div class="lg:col-span-5 portal-bg-pattern p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Brand Top Details -->
+                <div class="relative z-10 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>SESSION 2024-25 ACTIVE</span>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                            Smart Schooling at Your <span class="gold-shimmer">Fingertips</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-emerald-100/80 mt-2 leading-relaxed">
+                            Kohat Institute of Modern Sciences (Nursery to 10th) provides unified digital connectivity for students, parents, and teachers.
+                        </p>
+                    </div>
+
+                    <!-- Features Checklist -->
+                    <div class="space-y-3 pt-2 text-xs">
+                        <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-500/30 text-emerald-300 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-calendar-check text-xs"></i>
+                            </div>
+                            <span>Real-Time Biometric Attendance & Leave Tracking</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <div class="w-7 h-7 rounded-lg bg-amber-500/30 text-amber-300 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-file-invoice-dollar text-xs"></i>
+                            </div>
+                            <span>Online Fee Challans & Payment Receipts</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <div class="w-7 h-7 rounded-lg bg-blue-500/30 text-blue-300 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-square-poll-vertical text-xs"></i>
+                            </div>
+                            <span>Exam DMCs & BISE Kohat Preparation Reports</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <div class="w-7 h-7 rounded-lg bg-purple-500/30 text-purple-300 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-book-open-reader text-xs"></i>
+                            </div>
+                            <span>Daily Homework & Teacher Remarks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left Bottom Support Note -->
+                <div class="relative z-10 pt-6 border-t border-white/10 text-[11px] text-emerald-200/80 flex items-center justify-between">
+                    <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> 256-Bit SSL Encrypted</span>
+                    <a href="tel:+923330299920" class="hover:text-white transition">IT Helpline: 0333-0299920</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Login Interface (7 Cols) -->
+            <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
+                
+                <div class="space-y-6">
+                    <!-- Heading -->
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-block">
+                            User Authentication
+                        </span>
+                        <h1 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Sign In to KIMS Portal</h1>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Select your role to access your dedicated school dashboard.</p>
+                    </div>
+
+                    <!-- Role Switcher Tabs -->
+                    <div class="grid grid-cols-3 gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
+                        <button type="button" onclick="switchRole('student')" id="tab-student" class="role-tab active-role bg-white text-kimsEmerald shadow-sm font-bold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                            <i class="fa-solid fa-graduation-cap"></i> Student / Parent
+                        </button>
+                        <button type="button" onclick="switchRole('teacher')" id="tab-teacher" class="role-tab text-slate-600 hover:text-slate-900 font-semibold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                            <i class="fa-solid fa-chalkboard-user"></i> Faculty
+                        </button>
+                        <button type="button" onclick="switchRole('admin')" id="tab-admin" class="role-tab text-slate-600 hover:text-slate-900 font-semibold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                            <i class="fa-solid fa-user-shield"></i> Admin
+                        </button>
+                    </div>
+
+                    <!-- Quick Demo Credentials Hint (Clickable) -->
+                    <div class="bg-amber-50 border border-amber-200/80 rounded-2xl p-3 text-xs text-amber-900 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-key text-amber-600"></i>
+                            <span id="demo-text">Quick Demo: <strong>Roll: KIMS-1042</strong> | <strong>PIN: 1234</strong></span>
+                        </div>
+                        <button type="button" onclick="autoFillDemo()" class="text-[11px] font-bold text-amber-800 bg-amber-200/60 hover:bg-amber-200 px-2.5 py-1 rounded-lg transition">
+                            Auto Fill
+                        </button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                        
+                        <!-- Username / Roll No Input -->
+                        <div>
+                            <label for="login-id" class="block text-xs font-bold text-slate-700 mb-1.5" id="label-login-id">
+                                Student Roll Number / Admission ID *
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                    <i class="fa-solid fa-id-card" id="icon-login-id"></i>
+                                </div>
+                                <input type="text" id="login-id" required placeholder="e.g. KIMS-2024-1042" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                        </div>
+
+                        <!-- Password / PIN Input -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <label for="login-password" class="block text-xs font-bold text-slate-700" id="label-login-password">
+                                    Student Password / Security PIN *
+                                </label>
+                                <button type="button" onclick="openForgotModal()" class="text-xs font-semibold text-kimsEmerald hover:underline">
+                                    Forgot Details?
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                                <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 text-sm focus:outline-none" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye" id="toggle-eye-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Device -->
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <label class="flex items-center gap-2 cursor-pointer text-slate-600">
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-kimsEmerald focus:ring-kimsEmerald accent-kimsEmerald">
+                                <span>Remember this device for 30 days</span>
+                            </label>
+                            <span class="text-slate-400 hidden sm:inline">Protected by KIMS Cloud</span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-sm py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 mt-2">
+                            <span id="btn-text">Sign In to Dashboard</span>
+                            <i class="fa-solid fa-right-to-bracket text-xs" id="btn-icon"></i>
+                        </button>
+
+                    </form>
+                </div>
+
+                <!-- Footer Help Note -->
+                <div class="pt-6 border-t border-slate-100 text-center text-xs text-slate-500 mt-6">
+                    Haven't received your student portal ID yet? 
+                    <a href="contact.html" class="text-kimsEmerald font-bold hover:underline ml-1">Contact IT Helpdesk</a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simulated Logged-In Success Modal -->
+    <div id="auth-success-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 text-center space-y-5 transform scale-95 transition-transform duration-300" id="auth-success-card">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-black text-slate-900">Login Successful!</h3>
+                <p class="text-xs text-slate-500 mt-1" id="success-role-desc">Welcome to KIMS Student & Parent Portal</p>
+            </div>
+
+            <!-- Simulated User Profile Card -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">User Account:</span>
+                    <span class="font-extrabold text-kimsEmerald" id="auth-account-id">KIMS-2024-1042</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Class / Section:</span>
+                    <span class="font-bold text-slate-800" id="auth-account-class">Class 9th (Science Group)</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Attendance This Month:</span>
+                    <span class="font-bold text-emerald-600">96.5% (Present)</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Fee Status:</span>
+                    <span class="font-bold text-emerald-600">Paid (No Dues)</span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="index.html" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs py-3 rounded-xl shadow transition text-center">
+                    Continue to Home Page
+                </a>
+                <button onclick="closeAuthSuccessModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs py-2.5 rounded-xl transition">
+                    Sign Out / Switch Account
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 space-y-4 transform scale-95 transition-transform duration-300" id="forgot-modal-card">
+            
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-black text-slate-900">Reset Portal Password / PIN</h3>
+                <button onclick="closeForgotModal()" class="text-slate-400 hover:text-slate-600 text-sm">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Enter your registered Father's WhatsApp / Mobile number or Student B-Form to receive a temporary recovery PIN via SMS.
+            </p>
+
+            <form onsubmit="handleForgotSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Registered Mobile or B-Form No.</label>
+                    <input type="text" required placeholder="0333 1234567 or 14202-xxxxxxx-x" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald">
+                </div>
+
+                <div class="pt-2 flex justify-between gap-3">
+                    <button type="button" onclick="closeForgotModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs rounded-xl shadow transition">
+                        Send Recovery PIN
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Simplified Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 px-4 sm:px-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span>&copy; 2024 Kohat Institute of Modern Sciences (KIMS) School. All rights reserved.</span>
+            <div class="flex items-center gap-4">
+                <a href="about.html" class="hover:text-kimsEmerald transition">About School</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">IT Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript: Role Switcher, Password Toggle, Modals -->
+    <script>
+        let currentRole = 'student';
+
+        const roleConfig = {
+            student: {
+                labelId: "Student Roll Number / Admission ID *",
+                placeholderId: "e.g. KIMS-2024-1042",
+                iconId: "fa-id-card",
+                labelPass: "Student Password / Security PIN *",
+                demoText: "Quick Demo: <strong>Roll: KIMS-1042</strong> | <strong>PIN: 1234</strong>",
+                demoId: "KIMS-2024-1042",
+                demoPass: "1234",
+                btnText: "Sign In as Student / Parent",
+                classDesc: "Class 9th (Science Group)"
+            },
+            teacher: {
+                labelId: "Faculty Employee ID / Staff Email *",
+                placeholderId: "e.g. TCH-08 or faculty@kims.edu.pk",
+                iconId: "fa-chalkboard-user",
+                labelPass: "Staff Portal Password *",
+                demoText: "Quick Demo: <strong>Staff ID: TCH-08</strong> | <strong>Pass: teacher123</strong>",
+                demoId: "KIMS-TCH-08",
+                demoPass: "teacher123",
+                btnText: "Sign In as Faculty",
+                classDesc: "Senior Science Department (Physics & Math)"
+            },
+            admin: {
+                labelId: "Administrator Username / Official Email *",
+                placeholderId: "e.g. admin@kims.edu.pk",
+                iconId: "fa-user-shield",
+                labelPass: "Master Security Password *",
+                demoText: "Quick Demo: <strong>User: admin@kims.edu.pk</strong> | <strong>Pass: admin123</strong>",
+                demoId: "admin@kims.edu.pk",
+                demoPass: "admin123",
+                btnText: "Sign In to Admin Console",
+                classDesc: "Principal's Office & School Administration"
+            }
+        };
+
+        function switchRole(role) {
+            currentRole = role;
+
+            // Update Tab UI
+            ['student', 'teacher', 'admin'].forEach(r => {
+                const tab = document.getElementById(`tab-${r}`);
+                if (r === role) {
+                    tab.classList.add('active-role', 'bg-white', 'text-kimsEmerald', 'shadow-sm', 'font-bold');
+                    tab.classList.remove('text-slate-600');
+                } else {
+                    tab.classList.remove('active-role', 'bg-white', 'text-kimsEmerald', 'shadow-sm', 'font-bold');
+                    tab.classList.add('text-slate-600');
+                }
+            });
+
+            // Update labels and inputs
+            const conf = roleConfig[role];
+            document.getElementById('label-login-id').textContent = conf.labelId;
+            document.getElementById('login-id').placeholder = conf.placeholderId;
+            document.getElementById('icon-login-id').className = `fa-solid ${conf.iconId}`;
+            document.getElementById('label-login-password').textContent = conf.labelPass;
+            document.getElementById('demo-text').innerHTML = conf.demoText;
+            document.getElementById('btn-text').textContent = conf.btnText;
+
+            // Clear inputs
+            document.getElementById('login-id').value = '';
+            document.getElementById('login-password').value = '';
+        }
+
+        function autoFillDemo() {
+            const conf = roleConfig[currentRole];
+            document.getElementById('login-id').value = conf.demoId;
+            document.getElementById('login-password').value = conf.demoPass;
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('login-password');
+            const eyeIcon = document.getElementById('toggle-eye-icon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Form Submit Simulation
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            const userId = document.getElementById('login-id').value;
+
+            // Show loading animation
+            btn.disabled = true;
+            btnText.textContent = "Authenticating with KIMS Database...";
+            btnIcon.className = "fa-solid fa-spinner fa-spin text-xs";
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btnText.textContent = roleConfig[currentRole].btnText;
+                btnIcon.className = "fa-solid fa-right-to-bracket text-xs";
+
+                // Open Success Modal
+                document.getElementById('auth-account-id').textContent = userId;
+                document.getElementById('auth-account-class').textContent = roleConfig[currentRole].classDesc;
+                document.getElementById('success-role-desc').textContent = `Authenticated successfully as ${currentRole.toUpperCase()}`;
+
+                const modal = document.getElementById('auth-success-modal');
+                const card = document.getElementById('auth-success-card');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    card.classList.remove('scale-95');
+                    card.classList.add('scale-100');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }, 800);
+        }
+
+        function closeAuthSuccessModal() {
+            const modal = document.getElementById('auth-success-modal');
+            const card = document.getElementById('auth-success-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                document.getElementById('login-form').reset();
+            }, 250);
+        }
+
+        // Forgot Modal
+        function openForgotModal() {
+            const modal = document.getElementById('forgot-modal');
+            const card = document.getElementById('forgot-modal-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeForgotModal() {
+            const modal = document.getElementById('forgot-modal');
+            const card = document.getElementById('forgot-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        function handleForgotSubmit(e) {
+            e.preventDefault();
+            alert("A temporary PIN and verification code has been dispatched to your registered mobile number.");
+            closeForgotModal();
+        }
+    </script>
+</body>
+
+</html>

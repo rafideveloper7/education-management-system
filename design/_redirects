@@ -1,0 +1,7 @@
+# Netlify Redirects Configuration for KIMS Kohat
+
+# Redirect legacy home-hero to index.html
+/home-hero.html    /index.html    301
+
+# Default 404 Fallback
+/*    /404.html    404

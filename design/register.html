@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public User Registration - Kohat Institute of Modern Sciences (KIMS)</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#064e3b',
+                            dark: '#022c22',
+                            light: '#059669',
+                            muted: '#d1fae5',
+                            soft: '#ecfdf5'
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.05)',
+                        'premium': '0 20px 40px -15px rgba(6, 78, 59, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- 1. Top Announcement & Utility Bar -->
+    <div class="bg-brand-dark text-white/90 text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center"><i class="fa-solid fa-location-dot text-brand-light mr-2"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center"><i class="fa-solid fa-phone text-brand-light mr-2"></i> +92 333 0299920</span>
+                <span class="flex items-center"><i class="fa-solid fa-envelope text-brand-light mr-2"></i> info@kimskohat.edu.pk</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-brand text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">
+                    "Come to Read, Go to Lead"
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header -->
+    <header class="sticky top-0 z-50 glass-header">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark text-white rounded-xl flex items-center justify-center font-bold text-2xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
+                    K
+                </div>
+                <div>
+                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-none">KIMS<span class="text-brand">.</span></h1>
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Kohat Institute</p>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden xl:flex items-center space-x-7 font-semibold text-sm text-slate-600">
+                <a href="index.html" class="hover:text-brand transition">Home</a>
+                <a href="about.html" class="hover:text-brand transition">About Us</a>
+                <a href="academics.html" class="hover:text-brand transition">Academics</a>
+                <a href="faculty.html" class="hover:text-brand transition">Faculty</a>
+                <a href="admissions.html" class="hover:text-brand transition">Admissions</a>
+                <a href="gallery.html" class="hover:text-brand transition">Gallery</a>
+                <a href="notices.html" class="hover:text-brand transition">Notices</a>
+                <a href="contact.html" class="hover:text-brand transition">Contact</a>
+            </nav>
+
+            <div class="hidden xl:flex items-center space-x-4">
+                <a href="login.html" class="font-bold text-slate-700 hover:text-brand transition text-sm">
+                    Already Registered? Sign In
+                </a>
+                <a href="admissions.html" class="bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg transition-all hover:-translate-y-0.5">
+                    Apply Online <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-button" class="xl:hidden text-slate-800 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all duration-300">
+            <div class="px-6 py-4 space-y-3 font-semibold text-slate-700">
+                <a href="index.html" class="block hover:text-brand pb-2 border-b border-slate-50">Home</a>
+                <a href="about.html" class="block hover:text-brand pb-2 border-b border-slate-50">About Us</a>
+                <a href="academics.html" class="block hover:text-brand pb-2 border-b border-slate-50">Academics</a>
+                <a href="faculty.html" class="block hover:text-brand pb-2 border-b border-slate-50">Faculty</a>
+                <a href="admissions.html" class="block hover:text-brand pb-2 border-b border-slate-50">Admissions</a>
+                <a href="gallery.html" class="block hover:text-brand pb-2 border-b border-slate-50">Gallery</a>
+                <a href="notices.html" class="block hover:text-brand pb-2 border-b border-slate-50">Notices</a>
+                <a href="contact.html" class="block hover:text-brand pb-2 border-b border-slate-50">Contact</a>
+                <a href="login.html" class="block text-brand font-bold">Portal Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <main class="flex-grow py-14 px-4 flex items-center justify-center relative">
+        <div class="w-full max-w-4xl glass-card rounded-[2.5rem] overflow-hidden border border-slate-200/80 shadow-2xl p-8 md:p-12">
+            
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="bg-brand-soft text-brand text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand/20">
+                    Public Visitor Registration
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4 mb-2 tracking-tight">Create a Public Account</h2>
+                <p class="text-slate-600 text-sm">Register to submit, track, and manage online admission applications and communicate with admissions.</p>
+            </div>
+
+            <!-- Mandatory Rule Alert Box (From Specification Section 3) -->
+            <div class="mb-8 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl text-xs text-amber-900 flex items-start space-x-3">
+                <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5 shrink-0"></i>
+                <div class="leading-relaxed">
+                    <strong class="font-bold block text-sm mb-0.5">Important Institutional Policy:</strong>
+                    Public registration creates a public user account for prospective applicants and guardians to track admission submissions and inquiries. 
+                    <strong>Public registration does NOT create an academic student or teacher account.</strong> Official academic accounts are created and provisioned solely by the Administration.
+                </div>
+            </div>
+
+            <form onsubmit="handleRegister(event)" class="space-y-6 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Full Name *
+                        </label>
+                        <input type="text" required placeholder="e.g. Shahid Khan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Email Address *
+                        </label>
+                        <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Mobile Number *
+                        </label>
+                        <input type="tel" required placeholder="0333 1234567" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            CNIC / B-Form Number (Optional)
+                        </label>
+                        <input type="text" placeholder="14301-xxxxxxx-x" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Create Password *
+                        </label>
+                        <input type="password" required minlength="8" placeholder="At least 8 characters" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Confirm Password *
+                        </label>
+                        <input type="password" required minlength="8" placeholder="Re-enter password" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand focus:border-brand outline-none transition text-sm">
+                    </div>
+                </div>
+
+                <div class="flex items-start text-xs text-slate-600 pt-2">
+                    <input type="checkbox" required class="rounded text-brand focus:ring-brand w-4 h-4 border-slate-300 mt-0.5">
+                    <span class="ml-2 leading-relaxed">
+                        I confirm that the information provided is accurate and understand that academic accounts for students and teachers are issued separately by KIMS administration.
+                    </span>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all hover:-translate-y-0.5 flex items-center justify-center text-sm">
+                        Create Public User Account <i class="fa-solid fa-user-plus ml-2"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-slate-100 text-center text-xs text-slate-600">
+                Already registered with KIMS? 
+                <a href="login.html" class="font-bold text-brand hover:underline ml-1">Sign In to Unified Portal</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Unified Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-white/10 text-center">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p>&copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="login.html" class="hover:text-white">Portal Login</a>
+                <a href="contact.html" class="hover:text-white">Contact Helpdesk</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            alert('Your Public Account has been created successfully!\nYou can now log in to track admission applications and submit inquiries.');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

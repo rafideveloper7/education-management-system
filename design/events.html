@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Events & Campus Life - Kohat Institute of Modern Sciences (KIMS)</title>
+    <meta name="description" content="Explore vibrant school events, science exhibitions, annual sports gala, Qirat competitions, and academic ceremonies at Kohat Institute of Modern Sciences (KIMS) School.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .events-hero-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.95) 0%, rgba(6, 78, 59, 0.88) 50%, rgba(2, 44, 34, 0.97) 100%), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <a href="index.html" class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-3xl tracking-tight leading-none">KIMS</h1>
+                    <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-kimsEmerald transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-semibold text-slate-700"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="text-kimsEmerald font-bold border-b-2 border-kimsEmerald pb-1">Events</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal
+                </a>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="lg:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-kimsEmerald transition py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Programs</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions</a>
+                <a href="events.html" class="text-kimsEmerald font-bold py-1">Events & Campus Life</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Cinematic Hero Header: Events & Campus Life -->
+    <section class="events-hero-bg text-white py-16 lg:py-24 px-4 sm:px-8 relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                <i class="fa-solid fa-calendar-days text-amber-400"></i>
+                <span>CAMPUS ACTIVITIES & CO-CURRICULAR EXCELLENCE</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white max-w-4xl mx-auto">
+                Vibrant Celebrations, Sports & <span class="gold-shimmer">Science Discovery</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-emerald-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+                At KIMS School (Nursery to 10th), education extends beyond textbooks. We foster confidence, leadership, and camaraderie through competitive sports galas, science expos, Qirat competitions, and joyful cultural festivities.
+            </p>
+
+            <!-- Quick Metrics -->
+            <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">25+</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Annual Campus Events</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Student Participation</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300">Sports & Arts</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Clubs & Societies</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">Parental</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Active Community</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Featured Spotlight Event (Upcoming Mega Event) -->
+    <section class="py-12 lg:py-16 px-4 sm:px-8 bg-gradient-to-b from-slate-100 to-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="bg-gradient-to-br from-kimsDark to-kimsEmerald text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-emerald-700/40 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 bg-amber-400/20 text-amber-300 border border-amber-400/30 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                            <span>UPCOMING MEGA EVENT</span>
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Annual Science Exhibition & Robotics Fair 2024
+                        </h2>
+
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+                            Watch our young innovators from Class 1st to 10th present working physics models, chemistry color reactions, solar energy projects, and computer programming demonstrations. Open to parents and educators across Kohat.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/15">
+                                <span class="text-[10px] uppercase font-bold text-emerald-300 block">Date</span>
+                                <span class="text-sm font-extrabold text-white"><i class="fa-solid fa-calendar text-amber-400 mr-1.5"></i> October 24, 2024</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/15">
+                                <span class="text-[10px] uppercase font-bold text-emerald-300 block">Timing</span>
+                                <span class="text-sm font-extrabold text-white"><i class="fa-solid fa-clock text-amber-400 mr-1.5"></i> 09:00 AM - 02:00 PM</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/15">
+                                <span class="text-[10px] uppercase font-bold text-emerald-300 block">Venue</span>
+                                <span class="text-sm font-extrabold text-white"><i class="fa-solid fa-location-dot text-amber-400 mr-1.5"></i> Main School Campus</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-4 items-center">
+                            <button onclick="openEventModal(1)" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                                View Event Schedule & Stalls <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                            </button>
+                            <span class="text-xs text-emerald-200">
+                                <i class="fa-solid fa-ticket text-amber-400 mr-1"></i> Free Entry for All Parents
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 group">
+                            <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80" alt="Science Exhibition" class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-amber-300 text-xs font-bold px-3 py-1 rounded-lg">
+                                40+ Student Projects
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Interactive Events Directory & Search -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-50 min-h-[600px]" id="events-directory">
+        <div class="max-w-7xl mx-auto space-y-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Events & Activities Calendar</h2>
+                    <p class="text-slate-500 text-sm mt-1">Discover upcoming occasions, sports galas, and past school milestones.</p>
+                </div>
+
+                <!-- Search Input Bar -->
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="event-search-input" placeholder="Search event, e.g. Sports, Qirat..." class="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition shadow-sm">
+                    <button id="clear-event-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto py-2 custom-scroll">
+                <button data-filter="all" class="event-filter-pill active-pill bg-kimsEmerald text-white font-semibold text-xs px-4 py-2 rounded-xl transition shadow-sm whitespace-nowrap">
+                    All Events (<span id="event-count">8</span>)
+                </button>
+                <button data-filter="academic" class="event-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-microscope text-emerald-600 mr-1"></i> Science & Academic
+                </button>
+                <button data-filter="sports" class="event-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-medal text-amber-500 mr-1"></i> Sports & Athletics
+                </button>
+                <button data-filter="islamic" class="event-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-book-quran text-blue-600 mr-1"></i> Islamic & Moral Tarbiyah
+                </button>
+                <button data-filter="parental" class="event-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-users text-purple-600 mr-1"></i> Parent-Teacher & Awards
+                </button>
+            </div>
+
+            <!-- Events Cards Grid -->
+            <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+                <!-- Javascript will render dynamic event cards here -->
+            </div>
+
+            <!-- No Results State -->
+            <div id="no-event-results" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl mb-3">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">No Events Found</h3>
+                <p class="text-sm text-slate-500 mt-1">Try adjusting your search keyword or selected category filter.</p>
+                <button id="reset-event-filters" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold bg-emerald-50 text-kimsEmerald border border-emerald-200 px-4 py-2 rounded-lg hover:bg-emerald-100 transition">
+                    <i class="fa-solid fa-rotate-left"></i> Reset Search & Filters
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. Year-Round Academic Calendar Table -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto space-y-10">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Annual Roadmap</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Academic Year At a Glance</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Planned academic milestones, examination sessions, and seasonal holidays.</p>
+            </div>
+
+            <div class="overflow-x-auto shadow-md rounded-2xl border border-slate-200 bg-white">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="text-xs text-white uppercase bg-kimsDark">
+                        <tr>
+                            <th class="px-6 py-4">Month / Quarter</th>
+                            <th class="px-6 py-4">Major Event / Activity</th>
+                            <th class="px-6 py-4">Grade Wing Involved</th>
+                            <th class="px-6 py-4">Focus & Objective</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">April</td>
+                            <td class="px-6 py-4 text-emerald-800 font-semibold">Commencement of New Academic Session</td>
+                            <td class="px-6 py-4">Nursery to 10th Grade</td>
+                            <td class="px-6 py-4">Orientation, syllabus distribution & baseline assessments</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">August</td>
+                            <td class="px-6 py-4 text-slate-800 font-semibold">Independence Day & National Song Gala</td>
+                            <td class="px-6 py-4">All School Wings</td>
+                            <td class="px-6 py-4">Patriotic speeches, stage drama, and national flag ceremony</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">October</td>
+                            <td class="px-6 py-4 text-amber-700 font-semibold">Science Exhibition & Mid-Term Assessments</td>
+                            <td class="px-6 py-4">Class 1st to 10th</td>
+                            <td class="px-6 py-4">Hands-on model displays & first comprehensive performance review</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">November</td>
+                            <td class="px-6 py-4 text-blue-700 font-semibold">Annual Sports Week & Athletics Tournament</td>
+                            <td class="px-6 py-4">Primary, Middle & Matric</td>
+                            <td class="px-6 py-4">Physical fitness, teamwork, cricket, races & martial arts</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">January</td>
+                            <td class="px-6 py-4 text-purple-700 font-semibold">Pre-Board Examination Drills</td>
+                            <td class="px-6 py-4">Class 9th & 10th (Matric)</td>
+                            <td class="px-6 py-4">Full-length BISE Kohat model papers with OMR marking</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">March</td>
+                            <td class="px-6 py-4 text-emerald-600 font-bold">Annual Results & Prize Distribution Day</td>
+                            <td class="px-6 py-4">All Enrolled Scholars</td>
+                            <td class="px-6 py-4">Gold medals, trophies, report card handover & scholarships</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Interactive Event Detail Modal -->
+    <div id="event-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform scale-95 transition-transform duration-300" id="event-modal-card">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-kimsDark to-kimsEmerald p-6 text-white relative">
+                <button id="event-modal-close-btn" class="absolute top-4 right-4 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 w-8 h-8 rounded-full flex items-center justify-center transition" aria-label="Close Modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="event-modal-badge" class="inline-block bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-md mb-2">Category</span>
+                <h3 id="event-modal-title" class="text-xl font-extrabold text-white">Event Title</h3>
+                <p id="event-modal-date" class="text-xs text-emerald-200 font-medium mt-1"><i class="fa-solid fa-calendar mr-1"></i> Date</p>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Event Description</h4>
+                    <p id="event-modal-desc" class="text-xs text-slate-600 leading-relaxed"></p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2 text-xs">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-medium">Eligible Grades:</span>
+                        <span class="font-bold text-slate-800" id="event-modal-grades">All Classes</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-medium">Location / Ground:</span>
+                        <span class="font-bold text-slate-800" id="event-modal-location">School Main Campus</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-medium">Coordinated By:</span>
+                        <span class="font-bold text-emerald-700" id="event-modal-coord">Faculty Society</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Program Highlights</h4>
+                    <ul id="event-modal-highlights" class="space-y-1.5 text-xs text-slate-700">
+                        <!-- Injected via JS -->
+                    </ul>
+                </div>
+
+                <div class="pt-2 flex justify-between items-center border-t border-slate-100">
+                    <a href="admissions.html" class="bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow transition">
+                        Join KIMS Today
+                    </a>
+                    <button id="event-modal-secondary-close" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Call to Action Banner -->
+    <section class="py-16 px-4 sm:px-8 bg-kimsDark text-white relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto bg-gradient-to-r from-emerald-900/60 to-emerald-950/80 border border-emerald-700/40 rounded-3xl p-8 sm:p-12 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-3 text-center md:text-left">
+                <span class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">
+                    <i class="fa-solid fa-graduation-cap"></i> Admissions Open 2024-25
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Be Part of KIMS School Life</h2>
+                <p class="text-emerald-100/80 text-sm sm:text-base max-w-xl">
+                    Enroll your child in Kohat's premier institution where academic excellence and character-building go hand in hand.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <a href="admissions.html" class="text-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 whitespace-nowrap">
+                    Apply for Admission <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                </a>
+                <a href="toppers.html" class="text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl backdrop-blur-md transition whitespace-nowrap">
+                    View Toppers Record
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC).
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Us</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition">Academic Programs</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition">Hall of Fame / Toppers</a></li>
+                    <li><a href="events.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold">Events & Activities</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us</a></li>
+                    <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions 2024-25</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition">Portal Login</a></li>
+                </ul>
+            </div>
+
+            <!-- Programs Offered (Nursery to 10th) -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Academic Wings</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>Early Childhood (Nursery & Prep)</li>
+                    <li>Primary Wing (Class 1st - 5th)</li>
+                    <li>Middle Wing (Class 6th - 8th)</li>
+                    <li>Matriculation Science (9th & 10th)</li>
+                </ul>
+            </div>
+
+            <!-- Contact & Registration -->
+            <div class="space-y-2 text-xs">
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2024 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript: Event Data, Filter & Modal Logic -->
+    <script>
+        const eventsData = [
+            {
+                id: 1,
+                title: "Annual Science & Robotics Exhibition 2024",
+                category: "academic",
+                badge: "Science Fair",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                date: "October 24, 2024",
+                time: "09:00 AM - 02:00 PM",
+                grades: "Class 4th to 10th",
+                location: "Main Science Labs & Campus Courtyard",
+                coordinator: "Department of Natural Sciences & IT",
+                image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80",
+                description: "Annual project showcase where students exhibit operational models in physics, hydraulic systems, plant botany, chemical crystallizations, and introductory Python/Scratch computer games.",
+                highlights: [
+                    "Over 40 working student prototypes and demonstrations",
+                    "Judging panel featuring distinguished professors from Kohat",
+                    "Cash prizes and trophies for Top 3 project creators",
+                    "Special robotics and electronics demonstration stall"
+                ]
+            },
+            {
+                id: 2,
+                title: "Annual Sports Gala & Athletics Tournament",
+                category: "sports",
+                badge: "Sports Gala",
+                badgeColor: "bg-amber-100 text-amber-800",
+                date: "November 12-15, 2024",
+                time: "08:30 AM - 01:30 PM Daily",
+                grades: "Nursery to 10th Class (Wing-Wise)",
+                location: "KIMS Sports Grounds & Play Arena",
+                coordinator: "Physical Education Department",
+                image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80",
+                description: "A thrilling four-day sports extravaganza featuring inter-house cricket matches, football shootouts, 100m sprint races, tug-of-war, and fun obstacle races for early childhood students.",
+                highlights: [
+                    "Inter-House Cricket Championship final trophy",
+                    "Fun 50m sack races & musical chairs for Nursery/Prep",
+                    "Medal ceremony for top athletes in every grade",
+                    "March-past parade and oath of fair play"
+                ]
+            },
+            {
+                id: 3,
+                title: "Husn-e-Qirat & Naat-e-Rasool (PBUH) Competition",
+                category: "islamic",
+                badge: "Islamic Tarbiyah",
+                badgeColor: "bg-blue-100 text-blue-800",
+                date: "September 28, 2024",
+                time: "10:00 AM - 01:00 PM",
+                grades: "All Enrolled Students (Class 1 to 10)",
+                location: "School Main Auditorium",
+                coordinator: "Islamic Studies & Qirat Faculty",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+                description: "Spiritual morning honoring the Prophet Muhammad (PBUH). Students recite verses of the Holy Quran with precise Tajweed followed by soulful recitation of Naat Shareef.",
+                highlights: [
+                    "Qari certification and shields for outstanding reciters",
+                    "Speech on Seerat-un-Nabi and moral leadership",
+                    "Book prizes distributed to top performers in each section",
+                    "Open to parent attendance and appreciation"
+                ]
+            },
+            {
+                id: 4,
+                title: "Parent-Teacher Meeting & Term Result Day",
+                category: "parental",
+                badge: "PTM & Review",
+                badgeColor: "bg-purple-100 text-purple-800",
+                date: "November 05, 2024",
+                time: "09:00 AM - 01:00 PM",
+                grades: "Nursery to 10th Class",
+                location: "Individual Classrooms",
+                coordinator: "Academic Administration",
+                image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80",
+                description: "A collaborative session giving parents detailed insight into their child's academic progress, daily homework habits, discipline, and personalized guidance for upcoming examinations.",
+                highlights: [
+                    "One-on-one consultation with subject teachers",
+                    "Comprehensive report cards and test analysis review",
+                    "Counseling on board exam preparation for 9th and 10th grades",
+                    "School development feedback forms collected"
+                ]
+            },
+            {
+                id: 5,
+                title: "Independence Day & Cultural Harmony Gala",
+                category: "academic",
+                badge: "National Day",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                date: "August 14, 2024",
+                time: "08:00 AM - 11:30 AM",
+                grades: "All Grades (Nursery to 10th)",
+                location: "Main Flagpole Assembly Ground",
+                coordinator: "Student Council & English Club",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80",
+                description: "Celebration of Pakistan's Independence Day marked by national flag hoisting, national anthem recitation, patriotic stage skits, and cultural dress presentations.",
+                highlights: [
+                    "Traditional costumes from all provinces of Pakistan",
+                    "Bilingual speech competition on the Quaid-e-Azam's vision",
+                    "Sweet distribution and national badge giveaways",
+                    "Performance by the Nursery & Prep choir"
+                ]
+            },
+            {
+                id: 6,
+                title: "English Speech & Bilingual Debate Championship",
+                category: "academic",
+                badge: "Debate & Speech",
+                badgeColor: "bg-amber-100 text-amber-800",
+                date: "December 08, 2024",
+                time: "10:00 AM - 12:30 PM",
+                grades: "Class 6th to 10th",
+                location: "School Library & Seminar Hall",
+                coordinator: "Languages Department",
+                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80",
+                description: "Inter-wing debate competition designed to sharpen critical articulation, public speaking confidence, and research-backed argumentation in both English and Urdu.",
+                highlights: [
+                    "Topics covering AI in education, environmental conservation, and social responsibility",
+                    "Best Orator of KIMS Trophy and certificate distribution",
+                    "Extempore round for 9th and 10th grade debaters",
+                    "Mentorship by regional toastmasters and language faculty"
+                ]
+            },
+            {
+                id: 7,
+                title: "Early Childhood (ECE) Fun & Sports Day",
+                category: "sports",
+                badge: "Kids Sports",
+                badgeColor: "bg-rose-100 text-rose-800",
+                date: "November 20, 2024",
+                time: "09:30 AM - 12:00 PM",
+                grades: "Playgroup, Nursery & Prep",
+                location: "ECE Activity Ground & Play Area",
+                coordinator: "Early Childhood Education Wing",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80",
+                description: "A joyful morning dedicated to our youngest learners. Features animal-themed relay races, color-sorting contests, ball throw in hoops, and sweet reward medals for every child.",
+                highlights: [
+                    "Every child receives a participation medal and balloon",
+                    "Parents cheer from shaded pavilions",
+                    "Nursery musical rhymes presentation",
+                    "Nutritious snack boxes and fresh juice provided"
+                ]
+            },
+            {
+                id: 8,
+                title: "Annual Board Toppers Convocation & Prize Day",
+                category: "parental",
+                badge: "Prize Ceremony",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                date: "March 22, 2025",
+                time: "10:00 AM - 01:30 PM",
+                grades: "Position Holders & Matric Pass-Outs",
+                location: "Grand Campus Hall",
+                coordinator: "KIMS Executive Board",
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
+                description: "The crown jewel of our academic year celebrating BISE Kohat Matriculation position holders, gold medalists, and outstanding subject teachers in the presence of parents and dignitaries.",
+                highlights: [
+                    "Distribution of laptops and gold medals to top scorers",
+                    "Full merit scholarships handed over to qualifying students",
+                    "Valedictorian speech by the 1st position holder",
+                    "Special recognition for dedicated faculty members"
+                ]
+            }
+        ];
+
+        // DOM Selectors
+        const eventsGrid = document.getElementById('events-grid');
+        const searchInput = document.getElementById('event-search-input');
+        const clearSearchBtn = document.getElementById('clear-event-search');
+        const noResults = document.getElementById('no-event-results');
+        const resetFiltersBtn = document.getElementById('reset-event-filters');
+        const filterPills = document.querySelectorAll('.event-filter-pill');
+        const eventCount = document.getElementById('event-count');
+
+        // Modal Selectors
+        const eventModal = document.getElementById('event-modal');
+        const modalCard = document.getElementById('event-modal-card');
+        const modalCloseBtn = document.getElementById('event-modal-close-btn');
+        const modalSecondaryClose = document.getElementById('event-modal-secondary-close');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Render Events Cards
+        function renderEvents() {
+            eventsGrid.innerHTML = '';
+
+            const filtered = eventsData.filter(event => {
+                const matchesFilter = currentFilter === 'all' || event.category === currentFilter;
+                const matchesSearch = searchQuery === '' || 
+                    event.title.toLowerCase().includes(searchQuery) ||
+                    event.description.toLowerCase().includes(searchQuery) ||
+                    event.grades.toLowerCase().includes(searchQuery) ||
+                    event.location.toLowerCase().includes(searchQuery);
+
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach(event => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1";
+
+                    card.innerHTML = `
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                            <span class="absolute top-4 left-4 ${event.badgeColor} text-[11px] font-extrabold uppercase px-3 py-1 rounded-lg shadow-sm">
+                                ${event.badge}
+                            </span>
+                            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                                <span class="text-xs font-semibold text-emerald-300"><i class="fa-solid fa-calendar mr-1"></i> ${event.date}</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-kimsEmerald transition">${event.title}</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed mt-2 line-clamp-2">
+                                    ${event.description}
+                                </p>
+                            </div>
+
+                            <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1 text-xs">
+                                <div class="flex items-center justify-between text-slate-600">
+                                    <span><i class="fa-solid fa-users text-emerald-600 mr-1.5"></i> Grades:</span>
+                                    <span class="font-bold text-slate-800">${event.grades}</span>
+                                </div>
+                                <div class="flex items-center justify-between text-slate-600">
+                                    <span><i class="fa-solid fa-location-dot text-amber-500 mr-1.5"></i> Venue:</span>
+                                    <span class="font-bold text-slate-800 truncate max-w-[160px]">${event.location}</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                                <button onclick="openEventModal(${event.id})" class="text-xs font-bold text-kimsEmerald hover:text-kimsDark flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-circle-info"></i> Full Event Details
+                                </button>
+                                <span class="text-[11px] text-slate-400 font-medium">${event.time.split(' - ')[0]}</span>
+                            </div>
+                        </div>
+                    `;
+                    eventsGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Open Event Modal
+        window.openEventModal = function(id) {
+            const event = eventsData.find(e => e.id === id);
+            if (!event) return;
+
+            document.getElementById('event-modal-title').textContent = event.title;
+            document.getElementById('event-modal-badge').textContent = event.badge;
+            document.getElementById('event-modal-date').innerHTML = `<i class="fa-solid fa-calendar mr-1"></i> ${event.date} • ${event.time}`;
+            document.getElementById('event-modal-desc').textContent = event.description;
+            document.getElementById('event-modal-grades').textContent = event.grades;
+            document.getElementById('event-modal-location').textContent = event.location;
+            document.getElementById('event-modal-coord').textContent = event.coordinator;
+
+            const highlightsContainer = document.getElementById('event-modal-highlights');
+            highlightsContainer.innerHTML = '';
+            event.highlights.forEach(h => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-2";
+                li.innerHTML = `<i class="fa-solid fa-check text-emerald-600 mt-0.5 flex-shrink-0"></i> <span>${h}</span>`;
+                highlightsContainer.appendChild(li);
+            });
+
+            eventModal.classList.remove('hidden');
+            setTimeout(() => {
+                eventModal.classList.remove('opacity-0');
+                modalCard.classList.remove('scale-95');
+                modalCard.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Event Modal
+        function closeEventModal() {
+            eventModal.classList.add('opacity-0');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            setTimeout(() => {
+                eventModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        modalCloseBtn.addEventListener('click', closeEventModal);
+        modalSecondaryClose.addEventListener('click', closeEventModal);
+        eventModal.addEventListener('click', (e) => {
+            if (e.target === eventModal) closeEventModal();
+        });
+
+        // Filter Pills Handler
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                filterPills.forEach(p => {
+                    p.classList.remove('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.add('bg-white', 'text-slate-700');
+                });
+                pill.classList.remove('bg-white', 'text-slate-700');
+                pill.classList.add('active-pill', 'bg-kimsEmerald', 'text-white');
+
+                currentFilter = pill.dataset.filter;
+                renderEvents();
+            });
+        });
+
+        // Search Input Handlers
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            if (searchQuery.length > 0) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+            renderEvents();
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            renderEvents();
+        });
+
+        resetFiltersBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            currentFilter = 'all';
+            filterPills.forEach((p, idx) => {
+                if (idx === 0) {
+                    p.classList.add('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.remove('bg-white', 'text-slate-700');
+                } else {
+                    p.classList.remove('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.add('bg-white', 'text-slate-700');
+                }
+            });
+            renderEvents();
+        });
+
+        // Mobile Nav Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            } else {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Initial Render
+        eventCount.textContent = eventsData.length;
+        renderEvents();
+    </script>
+</body>
+
+</html>

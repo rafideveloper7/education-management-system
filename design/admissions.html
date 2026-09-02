@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions 2024-25 (Nursery to 10th) - Kohat Institute of Modern Sciences (KIMS)</title>
+    <meta name="description" content="Apply for admission at Kohat Institute of Modern Sciences (KIMS) School from Nursery to 10th Class (Matriculation - SSC). Online admission form, fee structure, scholarship calculator, and key dates.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .admissions-hero-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.96) 0%, rgba(6, 78, 59, 0.90) 50%, rgba(2, 44, 34, 0.98) 100%), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <a href="index.html" class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-3xl tracking-tight leading-none">KIMS</h1>
+                    <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-kimsEmerald transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-semibold text-slate-700"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="text-kimsEmerald font-bold border-b-2 border-kimsEmerald pb-1">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal
+                </a>
+                <a href="#apply-form" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="lg:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-700">
+                <a href="index.html" class="hover:text-kimsEmerald transition py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Programs</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="text-kimsEmerald font-bold py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">Events</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login
+                </a>
+                <a href="#apply-form" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Cinematic Hero Header: Admissions 2024-25 -->
+    <section class="admissions-hero-bg text-white py-16 lg:py-24 px-4 sm:px-8 relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>ADMISSIONS OPEN: NURSERY TO 10TH CLASS (SESSION 2024-25)</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+                Give Your Child the <span class="gold-shimmer">Best Foundation</span> in Kohat
+            </h1>
+
+            <p class="text-base sm:text-lg text-emerald-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+                Join Kohat's top-rated school for Playgroup, Nursery, Prep, Primary (1-5), Middle (6-8), and Matriculation Science (9th & 10th). Enjoy dedicated caring faculty, well-equipped science & computer labs, and merit fee concessions up to 100%.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                <a href="#apply-form" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3.5 rounded-xl shadow-xl shadow-emerald-950/40 transition transform hover:-translate-y-0.5 text-base">
+                    Fill Online Admission Form <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+                <a href="#scholarship-calc" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold px-8 py-3.5 rounded-xl backdrop-blur-md transition text-base">
+                    <i class="fa-solid fa-calculator text-amber-400 text-sm"></i> Check Fee Concession
+                </a>
+            </div>
+
+            <!-- Highlights Strip -->
+            <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 text-center">
+                    <div class="text-xl sm:text-2xl font-extrabold text-amber-400">100% Free</div>
+                    <div class="text-xs text-emerald-200 mt-0.5 font-medium">For 90%+ Scorers</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 text-center">
+                    <div class="text-xl sm:text-2xl font-extrabold text-white">Nursery to 10th</div>
+                    <div class="text-xs text-emerald-200 mt-0.5 font-medium">All Grades Covered</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 text-center">
+                    <div class="text-xl sm:text-2xl font-extrabold text-emerald-300">Fast Track</div>
+                    <div class="text-xs text-emerald-200 mt-0.5 font-medium">24-Hr Confirmation</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 text-center">
+                    <div class="text-xl sm:text-2xl font-extrabold text-amber-400">Science & IT</div>
+                    <div class="text-xs text-emerald-200 mt-0.5 font-medium">Practical Laboratories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Interactive Online Admission Form Section -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-50 border-b border-slate-200" id="apply-form">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center mb-10 space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">School Admission Portal</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Student Admission Application</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Complete this form to reserve your child's seat for session 2024-25.</p>
+            </div>
+
+            <!-- Form Container Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 relative">
+                
+                <form id="admission-form" onsubmit="handleFormSubmit(event)" class="space-y-8">
+                    
+                    <!-- Section 1: Candidate Personal Details -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-slate-100">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-kimsEmerald font-bold flex items-center justify-center text-xs">1</span>
+                            <h3 class="text-lg font-bold text-slate-900">Student & Guardian Details</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="fullName" class="block text-xs font-bold text-slate-700 mb-1.5">Student Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="e.g. Muhammad Hamza" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                            <div>
+                                <label for="fatherName" class="block text-xs font-bold text-slate-700 mb-1.5">Father / Guardian Name *</label>
+                                <input type="text" id="fatherName" required placeholder="e.g. Tariq Khan" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="phone" class="block text-xs font-bold text-slate-700 mb-1.5">Father WhatsApp / Mobile No. *</label>
+                                <input type="tel" id="phone" required placeholder="0333 1234567" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                            <div>
+                                <label for="cnic" class="block text-xs font-bold text-slate-700 mb-1.5">Student B-Form / CNIC No. *</label>
+                                <input type="text" id="cnic" required placeholder="14202-xxxxxxx-x" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                            <div>
+                                <label for="gender" class="block text-xs font-bold text-slate-700 mb-1.5">Gender *</label>
+                                <select id="gender" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="address" class="block text-xs font-bold text-slate-700 mb-1.5">Permanent Residential Address *</label>
+                            <input type="text" id="address" required placeholder="Village / Mohallah / Street, Tehsil & District Kohat" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Class Applied For & Previous Academic Record -->
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-slate-100">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-kimsEmerald font-bold flex items-center justify-center text-xs">2</span>
+                            <h3 class="text-lg font-bold text-slate-900">Class Selection & Academic Record</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="program" class="block text-xs font-bold text-slate-700 mb-1.5">Class / Wing Applied For *</label>
+                                <select id="program" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition font-medium">
+                                    <option value="">Select Class</option>
+                                    <optgroup label="Early Childhood Education">
+                                        <option value="Playgroup / Nursery">Playgroup / Nursery (Age 3-4)</option>
+                                        <option value="Prep / Kindergarten">Prep / Kindergarten (Age 4-5)</option>
+                                    </optgroup>
+                                    <optgroup label="Primary Wing">
+                                        <option value="Class 1st">Class 1st</option>
+                                        <option value="Class 2nd">Class 2nd</option>
+                                        <option value="Class 3rd">Class 3rd</option>
+                                        <option value="Class 4th">Class 4th</option>
+                                        <option value="Class 5th">Class 5th</option>
+                                    </optgroup>
+                                    <optgroup label="Middle Wing">
+                                        <option value="Class 6th">Class 6th</option>
+                                        <option value="Class 7th">Class 7th</option>
+                                        <option value="Class 8th">Class 8th</option>
+                                    </optgroup>
+                                    <optgroup label="Secondary Wing (Matriculation - SSC)">
+                                        <option value="9th Science (Biology Track)">9th Class (Science - Biology Track)</option>
+                                        <option value="9th Science (Computer Track)">9th Class (Science - Computer Track)</option>
+                                        <option value="10th Science (Biology Track)">10th Class (Science - Biology Track)</option>
+                                        <option value="10th Science (Computer Track)">10th Class (Science - Computer Track)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="board" class="block text-xs font-bold text-slate-700 mb-1.5">Previous School Attended</label>
+                                <input type="text" id="board" placeholder="e.g. Previous School Name, Kohat" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition font-medium">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="marksObtained" class="block text-xs font-bold text-slate-700 mb-1.5">Previous Class Obtained Marks / Grade (for Class 1-10)</label>
+                                <input type="text" id="marksObtained" placeholder="e.g. 980 or Grade A+" oninput="updateLiveScholarship(this.value)" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                            <div>
+                                <label for="prevClass" class="block text-xs font-bold text-slate-700 mb-1.5">Last Class Passed</label>
+                                <input type="text" id="prevClass" placeholder="e.g. Class 8th / Prep" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                        </div>
+
+                        <!-- Instant Live Scholarship Predictor -->
+                        <div id="live-scholarship-box" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center justify-between transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-emerald-950 uppercase tracking-wide">Scholarship Qualified!</h4>
+                                    <p id="live-scholarship-text" class="text-xs text-emerald-800 font-medium">Eligible for fee waiver</p>
+                                </div>
+                            </div>
+                            <span id="live-scholarship-badge" class="bg-emerald-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-xl shadow">Merit Concession</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <p class="text-xs text-slate-400 text-center sm:text-left">
+                            <i class="fa-solid fa-lock text-emerald-600 mr-1"></i> Your information is confidential and sent directly to the KIMS School admission desk.
+                        </p>
+                        <button type="submit" class="w-full sm:w-auto bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-sm px-8 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            Submit Admission Application <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Interactive Scholarship & Concession Calculator -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200" id="scholarship-calc">
+        <div class="max-w-5xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Financial Support</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Merit Concession Calculator</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Enter previous class marks to instantly view your tuition fee concession.</p>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="bg-gradient-to-br from-kimsDark to-kimsEmerald text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+                    
+                    <!-- Left: Inputs -->
+                    <div class="md:col-span-7 space-y-5">
+                        <h3 class="text-2xl font-black text-white">Estimate Your Monthly Fee</h3>
+                        <p class="text-emerald-100/80 text-xs sm:text-sm leading-relaxed">
+                            KIMS School rewards academic hard work. Students scoring 85%+ in previous exams qualify for generous fee waivers, and sibling concessions are available for multiple children.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div>
+                                <label for="calc-marks" class="block text-xs font-bold text-emerald-200 mb-1.5">Previous Examination Percentage / Marks Equivalent</label>
+                                <div class="relative">
+                                    <input type="range" id="calc-slider" min="50" max="100" value="85" oninput="handleSliderChange(this.value)" class="w-full accent-amber-400 cursor-pointer">
+                                    <div class="flex justify-between text-[11px] text-emerald-200 mt-1">
+                                        <span>50%</span>
+                                        <span class="font-extrabold text-amber-300 text-base" id="slider-display">85% Marks</span>
+                                        <span>100% (Full Merit)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-medium text-emerald-200 mb-1">Quota / Special Concession</label>
+                                    <select id="calc-quota" onchange="recalculateScholarship()" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-xl text-xs text-white focus:outline-none">
+                                        <option value="none" class="text-slate-800">General Merit</option>
+                                        <option value="sibling" class="text-slate-800">Sibling Studying at KIMS (20% Off)</option>
+                                        <option value="orphan" class="text-slate-800">Orphan / Deserving (50% Off)</option>
+                                        <option value="hafiz" class="text-slate-800">Hafiz-e-Quran (10% Off)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-emerald-200 mb-1">Target Academic Wing</label>
+                                    <select id="calc-prog-type" onchange="recalculateScholarship()" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-xl text-xs text-white focus:outline-none">
+                                        <option value="matric" class="text-slate-800">Matric (Grade 9th & 10th)</option>
+                                        <option value="middle" class="text-slate-800">Middle Wing (Grade 6th - 8th)</option>
+                                        <option value="primary" class="text-slate-800">Primary Wing (Grade 1st - 5th)</option>
+                                        <option value="ece" class="text-slate-800">Early Childhood (Nursery & Prep)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Results Card -->
+                    <div class="md:col-span-5 bg-white text-slate-900 rounded-2xl p-6 shadow-xl border border-white/20 text-center space-y-4">
+                        <span class="text-[10px] uppercase font-black tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block">Estimated Concession</span>
+                        
+                        <div>
+                            <div class="text-4xl sm:text-5xl font-black text-kimsEmerald" id="calc-concession-rate">50%</div>
+                            <p class="text-xs font-bold text-slate-500 mt-0.5" id="calc-concession-label">Tuition Fee Concession</p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100 space-y-2 text-xs text-left">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Standard Monthly Fee:</span>
+                                <span class="font-semibold text-slate-700" id="calc-regular-fee">PKR 4,800</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">You Pay Only:</span>
+                                <span class="font-extrabold text-emerald-600 text-sm" id="calc-payable-fee">PKR 2,400 / mo</span>
+                            </div>
+                        </div>
+
+                        <a href="#apply-form" class="w-full inline-block bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                            Apply with this Concession
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. Transparent School Fee Structure Table -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto space-y-10">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Transparent Pricing</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">School Fee Schedule (2024-25)</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Affordable quality education for every family in Kohat with zero hidden fees.</p>
+            </div>
+
+            <div class="overflow-x-auto shadow-md rounded-2xl border border-slate-200 bg-white">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="text-xs text-white uppercase bg-kimsDark">
+                        <tr>
+                            <th class="px-6 py-4">Academic Wing</th>
+                            <th class="px-6 py-4">Classes / Grades</th>
+                            <th class="px-6 py-4">Admission Fee (One-Time)</th>
+                            <th class="px-6 py-4">Monthly Tuition</th>
+                            <th class="px-6 py-4">Merit Concession Available</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">Early Childhood (ECE)</td>
+                            <td class="px-6 py-4">Playgroup, Nursery & Prep</td>
+                            <td class="px-6 py-4">PKR 4,000</td>
+                            <td class="px-6 py-4 font-semibold text-slate-800">PKR 3,000</td>
+                            <td class="px-6 py-4 text-emerald-600 font-bold">Sibling Concession</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">Primary Wing</td>
+                            <td class="px-6 py-4">Class 1st to 5th</td>
+                            <td class="px-6 py-4">PKR 5,000</td>
+                            <td class="px-6 py-4 font-semibold text-slate-800">PKR 3,500</td>
+                            <td class="px-6 py-4 text-emerald-600 font-bold">Up to 50% Concession</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">Middle Wing</td>
+                            <td class="px-6 py-4">Class 6th to 8th</td>
+                            <td class="px-6 py-4">PKR 5,500</td>
+                            <td class="px-6 py-4 font-semibold text-slate-800">PKR 4,000</td>
+                            <td class="px-6 py-4 text-emerald-600 font-bold">Up to 75% Concession</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900">Secondary / Matriculation</td>
+                            <td class="px-6 py-4">Class 9th & 10th (Science)</td>
+                            <td class="px-6 py-4">PKR 6,500</td>
+                            <td class="px-6 py-4 font-semibold text-slate-800">PKR 4,800</td>
+                            <td class="px-6 py-4 text-emerald-600 font-bold">Up to 100% Free Tuition</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Notes Strip -->
+            <div class="bg-amber-50 border border-amber-200/80 rounded-2xl p-4 text-xs text-amber-900 flex items-center gap-3">
+                <i class="fa-solid fa-circle-info text-amber-600 text-base flex-shrink-0"></i>
+                <span>Note: Matriculation (9th & 10th) board registration and examination fees are charged as per the official BISE Kohat notification schedule.</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Key Dates & Required Documents -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Left: Important Dates Timeline -->
+            <div class="lg:col-span-6 space-y-6">
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Calendar</span>
+                    <h3 class="text-2xl font-black text-slate-900">Admission Schedule 2024-25</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-kimsEmerald font-bold flex flex-col items-center justify-center flex-shrink-0 leading-tight">
+                            <span class="text-xs uppercase">AUG</span>
+                            <span class="text-lg font-black">15</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Admissions Open (Nursery to 10th)</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Online form portal and campus prospectus available for all school grades.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 font-bold flex flex-col items-center justify-center flex-shrink-0 leading-tight">
+                            <span class="text-xs uppercase">SEP</span>
+                            <span class="text-lg font-black">05</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Assessment & Merit List Display</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Display of selected candidates and scholarship recipients on campus notice board.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 font-bold flex flex-col items-center justify-center flex-shrink-0 leading-tight">
+                            <span class="text-xs uppercase">SEP</span>
+                            <span class="text-lg font-black">15</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">First Day of Classes & Orientation</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Welcome ceremony, classroom allocation, and commencement of the new academic session.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Required Documents Checklist -->
+            <div class="lg:col-span-6 space-y-6">
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Checklist</span>
+                    <h3 class="text-2xl font-black text-slate-900">Required Documents for Verification</h3>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-3.5">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Student B-Form / Birth Certificate</h4>
+                            <p class="text-[11px] text-slate-500">2 photocopies of NADRA B-Form or official Birth Certificate.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Father / Guardian CNIC</h4>
+                            <p class="text-[11px] text-slate-500">2 photocopies of Father's or Guardian's valid CNIC.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Previous School Leaving Certificate / DMC</h4>
+                            <p class="text-[11px] text-slate-500">Original School Leaving Certificate (SLC) & report card from previous institution (for Class 1 to 10).</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">Passport-Size Photographs</h4>
+                            <p class="text-[11px] text-slate-500">4 recent passport-size photographs with blue background.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 8. Submission Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 text-center space-y-4 transform scale-95 transition-transform duration-300" id="success-card">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-black text-slate-900">Application Submitted!</h3>
+                <p class="text-xs text-slate-500 mt-1">Your admission request has been received by KIMS School admission office.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left text-xs space-y-1.5">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Tracking ID:</span>
+                    <span class="font-extrabold text-kimsEmerald" id="tracking-id">KIMS-2024-8492</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Student Name:</span>
+                    <span class="font-bold text-slate-800" id="receipt-name">Muhammad Hamza</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Class / Wing:</span>
+                    <span class="font-bold text-slate-800" id="receipt-program">Class 9th (Science)</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Our admission desk will call you within 24 hours on your contact number to schedule the informal interaction / test.
+            </p>
+
+            <button onclick="closeSuccessModal()" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                Done & Return to Page
+            </button>
+
+        </div>
+    </div>
+
+    <!-- 9. Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC).
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Us</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition">Academic Programs</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition">Hall of Fame / Toppers</a></li>
+                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us</a></li>
+                    <li><a href="admissions.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold">Admissions 2024-25</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition">Portal Login</a></li>
+                </ul>
+            </div>
+
+            <!-- Programs Offered (Nursery to 10th) -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Academic Wings</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>Early Childhood (Nursery & Prep)</li>
+                    <li>Primary Wing (Class 1st - 5th)</li>
+                    <li>Middle Wing (Class 6th - 8th)</li>
+                    <li>Matriculation Science (9th & 10th)</li>
+                </ul>
+            </div>
+
+            <!-- Contact & Registration -->
+            <div class="space-y-2 text-xs">
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2024 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript: Form Validation, Calculator & Modals -->
+    <script>
+        // 1. Live Scholarship Predictor on Form
+        function updateLiveScholarship(val) {
+            const num = parseFloat(val);
+            const box = document.getElementById('live-scholarship-box');
+            const text = document.getElementById('live-scholarship-text');
+            const badge = document.getElementById('live-scholarship-badge');
+
+            if (!num || num < 70) {
+                box.classList.add('hidden');
+                return;
+            }
+
+            box.classList.remove('hidden');
+
+            if (num >= 90) {
+                text.textContent = `Score: ${num}% / High Marks — Eligible for 100% Free Tuition`;
+                badge.textContent = "100% Free Tuition";
+            } else if (num >= 85) {
+                text.textContent = `Score: ${num}% — Eligible for 75% Tuition Concession`;
+                badge.textContent = "75% Concession";
+            } else if (num >= 80) {
+                text.textContent = `Score: ${num}% — Eligible for 50% Tuition Concession`;
+                badge.textContent = "50% Concession";
+            } else {
+                text.textContent = `Score: ${num}% — Eligible for 25% Merit Concession`;
+                badge.textContent = "25% Concession";
+            }
+        }
+
+        // 2. Interactive Scholarship Calculator
+        function handleSliderChange(val) {
+            document.getElementById('slider-display').textContent = `${val}% Marks`;
+            recalculateScholarship();
+        }
+
+        function recalculateScholarship() {
+            const pct = parseInt(document.getElementById('calc-slider').value);
+            const quota = document.getElementById('calc-quota').value;
+            const progType = document.getElementById('calc-prog-type').value;
+
+            let discount = 0;
+
+            if (pct >= 90) discount = 100;
+            else if (pct >= 85) discount = 75;
+            else if (pct >= 80) discount = 50;
+            else if (pct >= 70) discount = 25;
+
+            // Extra quota perks
+            if (quota === 'orphan') discount = Math.max(discount, 50);
+            if (quota === 'sibling') discount = Math.min(100, discount + 20);
+            if (quota === 'hafiz') discount = Math.min(100, discount + 10);
+
+            let baseFee = 4800;
+            if (progType === 'middle') baseFee = 4000;
+            if (progType === 'primary') baseFee = 3500;
+            if (progType === 'ece') baseFee = 3000;
+
+            const payable = Math.round(baseFee * (1 - (discount / 100)));
+
+            document.getElementById('calc-concession-rate').textContent = `${discount}%`;
+            document.getElementById('calc-regular-fee').textContent = `PKR ${baseFee.toLocaleString()}`;
+            document.getElementById('calc-payable-fee').textContent = `PKR ${payable.toLocaleString()} / mo`;
+        }
+
+        // 3. Form Submission Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const program = document.getElementById('program').value;
+            const randomId = 'KIMS-2024-' + Math.floor(1000 + Math.random() * 9000);
+
+            document.getElementById('receipt-name').textContent = fullName;
+            document.getElementById('receipt-program').textContent = program;
+            document.getElementById('tracking-id').textContent = randomId;
+
+            const modal = document.getElementById('success-modal');
+            const card = document.getElementById('success-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            const card = document.getElementById('success-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                document.getElementById('admission-form').reset();
+                document.getElementById('live-scholarship-box').classList.add('hidden');
+            }, 250);
+        }
+
+        // 4. Mobile Navigation Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            } else {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            }
+        });
+    </script>
+</body>
+
+</html>

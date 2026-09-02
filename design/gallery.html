@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Gallery & Facilities - Kohat Institute of Modern Sciences (KIMS)</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#064e3b',
+                            dark: '#022c22',
+                            light: '#059669',
+                            muted: '#d1fae5',
+                            soft: '#ecfdf5'
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.05)',
+                        'premium': '0 20px 40px -15px rgba(6, 78, 59, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-btn.active {
+            background-color: #064e3b;
+            color: #ffffff;
+            border-color: #064e3b;
+        }
+
+        .gallery-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 overflow-x-hidden">
+
+    <!-- 1. Top Announcement & Utility Bar -->
+    <div class="bg-brand-dark text-white/90 text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center"><i class="fa-solid fa-location-dot text-brand-light mr-2"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center"><i class="fa-solid fa-phone text-brand-light mr-2"></i> +92 333 0299920</span>
+                <span class="flex items-center"><i class="fa-solid fa-envelope text-brand-light mr-2"></i> info@kimskohat.edu.pk</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-brand text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">
+                    "Come to Read, Go to Lead"
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-50 glass-header">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark text-white rounded-xl flex items-center justify-center font-bold text-2xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
+                    K
+                </div>
+                <div>
+                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-none">KIMS<span class="text-brand">.</span></h1>
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Kohat Institute</p>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden xl:flex items-center space-x-7 font-semibold text-sm text-slate-600">
+                <a href="index.html" class="hover:text-brand transition">Home</a>
+                <a href="about.html" class="hover:text-brand transition">About Us</a>
+                <a href="academics.html" class="hover:text-brand transition">Academics</a>
+                <a href="faculty.html" class="hover:text-brand transition">Faculty</a>
+                <a href="admissions.html" class="hover:text-brand transition">Admissions</a>
+                <a href="gallery.html" class="text-brand border-b-2 border-brand pb-0.5">Gallery</a>
+                <a href="notices.html" class="hover:text-brand transition">Notices</a>
+                <a href="contact.html" class="hover:text-brand transition">Contact</a>
+            </nav>
+
+            <div class="hidden xl:flex items-center space-x-4">
+                <a href="login.html" class="font-bold text-slate-700 hover:text-brand transition text-sm flex items-center">
+                    <i class="fa-solid fa-lock text-brand-light mr-1.5 text-xs"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg transition-all hover:-translate-y-0.5">
+                    Apply Online <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-button" class="xl:hidden text-slate-800 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all duration-300">
+            <div class="px-6 py-4 space-y-3 font-semibold text-slate-700">
+                <a href="index.html" class="block hover:text-brand pb-2 border-b border-slate-50">Home</a>
+                <a href="about.html" class="block hover:text-brand pb-2 border-b border-slate-50">About Us</a>
+                <a href="academics.html" class="block hover:text-brand pb-2 border-b border-slate-50">Academics</a>
+                <a href="faculty.html" class="block hover:text-brand pb-2 border-b border-slate-50">Faculty</a>
+                <a href="admissions.html" class="block hover:text-brand pb-2 border-b border-slate-50">Admissions</a>
+                <a href="gallery.html" class="block text-brand font-bold pb-2 border-b border-slate-50">Gallery</a>
+                <a href="notices.html" class="block hover:text-brand pb-2 border-b border-slate-50">Notices</a>
+                <a href="contact.html" class="block hover:text-brand pb-2 border-b border-slate-50">Contact</a>
+                <div class="pt-2 flex flex-col gap-2">
+                    <a href="login.html" class="text-center py-2.5 rounded-xl border border-slate-200 text-slate-800 font-bold">Portal Login</a>
+                    <a href="admissions.html" class="text-center bg-brand text-white py-2.5 rounded-xl font-bold">Apply Online</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero Banner -->
+    <section class="bg-brand-dark py-20 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
+            <span class="inline-block bg-brand-light/20 text-emerald-300 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 border border-emerald-500/30">
+                Campus Infrastructure & Life
+            </span>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight leading-tight">Campus Gallery & Facilities</h1>
+            <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+                Take a visual tour through our modern academic infrastructure, high-tech science laboratories, sports fields, and memorable student achievements in Kohat.
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Filter Bar -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                <button class="gallery-btn active px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 transition-all duration-200" onclick="filterGallery('all', this)">
+                    All Photos
+                </button>
+                <button class="gallery-btn px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all duration-200" onclick="filterGallery('labs', this)">
+                    Science & Tech Labs
+                </button>
+                <button class="gallery-btn px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all duration-200" onclick="filterGallery('campus', this)">
+                    Campus & Classrooms
+                </button>
+                <button class="gallery-btn px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all duration-200" onclick="filterGallery('achievements', this)">
+                    Distinctions & Awards
+                </button>
+                <button class="gallery-btn px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all duration-200" onclick="filterGallery('sports', this)">
+                    Sports & Recreation
+                </button>
+                <button class="gallery-btn px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all duration-200" onclick="filterGallery('events', this)">
+                    Events & Co-Curricular
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="pb-24">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+                
+                <!-- Item 1: Science Lab -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="labs" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chemistry Laboratory" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-emerald-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Science Lab
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-emerald-300 transition">Modern Chemistry Lab</h3>
+                        <p class="text-xs text-slate-300">Equipped for SSC practical board exams with individual burner & glass apparatus setups.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Physics Lab -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="labs" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Physics Practical Setup" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-emerald-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Science Lab
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-emerald-300 transition">Physics Laboratory</h3>
+                        <p class="text-xs text-slate-300">Precision apparatus for mechanics, optics, electricity, and magnetism practicals.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Computer Lab -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="labs" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="High-tech IT Laboratory" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-blue-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        IT & Computing
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-blue-300 transition">Digital Computing Center</h3>
+                        <p class="text-xs text-slate-300">45 high-speed desktop workstations with fiber internet for coding and digital skills.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Achievements & Awards -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="achievements" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Annual Prize Distribution Ceremony" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-yellow-500/90 text-slate-900 text-[11px] font-extrabold px-3 py-1 rounded-full backdrop-blur-md">
+                        Distinction
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-yellow-300 transition">Annual Distinction Awards</h3>
+                        <p class="text-xs text-slate-300">Honoring BISE Kohat board position holders with cash prizes and shields of excellence.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5: Campus Architecture -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="campus" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campus Quad" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-slate-800/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Main Campus
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-emerald-300 transition">Main Academic Block</h3>
+                        <p class="text-xs text-slate-300">Modern purpose-built campus on Dhoda Road designed for optimal daylight and ventilation.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6: Resource Library -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="campus" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Central Library" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-slate-800/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Library
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-emerald-300 transition">Central Resource Library</h3>
+                        <p class="text-xs text-slate-300">Over 6,000 academic titles, periodicals, and individual reading cubicles.</p>
+                    </div>
+                </div>
+
+                <!-- Item 7: Sports & Grounds -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="sports" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Annual Sports Gala" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-orange-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Sports
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-orange-300 transition">Annual Sports Gala</h3>
+                        <p class="text-xs text-slate-300">Cricket tournaments, badminton championships, and track races promoting physical fitness.</p>
+                    </div>
+                </div>
+
+                <!-- Item 8: Co-Curricular & Debates -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="events" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bilingual Speech Contest" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-purple-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Co-Curricular
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-purple-300 transition">All-Kohat Speech Contest</h3>
+                        <p class="text-xs text-slate-300">Students showcasing oratory brilliance in English, Urdu, and Pashto declamations.</p>
+                    </div>
+                </div>
+
+                <!-- Item 9: Science Exhibition -->
+                <div class="gallery-item group relative h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition cursor-pointer" data-category="events" onclick="openModal(this)">
+                    <img src="https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Science Innovation Fair" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-teal-500/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                        Innovation Fair
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-teal-300 transition">Science & Robotics Expo</h3>
+                        <p class="text-xs text-slate-300">Hands-on student engineering prototypes, automated solar models, and biology exhibits.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal Preview -->
+    <div id="image-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeModal()">
+        <div class="max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative" onclick="event.stopPropagation()">
+            <button class="absolute top-4 right-4 text-white/80 hover:text-white text-2xl w-10 h-10 rounded-full bg-black/50 flex items-center justify-center transition" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="modal-img" src="" alt="Enlarged View" class="w-full max-h-[70vh] object-cover">
+            <div class="p-6 text-white">
+                <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
+                <p id="modal-desc" class="text-sm text-slate-300"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Unified Footer -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 pt-20 pb-10 border-t-8 border-brand">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-white text-brand rounded-xl flex items-center justify-center font-bold text-2xl shadow-md">
+                            K
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-white tracking-tight">KIMS<span class="text-brand">.</span></h2>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                        Kohat Institute of Modern Sciences. Shaping the bright futures of our students through profound knowledge, ethical values, and modern education.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6">Explore</h3>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="about.html" class="hover:text-brand-light transition">About Institute</a></li>
+                        <li><a href="academics.html" class="hover:text-brand-light transition">Academic Programs</a></li>
+                        <li><a href="faculty.html" class="hover:text-brand-light transition">Faculty & Staff</a></li>
+                        <li><a href="admissions.html" class="hover:text-brand-light transition">Admissions & Fees</a></li>
+                        <li><a href="gallery.html" class="text-brand-light font-bold transition">Campus Gallery</a></li>
+                        <li><a href="notices.html" class="hover:text-brand-light transition">Notices & Events</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6">Contact Us</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-brand-light mt-1 mr-3 text-lg"></i>
+                            <span>Dhoda Road, Dheri Banda,<br>Kohat, Khyber Pakhtunkhwa,<br>Pakistan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-light mr-3 text-lg"></i>
+                            <span class="font-bold">+92 333 0299920</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope text-brand-light mr-3 text-lg"></i>
+                            <span>info@kimskohat.edu.pk</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Accreditation -->
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6">Accreditation</h3>
+                    <div class="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl"></i>
+                            <div class="text-sm">
+                                <span class="block text-white font-bold">KP-PSRA</span>
+                                <span class="text-slate-400 text-xs">Registered Institute</span>
+                            </div>
+                        </div>
+                        <div class="w-full h-px bg-white/10"></div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fa-solid fa-certificate text-emerald-400 text-2xl"></i>
+                            <div class="text-sm">
+                                <span class="block text-white font-bold">BISE Kohat</span>
+                                <span class="text-slate-400 text-xs">Affiliated Center</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-medium text-slate-500">
+                <p>&copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="login.html" class="hover:text-white transition">Staff & Student Login</a>
+                    <a href="contact.html" class="hover:text-white transition">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Gallery Filter
+        function filterGallery(category, btnElement) {
+            document.querySelectorAll('.gallery-btn').forEach(b => {
+                b.classList.remove('active', 'bg-brand', 'text-white');
+                b.classList.add('bg-white', 'text-slate-700');
+            });
+            btnElement.classList.remove('bg-white', 'text-slate-700');
+            btnElement.classList.add('active');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Modal
+        function openModal(item) {
+            const imgSrc = item.querySelector('img').src;
+            const title = item.querySelector('h3').innerText;
+            const desc = item.querySelector('p').innerText;
+
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('image-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
