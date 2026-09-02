@@ -92,20 +92,23 @@
             </a>
 
             <!-- Desktop Navigation Links -->
-            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
                 <a href="index.html" class="hover:text-kimsEmerald transition">Home</a>
                 <a href="about.html" class="hover:text-kimsEmerald transition">About Us</a>
                 <a href="programs.html" class="text-kimsEmerald font-bold border-b-2 border-kimsEmerald pb-1">Programs</a>
-                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-semibold text-slate-700"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
                 <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
                 <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
                 <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
             </nav>
 
             <!-- Desktop Action Items -->
             <div class="hidden sm:flex items-center gap-3">
                 <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
-                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
                 </a>
                 <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
                     Apply Online
@@ -113,25 +116,31 @@
             </div>
 
             <!-- Mobile Hamburger Menu Button -->
-            <button id="hamburger-btn" class="lg:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
             </button>
         </div>
 
         <!-- Mobile Drawer Navigation Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
-            <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-700">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
                 <a href="index.html" class="hover:text-kimsEmerald transition py-1">Home</a>
                 <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
-                <a href="programs.html" class="text-kimsEmerald font-bold py-1">Programs</a>
-                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
-                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions</a>
-                <a href="events.html" class="hover:text-kimsEmerald transition py-1">Events</a>
-                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact</a>
+                <a href="programs.html" class="text-kimsEmerald font-bold py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
             </nav>
-            <div class="pt-4 border-t border-slate-100 flex flex-col gap-3">
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
                 <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
-                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
                 </a>
                 <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
                     Apply Online
@@ -536,33 +545,38 @@
                     <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
                 </div>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC).
+                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC) with science laboratories and verified character building.
                 </p>
+                <div class="flex items-center gap-3 text-slate-400 text-sm">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/923330299920" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
             </div>
 
-            <!-- Quick Links -->
+            <!-- Public Directory -->
             <div>
-                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Quick Navigation</h4>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Public Directory</h4>
                 <ul class="space-y-2 text-xs">
                     <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
-                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Us</a></li>
-                    <li><a href="programs.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold">Academic Programs</a></li>
-                    <li><a href="toppers.html" class="hover:text-emerald-400 transition">Hall of Fame / Toppers</a></li>
-                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
-                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Institute</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition text-emerald-400 font-bold">Academic Programs</a></li>
+                    <li><a href="faculty.html" class="hover:text-emerald-400 transition">Faculty & Departments</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold"><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Hall of Fame / Toppers</a></li>
                     <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions 2024-25</a></li>
-                    <li><a href="login.html" class="hover:text-emerald-400 transition">Portal Login</a></li>
                 </ul>
             </div>
 
-            <!-- Programs Offered (Nursery to 10th) -->
+            <!-- Portals & Resources -->
             <div>
-                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Academic Wings</h4>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Portals & Resources</h4>
                 <ul class="space-y-2 text-xs">
-                    <li>Early Childhood (Nursery & Prep)</li>
-                    <li>Primary Wing (Class 1st - 5th)</li>
-                    <li>Middle Wing (Class 6th - 8th)</li>
-                    <li>Matriculation Science (9th & 10th)</li>
+                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                    <li><a href="notices.html" class="hover:text-emerald-400 transition">Notices & Circulars</a></li>
+                    <li><a href="gallery.html" class="hover:text-emerald-400 transition">Campus Gallery</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us & Map</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition font-bold text-white"><i class="fa-solid fa-right-to-bracket text-emerald-400 mr-1"></i> Portal Login (All Roles)</a></li>
+                    <li><a href="register.html" class="hover:text-emerald-400 transition">Register Public Account</a></li>
                 </ul>
             </div>
 
@@ -571,12 +585,13 @@
                 <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
                 <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
                 <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p><i class="fa-solid fa-envelope text-emerald-400 mr-1.5"></i> info@kimskohat.edu.pk</p>
                 <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
             </div>
         </div>
 
         <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
-            &copy; 2024 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+            &copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
         </div>
     </footer>
 

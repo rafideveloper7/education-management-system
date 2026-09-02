@@ -23,6 +23,10 @@
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
                         brand: {
                             DEFAULT: '#064e3b',
                             dark: '#022c22',
@@ -88,60 +92,73 @@
     </div>
 
     <!-- 2. Sticky Glassmorphism Header & Navigation -->
-    <header class="sticky top-0 z-50 glass-header">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark text-white rounded-xl flex items-center justify-center font-bold text-2xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
-                    K
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl">
                 </div>
                 <div>
-                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-none">KIMS<span class="text-brand">.</span></h1>
-                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Kohat Institute</p>
+                    <h1 class="font-bold text-slate-900 text-4xl tracking-tight leading-none">KIMS</h1>
+                    <!-- <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p> -->
                 </div>
-            </a>
-            
-            <!-- Desktop Nav -->
-            <nav class="hidden xl:flex items-center space-x-7 font-semibold text-sm text-slate-600">
-                <a href="index.html" class="hover:text-brand transition">Home</a>
-                <a href="about.html" class="hover:text-brand transition">About Us</a>
-                <a href="academics.html" class="hover:text-brand transition">Academics</a>
-                <a href="faculty.html" class="text-brand border-b-2 border-brand pb-0.5">Faculty</a>
-                <a href="admissions.html" class="hover:text-brand transition">Admissions</a>
-                <a href="gallery.html" class="hover:text-brand transition">Gallery</a>
-                <a href="notices.html" class="hover:text-brand transition">Notices</a>
-                <a href="contact.html" class="hover:text-brand transition">Contact</a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200/60"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
             </nav>
 
-            <div class="hidden xl:flex items-center space-x-4">
-                <a href="login.html" class="font-bold text-slate-700 hover:text-brand transition text-sm flex items-center">
-                    <i class="fa-solid fa-lock text-brand-light mr-1.5 text-xs"></i> Portal Login
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
                 </a>
-                <a href="admissions.html" class="bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg transition-all hover:-translate-y-0.5">
-                    Apply Online <i class="fa-solid fa-arrow-right ml-1"></i>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
                 </a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-button" class="xl:hidden text-slate-800 text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars-staggered"></i>
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
             </button>
         </div>
 
-        <!-- Mobile Nav Drawer -->
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all duration-300">
-            <div class="px-6 py-4 space-y-3 font-semibold text-slate-700">
-                <a href="index.html" class="block hover:text-brand pb-2 border-b border-slate-50">Home</a>
-                <a href="about.html" class="block hover:text-brand pb-2 border-b border-slate-50">About Us</a>
-                <a href="academics.html" class="block hover:text-brand pb-2 border-b border-slate-50">Academics</a>
-                <a href="faculty.html" class="block text-brand font-bold pb-2 border-b border-slate-50">Faculty</a>
-                <a href="admissions.html" class="block hover:text-brand pb-2 border-b border-slate-50">Admissions</a>
-                <a href="gallery.html" class="block hover:text-brand pb-2 border-b border-slate-50">Gallery</a>
-                <a href="notices.html" class="block hover:text-brand pb-2 border-b border-slate-50">Notices</a>
-                <a href="contact.html" class="block hover:text-brand pb-2 border-b border-slate-50">Contact</a>
-                <div class="pt-2 flex flex-col gap-2">
-                    <a href="login.html" class="text-center py-2.5 rounded-xl border border-slate-200 text-slate-800 font-bold">Portal Login</a>
-                    <a href="admissions.html" class="text-center bg-brand text-white py-2.5 rounded-xl font-bold">Apply Online</a>
-                </div>
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-emerald-800 font-bold"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
             </div>
         </div>
     </header>
