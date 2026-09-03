@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional & Campus Settings - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Campus Configuration and Security Settings">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>Kohat Institute</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link active">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search system settings...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Campus & Institutional Configuration</h1>
+            <p>Administer KIMS institutional credentials, active academic terms, administrator permissions, and communications.</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" onclick="saveAllSettings()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Save Configuration</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Left Column: Institute Profile & Admin User Account -->
+          <div class="lg:col-span-2 space-y-6">
+
+            <!-- Card 1: Institute Profile -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Institutional Profile</div>
+                  <div class="card-subtitle">Official university identification details</div>
+                </div>
+              </div>
+              <div class="card-body space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="form-group">
+                    <label class="form-label">Institution Legal Name</label>
+                    <input type="text" class="form-control" value="Kohat Institute of Modern Sciences (KIMS)">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Campus Code / HEC Ref</label>
+                    <input type="text" class="form-control" value="KIMS-KHT-001">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="form-group">
+                    <label class="form-label">Registrar Office Phone</label>
+                    <input type="text" class="form-control" value="+92 (0922) 512345 / 512346">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Official Inquiries Email</label>
+                    <input type="email" class="form-control" value="info@kims.edu.pk">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Campus Physical Address</label>
+                  <input type="text" class="form-control" value="KIMS University Campus, Bannu Road, Kohat, Khyber Pakhtunkhwa, Pakistan">
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Academic Terms -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Academic Session Configuration</div>
+                  <div class="card-subtitle">Current semester dates and grading scheme</div>
+                </div>
+              </div>
+              <div class="card-body space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div class="form-group">
+                    <label class="form-label">Active Academic Session</label>
+                    <input type="text" class="form-control" value="Fall 2026">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Term Commencement</label>
+                    <input type="date" class="form-control" value="2026-09-01">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Term Conclusion</label>
+                    <input type="date" class="form-control" value="2027-01-20">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="form-group">
+                    <label class="form-label">Minimum Statutory Attendance %</label>
+                    <input type="text" class="form-control" value="75% (HEC Standard)">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Grading System</label>
+                    <select class="form-control">
+                      <option selected>4.00 Scale (HEC Relative Grading)</option>
+                      <option>Percentage Marks System</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Administrator Accounts -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Authorized Admin Accounts</div>
+                  <div class="card-subtitle">Role-based institutional access</div>
+                </div>
+                <button type="button" onclick="showToast('Add Role', 'Administrator invite dialog', 'info')" class="btn-kims btn-secondary !py-1 !px-3 text-xs">
+                  <i class="fa-solid fa-user-shield"></i> Add Administrator
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Account</th>
+                      <th>Role</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong class="text-xs">Executive Super Admin</strong></td>
+                      <td><span class="badge badge-success">Super Admin</span></td>
+                      <td class="font-mono text-xs">admin@gmail.com</td>
+                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong class="text-xs">Office of the Registrar</strong></td>
+                      <td><span class="badge badge-info">Registrar</span></td>
+                      <td class="font-mono text-xs">registrar@kims.edu.pk</td>
+                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong class="text-xs">Treasurer & Finance Head</strong></td>
+                      <td><span class="badge badge-warning">Finance</span></td>
+                      <td class="font-mono text-xs">finance@kims.edu.pk</td>
+                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: System Notifications, SMS Gateway & Backups -->
+          <div class="space-y-6">
+            
+            <!-- SMS & Automated Alerts -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div class="card-title">Communication Gateways</div>
+              </div>
+              <div class="card-body space-y-4">
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+                  <div>
+                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">SMS Gateway (Zong/Jazz API)</h5>
+                    <p class="text-[11px] text-slate-400">Dispatch fee challan & attendance alerts to parents</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+                  <div>
+                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Email SMTP Relay</h5>
+                    <p class="text-[11px] text-slate-400">Formal admission offers & grade transcripts</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+                  <div>
+                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Biometric Attendance Sync</h5>
+                    <p class="text-[11px] text-slate-400">Automatic morning faculty clock-in relay</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Backup & Disaster Recovery -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div class="card-title">Database & Snapshots</div>
+              </div>
+              <div class="card-body space-y-3">
+                <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+                  <span class="text-xs text-slate-400 block mb-1">Last Automated Backup:</span>
+                  <div class="text-xs font-bold text-emerald-600">Today at 04:00 AM (Encrypted)</div>
+                  <span class="text-[11px] text-slate-400">Size: 42.8 MB &bull; Cloud Server (Islamabad DC)</span>
+                </div>
+
+                <button type="button" onclick="showToast('Backup Triggered', 'Encrypted database snapshot compiled successfully.', 'success')" class="btn-kims btn-secondary w-full text-xs">
+                  <i class="fa-solid fa-database"></i>
+                  <span>Compile Manual Snapshot Now</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    function saveAllSettings() {
+      showToast('Settings Saved', 'Institutional configuration and gateway policies updated.', 'success');
+    }
+  </script>
+</body>
+</html>

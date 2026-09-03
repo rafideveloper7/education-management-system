@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Directory & Management - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Student Records and Enrollment">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>Kohat Institute</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link active">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" data-table-search="#studentsTable" placeholder="Filter student roll, name, or degree...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Header Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Student Information Directory</h1>
+            <p>Manage enrolled scholars, academic credentials, fee clearances, and departmental rosters.</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" onclick="showToast('Exporting Report', 'Generating Student CSV Registry...', 'info')" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-file-csv"></i>
+              <span>Export CSV</span>
+            </button>
+            <button type="button" data-modal-target="addStudentModal" class="btn-kims btn-primary">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Register New Student</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Student Summary Mini-KPIs -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Total Scholars</span>
+            <div class="text-2xl font-black text-slate-800 dark:text-white mt-1">4,850</div>
+            <span class="text-[11px] text-emerald-500 font-bold">&bull; 100% Registered</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Fee Cleared</span>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">4,335</div>
+            <span class="text-[11px] text-emerald-500 font-bold">&bull; 89.4% Rate</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Pending Dues</span>
+            <div class="text-2xl font-black text-amber-500 mt-1">515</div>
+            <span class="text-[11px] text-amber-500 font-bold">&bull; Installment Active</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Average CGPA</span>
+            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 mt-1">3.41</div>
+            <span class="text-[11px] text-purple-500 font-bold">&bull; High Distinction</span>
+          </div>
+        </div>
+
+        <!-- Filters & Search Toolbar -->
+        <div class="admin-card mb-6">
+          <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            
+            <!-- Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="deptFilterTabs">
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm" onclick="filterByDept('all', this)">
+                All Programs
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByDept('CS', this)">
+                Computer Science
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByDept('Pharmacy', this)">
+                Pharmacy & Health
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByDept('BBA', this)">
+                Management Sciences
+              </button>
+            </div>
+
+            <!-- Table Live Search -->
+            <div class="relative w-full md:w-72">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input 
+                type="text" 
+                data-table-search="#studentsTable" 
+                placeholder="Search by student name or roll..."
+                class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+
+          <!-- Students Table -->
+          <div class="table-responsive">
+            <table class="admin-table" id="studentsTable">
+              <thead>
+                <tr>
+                  <th class="w-10">
+                    <input type="checkbox" class="rounded border-slate-300 text-emerald-600">
+                  </th>
+                  <th>Student Profile</th>
+                  <th>Roll / Reg No</th>
+                  <th>Program & Department</th>
+                  <th>Semester</th>
+                  <th>CGPA</th>
+                  <th>Fee Status</th>
+                  <th>Guardian Contact</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                
+                <!-- Row 1 -->
+                <tr data-dept="CS">
+                  <td><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
+                        AK
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Abdullah Khan</div>
+                        <div class="text-[11px] text-slate-400">abdullah.k@kims.edu.pk</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">KIMS-2024-CS-014</span></td>
+                  <td>BS Computer Science</td>
+                  <td>Semester 5</td>
+                  <td><span class="font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">3.88</span></td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Cleared</span></td>
+                  <td class="text-xs text-slate-600 dark:text-slate-300">0333-9821455</td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectStudent('Abdullah Khan', 'KIMS-2024-CS-014', 'BS Computer Science', 'Semester 5', '3.88', 'Cleared')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+                        <i class="fa-solid fa-user text-xs"></i>
+                      </button>
+                      <button type="button" onclick="showToast('Edit Mode', 'Opened editor for Abdullah Khan', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+                      <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr data-dept="Pharmacy">
+                  <td><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-400 font-bold flex items-center justify-center text-xs">
+                        FB
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Fatima Bibi</div>
+                        <div class="text-[11px] text-slate-400">fatima.b@kims.edu.pk</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">KIMS-2023-PH-029</span></td>
+                  <td>Doctor of Pharmacy (Pharm-D)</td>
+                  <td>Semester 7</td>
+                  <td><span class="font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">3.94</span></td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Cleared</span></td>
+                  <td class="text-xs text-slate-600 dark:text-slate-300">0300-5872149</td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectStudent('Fatima Bibi', 'KIMS-2023-PH-029', 'Doctor of Pharmacy', 'Semester 7', '3.94', 'Cleared')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+                        <i class="fa-solid fa-user text-xs"></i>
+                      </button>
+                      <button type="button" onclick="showToast('Edit Mode', 'Opened editor for Fatima Bibi', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+                      <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3 -->
+                <tr data-dept="BBA">
+                  <td><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-xs">
+                        BA
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Bilal Ahmed</div>
+                        <div class="text-[11px] text-slate-400">bilal.a@kims.edu.pk</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">KIMS-2025-BB-077</span></td>
+                  <td>BBA Business Administration</td>
+                  <td>Semester 3</td>
+                  <td><span class="font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">3.28</span></td>
+                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> 2nd Installment</span></td>
+                  <td class="text-xs text-slate-600 dark:text-slate-300">0345-9110488</td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectStudent('Bilal Ahmed', 'KIMS-2025-BB-077', 'BBA Business Administration', 'Semester 3', '3.28', '2nd Installment')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+                        <i class="fa-solid fa-user text-xs"></i>
+                      </button>
+                      <button type="button" onclick="showToast('Edit Mode', 'Opened editor for Bilal Ahmed', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+                      <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4 -->
+                <tr data-dept="CS">
+                  <td><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-400 font-bold flex items-center justify-center text-xs">
+                        ZM
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Zeeshan Murad</div>
+                        <div class="text-[11px] text-slate-400">zeeshan.m@kims.edu.pk</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">KIMS-2024-SE-052</span></td>
+                  <td>BS Software Engineering</td>
+                  <td>Semester 5</td>
+                  <td><span class="font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">3.75</span></td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Cleared</span></td>
+                  <td class="text-xs text-slate-600 dark:text-slate-300">0312-7654321</td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectStudent('Zeeshan Murad', 'KIMS-2024-SE-052', 'BS Software Engineering', 'Semester 5', '3.75', 'Cleared')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+                        <i class="fa-solid fa-user text-xs"></i>
+                      </button>
+                      <button type="button" onclick="showToast('Edit Mode', 'Opened editor for Zeeshan Murad', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+                      <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 5 -->
+                <tr data-dept="Pharmacy">
+                  <td><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-bold flex items-center justify-center text-xs">
+                        MN
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Maryam Nawaz Khattak</div>
+                        <div class="text-[11px] text-slate-400">maryam.k@kims.edu.pk</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">KIMS-2025-ML-011</span></td>
+                  <td>BS Medical Lab Technology</td>
+                  <td>Semester 2</td>
+                  <td><span class="font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">3.60</span></td>
+                  <td><span class="badge badge-danger"><i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Dues Pending</span></td>
+                  <td class="text-xs text-slate-600 dark:text-slate-300">0333-9128374</td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectStudent('Maryam Nawaz Khattak', 'KIMS-2025-ML-011', 'BS Medical Lab Tech', 'Semester 2', '3.60', 'Dues Pending')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+                        <i class="fa-solid fa-user text-xs"></i>
+                      </button>
+                      <button type="button" onclick="showToast('Edit Mode', 'Opened editor for Maryam Nawaz', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+                      <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <div>
+              Showing <span class="font-bold text-slate-700 dark:text-slate-300">1 to 5</span> of <span class="font-bold text-slate-700 dark:text-slate-300">4,850</span> registered scholars
+            </div>
+            <div class="inline-flex gap-1">
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition" disabled>
+                Previous
+              </button>
+              <button class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">1</button>
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition">2</button>
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition">3</button>
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal: Register New Student -->
+  <div class="modal-overlay" id="addStudentModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white">Register New Student</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Enter official registration details for institutional ledger</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="newStudentForm" onsubmit="return handleCreateStudent(event)">
+        <div class="modal-body space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Full Student Name *</label>
+              <input type="text" id="newStudName" class="form-control" required placeholder="e.g. Tariq Afridi">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Roll / Reg Number *</label>
+              <input type="text" id="newStudRoll" class="form-control" required placeholder="e.g. KIMS-2026-CS-098">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Academic Program *</label>
+              <select id="newStudDept" class="form-control" required>
+                <option value="BS Computer Science">BS Computer Science</option>
+                <option value="BS Software Engineering">BS Software Engineering</option>
+                <option value="Doctor of Pharmacy (Pharm-D)">Doctor of Pharmacy (Pharm-D)</option>
+                <option value="BBA Business Administration">BBA Business Administration</option>
+                <option value="BS Medical Lab Technology">BS Medical Lab Technology</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semester *</label>
+              <select id="newStudSem" class="form-control" required>
+                <option value="Semester 1">Semester 1 (Fall 2026)</option>
+                <option value="Semester 2">Semester 2</option>
+                <option value="Semester 3">Semester 3</option>
+                <option value="Semester 5">Semester 5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Student Email *</label>
+              <input type="email" id="newStudEmail" class="form-control" required placeholder="student@kims.edu.pk">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Guardian Emergency Phone *</label>
+              <input type="tel" id="newStudPhone" class="form-control" required placeholder="0300-1234567">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Initial Fee Status</label>
+              <select id="newStudFee" class="form-control">
+                <option value="Cleared">Full Fee Cleared</option>
+                <option value="2nd Installment">1st Installment Paid</option>
+                <option value="Dues Pending">Fee Challan Issued</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Initial CGPA (if transfer)</label>
+              <input type="number" step="0.01" min="0" max="4.00" id="newStudCgpa" class="form-control" value="3.50">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-check"></i>
+            <span>Register Student</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Student 360° Profile Dossier (Spec Module 8: 12 Operational Layers) -->
+  <div class="modal-overlay" id="studentDetailModal">
+    <div class="modal-container" style="max-width: 900px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center" id="modalStudentInitials">
+            AK
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white" id="modalStudentName">Student 360° Profile Dossier</h3>
+            <span class="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-semibold" id="detailRoll">KIMS-2024-CS-014</span>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 12 Operational Layers Navigation Bar -->
+      <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto" id="dossierTabsList">
+        <button class="dossier-nav-tab active" onclick="switchDossierLayer('layer-personal', this)">01. Personal</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-parent', this)">02. Parents</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-enrollment', this)">03. Class</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-subjects', this)">04. Subjects</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-attendance', this)">05. Attendance</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-assignments', this)">06. Assignments</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-exams', this)">07. Exams</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-results', this)">08. Results</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-fees', this)">09. Fees</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-requests', this)">10. Requests</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-complaints', this)">11. Complaints</button>
+        <button class="dossier-nav-tab" onclick="switchDossierLayer('layer-vault', this)">12. Document Vault</button>
+      </div>
+
+      <div class="modal-body max-h-[60vh] overflow-y-auto">
+        
+        <!-- Layer 1: Personal -->
+        <div id="layer-personal" class="dossier-layer space-y-4">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">Full Legal Name</span>
+              <strong class="text-slate-800 dark:text-white text-sm" id="detailName">Abdullah Khan</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">National B-Form / CNIC</span>
+              <strong class="text-slate-800 dark:text-white text-sm">14301-8291029-1</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">Blood Group</span>
+              <strong class="text-rose-500 text-sm">B+ Positive</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">Date of Birth</span>
+              <strong class="text-slate-800 dark:text-white text-sm">14 March 2004 (Age 22)</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">Emergency Phone</span>
+              <strong class="text-slate-800 dark:text-white text-sm">0333-9821455</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block mb-0.5">Home Residence</span>
+              <strong class="text-slate-800 dark:text-white text-sm">Sector 4, KDA Kohat</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 2: Parent -->
+        <div id="layer-parent" class="dossier-layer hidden space-y-3 text-xs">
+          <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 flex justify-between">
+            <div>
+              <span class="text-slate-400 block mb-1">Father / Primary Guardian:</span>
+              <strong class="text-slate-900 dark:text-white text-base">Muhammad Tariq Khan</strong>
+              <p class="text-[11px] text-slate-400">CNIC: 14301-1283948-3 &bull; Phone: 0300-5918234</p>
+            </div>
+            <span class="badge badge-success h-fit">Parent Account Linked</span>
+          </div>
+        </div>
+
+        <!-- Layer 3: Enrollment -->
+        <div id="layer-enrollment" class="dossier-layer hidden space-y-3 text-xs">
+          <div class="grid grid-cols-3 gap-3">
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block">Degree Program:</span>
+              <strong class="text-slate-800 dark:text-white text-sm" id="detailProgram">BS Computer Science</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block">Enrolled Semester:</span>
+              <strong class="text-slate-800 dark:text-white text-sm" id="detailSemester">Semester 5 (Sec A)</strong>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+              <span class="text-slate-400 block">Class Mentor:</span>
+              <strong class="text-slate-800 dark:text-white text-sm">Dr. Tariq Mehmood</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layer 4: Subjects -->
+        <div id="layer-subjects" class="dossier-layer hidden text-xs">
+          <ul class="divide-y divide-slate-100 dark:divide-slate-800">
+            <li class="py-2.5 flex justify-between items-center">
+              <span>CS-301: Data Structures & Algorithms</span>
+              <span class="badge badge-success">Instructor: Dr. Tariq (3+1)</span>
+            </li>
+            <li class="py-2.5 flex justify-between items-center">
+              <span>CS-304: Database Management Systems</span>
+              <span class="badge badge-success">Instructor: Engr. Faisal (3+1)</span>
+            </li>
+            <li class="py-2.5 flex justify-between items-center">
+              <span>SE-402: Software Quality Assurance</span>
+              <span class="badge badge-success">Instructor: Dr. Asif (3+0)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Layer 5: Attendance -->
+        <div id="layer-attendance" class="dossier-layer hidden text-xs space-y-3">
+          <div class="p-3 bg-emerald-50 dark:bg-emerald-950/50 rounded-xl border border-emerald-500/20 flex justify-between items-center">
+            <div>
+              <strong class="text-emerald-700 dark:text-emerald-400 text-base">95.4% Statutory Attendance</strong>
+              <p class="text-[11px] text-emerald-600">82 of 86 lecture hours attended this term</p>
+            </div>
+            <span class="badge badge-success">Eligible for Final Exams</span>
+          </div>
+        </div>
+
+        <!-- Layer 6: Assignments -->
+        <div id="layer-assignments" class="dossier-layer hidden text-xs">
+          <p class="text-slate-400 mb-2">Active Homework & Lab Tasks (Module 10):</p>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex justify-between">
+            <div>
+              <strong class="text-slate-800 dark:text-white">AVL Tree Balancing Task 3</strong>
+              <span class="text-[11px] text-slate-400 block">Submitted on time &bull; Graded 10/10</span>
+            </div>
+            <span class="badge badge-success">Grade A+</span>
+          </div>
+        </div>
+
+        <!-- Layer 7: Exams -->
+        <div id="layer-exams" class="dossier-layer hidden text-xs">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex justify-between">
+            <div>
+              <strong class="text-slate-800 dark:text-white">Fall 2026 Midterms Examination</strong>
+              <span class="text-[11px] text-slate-400 block">Hall C, Desk #14 &bull; Roll Slip Issued</span>
+            </div>
+            <span class="badge badge-info">Roll Slip Dispatched</span>
+          </div>
+        </div>
+
+        <!-- Layer 8: Results & GPA -->
+        <div id="layer-results" class="dossier-layer hidden text-xs space-y-3">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex justify-between items-center">
+            <div>
+              <span class="text-slate-400 block">Cumulative GPA (Module 11)</span>
+              <strong class="text-emerald-600 text-xl" id="detailCgpa">3.88 / 4.00</strong>
+            </div>
+            <span class="badge badge-success">High Distinction (Dean's List)</span>
+          </div>
+        </div>
+
+        <!-- Layer 9: Fees -->
+        <div id="layer-fees" class="dossier-layer hidden text-xs space-y-3">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex justify-between items-center">
+            <div>
+              <span class="text-slate-400 block">Tuition Status (Module 12)</span>
+              <strong class="text-emerald-600 text-sm" id="detailFee">Cleared</strong>
+            </div>
+            <span class="font-mono text-xs">Challan CH-2026-0901</span>
+          </div>
+        </div>
+
+        <!-- Layer 10: Requests -->
+        <div id="layer-requests" class="dossier-layer hidden text-xs space-y-2">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex justify-between">
+            <div>
+              <strong class="text-slate-800 dark:text-white">Medical Leave Application (3 Days)</strong>
+              <span class="text-[11px] text-slate-400 block">REQ-2026-031 &bull; Approved by Dean</span>
+            </div>
+            <span class="badge badge-success">Approved</span>
+          </div>
+        </div>
+
+        <!-- Layer 11: Complaints -->
+        <div id="layer-complaints" class="dossier-layer hidden text-xs">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+            <span class="text-emerald-600 font-bold"><i class="fa-solid fa-shield-check"></i> Clean Record</span>
+            <p class="text-[11px] text-slate-400 mt-0.5">No behavioral complaints or disciplinary notes on file.</p>
+          </div>
+        </div>
+
+        <!-- Layer 12: Vault -->
+        <div id="layer-vault" class="dossier-layer hidden text-xs space-y-2">
+          <ul class="space-y-1.5">
+            <li class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-between">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-file-pdf text-rose-500"></i> Matric_BISE_Certificate.pdf</span>
+              <span class="badge badge-success">Verified</span>
+            </li>
+            <li class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-between">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-file-pdf text-rose-500"></i> FSc_Intermediate_Transcript.pdf</span>
+              <span class="badge badge-success">Verified</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <a href="id-cards.html" class="btn-kims btn-secondary !py-1.5 text-xs">
+          <i class="fa-solid fa-id-card"></i> View ID Card
+        </a>
+        <button type="button" class="btn-kims btn-primary !py-1.5 text-xs" data-modal-close>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    // Department Filter
+    function filterByDept(dept, btn) {
+      const tabs = document.querySelectorAll('#deptFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm';
+
+      const rows = document.querySelectorAll('#studentTableBody tr');
+      rows.forEach(row => {
+        if (dept === 'all' || row.getAttribute('data-dept') === dept) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Inspect Student Modal
+    function inspectStudent(name, roll, prog, sem, cgpa, fee) {
+      document.getElementById('modalStudentName').innerText = name + ' - Record Details';
+      document.getElementById('detailName').innerText = name;
+      document.getElementById('detailRoll').innerText = roll;
+      document.getElementById('detailProgram').innerText = prog;
+      document.getElementById('detailSemester').innerText = sem;
+      document.getElementById('detailCgpa').innerText = cgpa + ' / 4.00';
+      document.getElementById('detailFee').innerText = fee;
+      
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      document.getElementById('modalStudentInitials').innerText = initials;
+
+      openModal('studentDetailModal');
+    }
+
+    // Delete Row
+    function deleteStudentRow(button) {
+      if (confirm('Are you sure you want to remove this student from the institutional roster?')) {
+        const row = button.closest('tr');
+        row.remove();
+        showToast('Student Removed', 'Student record successfully deregistered.', 'info');
+      }
+    }
+
+    // Add Student Form Handler
+    function handleCreateStudent(event) {
+      event.preventDefault();
+      const name = document.getElementById('newStudName').value.trim();
+      const roll = document.getElementById('newStudRoll').value.trim();
+      const dept = document.getElementById('newStudDept').value;
+      const sem = document.getElementById('newStudSem').value;
+      const email = document.getElementById('newStudEmail').value.trim();
+      const phone = document.getElementById('newStudPhone').value.trim();
+      const fee = document.getElementById('newStudFee').value;
+      const cgpa = document.getElementById('newStudCgpa').value || '3.50';
+
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      let deptCode = 'CS';
+      if (dept.includes('Pharmacy')) deptCode = 'Pharmacy';
+      else if (dept.includes('Business') || dept.includes('BBA')) deptCode = 'BBA';
+
+      let feeBadge = `<span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Cleared</span>`;
+      if (fee === '2nd Installment') {
+        feeBadge = `<span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> 2nd Installment</span>`;
+      } else if (fee === 'Dues Pending') {
+        feeBadge = `<span class="badge badge-danger"><i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Dues Pending</span>`;
+      }
+
+      const tbody = document.getElementById('studentTableBody');
+      const newTr = document.createElement('tr');
+      newTr.setAttribute('data-dept', deptCode);
+      newTr.innerHTML = `
+        <td><input type="checkbox" class="rounded border-slate-300"></td>
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
+              ${initials}
+            </div>
+            <div>
+              <div class="font-bold text-slate-900 dark:text-white">${escapeHtml(name)}</div>
+              <div class="text-[11px] text-slate-400">${escapeHtml(email)}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">${escapeHtml(roll)}</span></td>
+        <td>${escapeHtml(dept)}</td>
+        <td>${escapeHtml(sem)}</td>
+        <td><span class="font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">${escapeHtml(cgpa)}</span></td>
+        <td>${feeBadge}</td>
+        <td class="text-xs text-slate-600 dark:text-slate-300">${escapeHtml(phone)}</td>
+        <td class="text-right">
+          <div class="inline-flex gap-1.5">
+            <button type="button" onclick="inspectStudent('${escapeHtml(name)}', '${escapeHtml(roll)}', '${escapeHtml(dept)}', '${escapeHtml(sem)}', '${escapeHtml(cgpa)}', '${escapeHtml(fee)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Profile">
+              <i class="fa-solid fa-user text-xs"></i>
+            </button>
+            <button type="button" onclick="showToast('Edit Mode', 'Opened editor for ${escapeHtml(name)}', 'info')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit">
+              <i class="fa-solid fa-pen text-xs"></i>
+            </button>
+            <button type="button" onclick="deleteStudentRow(this)" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+              <i class="fa-solid fa-trash text-xs"></i>
+            </button>
+          </div>
+        </td>
+      `;
+
+      tbody.prepend(newTr);
+      closeModal('addStudentModal');
+      document.getElementById('newStudentForm').reset();
+    function switchDossierLayer(layerId, btn) {
+      document.querySelectorAll('#dossierTabsList .dossier-nav-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.querySelectorAll('.dossier-layer').forEach(l => l.classList.add('hidden'));
+      const target = document.getElementById(layerId);
+      if (target) target.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

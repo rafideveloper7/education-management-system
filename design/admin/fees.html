@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Management & Treasury - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Fee Structures, Student Ledgers, and Collection Reports (Module 12)">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation (Spec-Compliant Modules) -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>EduOS v2.4</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link active">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" data-table-search="#feesTable" placeholder="Search student fee ledger, challan #...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Institutional Fee Management & Finance</h1>
+            <p>Administer fee structures, monthly billing challans, collection ledgers, waivers, and defaulters (Module 12).</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" data-modal-target="recordPaymentModal" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-receipt"></i>
+              <span>Record Payment</span>
+            </button>
+            <button type="button" data-modal-target="generateChallanModal" class="btn-kims btn-primary">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <span>Generate Term Vouchers</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Financial Summary KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600">
+                <i class="fa-solid fa-vault"></i>
+              </div>
+              <span class="metric-trend trend-up">+8.2%</span>
+            </div>
+            <div>
+              <div class="metric-value">PKR 14.82M</div>
+              <div class="metric-label">Total Realized Collection</div>
+            </div>
+            <span class="text-[11px] text-emerald-600 font-semibold mt-1">89.4% of total term billing</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-amber-50 dark:bg-amber-950/60 text-amber-600">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </div>
+              <span class="metric-trend trend-down">Pending</span>
+            </div>
+            <div>
+              <div class="metric-value">PKR 1.76M</div>
+              <div class="metric-label">Outstanding Term Balances</div>
+            </div>
+            <span class="text-[11px] text-amber-500 font-semibold mt-1">515 students with 2nd installments</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-blue-50 dark:bg-blue-950/60 text-blue-600">
+                <i class="fa-solid fa-calendar-day"></i>
+              </div>
+              <span class="metric-trend trend-up">Today</span>
+            </div>
+            <div>
+              <div class="metric-value">PKR 485,000</div>
+              <div class="metric-label">Today's Bank Receipts</div>
+            </div>
+            <span class="text-[11px] text-blue-500 font-semibold mt-1">34 bank scroll transactions</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-purple-50 dark:bg-purple-950/60 text-purple-600">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <span class="metric-trend trend-up">Endowment</span>
+            </div>
+            <div>
+              <div class="metric-value">PKR 650,000</div>
+              <div class="metric-label">Scholarships & Merit Waivers</div>
+            </div>
+            <span class="text-[11px] text-purple-500 font-semibold mt-1">42 high-achieving scholars funded</span>
+          </div>
+        </div>
+
+        <!-- Fee Structure Config Tabs (Module 12 Requirements) -->
+        <div class="admin-card mb-6">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Institutional Fee Categories & Rates</div>
+              <div class="card-subtitle">Approved rates per semester for Fall 2026 Academic Session</div>
+            </div>
+            <button type="button" onclick="showToast('Fee Structure', 'Opened fee structure editor', 'info')" class="btn-kims btn-secondary !py-1 !px-3 text-xs">
+              <i class="fa-solid fa-pen-to-square"></i> Modify Rates
+            </button>
+          </div>
+
+          <div class="p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center text-xs">
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Admission Fee</span>
+              <strong class="text-slate-800 dark:text-white text-sm">PKR 15,000</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">One-time payment</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Monthly Tuition (BS)</span>
+              <strong class="text-slate-800 dark:text-white text-sm">PKR 9,500</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">Per month billing</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Pharm-D Tuition</span>
+              <strong class="text-slate-800 dark:text-white text-sm">PKR 16,000</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">Clinical & Lab charges</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Semester Exam Fee</span>
+              <strong class="text-slate-800 dark:text-white text-sm">PKR 4,000</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">Term papers & DMC</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Campus Transport</span>
+              <strong class="text-slate-800 dark:text-white text-sm">PKR 3,500</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">Optional bus shuttle</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+              <span class="text-slate-400 block mb-1">Merit Waiver</span>
+              <strong class="text-emerald-600 text-sm">Up to 100%</strong>
+              <span class="text-[10px] text-slate-400 block mt-0.5">CGPA &gt; 3.85 threshold</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Fee Ledger Table -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Student Fee Ledgers & Challan Records</div>
+              <div class="card-subtitle">Active semester dues, paid receipts, and balance status</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="filterFeeStatus('all', this)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white">All (4,850)</button>
+              <button onclick="filterFeeStatus('unpaid', this)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Defaulters (515)</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="feesTable">
+              <thead>
+                <tr>
+                  <th>Challan #</th>
+                  <th>Student & Roll</th>
+                  <th>Program</th>
+                  <th>Fee Type</th>
+                  <th>Total Billed</th>
+                  <th>Paid Amount</th>
+                  <th>Due Balance</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="feesTableBody">
+                <tr data-status="paid">
+                  <td><span class="font-mono font-bold text-xs">CH-2026-0901</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Abdullah Khan</div>
+                    <div class="text-[11px] font-mono text-slate-400">KIMS-2024-CS-014</div>
+                  </td>
+                  <td>BS Computer Science</td>
+                  <td>Semester Tuition + Lab</td>
+                  <td><span class="font-semibold">PKR 57,000</span></td>
+                  <td><span class="font-bold text-emerald-600">PKR 57,000</span></td>
+                  <td><span class="text-slate-400">PKR 0</span></td>
+                  <td>Sep 10, 2026</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Fully Paid</span></td>
+                  <td class="text-right">
+                    <button onclick="printVoucher('CH-2026-0901', 'Abdullah Khan', 57000)" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Print Receipt">
+                      <i class="fa-solid fa-print text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr data-status="unpaid">
+                  <td><span class="font-mono font-bold text-xs">CH-2026-0902</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Bilal Ahmed</div>
+                    <div class="text-[11px] font-mono text-slate-400">KIMS-2025-BB-077</div>
+                  </td>
+                  <td>BBA Business Admin</td>
+                  <td>Semester Tuition</td>
+                  <td><span class="font-semibold">PKR 52,000</span></td>
+                  <td><span class="font-bold text-emerald-600">PKR 26,000</span></td>
+                  <td><span class="font-bold text-amber-600">PKR 26,000</span></td>
+                  <td>Sep 15, 2026</td>
+                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> 2nd Installment</span></td>
+                  <td class="text-right">
+                    <button onclick="printVoucher('CH-2026-0902', 'Bilal Ahmed', 26000)" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Print Challan">
+                      <i class="fa-solid fa-print text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr data-status="unpaid">
+                  <td><span class="font-mono font-bold text-xs">CH-2026-0903</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Maryam Nawaz Khattak</div>
+                    <div class="text-[11px] font-mono text-slate-400">KIMS-2025-ML-011</div>
+                  </td>
+                  <td>BS Medical Lab Tech</td>
+                  <td>Semester Tuition + Transport</td>
+                  <td><span class="font-semibold">PKR 64,000</span></td>
+                  <td><span class="text-slate-400">PKR 0</span></td>
+                  <td><span class="font-bold text-rose-600">PKR 64,000</span></td>
+                  <td>Sep 05, 2026</td>
+                  <td><span class="badge badge-danger"><i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Overdue</span></td>
+                  <td class="text-right">
+                    <button onclick="printVoucher('CH-2026-0903', 'Maryam Nawaz Khattak', 64000)" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Print Challan">
+                      <i class="fa-solid fa-print text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr data-status="paid">
+                  <td><span class="font-mono font-bold text-xs">CH-2026-0904</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Fatima Bibi</div>
+                    <div class="text-[11px] font-mono text-slate-400">KIMS-2023-PH-029</div>
+                  </td>
+                  <td>Doctor of Pharmacy</td>
+                  <td>Semester Tuition + Clinical Fee</td>
+                  <td><span class="font-semibold">PKR 96,000</span></td>
+                  <td><span class="font-bold text-emerald-600">PKR 96,000</span></td>
+                  <td><span class="text-slate-400">PKR 0</span></td>
+                  <td>Sep 10, 2026</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Fully Paid</span></td>
+                  <td class="text-right">
+                    <button onclick="printVoucher('CH-2026-0904', 'Fatima Bibi', 96000)" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Print Receipt">
+                      <i class="fa-solid fa-print text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="fees.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-coins"></i>
+        <span>Fees</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal: Record Manual Payment -->
+  <div class="modal-overlay" id="recordPaymentModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="text-base font-bold text-slate-800 dark:text-white">Record Fee Collection / Bank Receipt</h3>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form onsubmit="return handleRecordFee(event)">
+        <div class="modal-body space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Challan / Voucher # *</label>
+              <input type="text" id="payChallan" class="form-control" required placeholder="e.g. CH-2026-0905">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Student Roll # *</label>
+              <input type="text" id="payRoll" class="form-control" required placeholder="e.g. KIMS-2024-CS-014">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Amount Paid (PKR) *</label>
+              <input type="number" id="payAmount" class="form-control" required placeholder="e.g. 57000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Payment Channel *</label>
+              <select class="form-control" id="payChannel">
+                <option>Bank Deposit (National Bank of Pakistan)</option>
+                <option>Bank Deposit (Habib Bank Limited)</option>
+                <option>Online Kuickpay / 1Link</option>
+                <option>Campus Cash Counter</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-check"></i>
+            <span>Confirm & Issue Receipt</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    function printVoucher(challan, student, amount) {
+      showToast('Printing Voucher', `Dispatched official receipt for ${student} (${challan} - PKR ${amount})`, 'success');
+    }
+
+    function filterFeeStatus(status, btn) {
+      const rows = document.querySelectorAll('#feesTableBody tr');
+      rows.forEach(r => {
+        if (status === 'all' || r.getAttribute('data-status') === status) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    function handleRecordFee(e) {
+      e.preventDefault();
+      const challan = document.getElementById('payChallan').value;
+      const roll = document.getElementById('payRoll').value;
+      const amount = document.getElementById('payAmount').value;
+
+      closeModal('recordPaymentModal');
+      showToast('Payment Logged', `Recorded receipt of PKR ${amount} for ${roll} under ${challan}.`, 'success');
+      return false;
+    }
+  </script>
+</body>
+</html>

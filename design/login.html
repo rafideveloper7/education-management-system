@@ -416,11 +416,11 @@
                 subtitle: 'Complete institutional digital operating system: students, teachers, fees, and CMS control.',
                 labelId: 'Admin Username / Official Email *',
                 iconId: 'fa-user-shield',
-                placeholderId: 'e.g. admin@kims.edu.pk',
+                placeholderId: 'e.g. admin@gmail.com',
                 labelPass: 'Admin Security Key / Password *',
-                demoId: 'admin@kims.edu.pk',
-                demoPass: 'admin123',
-                demoText: 'Demo Admin: <strong>admin@kims.edu.pk</strong> | Pass: <strong>admin123</strong>',
+                demoId: 'admin@gmail.com',
+                demoPass: 'admin',
+                demoText: 'Demo Admin: <strong>admin@gmail.com</strong> | Pass: <strong>admin</strong> (<a href="admin/login.html" class="underline font-bold text-amber-300">Direct Admin Login</a>)',
                 btnText: 'Sign In as Administrator',
                 permission: 'Full Operational & CMS Institutional Control'
             },
@@ -513,6 +513,10 @@
 
         function simulateGoToPanel() {
             const config = roleConfigs[currentActiveRole];
+            if (currentActiveRole === 'admin') {
+                window.location.href = 'admin/index.html';
+                return;
+            }
             alert('Opening ' + config.destPanel + ' for ' + config.title + ' (' + document.getElementById('user-identifier').value + ').\n\nDesign Reference Mode: Academic dashboards will be integrated in Phase 2.');
             closeAuthSuccessModal();
         }

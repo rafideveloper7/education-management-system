@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions & Enrollment Pipeline - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Admission Applications Review Pipeline">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>Kohat Institute</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link active">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" data-table-search="#admissionsTable" placeholder="Search applicant by name, test score, ID...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Admissions Pipeline & Verification</h1>
+            <p>Review submitted candidate portfolios, verify entrance examination scores, and issue acceptance notices.</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" onclick="showToast('Dispatching Letters', 'Generating provisional admission packages for 28 candidates', 'success')" class="btn-kims btn-gold">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Dispatch Merit Letters</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Admissions Pipeline Stages -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 cursor-pointer hover:border-emerald-500 transition">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Pending Verification</span>
+            <div class="text-2xl font-black text-amber-500 mt-1">12</div>
+            <span class="text-[11px] text-slate-400">Fresh submissions</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 cursor-pointer hover:border-emerald-500 transition">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Interview Ready</span>
+            <div class="text-2xl font-black text-blue-500 mt-1">8</div>
+            <span class="text-[11px] text-slate-400">Pharm-D & BS Nursing</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 cursor-pointer hover:border-emerald-500 transition">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Provisional Offers</span>
+            <div class="text-2xl font-black text-emerald-500 mt-1">6</div>
+            <span class="text-[11px] text-emerald-500">Challan dispatched</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 cursor-pointer hover:border-emerald-500 transition">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Total Applications</span>
+            <div class="text-2xl font-black text-slate-800 dark:text-white mt-1">340</div>
+            <span class="text-[11px] text-slate-400">Fall 2026 intake cycle</span>
+          </div>
+        </div>
+
+        <!-- Applications Table -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Candidate Intake Roster</div>
+              <div class="card-subtitle">Showing latest 5 submissions awaiting action</div>
+            </div>
+            <div class="w-full sm:w-64">
+              <input 
+                type="text" 
+                data-table-search="#admissionsTable" 
+                placeholder="Filter applicants..."
+                class="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="admissionsTable">
+              <thead>
+                <tr>
+                  <th>App ID</th>
+                  <th>Applicant Name</th>
+                  <th>Applied Degree</th>
+                  <th>Intermediate / Test Merit</th>
+                  <th>Submission Date</th>
+                  <th>Current State</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">APP-2026-0891</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Muhammad Kamil</div>
+                    <div class="text-[11px] text-slate-400">kamil.m@gmail.com &bull; 0333-9182311</div>
+                  </td>
+                  <td>BS Computer Science</td>
+                  <td>
+                    <div class="font-bold text-emerald-600">88.4% Aggregate</div>
+                    <div class="text-[11px] text-slate-400">FSc: 940/1100 &bull; Test: 82/100</div>
+                  </td>
+                  <td>Aug 29, 2026</td>
+                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> Under Review</span></td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectApplicant('Muhammad Kamil', 'APP-2026-0891', 'BS Computer Science', '88.4%', 'kamil.m@gmail.com')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Inspect Dossier">
+                        <i class="fa-solid fa-file-invoice text-xs"></i>
+                      </button>
+                      <button type="button" onclick="approveApplication(this, 'Muhammad Kamil')" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950 text-emerald-600 transition" title="Approve">
+                        <i class="fa-solid fa-check text-xs"></i>
+                      </button>
+                      <button type="button" onclick="rejectApplication(this, 'Muhammad Kamil')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950 text-rose-600 transition" title="Reject">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">APP-2026-0892</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Zainab Afridi</div>
+                    <div class="text-[11px] text-slate-400">zainab.a@gmail.com &bull; 0300-5819283</div>
+                  </td>
+                  <td>Doctor of Pharmacy (Pharm-D)</td>
+                  <td>
+                    <div class="font-bold text-emerald-600">91.2% Aggregate</div>
+                    <div class="text-[11px] text-slate-400">FSc: 992/1100 &bull; Test: 88/100</div>
+                  </td>
+                  <td>Aug 30, 2026</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Interview Ready</span></td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectApplicant('Zainab Afridi', 'APP-2026-0892', 'Doctor of Pharmacy', '91.2%', 'zainab.a@gmail.com')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Inspect Dossier">
+                        <i class="fa-solid fa-file-invoice text-xs"></i>
+                      </button>
+                      <button type="button" onclick="approveApplication(this, 'Zainab Afridi')" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950 text-emerald-600 transition" title="Approve">
+                        <i class="fa-solid fa-check text-xs"></i>
+                      </button>
+                      <button type="button" onclick="rejectApplication(this, 'Zainab Afridi')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950 text-rose-600 transition" title="Reject">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">APP-2026-0893</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Hamza Khattak</div>
+                    <div class="text-[11px] text-slate-400">hamza.kh@gmail.com &bull; 0345-9812736</div>
+                  </td>
+                  <td>BBA Business Administration</td>
+                  <td>
+                    <div class="font-bold text-slate-700 dark:text-slate-300">79.5% Aggregate</div>
+                    <div class="text-[11px] text-slate-400">FSc: 830/1100 &bull; Test: 74/100</div>
+                  </td>
+                  <td>Aug 31, 2026</td>
+                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> Under Review</span></td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectApplicant('Hamza Khattak', 'APP-2026-0893', 'BBA Administration', '79.5%', 'hamza.kh@gmail.com')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Inspect Dossier">
+                        <i class="fa-solid fa-file-invoice text-xs"></i>
+                      </button>
+                      <button type="button" onclick="approveApplication(this, 'Hamza Khattak')" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950 text-emerald-600 transition" title="Approve">
+                        <i class="fa-solid fa-check text-xs"></i>
+                      </button>
+                      <button type="button" onclick="rejectApplication(this, 'Hamza Khattak')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950 text-rose-600 transition" title="Reject">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">APP-2026-0894</span></td>
+                  <td>
+                    <div class="font-bold text-slate-900 dark:text-white">Sana Bibi</div>
+                    <div class="text-[11px] text-slate-400">sana.bibi@gmail.com &bull; 0312-8761234</div>
+                  </td>
+                  <td>BS Software Engineering</td>
+                  <td>
+                    <div class="font-bold text-emerald-600">86.7% Aggregate</div>
+                    <div class="text-[11px] text-slate-400">ICS: 910/1100 &bull; Test: 81/100</div>
+                  </td>
+                  <td>Sep 01, 2026</td>
+                  <td><span class="badge badge-info"><i class="fa-solid fa-envelope text-[10px]"></i> Offer Dispatched</span></td>
+                  <td class="text-right">
+                    <div class="inline-flex gap-1.5">
+                      <button type="button" onclick="inspectApplicant('Sana Bibi', 'APP-2026-0894', 'BS Software Engineering', '86.7%', 'sana.bibi@gmail.com')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Inspect Dossier">
+                        <i class="fa-solid fa-file-invoice text-xs"></i>
+                      </button>
+                      <button type="button" onclick="approveApplication(this, 'Sana Bibi')" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950 text-emerald-600 transition" title="Approve">
+                        <i class="fa-solid fa-check text-xs"></i>
+                      </button>
+                      <button type="button" onclick="rejectApplication(this, 'Sana Bibi')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950 text-rose-600 transition" title="Reject">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal: Applicant Dossier Review -->
+  <div class="modal-overlay" id="applicantModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="text-base font-bold text-slate-800 dark:text-white" id="applicantModalTitle">Candidate Dossier</h3>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <h4 class="text-base font-bold text-slate-900 dark:text-white" id="appDossierName">Candidate Name</h4>
+            <p class="text-xs text-slate-400" id="appDossierEmail">email@example.com</p>
+          </div>
+          <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded" id="appDossierId">APP-ID</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+            <span class="text-slate-400 block mb-0.5">Applied Program</span>
+            <strong class="text-slate-800 dark:text-slate-200 text-sm" id="appDossierProg">Degree</strong>
+          </div>
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+            <span class="text-slate-400 block mb-0.5">Calculated Merit Aggregate</span>
+            <strong class="text-emerald-600 text-sm" id="appDossierMerit">90.0%</strong>
+          </div>
+        </div>
+
+        <div class="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+          <h5 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Verified Documents Checklist</h5>
+          <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Matric Certificate & Marks Sheet (BISE Kohat)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> FSc / Intermediate Pre-Engineering Certificate</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> National CNIC / Smart Card Copy</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> KIMS Institutional Entrance Test Result</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-kims btn-secondary" data-modal-close>Close</button>
+        <button type="button" onclick="confirmAdmissionFromModal()" class="btn-kims btn-primary">
+          <i class="fa-solid fa-check"></i>
+          <span>Approve & Issue Offer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    let activeApplicant = '';
+
+    function inspectApplicant(name, id, prog, merit, email) {
+      activeApplicant = name;
+      document.getElementById('applicantModalTitle').innerText = name + ' - Application Dossier';
+      document.getElementById('appDossierName').innerText = name;
+      document.getElementById('appDossierEmail').innerText = email;
+      document.getElementById('appDossierId').innerText = id;
+      document.getElementById('appDossierProg').innerText = prog;
+      document.getElementById('appDossierMerit').innerText = merit;
+      openModal('applicantModal');
+    }
+
+    function confirmAdmissionFromModal() {
+      closeModal('applicantModal');
+      showToast('Admission Granted', `Offer package generated and sent to ${activeApplicant}.`, 'success');
+    }
+
+    function approveApplication(btn, name) {
+      const row = btn.closest('tr');
+      const badge = row.querySelector('.badge');
+      badge.className = 'badge badge-success';
+      badge.innerHTML = `<i class="fa-solid fa-circle-check text-[10px]"></i> Approved & Enrolled`;
+      showToast('Application Accepted', `${name} provisional admission approved.`, 'success');
+    }
+
+    function rejectApplication(btn, name) {
+      if (confirm(`Are you sure you want to decline the admission application of ${name}?`)) {
+        const row = btn.closest('tr');
+        const badge = row.querySelector('.badge');
+        badge.className = 'badge badge-danger';
+        badge.innerHTML = `<i class="fa-solid fa-xmark text-[10px]"></i> Declined`;
+        showToast('Application Rejected', `${name}'s file updated.`, 'info');
+      }
+    }
+  </script>
+</body>
+</html>

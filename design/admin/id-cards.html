@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Card Generation & Badging - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Automated Student and Teacher ID Card Generator (Module 36)">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>EduOS v2.4</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link active">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search student or faculty ID card...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Automated ID Card Generation System</h1>
+            <p>Generate verifiable institutional credentials for scholars and faculty directly from database records without re-entry (Module 36).</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" onclick="window.print()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-print"></i>
+              <span>Print Badge Preview</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Toggle Mode -->
+        <div class="flex items-center gap-3 mb-6">
+          <button id="tabStudent" onclick="switchIdCardType('student')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md">
+            <i class="fa-solid fa-user-graduate mr-1.5"></i> Student ID Cards
+          </button>
+          <button id="tabFaculty" onclick="switchIdCardType('faculty')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Teacher ID Cards
+          </button>
+        </div>
+
+        <!-- ID Card Workspace Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          <!-- Left Column: Card Selector & Customizer (7 Cols) -->
+          <div class="lg:col-span-7 space-y-6">
+
+            <div class="admin-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Select Record for Automated Generation</div>
+                  <div class="card-subtitle">Information is pulled directly from verified administrative dossier</div>
+                </div>
+              </div>
+              <div class="card-body space-y-4">
+                
+                <div id="studentSelectorBox">
+                  <label class="form-label">Select Student Scholar</label>
+                  <select class="form-control" id="selectStudentProfile" onchange="renderCardData()">
+                    <option value="abdullah">Abdullah Khan (KIMS-2024-CS-014 - BS CS)</option>
+                    <option value="fatima">Fatima Bibi (KIMS-2023-PH-029 - Pharm-D)</option>
+                    <option value="bilal">Bilal Ahmed (KIMS-2025-BB-077 - BBA)</option>
+                  </select>
+                </div>
+
+                <div id="facultySelectorBox" class="hidden">
+                  <label class="form-label">Select Faculty Member</label>
+                  <select class="form-control" id="selectFacultyProfile" onchange="renderCardData()">
+                    <option value="tariq">Prof. Dr. Tariq Mehmood (HOD Computer Science)</option>
+                    <option value="nargis">Prof. Dr. Nargis Parveen (Dean Faculty of Pharmacy)</option>
+                    <option value="faisal">Engr. Shah Faisal (Assistant Professor SE)</option>
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-xs pt-2">
+                  <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                    <span class="text-slate-400 block mb-1">Issue Date:</span>
+                    <strong class="text-slate-800 dark:text-white">Sep 01, 2026</strong>
+                  </div>
+                  <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                    <span class="text-slate-400 block mb-1">Valid Until:</span>
+                    <strong class="text-emerald-600">Aug 31, 2028</strong>
+                  </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+                  <button type="button" onclick="showToast('Badge Downloaded', 'PDF ID Card rendered in high-resolution 300 DPI.', 'success')" class="btn-kims btn-secondary text-xs">
+                    <i class="fa-solid fa-download"></i> Download Vector PDF
+                  </button>
+                  <button type="button" onclick="showToast('NFC Sync', 'Smart card contactless chip serialized.', 'info')" class="btn-kims btn-secondary text-xs">
+                    <i class="fa-solid fa-wifi"></i> Write RFID / NFC
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Live Badge Preview (5 Cols) -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Printable Preview</span>
+
+            <!-- The ID Card Badge -->
+            <div class="id-card-badge-preview p-6 flex flex-col justify-between" id="idBadgeContainer">
+              
+              <!-- Card Top Header -->
+              <div>
+                <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-700 border border-amber-400/50 flex items-center justify-center text-amber-300 font-extrabold text-xs">
+                      <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-extrabold text-sm tracking-tight leading-tight text-white">KIMS KOHAT</h4>
+                      <span class="text-[9px] uppercase tracking-wider text-emerald-300 font-semibold block">Institutional ID</span>
+                    </div>
+                  </div>
+                  <div class="id-card-chip"></div>
+                </div>
+
+                <!-- Photo & Name -->
+                <div class="text-center my-3">
+                  <div class="w-24 h-24 rounded-2xl bg-emerald-800 border-2 border-amber-400 mx-auto flex items-center justify-center text-3xl font-black text-amber-300 shadow-xl shadow-emerald-950 mb-3" id="cardAvatar">
+                    AK
+                  </div>
+                  <h3 class="text-lg font-extrabold text-white leading-tight" id="cardName">Abdullah Khan</h3>
+                  <p class="text-xs text-amber-300 font-bold tracking-wide mt-0.5" id="cardRole">BS Computer Science</p>
+                </div>
+              </div>
+
+              <!-- Card Details Matrix -->
+              <div class="bg-black/25 backdrop-blur-sm rounded-xl p-3 border border-white/10 text-[11px] space-y-1.5 my-2">
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Roll / Card #:</span>
+                  <span class="font-mono font-bold text-white" id="cardId">KIMS-2024-CS-014</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Emergency Phone:</span>
+                  <span class="font-mono text-emerald-200">0333-9821455</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Blood Group:</span>
+                  <span class="font-bold text-rose-400">B+ Positive</span>
+                </div>
+              </div>
+
+              <!-- Card Bottom -->
+              <div class="pt-3 border-t border-white/20 flex items-center justify-between text-[9px] text-slate-300">
+                <div>
+                  <span class="block text-emerald-300 font-bold">Kohat, KP, Pakistan</span>
+                  <span>www.kims.edu.pk</span>
+                </div>
+                <div class="text-center">
+                  <i class="fa-solid fa-qrcode text-2xl text-white"></i>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="id-cards.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-id-card"></i>
+        <span>ID Cards</span>
+      </a>
+      <a href="fees.html" class="bottom-nav-item">
+        <i class="fa-solid fa-coins"></i>
+        <span>Fees</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    let currentMode = 'student';
+
+    function switchIdCardType(type) {
+      currentMode = type;
+      if (type === 'student') {
+        document.getElementById('tabStudent').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md';
+        document.getElementById('tabFaculty').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
+        document.getElementById('studentSelectorBox').classList.remove('hidden');
+        document.getElementById('facultySelectorBox').classList.add('hidden');
+      } else {
+        document.getElementById('tabFaculty').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md';
+        document.getElementById('tabStudent').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
+        document.getElementById('facultySelectorBox').classList.remove('hidden');
+        document.getElementById('studentSelectorBox').classList.add('hidden');
+      }
+      renderCardData();
+    }
+
+    function renderCardData() {
+      if (currentMode === 'student') {
+        const val = document.getElementById('selectStudentProfile').value;
+        if (val === 'abdullah') {
+          document.getElementById('cardName').innerText = 'Abdullah Khan';
+          document.getElementById('cardRole').innerText = 'BS Computer Science (Sem 5)';
+          document.getElementById('cardId').innerText = 'KIMS-2024-CS-014';
+          document.getElementById('cardAvatar').innerText = 'AK';
+        } else if (val === 'fatima') {
+          document.getElementById('cardName').innerText = 'Fatima Bibi';
+          document.getElementById('cardRole').innerText = 'Doctor of Pharmacy (Sem 7)';
+          document.getElementById('cardId').innerText = 'KIMS-2023-PH-029';
+          document.getElementById('cardAvatar').innerText = 'FB';
+        } else {
+          document.getElementById('cardName').innerText = 'Bilal Ahmed';
+          document.getElementById('cardRole').innerText = 'BBA Business Admin (Sem 3)';
+          document.getElementById('cardId').innerText = 'KIMS-2025-BB-077';
+          document.getElementById('cardAvatar').innerText = 'BA';
+        }
+      } else {
+        const val = document.getElementById('selectFacultyProfile').value;
+        if (val === 'tariq') {
+          document.getElementById('cardName').innerText = 'Prof. Dr. Tariq Mehmood';
+          document.getElementById('cardRole').innerText = 'Professor & Head of CS';
+          document.getElementById('cardId').innerText = 'EMP-FAC-001';
+          document.getElementById('cardAvatar').innerText = 'TM';
+        } else if (val === 'nargis') {
+          document.getElementById('cardName').innerText = 'Prof. Dr. Nargis Parveen';
+          document.getElementById('cardRole').innerText = 'Dean Faculty of Pharmacy';
+          document.getElementById('cardId').innerText = 'EMP-FAC-002';
+          document.getElementById('cardAvatar').innerText = 'NP';
+        } else {
+          document.getElementById('cardName').innerText = 'Engr. Shah Faisal';
+          document.getElementById('cardRole').innerText = 'Assistant Professor (SE)';
+          document.getElementById('cardId').innerText = 'EMP-FAC-014';
+          document.getElementById('cardAvatar').innerText = 'SF';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

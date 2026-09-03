@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty & Staff Directory - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Faculty Directory and Staff Administration">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>Kohat Institute</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link active">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" data-table-search="#facultyTable" placeholder="Search faculty by name, qualification, or designation...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Faculty & Academic Staff</h1>
+            <p>Institutional professors, researchers, laboratory directors, and teaching fellows.</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" data-modal-target="addFacultyModal" class="btn-kims btn-primary">
+              <i class="fa-solid fa-user-tie"></i>
+              <span>Appoint Faculty Member</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Faculty Directory Table -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Teaching Staff Roster</div>
+              <div class="card-subtitle">Active appointments across all faculties</div>
+            </div>
+            <div class="w-full sm:w-64">
+              <input 
+                type="text" 
+                data-table-search="#facultyTable" 
+                placeholder="Filter faculty..."
+                class="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="facultyTable">
+              <thead>
+                <tr>
+                  <th>Faculty Member</th>
+                  <th>Designation</th>
+                  <th>Department</th>
+                  <th>Highest Degree</th>
+                  <th>Email & Phone</th>
+                  <th>Office Room</th>
+                  <th>Status</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="facultyTableBody">
+                
+                <tr>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
+                        TM
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Prof. Dr. Tariq Mehmood</div>
+                        <div class="text-[11px] text-slate-400">Head of Department (CS)</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-semibold text-xs">Professor</span></td>
+                  <td>Computer Science</td>
+                  <td><span class="badge badge-neutral">Ph.D. Computer Science (UK)</span></td>
+                  <td>
+                    <div class="text-xs font-semibold">tariq.m@kims.edu.pk</div>
+                    <div class="text-[11px] text-slate-400">0333-9182300</div>
+                  </td>
+                  <td>Academic Block A, Room 204</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
+                  <td class="text-right">
+                    <button onclick="showToast('Profile Opened', 'Prof. Dr. Tariq Mehmood curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
+                      <i class="fa-solid fa-id-badge text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-400 font-bold flex items-center justify-center text-xs">
+                        NP
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Prof. Dr. Nargis Parveen</div>
+                        <div class="text-[11px] text-slate-400">Dean Faculty of Pharmacy</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-semibold text-xs">Professor & Dean</span></td>
+                  <td>Faculty of Pharmacy</td>
+                  <td><span class="badge badge-neutral">Ph.D. Pharmacology (USA)</span></td>
+                  <td>
+                    <div class="text-xs font-semibold">nargis.p@kims.edu.pk</div>
+                    <div class="text-[11px] text-slate-400">0300-5918273</div>
+                  </td>
+                  <td>Health Sciences Wing, Room 101</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
+                  <td class="text-right">
+                    <button onclick="showToast('Profile Opened', 'Prof. Dr. Nargis Parveen curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
+                      <i class="fa-solid fa-id-badge text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-xs">
+                        SF
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Engr. Shah Faisal</div>
+                        <div class="text-[11px] text-slate-400">Assistant Professor (SE)</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-semibold text-xs">Assistant Professor</span></td>
+                  <td>Software Engineering</td>
+                  <td><span class="badge badge-neutral">MS Software Engineering (NUST)</span></td>
+                  <td>
+                    <div class="text-xs font-semibold">shah.faisal@kims.edu.pk</div>
+                    <div class="text-[11px] text-slate-400">0312-9844123</div>
+                  </td>
+                  <td>Software Lab II, Block B</td>
+                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> In Lecture</span></td>
+                  <td class="text-right">
+                    <button onclick="showToast('Profile Opened', 'Engr. Shah Faisal curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
+                      <i class="fa-solid fa-id-badge text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-bold flex items-center justify-center text-xs">
+                        AB
+                      </div>
+                      <div>
+                        <div class="font-bold text-slate-900 dark:text-white">Mr. Asadullah Bangash</div>
+                        <div class="text-[11px] text-slate-400">Senior Lecturer (MGT)</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="font-semibold text-xs">Senior Lecturer</span></td>
+                  <td>Management Sciences</td>
+                  <td><span class="badge badge-neutral">MBA Finance (LUMS)</span></td>
+                  <td>
+                    <div class="text-xs font-semibold">asad.b@kims.edu.pk</div>
+                    <div class="text-[11px] text-slate-400">0345-9876543</div>
+                  </td>
+                  <td>Commerce Wing, Room 302</td>
+                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[8px]"></i> On Leave</span></td>
+                  <td class="text-right">
+                    <button onclick="showToast('Profile Opened', 'Mr. Asadullah Bangash curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
+                      <i class="fa-solid fa-id-badge text-xs"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal: Add Faculty -->
+  <div class="modal-overlay" id="addFacultyModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="text-base font-bold text-slate-800 dark:text-white">Appoint Faculty Member</h3>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="newFacultyForm" onsubmit="return handleCreateFaculty(event)">
+        <div class="modal-body space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Full Name & Title *</label>
+              <input type="text" id="facName" class="form-control" required placeholder="e.g. Dr. Rashid Ali">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Designation *</label>
+              <select id="facDesig" class="form-control" required>
+                <option value="Professor">Professor</option>
+                <option value="Associate Professor">Associate Professor</option>
+                <option value="Assistant Professor">Assistant Professor</option>
+                <option value="Lecturer">Lecturer</option>
+                <option value="Lab Instructor">Lab Instructor</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Department *</label>
+              <select id="facDept" class="form-control" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Faculty of Pharmacy">Faculty of Pharmacy</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Management Sciences">Management Sciences</option>
+                <option value="Medical Lab Technology">Medical Lab Technology</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Highest Degree / Alma Mater *</label>
+              <input type="text" id="facDegree" class="form-control" required placeholder="e.g. Ph.D. Data Science (FAST)">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Official Email *</label>
+              <input type="email" id="facEmail" class="form-control" required placeholder="faculty@kims.edu.pk">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" id="facPhone" class="form-control" required placeholder="0300-1234567">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Assigned Office / Lab Room</label>
+            <input type="text" id="facOffice" class="form-control" placeholder="e.g. Science Block Room 210">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-check"></i>
+            <span>Confirm Appointment</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    function handleCreateFaculty(e) {
+      e.preventDefault();
+      const name = document.getElementById('facName').value.trim();
+      const desig = document.getElementById('facDesig').value;
+      const dept = document.getElementById('facDept').value;
+      const degree = document.getElementById('facDegree').value.trim();
+      const email = document.getElementById('facEmail').value.trim();
+      const phone = document.getElementById('facPhone').value.trim();
+      const office = document.getElementById('facOffice').value.trim() || 'Main Campus';
+
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      const tbody = document.getElementById('facultyTableBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
+              ${initials}
+            </div>
+            <div>
+              <div class="font-bold text-slate-900 dark:text-white">${escapeHtml(name)}</div>
+              <div class="text-[11px] text-slate-400">${escapeHtml(desig)}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="font-semibold text-xs">${escapeHtml(desig)}</span></td>
+        <td>${escapeHtml(dept)}</td>
+        <td><span class="badge badge-neutral">${escapeHtml(degree)}</span></td>
+        <td>
+          <div class="text-xs font-semibold">${escapeHtml(email)}</div>
+          <div class="text-[11px] text-slate-400">${escapeHtml(phone)}</div>
+        </td>
+        <td>${escapeHtml(office)}</td>
+        <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
+        <td class="text-right">
+          <button onclick="showToast('Profile Opened', '${escapeHtml(name)} record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
+            <i class="fa-solid fa-id-badge text-xs"></i>
+          </button>
+        </td>
+      `;
+
+      tbody.prepend(tr);
+      closeModal('addFacultyModal');
+      document.getElementById('newFacultyForm').reset();
+      showToast('Faculty Appointed', `${name} added to ${dept}.`, 'success');
+      return false;
+    }
+  </script>
+</body>
+</html>

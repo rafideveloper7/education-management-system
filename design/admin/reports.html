@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional Reports & Audit History - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Administrative Reporting and Audit Trail (Modules 27 & 28)">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>EduOS v2.4</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard (M5)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management (M6, M8)</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students 360° (M8)</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff (M6)</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects (M7)</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance (M9)</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Exams & Results (M11)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management (M12)</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions (M13)</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk (M14-21)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="website-cms.html" class="nav-link">
+                <i class="fa-solid fa-globe"></i>
+                <span>Dynamic Website CMS (M1,2)</span>
+              </a>
+            </li>
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card System (M36)</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Audit (M27,28)</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Admin Settings (M29)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search audit trail or reports...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon text-slate-600"></i>
+          </button>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <h1>Reports Suite & Administrative Audit Trail</h1>
+            <p>Comprehensive institutional analytics and immutable system activity history (Modules 27 & 28).</p>
+          </div>
+        </div>
+
+        <!-- 4 Reports Generators (Spec Module 27) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="admin-card p-4 hover:border-emerald-500 transition">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-file-excel"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Student Enrollment Census</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Class-wise & gender-wise registry</p>
+            <button onclick="showToast('Exporting Report', 'Generating Student Census CSV', 'info')" class="mt-3 text-xs text-emerald-600 font-bold hover:underline">Download CSV &rarr;</button>
+          </div>
+
+          <div class="admin-card p-4 hover:border-amber-500 transition">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Fee Recovery & Dues Report</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Bank collection audit ledger</p>
+            <button onclick="showToast('Exporting Report', 'Generating Fee Audit Sheet', 'info')" class="mt-3 text-xs text-amber-600 font-bold hover:underline">Download CSV &rarr;</button>
+          </div>
+
+          <div class="admin-card p-4 hover:border-blue-500 transition">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Statutory Attendance Audit</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Students below HEC 75% threshold</p>
+            <button onclick="showToast('Exporting Report', 'Generating Attendance Shortfall List', 'info')" class="mt-3 text-xs text-blue-600 font-bold hover:underline">Download CSV &rarr;</button>
+          </div>
+
+          <div class="admin-card p-4 hover:border-purple-500 transition">
+            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Examination Gazette</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Consolidated GPA transcript ledger</p>
+            <button onclick="showToast('Exporting Report', 'Compiling Official Gazette', 'info')" class="mt-3 text-xs text-purple-600 font-bold hover:underline">Download CSV &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Audit & Activity History (Spec Module 28 Requirements) -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Audit & Activity History Ledger (Module 28)</div>
+              <div class="card-subtitle">Immutable records of administrative operations for institutional accountability</div>
+            </div>
+            <span class="badge badge-success"><i class="fa-solid fa-shield-halved text-[10px]"></i> Audit Log Active</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Action Category (Spec M28)</th>
+                  <th>Responsible Operator</th>
+                  <th>Target Entity & Description</th>
+                  <th>IP Address & Origin</th>
+                  <th>Integrity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="font-mono text-xs">Today, 09:35 AM</span></td>
+                  <td><span class="badge badge-success">Payment Recorded</span></td>
+                  <td>Executive Admin</td>
+                  <td>Challan CH-2026-0901 (PKR 57,000 for Abdullah Khan)</td>
+                  <td class="font-mono text-xs text-slate-400">192.168.10.4</td>
+                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs">Today, 08:45 AM</span></td>
+                  <td><span class="badge badge-info">Attendance Modified</span></td>
+                  <td>Registrar Office</td>
+                  <td>Authorized attendance correction for Roll KIMS-2024-CS-041</td>
+                  <td class="font-mono text-xs text-slate-400">192.168.10.12</td>
+                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs">Yesterday, 04:15 PM</span></td>
+                  <td><span class="badge badge-warning">Application Approved</span></td>
+                  <td>Principal / Academic Dean</td>
+                  <td>Approved Leave Request REQ-2026-031</td>
+                  <td class="font-mono text-xs text-slate-400">192.168.10.2</td>
+                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs">Yesterday, 02:20 PM</span></td>
+                  <td><span class="badge badge-purple">Result Published</span></td>
+                  <td>Controller of Examinations</td>
+                  <td>Fall 2026 Midterm Results published to public student portals</td>
+                  <td class="font-mono text-xs text-slate-400">192.168.10.8</td>
+                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
+                </tr>
+
+                <tr>
+                  <td><span class="font-mono text-xs">Aug 31, 11:10 AM</span></td>
+                  <td><span class="badge badge-neutral">Website Content Changed</span></td>
+                  <td>Executive Admin</td>
+                  <td>Updated Fall 2026 Admissions Notice ticker on homepage</td>
+                  <td class="font-mono text-xs text-slate-400">192.168.10.4</td>
+                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="reports.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Reports</span>
+      </a>
+      <a href="fees.html" class="bottom-nav-item">
+        <i class="fa-solid fa-coins"></i>
+        <span>Fees</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
