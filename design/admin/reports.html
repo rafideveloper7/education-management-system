@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Institutional Reports & Audit History - KIMS Admin Portal</title>
-  <meta name="description" content="KIMS Institutional Management System Administrative Reporting and Audit Trail (Modules 27 & 28)">
+  <title>Institutional Reports & Document Printing Hub - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Official Reports, Document Slips, Attendance Registers, Results DMCs, Timetables, and Datesheet Printing Hub">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -27,9 +28,132 @@
   </script>
 
   <!-- Google Fonts & FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Cinzel:wght@700;900&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    /* Report Category Tabs */
+    .report-tab-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #64748b;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .dark .report-tab-pill {
+      background: #1e293b;
+      color: #94a3b8;
+      border-color: #334155;
+    }
+    .report-tab-pill:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .dark .report-tab-pill:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .report-tab-pill.active {
+      background: #059669;
+      color: #ffffff;
+      border-color: #059669;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+    }
+
+    /* Official Printable Document Sheet Styling */
+    .printable-sheet {
+      background: #ffffff;
+      color: #0f172a;
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.25rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Watermark Crest Simulation */
+    .printable-sheet::before {
+      content: '\f19d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 280px;
+      color: rgba(6, 78, 59, 0.03);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cursive-signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: #0f172a;
+      transform: rotate(-3deg);
+      display: inline-block;
+    }
+
+    /* Print Media Queries */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .admin-sidebar,
+      .admin-header,
+      .page-header-bar,
+      .report-navigation-bar,
+      .action-toolbar,
+      .no-print,
+      .mobile-bottom-nav,
+      .toast-stack,
+      .modal-backdrop,
+      .modal-header,
+      .modal-footer {
+        display: none !important;
+      }
+      .admin-app-layout,
+      .admin-main-wrapper,
+      .admin-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      .modal-container {
+        position: static !important;
+        transform: none !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+      .printable-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0.5cm !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .printable-sheet::before {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -47,7 +171,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>EduOS v2.4</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +183,26 @@
             <li>
               <a href="index.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +215,26 @@
             <li>
               <a href="courses.html" class="nav-link">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +246,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +265,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +275,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link active">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -197,19 +322,44 @@
           
           <div class="header-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search audit trail or reports...">
+            <input type="text" id="reportQuickSearch" onkeyup="filterReportCards(this.value)" placeholder="Search reports, slips, DMCs, registers...">
           </div>
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
             <span>Public Site</span>
           </a>
-
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <div class="header-profile-menu">
             <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
@@ -229,119 +379,394 @@
         <!-- Title Bar -->
         <div class="page-header-bar">
           <div class="page-title">
-            <h1>Reports Suite & Administrative Audit Trail</h1>
-            <p>Comprehensive institutional analytics and immutable system activity history (Modules 27 & 28).</p>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[10px]">
+                <i class="fa-solid fa-print mr-1"></i> Official Document & Printing Engine
+              </span>
+              <span class="text-xs font-semibold text-slate-400">Academic Session 2025-2026</span>
+            </div>
+            <h1>Institutional Reports & Document Printing Hub</h1>
+            <p>Export and print official institutional slips, class-wise attendance registers, individual DMC report cards, admission application forms, daily timetables, and BISE exam datesheets.</p>
+          </div>
+          <div class="page-actions flex flex-wrap gap-2">
+            <button type="button" onclick="quickPrintCurrentDoc()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-print mr-1"></i>
+              <span>Print Active Document</span>
+            </button>
+            <button type="button" onclick="exportCsvCurrentReport()" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-file-csv mr-1"></i>
+              <span>Export CSV</span>
+            </button>
           </div>
         </div>
 
-        <!-- 4 Reports Generators (Spec Module 27) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div class="admin-card p-4 hover:border-emerald-500 transition">
-            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-3">
-              <i class="fa-solid fa-file-excel"></i>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Student Enrollment Census</h4>
-            <p class="text-[11px] text-slate-400 mt-1">Class-wise & gender-wise registry</p>
-            <button onclick="showToast('Exporting Report', 'Generating Student Census CSV', 'info')" class="mt-3 text-xs text-emerald-600 font-bold hover:underline">Download CSV &rarr;</button>
-          </div>
-
-          <div class="admin-card p-4 hover:border-amber-500 transition">
-            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
-              <i class="fa-solid fa-coins"></i>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Fee Recovery & Dues Report</h4>
-            <p class="text-[11px] text-slate-400 mt-1">Bank collection audit ledger</p>
-            <button onclick="showToast('Exporting Report', 'Generating Fee Audit Sheet', 'info')" class="mt-3 text-xs text-amber-600 font-bold hover:underline">Download CSV &rarr;</button>
-          </div>
-
-          <div class="admin-card p-4 hover:border-blue-500 transition">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
-              <i class="fa-solid fa-calendar-check"></i>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Statutory Attendance Audit</h4>
-            <p class="text-[11px] text-slate-400 mt-1">Students below HEC 75% threshold</p>
-            <button onclick="showToast('Exporting Report', 'Generating Attendance Shortfall List', 'info')" class="mt-3 text-xs text-blue-600 font-bold hover:underline">Download CSV &rarr;</button>
-          </div>
-
-          <div class="admin-card p-4 hover:border-purple-500 transition">
-            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-3">
-              <i class="fa-solid fa-award"></i>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Examination Gazette</h4>
-            <p class="text-[11px] text-slate-400 mt-1">Consolidated GPA transcript ledger</p>
-            <button onclick="showToast('Exporting Report', 'Compiling Official Gazette', 'info')" class="mt-3 text-xs text-purple-600 font-bold hover:underline">Download CSV &rarr;</button>
-          </div>
+        <!-- Navigation Tabs: Categories of Reports & Slips -->
+        <div class="report-navigation-bar flex items-center gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none">
+          <button type="button" class="report-tab-pill active" onclick="switchReportTab('all', this)">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>All Documents & Slips</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('attendance', this)">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Attendance Registers</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('students', this)">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>Student Dossiers & Bio-Data</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('results', this)">
+            <i class="fa-solid fa-award"></i>
+            <span>Results & Individual DMCs</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('admissions', this)">
+            <i class="fa-solid fa-file-signature"></i>
+            <span>Admission Slips & Forms</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('timetables', this)">
+            <i class="fa-solid fa-clock"></i>
+            <span>Class Timetables</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('datesheets', this)">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Exam Datesheets</span>
+          </button>
+          <button type="button" class="report-tab-pill" onclick="switchReportTab('fees', this)">
+            <i class="fa-solid fa-coins"></i>
+            <span>Fee Dues Ledgers</span>
+          </button>
         </div>
 
-        <!-- Audit & Activity History (Spec Module 28 Requirements) -->
-        <div class="admin-card">
-          <div class="card-header">
+        <!-- Master Document & Slips Printing Catalog Grid -->
+        <div id="reportsCatalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 mb-6">
+
+          <!-- 1. Attendance: All Classes Morning Register -->
+          <div class="admin-card p-3.5 hover:border-emerald-500 transition flex flex-col justify-between report-card-item" data-cat="attendance">
             <div>
-              <div class="card-title">Audit & Activity History Ledger (Module 28)</div>
-              <div class="card-subtitle">Immutable records of administrative operations for institutional accountability</div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-clipboard-user"></i>
+                </div>
+                <span class="badge badge-success text-[10px]">All Classes</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">All Classes Daily Attendance Summary</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">School-wide morning roll call register with headcounts, present %, and absent student records.</p>
             </div>
-            <span class="badge badge-success"><i class="fa-solid fa-shield-halved text-[10px]"></i> Audit Log Active</span>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('attendance_all')" class="text-xs text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('attendance_all')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>Action Category (Spec M28)</th>
-                  <th>Responsible Operator</th>
-                  <th>Target Entity & Description</th>
-                  <th>IP Address & Origin</th>
-                  <th>Integrity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="font-mono text-xs">Today, 09:35 AM</span></td>
-                  <td><span class="badge badge-success">Payment Recorded</span></td>
-                  <td>Executive Admin</td>
-                  <td>Challan CH-2026-0901 (PKR 57,000 for Abdullah Khan)</td>
-                  <td class="font-mono text-xs text-slate-400">192.168.10.4</td>
-                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
-                </tr>
+          <!-- 2. Attendance: Single Class Monthly Register -->
+          <div class="admin-card p-3.5 hover:border-emerald-500 transition flex flex-col justify-between report-card-item" data-cat="attendance">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <span class="badge badge-info text-[10px]">Separate Class</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Class Monthly Attendance Register</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Official printable monthly sheet for Class 10, 9, 8, etc. with daily columns and teacher sign.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('attendance_class')" class="text-xs text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('attendance_class')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
 
-                <tr>
-                  <td><span class="font-mono text-xs">Today, 08:45 AM</span></td>
-                  <td><span class="badge badge-info">Attendance Modified</span></td>
-                  <td>Registrar Office</td>
-                  <td>Authorized attendance correction for Roll KIMS-2024-CS-041</td>
-                  <td class="font-mono text-xs text-slate-400">192.168.10.12</td>
-                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
-                </tr>
+          <!-- 3. Students: Full Enrollment Census -->
+          <div class="admin-card p-3.5 hover:border-blue-500 transition flex flex-col justify-between report-card-item" data-cat="students">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="badge badge-neutral text-[10px]">Full School</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Full School Student Enrollment Census</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Master roster of all 4,850 enrolled scholars, class distribution, and parent guardian contacts.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('students_roster')" class="text-xs text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('students_roster')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
 
-                <tr>
-                  <td><span class="font-mono text-xs">Yesterday, 04:15 PM</span></td>
-                  <td><span class="badge badge-warning">Application Approved</span></td>
-                  <td>Principal / Academic Dean</td>
-                  <td>Approved Leave Request REQ-2026-031</td>
-                  <td class="font-mono text-xs text-slate-400">192.168.10.2</td>
-                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
-                </tr>
+          <!-- 4. Students: Individual Scholar Bio-Data Slip -->
+          <div class="admin-card p-3.5 hover:border-blue-500 transition flex flex-col justify-between report-card-item" data-cat="students">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-id-badge"></i>
+                </div>
+                <span class="badge badge-warning text-[10px]">Individual Slip</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Individual Student Bio-Data Dossier</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Printable single scholar bio-data dossier with photo, father particulars, address, and medical info.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('student_dossier')" class="text-xs text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('student_dossier')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
 
-                <tr>
-                  <td><span class="font-mono text-xs">Yesterday, 02:20 PM</span></td>
-                  <td><span class="badge badge-purple">Result Published</span></td>
-                  <td>Controller of Examinations</td>
-                  <td>Fall 2026 Midterm Results published to public student portals</td>
-                  <td class="font-mono text-xs text-slate-400">192.168.10.8</td>
-                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
-                </tr>
+          <!-- 5. Results: Full Class Examination Gazette -->
+          <div class="admin-card p-3.5 hover:border-purple-500 transition flex flex-col justify-between report-card-item" data-cat="results">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950 text-purple-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-table-list"></i>
+                </div>
+                <span class="badge badge-purple text-[10px]">Full Gazette</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Consolidated Annual Exam Gazette</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Master tabulation ledger for all 8 matric subjects with theory, practical, total, and positions.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('results_gazette')" class="text-xs text-purple-600 dark:text-purple-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('results_gazette')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
 
-                <tr>
-                  <td><span class="font-mono text-xs">Aug 31, 11:10 AM</span></td>
-                  <td><span class="badge badge-neutral">Website Content Changed</span></td>
-                  <td>Executive Admin</td>
-                  <td>Updated Fall 2026 Admissions Notice ticker on homepage</td>
-                  <td class="font-mono text-xs text-slate-400">192.168.10.4</td>
-                  <td><i class="fa-solid fa-circle-check text-emerald-500"></i> Verified</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- 6. Results: Individual Student DMC Report Card -->
+          <div class="admin-card p-3.5 hover:border-purple-500 transition flex flex-col justify-between report-card-item" data-cat="results">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950 text-purple-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-certificate"></i>
+                </div>
+                <span class="badge badge-success text-[10px]">Official DMC</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Official Detailed Marks Certificate (DMC)</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Individual formal certificate with subject breakdown, grade percentage, remarks, and school stamp.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('result_dmc')" class="text-xs text-purple-600 dark:text-purple-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('result_dmc')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. Admissions: Official Printable Admission Slip / Form -->
+          <div class="admin-card p-3.5 hover:border-amber-500 transition flex flex-col justify-between report-card-item" data-cat="admissions">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-file-signature"></i>
+                </div>
+                <span class="badge badge-gold text-[10px]">Admission Slip</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Official Student Admission Application Slip</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Formal registration document with applicant particulars, father CNIC, photo box, and parent undertaking.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('admission_slip')" class="text-xs text-amber-600 dark:text-amber-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('admission_slip')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 8. Timetable: Class-Wise Weekly Routine -->
+          <div class="admin-card p-3.5 hover:border-emerald-500 transition flex flex-col justify-between report-card-item" data-cat="timetables">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <span class="badge badge-neutral text-[10px]">Weekly Routine</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Daily Class Academic Timetable</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Mon-Sat 8-period timetable with allocated subject lecturers, lab timings, and classroom numbers.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('timetable_class')" class="text-xs text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('timetable_class')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 9. Datesheets: BISE & Term Examination Schedule -->
+          <div class="admin-card p-3.5 hover:border-rose-500 transition flex flex-col justify-between report-card-item" data-cat="datesheets">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <span class="badge badge-danger text-[10px]">Exam Datesheet</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Annual / Term Examination Datesheet</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Official examination slip with subject paper codes, dates, morning shift timings, and room allocations.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('exam_datesheet')" class="text-xs text-rose-600 dark:text-rose-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('exam_datesheet')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 10. Fees: Tuition Dues & Defaulters Ledger -->
+          <div class="admin-card p-3.5 hover:border-amber-500 transition flex flex-col justify-between report-card-item" data-cat="fees">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <span class="badge badge-warning text-[10px]">Fee Defaulters</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Fee Dues Recovery & Defaulters Sheet</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Class-wise audit report of unpaid monthly tuition dues, challan numbers, and bank reconciliation.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('fees_defaulters')" class="text-xs text-amber-600 dark:text-amber-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('fees_defaulters')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 11. Faculty: Teaching Staff Roster & Duty Allocation -->
+          <div class="admin-card p-3.5 hover:border-emerald-500 transition flex flex-col justify-between report-card-item" data-cat="timetables">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <span class="badge badge-neutral text-[10px]">Faculty List</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Teaching Faculty Academic Allocation</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Complete staff directory, form master appointments, academic qualifications, and contact registry.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('faculty_roster')" class="text-xs text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('faculty_roster')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 12. Admissions: Merit & Entrance Test Ledger -->
+          <div class="admin-card p-3.5 hover:border-blue-500 transition flex flex-col justify-between report-card-item" data-cat="admissions">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+                <span class="badge badge-info text-[10px]">Merit List</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Admission Merit & Entrance Test Ledger</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Class-wise entrance test merit scores, interview verification status, and quota allocations.</p>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <button onclick="openDocumentPreview('admission_merit')" class="text-xs text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-eye text-[10px]"></i> View & Print Slip
+              </button>
+              <button onclick="downloadReportCsv('admission_merit')" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Export CSV">
+                <i class="fa-solid fa-file-csv"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- DYNAMIC PRINTABLE DOCUMENT PREVIEW MODAL                         -->
+        <!-- ================================================================= -->
+        <div id="printDocumentModal" class="modal-backdrop hidden">
+          <div class="modal-container max-w-4xl p-0 overflow-hidden">
+            
+            <!-- Modal Controls Toolbar (No-Print) -->
+            <div class="no-print p-3.5 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-sm font-bold">
+                  <i class="fa-solid fa-print"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold" id="previewModalDocTitle">Document Print Preview</h4>
+                  <span class="text-[10px] text-slate-400">High-Resolution 300 DPI Official Institutional Format</span>
+                </div>
+              </div>
+
+              <!-- Quick Document Selector Controls inside preview -->
+              <div class="flex items-center gap-2">
+                <div id="modalFilterClassWrapper" class="hidden flex items-center gap-1.5 text-xs">
+                  <span class="text-[11px] text-slate-400 font-semibold">Class:</span>
+                  <select id="modalSelectClass" onchange="handleModalFilterChange()" class="bg-slate-800 text-white text-xs rounded-lg px-2 py-1 border border-slate-700 outline-none">
+                    <option value="10th">Class 10th Matric (Science)</option>
+                    <option value="9th">Class 9th (SSC-I)</option>
+                    <option value="8th">Class 8th (Middle)</option>
+                    <option value="5th">Class 5th (Primary)</option>
+                    <option value="Prep">Class Nursery / Prep</option>
+                  </select>
+                </div>
+
+                <div id="modalFilterStudentWrapper" class="hidden flex items-center gap-1.5 text-xs">
+                  <span class="text-[11px] text-slate-400 font-semibold">Scholar:</span>
+                  <select id="modalSelectStudent" onchange="handleModalFilterChange()" class="bg-slate-800 text-white text-xs rounded-lg px-2 py-1 border border-slate-700 outline-none">
+                    <option value="KIMS-2026-04851">Muhammad Huzaifa Khan (Roll #04851)</option>
+                    <option value="KIMS-2026-04852">Fatima Zahra Afridi (Roll #04852)</option>
+                    <option value="KIMS-2026-04853">Abdullah Khan Bangash (Roll #04853)</option>
+                    <option value="KIMS-2026-04854">Ayesha Noor Khattak (Roll #04854)</option>
+                    <option value="KIMS-2026-04855">Zaid Khan Orakzai (Roll #04855)</option>
+                  </select>
+                </div>
+
+                <button type="button" onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
+                  <i class="fa-solid fa-print"></i>
+                  <span>Print Document</span>
+                </button>
+                <button type="button" onclick="closePrintModal()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Scrollable Document Preview Sheet Container -->
+            <div class="p-4 sm:p-6 bg-slate-100 dark:bg-slate-900 max-h-[80vh] overflow-y-auto">
+              
+              <!-- The actual printable A4 document canvas -->
+              <div id="documentSheetCanvas" class="printable-sheet">
+                <!-- Dynamically generated official document appears here -->
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -379,5 +804,781 @@
   <div class="toast-stack"></div>
 
   <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // INSTITUTIONAL REPORTS & DOCUMENT PRINTING ENGINE
+    // =========================================================================
+
+    let activeDocType = 'attendance_all';
+
+    // Muslim Pashtun Scholars Dataset
+    const REPORT_STUDENTS = [
+      {
+        id: "KIMS-2026-04851",
+        roll: "10-M-01",
+        name: "Muhammad Huzaifa Khan",
+        fatherName: "Mr. Tariq Mehmood Afridi",
+        admitClass: "10th Matric (Science)",
+        dob: "14/03/2010",
+        phone: "0333-9182341",
+        blood: "B+ Positive",
+        address: "H.No 42, St 7, Umarzai, Kohat",
+        present: 24,
+        absent: 1,
+        pct: "96.0%",
+        status: "Eligible (BISE)"
+      },
+      {
+        id: "KIMS-2026-04852",
+        roll: "NUR-08",
+        name: "Fatima Zahra Afridi",
+        fatherName: "Mr. Syed Imtiaz Ali Shah",
+        admitClass: "Class 0-1 (Nursery / Prep)",
+        dob: "05/08/2021",
+        phone: "0300-5872149",
+        blood: "O+ Positive",
+        address: "Sector 4, KDA Kohat",
+        present: 23,
+        absent: 2,
+        pct: "92.0%",
+        status: "Eligible"
+      },
+      {
+        id: "KIMS-2026-04853",
+        roll: "09-M-14",
+        name: "Abdullah Khan Bangash",
+        fatherName: "Dr. Asim Shah Bangash",
+        admitClass: "Class 9th (SSC-I Matric)",
+        dob: "20/11/2011",
+        phone: "0312-7654321",
+        blood: "A+ Positive",
+        address: "Officers Colony, Kohat Cantt",
+        present: 25,
+        absent: 0,
+        pct: "100%",
+        status: "Eligible (BISE)"
+      },
+      {
+        id: "KIMS-2026-04854",
+        roll: "05-P-21",
+        name: "Ayesha Noor Khattak",
+        fatherName: "Mr. Noor Muhammad Khattak",
+        admitClass: "Class 5 (Primary)",
+        dob: "12/04/2015",
+        phone: "0345-9110488",
+        blood: "AB+ Positive",
+        address: "Bannu Road, Near City Gate, Kohat",
+        present: 22,
+        absent: 3,
+        pct: "88.0%",
+        status: "Eligible"
+      },
+      {
+        id: "KIMS-2026-04855",
+        roll: "01-P-05",
+        name: "Zaid Khan Orakzai",
+        fatherName: "Mr. Tariq Jamil Orakzai",
+        admitClass: "Class 1 (Primary)",
+        dob: "08/09/2019",
+        phone: "0334-8871234",
+        blood: "B+ Positive",
+        address: "Jungle Khel, Kohat",
+        present: 24,
+        absent: 1,
+        pct: "96.0%",
+        status: "Eligible"
+      },
+      {
+        id: "KIMS-2026-04856",
+        roll: "10-M-02",
+        name: "Hamza Ali Bangash",
+        fatherName: "Mr. Farooq Bangash",
+        admitClass: "10th Matric (Science)",
+        dob: "18/06/2010",
+        phone: "0301-4433221",
+        blood: "O+ Positive",
+        address: "KDA Sector 2, Kohat",
+        present: 23,
+        absent: 2,
+        pct: "92.0%",
+        status: "Eligible (BISE)"
+      },
+      {
+        id: "KIMS-2026-04857",
+        roll: "10-M-03",
+        name: "Maryam Bibi Khattak",
+        fatherName: "Qari Abdul Rehman Khattak",
+        admitClass: "10th Matric (Science)",
+        dob: "25/01/2010",
+        phone: "0314-5544332",
+        blood: "A+ Positive",
+        address: "Peshawar Road, Kohat",
+        present: 25,
+        absent: 0,
+        pct: "100%",
+        status: "Eligible (BISE)"
+      }
+    ];
+
+    // Category Tabs Filter
+    function switchReportTab(category, btn) {
+      document.querySelectorAll('.report-tab-pill').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.report-card-item');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-cat') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Quick Search within Cards
+    function filterReportCards(val) {
+      const term = (val || '').toLowerCase().trim();
+      const cards = document.querySelectorAll('.report-card-item');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(term) ? 'flex' : 'none';
+      });
+    }
+
+    // Open Document Preview Modal
+    function openDocumentPreview(docType) {
+      activeDocType = docType;
+      const modal = document.getElementById('printDocumentModal');
+      const titleEl = document.getElementById('previewModalDocTitle');
+      const classWrapper = document.getElementById('modalFilterClassWrapper');
+      const studWrapper = document.getElementById('modalFilterStudentWrapper');
+
+      // Toggle relevant filter controls in header
+      if (docType === 'result_dmc' || docType === 'student_dossier' || docType === 'admission_slip') {
+        studWrapper.classList.remove('hidden');
+        classWrapper.classList.add('hidden');
+      } else if (docType === 'attendance_class' || docType === 'timetable_class' || docType === 'results_gazette') {
+        classWrapper.classList.remove('hidden');
+        studWrapper.classList.add('hidden');
+      } else {
+        classWrapper.classList.add('hidden');
+        studWrapper.classList.add('hidden');
+      }
+
+      renderDocumentSheet(docType);
+      modal.classList.remove('hidden');
+    }
+
+    function closePrintModal() {
+      document.getElementById('printDocumentModal').classList.add('hidden');
+    }
+
+    function handleModalFilterChange() {
+      renderDocumentSheet(activeDocType);
+    }
+
+    // Official Letterhead Generator
+    function getOfficialLetterheadHtml(title, refCode) {
+      return `
+        <div class="border-b-2 border-slate-900 pb-3 mb-4 text-center">
+          <div class="flex items-center justify-between">
+            <div class="w-14 h-14 rounded-full bg-emerald-900 text-white flex items-center justify-center text-xl font-black shrink-0 shadow-xs">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="flex-1 px-3">
+              <h2 class="text-base sm:text-lg font-black uppercase tracking-wider text-slate-900 m-0" style="font-family: 'Cinzel', serif;">
+                KOHAT INSTITUTE OF MODERN SCIENCES
+              </h2>
+              <div class="text-[10px] font-bold text-emerald-800 uppercase tracking-widest mt-0.5">
+                (Recognised by Govt. of Khyber Pakhtunkhwa & BISE Affiliated)
+              </div>
+              <div class="text-[9px] text-slate-500 font-medium mt-0.5">
+                Cantt Road, Sector 3, KDA, Kohat, KP, Pakistan | Phone: 0922-512345 | Web: www.kims.edu.pk
+              </div>
+            </div>
+            <div class="text-right text-[9px] text-slate-500 shrink-0 font-mono">
+              <div class="font-bold text-slate-900">REF: ${refCode || 'KIMS/DOC/2026/089'}</div>
+              <div>DATE: 07 Sep 2026</div>
+              <div class="text-emerald-700 font-bold">SESSION: 2025-2026</div>
+            </div>
+          </div>
+          <div class="mt-2.5 pt-1.5 border-t border-dotted border-slate-300">
+            <span class="inline-block px-4 py-1 rounded bg-slate-900 text-white font-extrabold text-xs uppercase tracking-widest">
+              ${title}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Official Verification Signature Footer
+    function getOfficialSignatureFooterHtml() {
+      return `
+        <div class="mt-8 pt-4 border-t border-slate-300 grid grid-cols-3 gap-4 text-center text-[10px]">
+          <div>
+            <div class="h-8 flex items-end justify-center">
+              <span class="cursive-signature text-xs">Sir Tariq Afridi</span>
+            </div>
+            <div class="border-t border-slate-400 pt-1 font-bold text-slate-800 uppercase">
+              Class In-Charge
+            </div>
+            <span class="text-[8px] text-slate-400 block">Form Master / Lecturer</span>
+          </div>
+          <div>
+            <div class="h-8 flex items-end justify-center">
+              <span class="font-mono text-xs font-bold text-emerald-800">KIMS/VERIFIED/2026</span>
+            </div>
+            <div class="border-t border-slate-400 pt-1 font-bold text-slate-800 uppercase">
+              Controller of Exams
+            </div>
+            <span class="text-[8px] text-slate-400 block">Academic Wing Seal</span>
+          </div>
+          <div>
+            <div class="h-8 flex items-end justify-center">
+              <span class="cursive-signature text-xs">Prof. M. Irfan Khattak</span>
+            </div>
+            <div class="border-t border-slate-400 pt-1 font-bold text-slate-800 uppercase">
+              Principal Sahib
+            </div>
+            <span class="text-[8px] text-slate-400 block">KIMS High School Kohat</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Main Renderer for the Printable A4 Canvas
+    function renderDocumentSheet(type) {
+      const container = document.getElementById('documentSheetCanvas');
+      const selectedStudentId = document.getElementById('modalSelectStudent').value;
+      const stud = REPORT_STUDENTS.find(s => s.id === selectedStudentId) || REPORT_STUDENTS[0];
+      const selectedClass = document.getElementById('modalSelectClass').value || '10th';
+
+      let html = '';
+
+      if (type === 'attendance_all') {
+        html = `
+          ${getOfficialLetterheadHtml('CONSOLIDATED MORNING ATTENDANCE REGISTER - ALL CLASSES', 'KIMS/ATT/2026/0907')}
+          
+          <div class="grid grid-cols-4 gap-2 mb-4 text-center text-xs">
+            <div class="p-2 rounded bg-slate-50 border border-slate-200">
+              <span class="text-[9px] text-slate-500 uppercase block">Total On Roster</span>
+              <strong class="text-sm font-black text-slate-900">4,850</strong>
+            </div>
+            <div class="p-2 rounded bg-emerald-50 border border-emerald-200 text-emerald-900">
+              <span class="text-[9px] text-emerald-700 uppercase block">Present Today</span>
+              <strong class="text-sm font-black">4,608 (95.0%)</strong>
+            </div>
+            <div class="p-2 rounded bg-rose-50 border border-rose-200 text-rose-900">
+              <span class="text-[9px] text-rose-700 uppercase block">Absent Count</span>
+              <strong class="text-sm font-black">242 (5.0%)</strong>
+            </div>
+            <div class="p-2 rounded bg-amber-50 border border-amber-200 text-amber-900">
+              <span class="text-[9px] text-amber-700 uppercase block">Sanctioned Leaves</span>
+              <strong class="text-sm font-black">38 Scholars</strong>
+            </div>
+          </div>
+
+          <table class="w-full text-left text-[10px] border-collapse border border-slate-200 mb-4">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 font-bold">
+                <th class="p-1.5 border border-slate-200">Class & Section</th>
+                <th class="p-1.5 border border-slate-200">Class In-Charge</th>
+                <th class="p-1.5 border border-slate-200 text-center">Total Enrolled</th>
+                <th class="p-1.5 border border-slate-200 text-center">Present</th>
+                <th class="p-1.5 border border-slate-200 text-center">Absent</th>
+                <th class="p-1.5 border border-slate-200 text-right">Attendance %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-1.5 border border-slate-200 font-bold">Class 10th Matric (Science)</td>
+                <td class="p-1.5 border border-slate-200">Sir Tariq Mehmood Afridi</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono">540</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-emerald-700 font-bold">522</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-rose-600 font-bold">18</td>
+                <td class="p-1.5 border border-slate-200 text-right font-bold text-emerald-700">96.7%</td>
+              </tr>
+              <tr>
+                <td class="p-1.5 border border-slate-200 font-bold">Class 9th (SSC-I Matric)</td>
+                <td class="p-1.5 border border-slate-200">Sir Bilal Ahmed Bangash</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono">510</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-emerald-700 font-bold">488</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-rose-600 font-bold">22</td>
+                <td class="p-1.5 border border-slate-200 text-right font-bold text-emerald-700">95.6%</td>
+              </tr>
+              <tr>
+                <td class="p-1.5 border border-slate-200 font-bold">Class 8th (Middle Wing)</td>
+                <td class="p-1.5 border border-slate-200">Ms. Naila Jabeen Khattak</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono">495</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-emerald-700 font-bold">465</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-rose-600 font-bold">30</td>
+                <td class="p-1.5 border border-slate-200 text-right font-bold text-emerald-700">93.9%</td>
+              </tr>
+              <tr>
+                <td class="p-1.5 border border-slate-200 font-bold">Class 5th (Primary Wing)</td>
+                <td class="p-1.5 border border-slate-200">Madam Farzana Noor Khattak</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono">420</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-emerald-700 font-bold">402</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-rose-600 font-bold">18</td>
+                <td class="p-1.5 border border-slate-200 text-right font-bold text-emerald-700">95.7%</td>
+              </tr>
+              <tr>
+                <td class="p-1.5 border border-slate-200 font-bold">Class Nursery / Prep</td>
+                <td class="p-1.5 border border-slate-200">Madam Saima Noor</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono">380</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-emerald-700 font-bold">352</td>
+                <td class="p-1.5 border border-slate-200 text-center font-mono text-rose-600 font-bold">28</td>
+                <td class="p-1.5 border border-slate-200 text-right font-bold text-emerald-700">92.6%</td>
+              </tr>
+            </tbody>
+          </table>
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'attendance_class') {
+        html = `
+          ${getOfficialLetterheadHtml('MONTHLY CLASS ATTENDANCE REGISTER - ' + selectedClass.toUpperCase(), 'KIMS/REG/2026/041')}
+          
+          <div class="flex items-center justify-between mb-3 text-xs">
+            <div><strong>Class:</strong> ${selectedClass} Matric | <strong>Month:</strong> September 2026</div>
+            <div><strong>Form Master:</strong> Sir Tariq Mehmood Afridi</div>
+          </div>
+
+          <table class="w-full text-left text-[9.5px] border-collapse border border-slate-200 mb-4">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 font-bold">
+                <th class="p-1 border border-slate-200">Roll #</th>
+                <th class="p-1 border border-slate-200">Student Name</th>
+                <th class="p-1 border border-slate-200">Father's Name</th>
+                <th class="p-1 border border-slate-200 text-center">Working Days</th>
+                <th class="p-1 border border-slate-200 text-center">Present</th>
+                <th class="p-1 border border-slate-200 text-center">Absent</th>
+                <th class="p-1 border border-slate-200 text-center">% Rate</th>
+                <th class="p-1 border border-slate-200 text-right">BISE Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${REPORT_STUDENTS.map(s => `
+                <tr>
+                  <td class="p-1 border border-slate-200 font-mono font-bold">${s.roll}</td>
+                  <td class="p-1 border border-slate-200 font-bold text-slate-900">${s.name}</td>
+                  <td class="p-1 border border-slate-200">${s.fatherName}</td>
+                  <td class="p-1 border border-slate-200 text-center font-mono">25</td>
+                  <td class="p-1 border border-slate-200 text-center font-mono font-bold text-emerald-700">${s.present}</td>
+                  <td class="p-1 border border-slate-200 text-center font-mono font-bold text-rose-600">${s.absent}</td>
+                  <td class="p-1 border border-slate-200 text-center font-mono font-bold">${s.pct}</td>
+                  <td class="p-1 border border-slate-200 text-right text-[8.5px] font-bold text-emerald-700">${s.status}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'student_dossier') {
+        html = `
+          ${getOfficialLetterheadHtml('OFFICIAL SCHOLAR BIO-DATA & ENROLLMENT DOSSIER', stud.id)}
+          
+          <div class="flex items-start gap-4 mb-4 pb-3 border-b border-slate-200">
+            <div class="w-24 h-28 rounded-lg bg-slate-100 border-2 border-emerald-700 overflow-hidden shrink-0 flex items-center justify-center font-bold text-slate-400">
+              ${stud.name.split(' ').map(n=>n[0]).slice(0,2).join('')}
+            </div>
+            <div class="flex-1 text-xs space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-500">Student Full Name:</span>
+                <strong class="text-slate-900 text-sm font-black">${stud.name}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Registration / Roll #:</span>
+                <span class="font-mono font-bold text-emerald-800">${stud.id} (${stud.roll})</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Father / Guardian Name:</span>
+                <strong class="text-slate-900">${stud.fatherName}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Admitted Grade / Class:</span>
+                <strong class="text-slate-900">${stud.admitClass}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Date of Birth (DOB):</span>
+                <span class="font-mono">${stud.dob}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Emergency Phone / WhatsApp:</span>
+                <span class="font-mono font-bold text-slate-800">${stud.phone}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Blood Group:</span>
+                <span class="font-bold text-rose-600">${stud.blood}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500">Residential Address:</span>
+                <span class="text-slate-800">${stud.address}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="text-xs font-bold uppercase text-slate-800 mb-1 border-b border-slate-200 pb-1">Academic Standing & Conduct Record</h5>
+            <div class="grid grid-cols-3 gap-2 text-center text-xs mt-2">
+              <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                <span class="text-[9px] text-slate-500 block">Cumulative GPA</span>
+                <strong class="font-mono text-emerald-700 font-bold">3.94 / 4.00 (A+)</strong>
+              </div>
+              <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                <span class="text-[9px] text-slate-500 block">Class Attendance</span>
+                <strong class="font-mono text-slate-900">${stud.pct} (${stud.present} / 25 Days)</strong>
+              </div>
+              <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                <span class="text-[9px] text-slate-500 block">Institutional Conduct</span>
+                <strong class="text-emerald-800 font-bold">Exemplary (Grade A)</strong>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-[9px] text-slate-500 italic mt-3">
+            Certified that the above particulars are extracted directly from the official permanent admissions register of KIMS Kohat. Valid for BISE registration and scholarship verification.
+          </p>
+
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'result_dmc') {
+        html = `
+          ${getOfficialLetterheadHtml('DETAILED MARKS CERTIFICATE (DMC) - ANNUAL 2026', stud.id)}
+          
+          <div class="grid grid-cols-2 gap-4 mb-3 text-xs bg-slate-50 p-2.5 rounded border border-slate-200">
+            <div>
+              <div><strong>Scholar Name:</strong> ${stud.name}</div>
+              <div><strong>Father's Name:</strong> ${stud.fatherName}</div>
+              <div><strong>Institutional Roll #:</strong> <span class="font-mono">${stud.roll}</span></div>
+            </div>
+            <div class="text-right">
+              <div><strong>Class:</strong> ${stud.admitClass}</div>
+              <div><strong>BISE Enrolment #:</strong> <span class="font-mono">KIMS-SSC-2026-881</span></div>
+              <div><strong>Exam Session:</strong> Annual Secondary School 2026</div>
+            </div>
+          </div>
+
+          <table class="w-full text-left text-[9.5px] border-collapse border border-slate-300 mb-3">
+            <thead>
+              <tr class="bg-slate-900 text-white font-bold">
+                <th class="p-1 border border-slate-300">Sr.</th>
+                <th class="p-1 border border-slate-300">Subject Name</th>
+                <th class="p-1 border border-slate-300 text-center">Max Marks</th>
+                <th class="p-1 border border-slate-300 text-center">Pass</th>
+                <th class="p-1 border border-slate-300 text-center">Theory</th>
+                <th class="p-1 border border-slate-300 text-center">Practical</th>
+                <th class="p-1 border border-slate-300 text-center">Obtained</th>
+                <th class="p-1 border border-slate-300 text-right">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-1 border border-slate-300">01</td><td class="p-1 border border-slate-300 font-bold">English Compulsory</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">70</td><td class="p-1 border border-slate-300 text-center">-</td><td class="p-1 border border-slate-300 text-center font-bold">70</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">02</td><td class="p-1 border border-slate-300 font-bold">Mathematics (Science)</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">73</td><td class="p-1 border border-slate-300 text-center">-</td><td class="p-1 border border-slate-300 text-center font-bold">73</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">03</td><td class="p-1 border border-slate-300 font-bold">Physics</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">56</td><td class="p-1 border border-slate-300 text-center">15</td><td class="p-1 border border-slate-300 text-center font-bold">71</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">04</td><td class="p-1 border border-slate-300 font-bold">Chemistry</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">54</td><td class="p-1 border border-slate-300 text-center">15</td><td class="p-1 border border-slate-300 text-center font-bold">69</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">05</td><td class="p-1 border border-slate-300 font-bold">Biology / Computer</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">55</td><td class="p-1 border border-slate-300 text-center">15</td><td class="p-1 border border-slate-300 text-center font-bold">70</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">06</td><td class="p-1 border border-slate-300 font-bold">Urdu Compulsory</td><td class="p-1 border border-slate-300 text-center">75</td><td class="p-1 border border-slate-300 text-center">25</td><td class="p-1 border border-slate-300 text-center">68</td><td class="p-1 border border-slate-300 text-center">-</td><td class="p-1 border border-slate-300 text-center font-bold">68</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">07</td><td class="p-1 border border-slate-300 font-bold">Islamiyat Compulsory</td><td class="p-1 border border-slate-300 text-center">50</td><td class="p-1 border border-slate-300 text-center">17</td><td class="p-1 border border-slate-300 text-center">48</td><td class="p-1 border border-slate-300 text-center">-</td><td class="p-1 border border-slate-300 text-center font-bold">48</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr><td class="p-1 border border-slate-300">08</td><td class="p-1 border border-slate-300 font-bold">Pakistan Studies</td><td class="p-1 border border-slate-300 text-center">50</td><td class="p-1 border border-slate-300 text-center">17</td><td class="p-1 border border-slate-300 text-center">47</td><td class="p-1 border border-slate-300 text-center">-</td><td class="p-1 border border-slate-300 text-center font-bold">47</td><td class="p-1 border border-slate-300 text-right font-bold text-emerald-700">A+</td></tr>
+              <tr class="bg-slate-100 font-bold text-slate-900">
+                <td colspan="2" class="p-1.5 border border-slate-300 uppercase">Grand Aggregate Total</td>
+                <td class="p-1.5 border border-slate-300 text-center">550</td>
+                <td class="p-1.5 border border-slate-300 text-center">180</td>
+                <td colspan="2" class="p-1.5 border border-slate-300 text-center">Obtained: 516</td>
+                <td class="p-1.5 border border-slate-300 text-center font-black text-emerald-800 text-xs">516</td>
+                <td class="p-1.5 border border-slate-300 text-right font-black text-emerald-800 text-xs">93.8% (A+)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="flex items-center justify-between text-[9px] bg-emerald-50 p-2 rounded border border-emerald-200 text-emerald-900 font-medium">
+            <span><strong>Institutional Position:</strong> 1st Position in Section 10-Science</span>
+            <span><strong>Conduct & Character:</strong> Exemplary / No Infractions</span>
+            <span><strong>Decision:</strong> PROMOTED TO HIGHER SECONDARY</span>
+          </div>
+
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'admission_slip') {
+        html = `
+          ${getOfficialLetterheadHtml('OFFICIAL STUDENT ADMISSION APPLICATION SLIP', 'ADM-SLIP-2026-081')}
+          
+          <div class="border border-slate-300 rounded p-3 mb-3 text-xs">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-[9px] uppercase font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Admissions Office Copy</span>
+                <h4 class="text-sm font-black text-slate-900 mt-1">Application for Admission — Session 2026-2027</h4>
+              </div>
+              <div class="w-20 h-24 border-2 border-dashed border-slate-400 rounded flex flex-col items-center justify-center text-[8px] text-slate-400 text-center p-1">
+                <i class="fa-solid fa-camera mb-1 text-xs"></i>
+                Affix Passport Photo
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px]">
+              <div><strong>Applicant Full Name:</strong> ${stud.name}</div>
+              <div><strong>Father / Guardian:</strong> ${stud.fatherName}</div>
+              <div><strong>Father CNIC / National ID:</strong> 14301-8912341-7</div>
+              <div><strong>Seeking Admission In:</strong> ${stud.admitClass}</div>
+              <div><strong>Date of Birth:</strong> ${stud.dob}</div>
+              <div><strong>Gender:</strong> Male</div>
+              <div><strong>Primary WhatsApp:</strong> ${stud.phone}</div>
+              <div><strong>Blood Group:</strong> ${stud.blood}</div>
+              <div class="col-span-2"><strong>Permanent Postal Address:</strong> ${stud.address}</div>
+              <div class="col-span-2"><strong>Previous School Attended:</strong> Govt. High School No. 1, Kohat (BISE Reg: #6652)</div>
+            </div>
+          </div>
+
+          <div class="text-[8.5px] text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 space-y-1 mb-4">
+            <div class="font-bold text-slate-800 uppercase">Undertaking by Father / Guardian:</div>
+            <div>1. I solemnly affirm that the information provided is accurate and all submitted academic certificates are genuine.</div>
+            <div>2. I undertake that my son/ward will adhere to institutional discipline, wear the prescribed uniform, and maintain at least 75% attendance.</div>
+            <div>3. Tuition and exam charges will be deposited within the due dates according to official fee vouchers.</div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 text-[10px] pt-4 border-t border-slate-300">
+            <div class="text-center">
+              <div class="h-6"></div>
+              <div class="border-t border-slate-400 pt-1 font-bold">Signature of Father / Guardian</div>
+            </div>
+            <div class="text-center">
+              <div class="h-6 flex items-end justify-center font-mono font-bold text-emerald-800">APPROVED FOR ADMISSION</div>
+              <div class="border-t border-slate-400 pt-1 font-bold">Registrar / Admissions In-Charge</div>
+            </div>
+          </div>
+        `;
+      } else if (type === 'timetable_class') {
+        html = `
+          ${getOfficialLetterheadHtml('WEEKLY CLASS ACADEMIC TIMETABLE - CLASS 10TH MATRIC', 'KIMS/TT/2026/10M')}
+          
+          <div class="flex items-center justify-between text-xs mb-3">
+            <div><strong>Room No.:</strong> Academic Block A, Room 204 | <strong>Class Master:</strong> Sir Tariq Mehmood Afridi</div>
+            <div><strong>Assembly:</strong> 07:45 AM - 08:00 AM | <strong>Dismissal:</strong> 01:30 PM</div>
+          </div>
+
+          <table class="w-full text-center text-[9px] border-collapse border border-slate-300 mb-4">
+            <thead>
+              <tr class="bg-slate-900 text-white font-bold">
+                <th class="p-1 border border-slate-300">Day</th>
+                <th class="p-1 border border-slate-300">P-1 (08:00)</th>
+                <th class="p-1 border border-slate-300">P-2 (08:45)</th>
+                <th class="p-1 border border-slate-300">P-3 (09:30)</th>
+                <th class="p-1 border border-slate-300">P-4 (10:15)</th>
+                <th class="p-1 border border-slate-300 bg-amber-900">Break (11:00)</th>
+                <th class="p-1 border border-slate-300">P-5 (11:30)</th>
+                <th class="p-1 border border-slate-300">P-6 (12:10)</th>
+                <th class="p-1 border border-slate-300">P-7 (12:50)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold bg-slate-100">Monday</td>
+                <td class="p-1 border border-slate-300">Math<br><span class="text-[7.5px] text-slate-400">Sir Tariq</span></td>
+                <td class="p-1 border border-slate-300">Physics<br><span class="text-[7.5px] text-slate-400">Sir Naeem</span></td>
+                <td class="p-1 border border-slate-300">Chemistry<br><span class="text-[7.5px] text-slate-400">Sir Bilal</span></td>
+                <td class="p-1 border border-slate-300">English<br><span class="text-[7.5px] text-slate-400">Ms. Naila</span></td>
+                <td class="p-1 border border-slate-300 bg-amber-50 text-[8px] font-bold">RECESS</td>
+                <td class="p-1 border border-slate-300">Biology<br><span class="text-[7.5px] text-slate-400">Dr. Asim</span></td>
+                <td class="p-1 border border-slate-300">Urdu<br><span class="text-[7.5px] text-slate-400">M. Farzana</span></td>
+                <td class="p-1 border border-slate-300">Islamiat<br><span class="text-[7.5px] text-slate-400">Qari Basit</span></td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold bg-slate-100">Tuesday</td>
+                <td class="p-1 border border-slate-300">Physics Lab<br><span class="text-[7.5px] text-slate-400">Lab Block 1</span></td>
+                <td class="p-1 border border-slate-300">Physics Lab<br><span class="text-[7.5px] text-slate-400">Lab Block 1</span></td>
+                <td class="p-1 border border-slate-300">Math<br><span class="text-[7.5px] text-slate-400">Sir Tariq</span></td>
+                <td class="p-1 border border-slate-300">Pak Study<br><span class="text-[7.5px] text-slate-400">Sir Imran</span></td>
+                <td class="p-1 border border-slate-300 bg-amber-50 text-[8px] font-bold">RECESS</td>
+                <td class="p-1 border border-slate-300">Chemistry<br><span class="text-[7.5px] text-slate-400">Sir Bilal</span></td>
+                <td class="p-1 border border-slate-300">English<br><span class="text-[7.5px] text-slate-400">Ms. Naila</span></td>
+                <td class="p-1 border border-slate-300">Library<br><span class="text-[7.5px] text-slate-400">Reading</span></td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold bg-slate-100">Wednesday</td>
+                <td class="p-1 border border-slate-300">Math<br><span class="text-[7.5px] text-slate-400">Sir Tariq</span></td>
+                <td class="p-1 border border-slate-300">Chemistry Lab<br><span class="text-[7.5px] text-slate-400">Lab Block 2</span></td>
+                <td class="p-1 border border-slate-300">Chemistry Lab<br><span class="text-[7.5px] text-slate-400">Lab Block 2</span></td>
+                <td class="p-1 border border-slate-300">Biology<br><span class="text-[7.5px] text-slate-400">Dr. Asim</span></td>
+                <td class="p-1 border border-slate-300 bg-amber-50 text-[8px] font-bold">RECESS</td>
+                <td class="p-1 border border-slate-300">English<br><span class="text-[7.5px] text-slate-400">Ms. Naila</span></td>
+                <td class="p-1 border border-slate-300">Urdu<br><span class="text-[7.5px] text-slate-400">M. Farzana</span></td>
+                <td class="p-1 border border-slate-300">Sports<br><span class="text-[7.5px] text-slate-400">Ground</span></td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold bg-slate-100">Thursday</td>
+                <td class="p-1 border border-slate-300">English<br><span class="text-[7.5px] text-slate-400">Ms. Naila</span></td>
+                <td class="p-1 border border-slate-300">Math<br><span class="text-[7.5px] text-slate-400">Sir Tariq</span></td>
+                <td class="p-1 border border-slate-300">Physics<br><span class="text-[7.5px] text-slate-400">Sir Naeem</span></td>
+                <td class="p-1 border border-slate-300">Chemistry<br><span class="text-[7.5px] text-slate-400">Sir Bilal</span></td>
+                <td class="p-1 border border-slate-300 bg-amber-50 text-[8px] font-bold">RECESS</td>
+                <td class="p-1 border border-slate-300">Bio Lab<br><span class="text-[7.5px] text-slate-400">Science Lab</span></td>
+                <td class="p-1 border border-slate-300">Bio Lab<br><span class="text-[7.5px] text-slate-400">Science Lab</span></td>
+                <td class="p-1 border border-slate-300">Pak Study<br><span class="text-[7.5px] text-slate-400">Sir Imran</span></td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold bg-slate-100">Friday</td>
+                <td class="p-1 border border-slate-300">Math<br><span class="text-[7.5px] text-slate-400">Sir Tariq</span></td>
+                <td class="p-1 border border-slate-300">Physics<br><span class="text-[7.5px] text-slate-400">Sir Naeem</span></td>
+                <td class="p-1 border border-slate-300">Islamiat<br><span class="text-[7.5px] text-slate-400">Qari Basit</span></td>
+                <td class="p-1 border border-slate-300">Urdu<br><span class="text-[7.5px] text-slate-400">M. Farzana</span></td>
+                <td colspan="4" class="p-1 border border-slate-300 bg-emerald-50 text-emerald-900 font-bold text-[8px]">
+                  JUMMAH PRAYER DISMISSAL AT 12:00 NOON
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'exam_datesheet') {
+        html = `
+          ${getOfficialLetterheadHtml('BISE / ANNUAL EXAMINATION DATESHEET 2026', 'KIMS/EXAM/2026/DS-10')}
+          
+          <div class="flex items-center justify-between text-xs mb-3 bg-slate-50 p-2 rounded border border-slate-200">
+            <div><strong>Examination:</strong> SSC Part-II (10th Matric) Annual 2026</div>
+            <div><strong>Timings:</strong> Morning Shift (09:00 AM to 12:00 Noon)</div>
+          </div>
+
+          <table class="w-full text-left text-[9.5px] border-collapse border border-slate-300 mb-4">
+            <thead>
+              <tr class="bg-slate-900 text-white font-bold">
+                <th class="p-1 border border-slate-300">Date & Day</th>
+                <th class="p-1 border border-slate-300">Subject Paper</th>
+                <th class="p-1 border border-slate-300 text-center">Paper Code</th>
+                <th class="p-1 border border-slate-300 text-center">Duration</th>
+                <th class="p-1 border border-slate-300">Room / Hall</th>
+                <th class="p-1 border border-slate-300">Superintendent / Invigilator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">15 Sep 2026 (Tue)</td>
+                <td class="p-1 border border-slate-300 font-bold">English Compulsory</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">ENG-101</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">3 Hours</td>
+                <td class="p-1 border border-slate-300">Main Examination Hall A</td>
+                <td class="p-1 border border-slate-300">Sir Naeem Khattak, Madam Farzana</td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">18 Sep 2026 (Fri)</td>
+                <td class="p-1 border border-slate-300 font-bold">Mathematics (Science)</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">MTH-102</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">3 Hours</td>
+                <td class="p-1 border border-slate-300">Main Examination Hall A</td>
+                <td class="p-1 border border-slate-300">Sir Bilal Ahmed, Ms. Naila Jabeen</td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">22 Sep 2026 (Tue)</td>
+                <td class="p-1 border border-slate-300 font-bold">Physics (Theory)</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">PHY-103</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">3 Hours</td>
+                <td class="p-1 border border-slate-300">Hall A & B</td>
+                <td class="p-1 border border-slate-300">Dr. Tariq Mehmood Afridi</td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">25 Sep 2026 (Fri)</td>
+                <td class="p-1 border border-slate-300 font-bold">Chemistry (Theory)</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">CHM-104</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">3 Hours</td>
+                <td class="p-1 border border-slate-300">Hall A & B</td>
+                <td class="p-1 border border-slate-300">Sir Bilal Ahmed Bangash</td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">29 Sep 2026 (Tue)</td>
+                <td class="p-1 border border-slate-300 font-bold">Biology / Computer Science</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">BIO-105</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">3 Hours</td>
+                <td class="p-1 border border-slate-300">Main Hall A</td>
+                <td class="p-1 border border-slate-300">Dr. Asim Shah Shinwari</td>
+              </tr>
+              <tr>
+                <td class="p-1 border border-slate-300 font-bold">02 Oct 2026 (Fri)</td>
+                <td class="p-1 border border-slate-300 font-bold">Pakistan Studies</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">PKS-106</td>
+                <td class="p-1 border border-slate-300 text-center font-mono">2 Hours</td>
+                <td class="p-1 border border-slate-300">Main Hall A</td>
+                <td class="p-1 border border-slate-300">Sir Imran Nazir</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="p-2 bg-rose-50 border border-rose-200 text-rose-900 rounded text-[8.5px] leading-tight">
+            <strong>Mandatory Candidate Rules:</strong> Candidates must be present in the examination center 30 minutes before starting time. Original KIMS PVC Student ID badge and Roll Number Slip are compulsory. Mobile phones, electronic watches, and calculators with memory are strictly prohibited.
+          </div>
+
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else if (type === 'fees_defaulters') {
+        html = `
+          ${getOfficialLetterheadHtml('FEE COLLECTION & TUITION DUES RECOVERY SHEET', 'KIMS/FEE/2026/09')}
+          
+          <div class="flex items-center justify-between text-xs mb-3">
+            <div><strong>Recovery Audit Month:</strong> September 2026</div>
+            <div><strong>Collection Bank:</strong> Allied Bank Ltd (KDA Branch Kohat)</div>
+          </div>
+
+          <table class="w-full text-left text-[9.5px] border-collapse border border-slate-300 mb-4">
+            <thead>
+              <tr class="bg-slate-100 text-slate-800 font-bold">
+                <th class="p-1 border border-slate-300">Roll #</th>
+                <th class="p-1 border border-slate-300">Scholar Name</th>
+                <th class="p-1 border border-slate-300">Class</th>
+                <th class="p-1 border border-slate-300">Father's Contact</th>
+                <th class="p-1 border border-slate-300 text-right">Monthly Fee</th>
+                <th class="p-1 border border-slate-300 text-right">Outstanding Dues</th>
+                <th class="p-1 border border-slate-300 text-center">Payment Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-1 border border-slate-300 font-mono">10-M-01</td><td class="p-1 border border-slate-300 font-bold">Muhammad Huzaifa Khan</td><td class="p-1 border border-slate-300">10th Science</td><td class="p-1 border border-slate-300 font-mono">0333-9182341</td><td class="p-1 border border-slate-300 text-right font-mono">PKR 8,500</td><td class="p-1 border border-slate-300 text-right font-mono text-emerald-700 font-bold">PKR 0</td><td class="p-1 border border-slate-300 text-center"><span class="badge badge-success text-[8px]">PAID</span></td></tr>
+              <tr><td class="p-1 border border-slate-300 font-mono">09-M-14</td><td class="p-1 border border-slate-300 font-bold">Abdullah Khan Bangash</td><td class="p-1 border border-slate-300">9th Science</td><td class="p-1 border border-slate-300 font-mono">0312-7654321</td><td class="p-1 border border-slate-300 text-right font-mono">PKR 8,000</td><td class="p-1 border border-slate-300 text-right font-mono text-emerald-700 font-bold">PKR 0</td><td class="p-1 border border-slate-300 text-center"><span class="badge badge-success text-[8px]">PAID</span></td></tr>
+              <tr><td class="p-1 border border-slate-300 font-mono">10-M-02</td><td class="p-1 border border-slate-300 font-bold">Hamza Ali Bangash</td><td class="p-1 border border-slate-300">10th Science</td><td class="p-1 border border-slate-300 font-mono">0301-4433221</td><td class="p-1 border border-slate-300 text-right font-mono">PKR 8,500</td><td class="p-1 border border-slate-300 text-right font-mono text-rose-600 font-bold">PKR 8,500</td><td class="p-1 border border-slate-300 text-center"><span class="badge badge-danger text-[8px]">DUE</span></td></tr>
+              <tr><td class="p-1 border border-slate-300 font-mono">05-P-21</td><td class="p-1 border border-slate-300 font-bold">Ayesha Noor Khattak</td><td class="p-1 border border-slate-300">5th Primary</td><td class="p-1 border border-slate-300 font-mono">0345-9110488</td><td class="p-1 border border-slate-300 text-right font-mono">PKR 6,500</td><td class="p-1 border border-slate-300 text-right font-mono text-emerald-700 font-bold">PKR 0</td><td class="p-1 border border-slate-300 text-center"><span class="badge badge-success text-[8px]">PAID</span></td></tr>
+              <tr><td class="p-1 border border-slate-300 font-mono">01-P-05</td><td class="p-1 border border-slate-300 font-bold">Zaid Khan Orakzai</td><td class="p-1 border border-slate-300">1st Primary</td><td class="p-1 border border-slate-300 font-mono">0334-8871234</td><td class="p-1 border border-slate-300 text-right font-mono">PKR 6,000</td><td class="p-1 border border-slate-300 text-right font-mono text-rose-600 font-bold">PKR 6,000</td><td class="p-1 border border-slate-300 text-center"><span class="badge badge-danger text-[8px]">DUE</span></td></tr>
+            </tbody>
+          </table>
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      } else {
+        html = `
+          ${getOfficialLetterheadHtml('OFFICIAL INSTITUTIONAL RECORD SLIP', 'KIMS/GEN/2026/01')}
+          <div class="p-4 text-center text-slate-500 text-xs">
+            Document loaded into printing canvas. Click "Print Document" to print or export.
+          </div>
+          ${getOfficialSignatureFooterHtml()}
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    // Quick print launcher
+    function quickPrintCurrentDoc() {
+      openDocumentPreview(activeDocType || 'attendance_all');
+      setTimeout(() => {
+        window.print();
+      }, 350);
+    }
+
+    // Direct CSV export utility
+    function downloadReportCsv(type) {
+      let csv = "ID,Roll,Name,Father_Name,Class,Phone,Attendance,Status\n";
+      REPORT_STUDENTS.forEach(s => {
+        csv += `"${s.id}","${s.roll}","${s.name}","${s.fatherName}","${s.admitClass}","${s.phone}","${s.pct}","${s.status}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `KIMS_${type.toUpperCase()}_REPORT_2026.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Export Complete', `CSV generated for ${type.replace('_', ' ').toUpperCase()}`, 'success');
+    }
+
+    function exportCsvCurrentReport() {
+      downloadReportCsv(activeDocType || 'attendance_all');
+    }
+  </script>
 </body>
 </html>

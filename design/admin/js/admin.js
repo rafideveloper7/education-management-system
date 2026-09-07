@@ -9,36 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initNotifications();
   initModals();
   initSearch();
+  initAcademicSession();
 });
 
-/* Theme Manager */
+/* Theme Manager - Light Theme Enforced */
 function initTheme() {
-  const savedTheme = localStorage.getItem('kims_admin_theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  const themeToggleButtons = document.querySelectorAll('.theme-toggle-btn');
-  themeToggleButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'light';
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('kims_admin_theme', next);
-      updateThemeIcon(next);
-      showToast('Theme Changed', `Switched to ${next} mode`, 'info');
-    });
-  });
-}
-
-function updateThemeIcon(theme) {
-  const icons = document.querySelectorAll('.theme-toggle-btn i');
-  icons.forEach(icon => {
-    if (theme === 'dark') {
-      icon.className = 'fa-solid fa-sun text-amber-400';
-    } else {
-      icon.className = 'fa-solid fa-moon text-slate-600';
-    }
-  });
+  document.documentElement.setAttribute('data-theme', 'light');
+  localStorage.removeItem('kims_admin_theme');
 }
 
 /* Sidebar & Mobile Drawer */
@@ -240,3 +217,184 @@ function handleAdminLogout() {
     window.location.href = 'login.html';
   }, 700);
 }
+
+/* ==========================================================================
+   Kohat Board (BISE Kohat) Academic Session Manager
+   ========================================================================== */
+const DEFAULT_ACADEMIC_SESSIONS = [
+  { id: '2025-2026', name: 'Session 2025–2026', startYear: 2025, startMonth: 'April', endYear: 2026, endMonth: 'March', board: 'BISE Kohat', status: 'Active', isCurrent: true, notes: 'Current Regular Academic & BISE Examination Year' },
+  { id: '2026-2027', name: 'Session 2026–2027', startYear: 2026, startMonth: 'April', endYear: 2027, endMonth: 'March', board: 'BISE Kohat', status: 'Upcoming', isCurrent: false, notes: 'Upcoming Academic Cycle & Admissions' },
+  { id: '2024-2025', name: 'Session 2024–2025', startYear: 2024, startMonth: 'April', endYear: 2025, endMonth: 'March', board: 'BISE Kohat', status: 'Archived', isCurrent: false, notes: 'Concluded BISE Kohat Annual Gazette' },
+  { id: '2023-2024', name: 'Session 2023–2024', startYear: 2023, startMonth: 'April', endYear: 2024, endMonth: 'March', board: 'BISE Kohat', status: 'Archived', isCurrent: false, notes: 'Archived Historical Gazette' }
+];
+
+function getStoredSessions() {
+  const stored = localStorage.getItem('kims_academic_sessions');
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch (e) {
+      console.error('Error parsing stored sessions', e);
+    }
+  }
+  return DEFAULT_ACADEMIC_SESSIONS;
+}
+
+function saveStoredSessions(sessions) {
+  localStorage.setItem('kims_academic_sessions', JSON.stringify(sessions));
+}
+
+function getActiveSession() {
+  const sessions = getStoredSessions();
+  const activeId = localStorage.getItem('kims_active_session');
+  if (activeId) {
+    const found = sessions.find(s => s.id === activeId);
+    if (found) return found;
+  }
+  const current = sessions.find(s => s.isCurrent) || sessions[0];
+  return current;
+}
+
+function switchAcademicSession(sessionId, suppressToast = false) {
+  const sessions = getStoredSessions();
+  const target = sessions.find(s => s.id === sessionId);
+  if (!target) return;
+
+  sessions.forEach(s => {
+    s.isCurrent = (s.id === sessionId);
+    if (s.id === sessionId) {
+      s.status = 'Active';
+    } else if (s.status === 'Active') {
+      s.status = 'Archived';
+    }
+  });
+
+  saveStoredSessions(sessions);
+  localStorage.setItem('kims_active_session', sessionId);
+
+  // Update header widgets
+  updateHeaderSessionDisplay();
+
+  // Trigger custom event for pages like settings.html
+  window.dispatchEvent(new CustomEvent('academicSessionChanged', { detail: target }));
+
+  if (!suppressToast) {
+    showToast('Academic Session Switched', `Active Session set to ${target.name} (${target.board})`, 'success');
+  }
+}
+
+function updateHeaderSessionDisplay() {
+  const active = getActiveSession();
+  const labels = document.querySelectorAll('.session-current-year');
+  labels.forEach(label => {
+    label.textContent = active.name;
+  });
+
+  // Update dropdown options active class
+  const optionsList = document.getElementById('headerSessionOptionsList');
+  if (optionsList) {
+    renderHeaderSessionDropdown(optionsList);
+  }
+}
+
+function renderHeaderSessionDropdown(container) {
+  const sessions = getStoredSessions();
+  const active = getActiveSession();
+
+  container.innerHTML = sessions.map(s => {
+    const isActive = s.id === active.id;
+    let badgeClass = 'badge-success';
+    if (s.status === 'Upcoming') badgeClass = 'badge-gold';
+    if (s.status === 'Archived') badgeClass = 'badge-secondary';
+
+    return `
+      <div class="session-option-item ${isActive ? 'active' : ''}" onclick="switchAcademicSession('${s.id}')">
+        <div>
+          <div class="text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+            <span>${escapeHtml(s.name)}</span>
+            ${isActive ? '<i class="fa-solid fa-check text-emerald-600 text-[11px]"></i>' : ''}
+          </div>
+          <div class="text-[11px] text-slate-400 font-mono">${escapeHtml(s.startMonth)} ${s.startYear} – ${escapeHtml(s.endMonth)} ${s.endYear}</div>
+        </div>
+        <span class="badge ${badgeClass} text-[10px] py-0.5">${escapeHtml(s.status)}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function initAcademicSession() {
+  const headerRight = document.querySelector('.admin-header .header-right');
+  if (!headerRight) return;
+
+  let widget = document.getElementById('headerSessionWidget');
+  if (!widget) {
+    const container = document.createElement('div');
+    container.className = 'session-header-widget';
+    container.id = 'headerSessionWidget';
+
+    const active = getActiveSession();
+    container.innerHTML = `
+      <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+        <span class="session-pulse-dot"></span>
+        <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+        <div class="session-text-group">
+          <span class="session-mini-label">BISE Kohat</span>
+          <span class="session-current-year" id="topHeaderSessionLabel">${escapeHtml(active.name)}</span>
+        </div>
+        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+      </button>
+
+      <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+        <div class="session-dropdown-header">
+          <span>Academic Sessions</span>
+          <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+        </div>
+        <div class="session-options-list" id="headerSessionOptionsList"></div>
+        <div class="session-dropdown-footer">
+          <a href="settings.html" class="manage-sessions-link">
+            <i class="fa-solid fa-sliders text-xs"></i>
+            <span>Manage Academic Sessions</span>
+          </a>
+        </div>
+      </div>
+    `;
+
+    const publicLink = headerRight.querySelector('.public-site-link');
+    if (publicLink) {
+      headerRight.insertBefore(container, publicLink);
+    } else {
+      headerRight.prepend(container);
+    }
+    widget = container;
+  }
+
+  const dropdownBtn = document.getElementById('sessionDropdownBtn');
+  const dropdownMenu = document.getElementById('sessionQuickDropdown');
+  const optionsList = document.getElementById('headerSessionOptionsList');
+
+  if (dropdownBtn && dropdownMenu) {
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('hidden');
+      if (!dropdownMenu.classList.contains('hidden') && optionsList) {
+        renderHeaderSessionDropdown(optionsList);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdownMenu.contains(e.target) && !dropdownBtn.contains(e.target)) {
+        dropdownMenu.classList.add('hidden');
+      }
+    });
+  }
+
+  updateHeaderSessionDisplay();
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'kims_active_session' || e.key === 'kims_academic_sessions') {
+      updateHeaderSessionDisplay();
+    }
+  });
+}
+

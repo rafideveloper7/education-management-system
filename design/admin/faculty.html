@@ -38,7 +38,7 @@
     <!-- Mobile Drawer Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Sidebar Navigation -->
+                <!-- Sidebar Navigation -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-brand">
@@ -47,7 +47,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>Kohat Institute</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +59,26 @@
             <li>
               <a href="index.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link active">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +91,26 @@
             <li>
               <a href="courses.html" class="nav-link">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +122,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +141,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +151,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -202,14 +203,39 @@
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
             <span>Public Site</span>
           </a>
-
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <div class="header-profile-menu">
             <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
@@ -229,30 +255,48 @@
         <!-- Title Bar -->
         <div class="page-header-bar">
           <div class="page-title">
-            <h1>Faculty & Academic Staff</h1>
-            <p>Institutional professors, researchers, laboratory directors, and teaching fellows.</p>
+            <h1>Teachers & Institutional Staff Directory</h1>
+            <p>Academic teachers, form masters, laboratory attendants, security personnel, and class 4 staff.</p>
           </div>
           <div class="page-actions">
             <button type="button" data-modal-target="addFacultyModal" class="btn-kims btn-primary">
-              <i class="fa-solid fa-user-tie"></i>
-              <span>Appoint Faculty Member</span>
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Appoint Teacher / Staff</span>
             </button>
           </div>
         </div>
 
         <!-- Faculty Directory Table -->
         <div class="admin-card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Teaching Staff Roster</div>
-              <div class="card-subtitle">Active appointments across all faculties</div>
+          <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800">
+            <!-- Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="facultyRoleFilterTabs">
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm" onclick="filterFacultyByRole('all', this)">
+                All Staff
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterFacultyByRole('Teacher', this)">
+                Teachers
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterFacultyByRole('Form Master', this)">
+                Form Masters
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterFacultyByRole('Security Guard', this)">
+                Security Guards
+              </button>
+              <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterFacultyByRole('Class 4 Staff', this)">
+                Class 4 Staff
+              </button>
             </div>
-            <div class="w-full sm:w-64">
+
+            <!-- Table Live Search -->
+            <div class="relative w-full md:w-80">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
               <input 
                 type="text" 
-                data-table-search="#facultyTable" 
-                placeholder="Filter faculty..."
-                class="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                id="facultyLiveSearchInput"
+                onkeyup="handleFacultySearch(this.value)"
+                placeholder="Search teacher, staff, subject, role, ID..."
+                class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -261,131 +305,35 @@
             <table class="admin-table" id="facultyTable">
               <thead>
                 <tr>
-                  <th>Faculty Member</th>
-                  <th>Designation</th>
-                  <th>Department</th>
-                  <th>Highest Degree</th>
-                  <th>Email & Phone</th>
-                  <th>Office Room</th>
+                  <th>Employee / Teacher</th>
+                  <th>Role</th>
+                  <th>Assigned Subject &amp; Class</th>
+                  <th>Education Degree</th>
+                  <th>Contact &amp; Email</th>
                   <th>Status</th>
                   <th class="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody id="facultyTableBody">
-                
-                <tr>
-                  <td>
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
-                        TM
-                      </div>
-                      <div>
-                        <div class="font-bold text-slate-900 dark:text-white">Prof. Dr. Tariq Mehmood</div>
-                        <div class="text-[11px] text-slate-400">Head of Department (CS)</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-semibold text-xs">Professor</span></td>
-                  <td>Computer Science</td>
-                  <td><span class="badge badge-neutral">Ph.D. Computer Science (UK)</span></td>
-                  <td>
-                    <div class="text-xs font-semibold">tariq.m@kims.edu.pk</div>
-                    <div class="text-[11px] text-slate-400">0333-9182300</div>
-                  </td>
-                  <td>Academic Block A, Room 204</td>
-                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Profile Opened', 'Prof. Dr. Tariq Mehmood curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
-                      <i class="fa-solid fa-id-badge text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-400 font-bold flex items-center justify-center text-xs">
-                        NP
-                      </div>
-                      <div>
-                        <div class="font-bold text-slate-900 dark:text-white">Prof. Dr. Nargis Parveen</div>
-                        <div class="text-[11px] text-slate-400">Dean Faculty of Pharmacy</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-semibold text-xs">Professor & Dean</span></td>
-                  <td>Faculty of Pharmacy</td>
-                  <td><span class="badge badge-neutral">Ph.D. Pharmacology (USA)</span></td>
-                  <td>
-                    <div class="text-xs font-semibold">nargis.p@kims.edu.pk</div>
-                    <div class="text-[11px] text-slate-400">0300-5918273</div>
-                  </td>
-                  <td>Health Sciences Wing, Room 101</td>
-                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Profile Opened', 'Prof. Dr. Nargis Parveen curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
-                      <i class="fa-solid fa-id-badge text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-xs">
-                        SF
-                      </div>
-                      <div>
-                        <div class="font-bold text-slate-900 dark:text-white">Engr. Shah Faisal</div>
-                        <div class="text-[11px] text-slate-400">Assistant Professor (SE)</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-semibold text-xs">Assistant Professor</span></td>
-                  <td>Software Engineering</td>
-                  <td><span class="badge badge-neutral">MS Software Engineering (NUST)</span></td>
-                  <td>
-                    <div class="text-xs font-semibold">shah.faisal@kims.edu.pk</div>
-                    <div class="text-[11px] text-slate-400">0312-9844123</div>
-                  </td>
-                  <td>Software Lab II, Block B</td>
-                  <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> In Lecture</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Profile Opened', 'Engr. Shah Faisal curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
-                      <i class="fa-solid fa-id-badge text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-bold flex items-center justify-center text-xs">
-                        AB
-                      </div>
-                      <div>
-                        <div class="font-bold text-slate-900 dark:text-white">Mr. Asadullah Bangash</div>
-                        <div class="text-[11px] text-slate-400">Senior Lecturer (MGT)</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="font-semibold text-xs">Senior Lecturer</span></td>
-                  <td>Management Sciences</td>
-                  <td><span class="badge badge-neutral">MBA Finance (LUMS)</span></td>
-                  <td>
-                    <div class="text-xs font-semibold">asad.b@kims.edu.pk</div>
-                    <div class="text-[11px] text-slate-400">0345-9876543</div>
-                  </td>
-                  <td>Commerce Wing, Room 302</td>
-                  <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[8px]"></i> On Leave</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Profile Opened', 'Mr. Asadullah Bangash curriculum record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
-                      <i class="fa-solid fa-id-badge text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
+                <!-- Dynamically populated by renderFacultyTable() from real data & localStorage -->
               </tbody>
             </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <div>
+              Showing <span class="font-bold text-slate-700 dark:text-slate-300" id="facultyDisplayCount">7</span> of <span class="font-bold text-slate-700 dark:text-slate-300" id="facultyTotalCount">7</span> institutional personnel
+            </div>
+            <div class="inline-flex gap-1">
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition" disabled>
+                Previous
+              </button>
+              <button class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">1</button>
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition" disabled>
+                Next
+              </button>
+            </div>
           </div>
         </div>
 
@@ -419,77 +367,811 @@
 
   </div>
 
-  <!-- Modal: Add Faculty -->
+  <!-- Modal: Add Faculty / Teacher / Staff -->
   <div class="modal-overlay" id="addFacultyModal">
-    <div class="modal-container">
+    <div class="modal-container" style="max-width: 780px;">
       <div class="modal-header">
-        <h3 class="text-base font-bold text-slate-800 dark:text-white">Appoint Faculty Member</h3>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white">Appoint Teacher / Staff Member</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Register academic faculty, form masters, security guards, or class 4 staff</p>
+          </div>
+        </div>
         <button type="button" class="modal-close-btn" data-modal-close>
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
       <form id="newFacultyForm" onsubmit="return handleCreateFaculty(event)">
-        <div class="modal-body space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="form-group">
-              <label class="form-label">Full Name & Title *</label>
-              <input type="text" id="facName" class="form-control" required placeholder="e.g. Dr. Rashid Ali">
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-2">
+
+          <!-- 1. Photo & Basic Identity Section -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-id-badge text-emerald-600"></i>
+              <span>Employee Identity & Photo</span>
             </div>
-            <div class="form-group">
-              <label class="form-label">Designation *</label>
-              <select id="facDesig" class="form-control" required>
-                <option value="Professor">Professor</option>
-                <option value="Associate Professor">Associate Professor</option>
-                <option value="Assistant Professor">Assistant Professor</option>
-                <option value="Lecturer">Lecturer</option>
-                <option value="Lab Instructor">Lab Instructor</option>
-              </select>
+
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <!-- Photo Upload Card (Optional) -->
+              <div class="flex flex-col items-center text-center w-full sm:w-auto shrink-0">
+                <div class="relative group">
+                  <div id="facPhotoPreviewBox" class="w-28 h-28 rounded-2xl border-2 border-dashed border-emerald-500/40 dark:border-emerald-500/30 bg-white dark:bg-slate-900 flex flex-col items-center justify-center overflow-hidden shadow-xs relative">
+                    <img id="facPhotoImg" src="" alt="Faculty Preview" class="hidden w-full h-full object-cover rounded-2xl">
+                    <div id="facPhotoPlaceholder" class="flex flex-col items-center justify-center p-2 text-slate-400">
+                      <i class="fa-solid fa-camera text-2xl text-emerald-600/70 dark:text-emerald-400/70 mb-1"></i>
+                      <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Staff Photo</span>
+                      <span class="text-[9px] text-slate-400">PNG / JPG &lt; 2MB</span>
+                    </div>
+                  </div>
+                  <!-- Camera overlay button -->
+                  <label for="facPhoto" class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-md cursor-pointer transition transform hover:scale-105" title="Choose Photo">
+                    <i class="fa-solid fa-camera text-xs"></i>
+                  </label>
+                  <input type="file" id="facPhoto" accept="image/*" class="hidden" onchange="previewFacultyPhoto(event)">
+                </div>
+                
+                <div class="mt-2 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-700/60 px-2 py-0.5 rounded-full">
+                    Optional
+                  </span>
+                  <button type="button" id="removeFacPhotoBtn" onclick="removeFacultyPhoto()" class="hidden text-[10px] text-rose-500 hover:underline font-semibold">
+                    Remove
+                  </button>
+                </div>
+              </div>
+
+              <!-- Name & Employee Role -->
+              <div class="flex-1 w-full space-y-3">
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Full Name & Title <span class="text-rose-500 font-bold">*</span></span>
+                    <span class="text-[11px] text-slate-400 font-normal">Official legal name</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="facName" class="form-control pl-9" required placeholder="e.g. Mr. Muhammad Tariq or Qari Abdul Rehman">
+                  </div>
+                </div>
+
+                <!-- Role of Employee (teacher, class 4, security guard) -->
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Role of Employee <span class="text-rose-500 font-bold">*</span></span>
+                    <span id="roleBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Teaching Faculty</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user-tag absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <select id="facRole" class="form-control pl-9 font-semibold" required onchange="handleRoleChange(this.value)">
+                      <option value="Teacher" selected>Teacher (Academic Faculty)</option>
+                      <option value="Class 4 Staff">Class 4 Staff (Peon / Naib Qasid / Office Attendant / Cleaner)</option>
+                      <option value="Security Guard">Security Guard / Gatekeeper</option>
+                      <option value="Administrative Staff">Administrative & Clerical Staff</option>
+                      <option value="Lab Assistant">Laboratory & IT Technician</option>
+                    </select>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1">Select employee category (Teacher, Class 4, Security Guard, or Staff).</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="form-group">
-              <label class="form-label">Department *</label>
-              <select id="facDept" class="form-control" required>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Faculty of Pharmacy">Faculty of Pharmacy</option>
-                <option value="Software Engineering">Software Engineering</option>
-                <option value="Management Sciences">Management Sciences</option>
-                <option value="Medical Lab Technology">Medical Lab Technology</option>
-              </select>
+          <!-- 2. Contact & Demographics (Contact, Email optional, Gender *) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Contact -->
+            <div class="form-group sm:col-span-1">
+              <label class="form-label flex items-center justify-between">
+                <span>Contact / Mobile <span class="text-rose-500 font-bold">*</span></span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-phone absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-xs"></i>
+                <input type="tel" id="facPhone" class="form-control pl-9 font-mono text-xs" required placeholder="0300-1234567" pattern="[0-9\-\+\s]{10,16}">
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Highest Degree / Alma Mater *</label>
-              <input type="text" id="facDegree" class="form-control" required placeholder="e.g. Ph.D. Data Science (FAST)">
+
+            <!-- Email (Optional) -->
+            <div class="form-group sm:col-span-1">
+              <label class="form-label flex items-center justify-between">
+                <span>Email Address</span>
+                <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Optional</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="email" id="facEmail" class="form-control pl-9 text-xs" placeholder="teacher@kims.edu.pk">
+              </div>
+            </div>
+
+            <!-- Gender * -->
+            <div class="form-group sm:col-span-1">
+              <label class="form-label">
+                Gender <span class="text-rose-500 font-bold">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-2 mt-1">
+                <label id="facGenderLabelMale" class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs">
+                  <input type="radio" name="facGender" value="Male" checked class="accent-emerald-600" onchange="handleFacGenderChange(this.value)">
+                  <i class="fa-solid fa-mars text-blue-500"></i>
+                  <span>Male</span>
+                </label>
+                <label id="facGenderLabelFemale" class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300">
+                  <input type="radio" name="facGender" value="Female" class="accent-emerald-600" onchange="handleFacGenderChange(this.value)">
+                  <i class="fa-solid fa-venus text-pink-500"></i>
+                  <span>Female</span>
+                </label>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="form-group">
-              <label class="form-label">Official Email *</label>
-              <input type="email" id="facEmail" class="form-control" required placeholder="faculty@kims.edu.pk">
+          <!-- 3. Academic Duties: Assigned Subject & Assigned Class Form Master -->
+          <div id="teachingDutiesCard" class="bg-gradient-to-br from-emerald-50/50 via-slate-50 to-amber-50/30 dark:from-emerald-950/20 dark:via-slate-800/40 dark:to-slate-900/40 p-4 rounded-2xl border border-emerald-500/20 space-y-4">
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
+                <span>Assigned Teaching Subject & Form Master Duties</span>
+              </span>
+              <span class="text-[10px] text-emerald-600 font-semibold lowercase">Academic Allocation</span>
             </div>
-            <div class="form-group">
-              <label class="form-label">Phone Number *</label>
-              <input type="tel" id="facPhone" class="form-control" required placeholder="0300-1234567">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Assigned Subject (Dropdown + Quick Add Subject) -->
+              <div class="form-group">
+                <div class="flex items-center justify-between mb-1">
+                  <label class="form-label !mb-0 flex items-center gap-1.5 font-bold text-xs">
+                    <i class="fa-solid fa-book-open text-emerald-600"></i>
+                    <span>Assigned Subject</span>
+                  </label>
+                  <button type="button" onclick="toggleQuickAddSubject(true)" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>Add New Subject</span>
+                  </button>
+                </div>
+                
+                <div class="relative">
+                  <i class="fa-solid fa-book absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <select id="facSubject" class="form-control pl-9 font-semibold text-slate-800 dark:text-white">
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="General Science">General Science</option>
+                    <option value="Computer Science / IT">Computer Science / IT</option>
+                    <option value="English Language & Literature">English Language & Literature</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Islamic Studies / Nazra & Tarbiyah">Islamic Studies / Nazra & Tarbiyah</option>
+                    <option value="Pakistan Studies">Pakistan Studies</option>
+                    <option value="Art & Calligraphy">Art & Calligraphy</option>
+                    <option value="Physical Education / Sports">Physical Education / Sports</option>
+                    <option value="General Primary Teaching">General Primary Teaching</option>
+                    <option value="N/A (Non-Teaching / Support Staff)">N/A (Non-Teaching / Support Staff)</option>
+                  </select>
+                </div>
+
+                <!-- Quick Add Subject Inline Box -->
+                <div id="quickAddSubjectBox" class="hidden mt-2 p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-700 space-y-2">
+                  <div class="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+                    <span>Quick Add Subject to Dropdown:</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <input type="text" id="quickNewSubjectName" class="form-control text-xs !py-1" placeholder="e.g. Pashto, Civics, Robotics, Economics...">
+                    <button type="button" onclick="confirmAddQuickSubject()" class="btn-kims btn-primary !py-1 !px-3 text-xs shrink-0">
+                      Add
+                    </button>
+                    <button type="button" onclick="toggleQuickAddSubject(false)" class="btn-kims btn-secondary !py-1 !px-2 text-xs shrink-0">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Assigned Class Form Master -->
+              <div class="form-group">
+                <label class="form-label flex items-center justify-between">
+                  <span>Assigned Class (Form Master)</span>
+                  <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Optional</span>
+                </label>
+                <div class="relative">
+                  <i class="fa-solid fa-chalkboard-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <select id="facFormMaster" class="form-control pl-9 font-semibold text-slate-800 dark:text-white">
+                    <option value="None" selected>None (Subject Teacher / No Class In-charge)</option>
+                    <option value="Class 0-1 (Nursery / Playgroup) - Form Master">Class 0-1 (Nursery / Playgroup) - Form Master</option>
+                    <option value="Class Prep / KG - Form Master">Class Prep / KG - Form Master</option>
+                    <option value="Class 1 - Form Master">Class 1 - Form Master</option>
+                    <option value="Class 2 - Form Master">Class 2 - Form Master</option>
+                    <option value="Class 3 - Form Master">Class 3 - Form Master</option>
+                    <option value="Class 4 - Form Master">Class 4 - Form Master</option>
+                    <option value="Class 5 - Form Master">Class 5 - Form Master</option>
+                    <option value="Class 6 - Form Master">Class 6 - Form Master</option>
+                    <option value="Class 7 - Form Master">Class 7 - Form Master</option>
+                    <option value="Class 8 - Form Master">Class 8 - Form Master</option>
+                    <option value="Class 9 (SSC-I Matric) - Form Master">Class 9 (SSC-I Matric) - Form Master</option>
+                    <option value="Class 10 (SSC-II Matric) - Form Master">Class 10 (SSC-II Matric) - Form Master</option>
+                    <option value="N/A (Non-Teaching / Support Staff)">N/A (Non-Teaching / Support Staff)</option>
+                  </select>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-1">Designates the teacher as primary Form Master / Class In-charge.</p>
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Assigned Office / Lab Room</label>
-            <input type="text" id="facOffice" class="form-control" placeholder="e.g. Science Block Room 210">
+          <!-- 4. Education Degree Level & Qualification -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-3">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-emerald-600"></i>
+              <span>Education Degree Level & Qualification</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Education Degree Level -->
+              <div class="form-group">
+                <label class="form-label">Education Degree Level</label>
+                <div class="relative">
+                  <i class="fa-solid fa-award absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <select id="facDegreeLevel" class="form-control pl-9 text-xs font-semibold">
+                    <option value="Master's (MA / M.Sc / M.Ed - 16 Years)">Master's (MA / M.Sc / M.Ed - 16 Years)</option>
+                    <option value="Bachelor's (BS / BA / B.Sc / B.Ed - 14-16 Years)">Bachelor's (BS / BA / B.Sc / B.Ed - 14-16 Years)</option>
+                    <option value="M.Phil / MS (18 Years)">M.Phil / MS (18 Years)</option>
+                    <option value="Ph.D. / Doctorate">Ph.D. / Doctorate</option>
+                    <option value="Intermediate / HSSC (FA / F.Sc / I.Com)">Intermediate / HSSC (FA / F.Sc / I.Com)</option>
+                    <option value="Matric / SSC (10th Pass)">Matric / SSC (10th Pass)</option>
+                    <option value="Middle / 8th Pass">Middle / 8th Pass</option>
+                    <option value="Primary / Literate">Primary / Literate</option>
+                    <option value="Qari / Hafiz-e-Quran / Dars-e-Nizami">Qari / Hafiz-e-Quran / Dars-e-Nizami</option>
+                    <option value="Technical Diploma / Security Certified">Technical Diploma / Security Certified</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Major / Specialization Details -->
+              <div class="form-group">
+                <label class="form-label flex items-center justify-between">
+                  <span>Major / Specialization Details</span>
+                  <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Optional</span>
+                </label>
+                <div class="relative">
+                  <i class="fa-solid fa-certificate absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input type="text" id="facDegreeMajor" class="form-control pl-9 text-xs" placeholder="e.g. M.Sc Mathematics (UoP) + B.Ed or Ex-Army Security Guard">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Note / Employee Remarks (Optional) -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="form-label !mb-0 flex items-center gap-2 font-bold text-xs">
+                <i class="fa-solid fa-clipboard text-emerald-600"></i>
+                <span>Employee Notes & Administrative Remarks</span>
+              </label>
+              <span class="text-[10px] font-bold text-slate-400 bg-slate-200/80 dark:bg-slate-700 px-2 py-0.5 rounded-full">
+                Optional
+              </span>
+            </div>
+            <div class="relative">
+              <i class="fa-solid fa-note-sticky absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+              <textarea 
+                id="facNote" 
+                rows="2" 
+                class="form-control pl-9 resize-none text-xs" 
+                placeholder="e.g. Joining date: 1st Oct, duty shift: morning gate post, emergency reference: brother 0333-XXXXXXX, salary terms..."
+              ></textarea>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Internal record, shift schedule, emergency reference, or employment notes.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-between">
+          <button type="button" onclick="resetAddFacultyForm()" class="btn-kims btn-secondary !text-xs !py-2 text-slate-500 hover:text-rose-600">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Clear Form</span>
+          </button>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-kims btn-secondary !py-2" data-modal-close>Cancel</button>
+            <button type="submit" class="btn-kims btn-primary !py-2">
+              <i class="fa-solid fa-user-check"></i>
+              <span>Register Employee</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal: View Faculty / Staff Details (Read) -->
+  <div class="modal-overlay" id="viewFacultyModal">
+    <div class="modal-container" style="max-width: 760px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div id="viewFacAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white font-black text-base flex items-center justify-center shadow-sm overflow-hidden">
+            TM
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-slate-800 dark:text-white" id="viewFacName">Prof. Dr. Tariq Mehmood</h3>
+              <span id="viewFacGenderBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Male</span>
+            </div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-bold" id="viewFacId">emp-2026-001</span>
+              <span class="text-slate-300 dark:text-slate-600">&bull;</span>
+              <span id="viewFacRoleBadge" class="badge badge-success text-[10px]">Teacher</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[72vh] overflow-y-auto pr-1">
+        
+        <!-- Status & Duty Post Bar -->
+        <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-500/20 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success"><i class="fa-solid fa-circle text-[7px] mr-1"></i>Active / On Duty</span>
+            <span class="text-xs text-emerald-800 dark:text-emerald-300 font-medium" id="viewFacDutyPost">Academic Block A, Room 204</span>
+          </div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400" id="viewFacJoiningDate">Joined: 15 Aug 2021</span>
+        </div>
+
+        <!-- Two Column Key Details Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          
+          <!-- Academic & Assignment Profile -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+            <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-chalkboard-user text-emerald-600"></i>
+              <span>Academic &amp; Duty Profile</span>
+            </div>
+            
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Assigned Subject:</span>
+              <strong class="text-slate-800 dark:text-white font-bold" id="viewFacSubject">Mathematics</strong>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Class Form Master:</span>
+              <div id="viewFacFormMaster">
+                <span class="badge badge-success text-[10px]"><i class="fa-solid fa-crown mr-1 text-[8px]"></i>Class 10</span>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-start py-1">
+              <span class="text-slate-400 shrink-0 mr-2">Education &amp; Degree:</span>
+              <span class="text-right text-slate-800 dark:text-white font-semibold" id="viewFacDegree">Ph.D. Pure Mathematics</span>
+            </div>
+          </div>
+
+          <!-- Contact & Official Communication -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+            <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-address-book text-emerald-600"></i>
+              <span>Contact &amp; Communication</span>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Contact / WhatsApp:</span>
+              <div class="flex items-center gap-1.5" id="viewFacPhoneBox">
+                <a id="viewFacWaLink" href="#" target="_blank" class="font-mono font-bold text-emerald-600 hover:underline flex items-center gap-1">
+                  <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                  <span id="viewFacPhone">0333-9182300</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Email Address:</span>
+              <strong class="font-mono text-slate-700 dark:text-slate-300 font-semibold text-[11px]" id="viewFacEmail">tariq.m@kims.edu.pk</strong>
+            </div>
+
+            <div class="flex justify-between items-center py-1">
+              <span class="text-slate-400">Employee Role:</span>
+              <span class="font-semibold text-slate-800 dark:text-white" id="viewFacRoleText">Teaching Faculty</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Administrative Notes & Remarks Section -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800">
+          <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-note-sticky text-amber-500"></i>
+            <span>Administrative Notes &amp; Experience Remarks</span>
+          </div>
+          <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200/60 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 leading-relaxed italic" id="viewFacNote">
+            "Head of Mathematics Department. 14 years teaching experience in secondary board curriculums."
           </div>
         </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
-          <button type="submit" class="btn-kims btn-primary">
-            <i class="fa-solid fa-check"></i>
-            <span>Confirm Appointment</span>
+      </div>
+
+      <div class="modal-footer justify-between">
+        <button type="button" onclick="openEditModalFromView()" class="btn-kims btn-secondary !py-1.5 text-xs text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>Edit Staff Record</span>
+        </button>
+        <button type="button" class="btn-kims btn-primary !py-1.5 text-xs" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Faculty / Staff Member (Update) -->
+  <div class="modal-overlay" id="editFacultyModal">
+    <div class="modal-container" style="max-width: 780px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-user-pen"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white">Edit Employee / Staff Profile</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Update staff qualifications, assigned subject, form master class, or role</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="editFacultyForm" onsubmit="return handleUpdateFaculty(event)">
+        <input type="hidden" id="editFacOriginalId" value="">
+
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-2">
+
+          <!-- 1. Staff Identity, Title & Role -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-id-badge text-blue-600"></i>
+              <span>Staff Identity &amp; Role</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <!-- Staff Photo Upload (Optional) -->
+              <div class="flex flex-col items-center text-center w-full sm:w-auto shrink-0">
+                <div class="relative group">
+                  <div class="w-28 h-28 rounded-2xl border-2 border-dashed border-blue-500/40 bg-white dark:bg-slate-900 flex flex-col items-center justify-center overflow-hidden shadow-xs relative">
+                    <img id="editFacPhotoImg" src="" alt="Staff Preview" class="hidden w-full h-full object-cover rounded-2xl">
+                    <div id="editFacPhotoPlaceholder" class="flex flex-col items-center justify-center p-2 text-slate-400">
+                      <i class="fa-solid fa-camera text-2xl text-blue-600/70 mb-1"></i>
+                      <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Staff Photo</span>
+                      <span class="text-[9px] text-slate-400">Optional</span>
+                    </div>
+                  </div>
+                  <label for="editFacPhotoInput" class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md cursor-pointer transition" title="Change Photo">
+                    <i class="fa-solid fa-camera text-xs"></i>
+                  </label>
+                  <input type="file" id="editFacPhotoInput" accept="image/*" class="hidden" onchange="previewEditFacultyPhoto(event)">
+                </div>
+
+                <button type="button" id="editRemoveFacPhotoBtn" onclick="removeEditFacultyPhoto()" class="hidden mt-2 text-[10px] text-rose-500 hover:underline flex items-center gap-1">
+                  <i class="fa-solid fa-trash text-[9px]"></i> Remove Photo
+                </button>
+              </div>
+
+              <!-- Name & Role Fields -->
+              <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                
+                <!-- Employee ID (Editable) -->
+                <div class="sm:col-span-2">
+                  <label class="form-label flex items-center justify-between" for="editFacId">
+                    <span>Institutional Employee ID *</span>
+                    <span class="text-[10px] text-slate-400 font-normal">Unique Employee ID</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-fingerprint absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="text" 
+                      id="editFacId" 
+                      class="form-control pl-9 font-mono font-bold text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-900" 
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Full Name & Title * -->
+                <div class="sm:col-span-2">
+                  <label class="form-label" for="editFacName">Full Name &amp; Title *</label>
+                  <div class="flex gap-2">
+                    <select id="editFacTitle" class="form-control !w-28 shrink-0">
+                      <option value="Mr.">Mr.</option>
+                      <option value="Ms.">Ms.</option>
+                      <option value="Mrs.">Mrs.</option>
+                      <option value="Dr.">Dr.</option>
+                      <option value="Prof. Dr.">Prof. Dr.</option>
+                      <option value="Engr.">Engr.</option>
+                      <option value="Ustadh">Ustadh</option>
+                      <option value="Qari">Qari</option>
+                      <option value="Subedar (R)">Subedar (R)</option>
+                    </select>
+                    <div class="relative flex-1">
+                      <i class="fa-solid fa-user absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                      <input 
+                        type="text" 
+                        id="editFacName" 
+                        class="form-control pl-9" 
+                        placeholder="e.g. Tariq Mehmood" 
+                        required
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Role of Employee * -->
+                <div class="sm:col-span-2">
+                  <label class="form-label" for="editFacRole">Role of Employee *</label>
+                  <div class="relative">
+                    <i class="fa-solid fa-briefcase absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <select id="editFacRole" class="form-control pl-9" required onchange="handleEditRoleChange(this.value)">
+                      <option value="Teacher">Teacher (Academic Faculty)</option>
+                      <option value="Class 4 Staff">Class 4 Staff (Peon / Office Attendant / Helper)</option>
+                      <option value="Security Guard">Security Guard (Gate &amp; Campus Security)</option>
+                      <option value="Administrative Staff">Administrative Staff (Accounts / Office / Registrar)</option>
+                      <option value="Lab Assistant">Lab Assistant (Computer / Science Labs)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Gender * -->
+                <div class="sm:col-span-2">
+                  <label class="form-label">Gender *</label>
+                  <div class="grid grid-cols-2 gap-3">
+                    <label id="editFacGenderLabelMale" class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs">
+                      <input type="radio" name="editFacGender" value="Male" class="hidden" onchange="handleEditFacGenderChange('Male')" checked>
+                      <i class="fa-solid fa-person text-base"></i>
+                      <span>Male</span>
+                    </label>
+
+                    <label id="editFacGenderLabelFemale" class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300">
+                      <input type="radio" name="editFacGender" value="Female" class="hidden" onchange="handleEditFacGenderChange('Female')">
+                      <i class="fa-solid fa-person-dress text-base"></i>
+                      <span>Female</span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Contact & Communication -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-phone text-blue-600"></i>
+              <span>Contact &amp; Communication</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- Contact / Mobile * -->
+              <div>
+                <label class="form-label flex items-center justify-between" for="editFacPhone">
+                  <span>Contact / Mobile *</span>
+                  <span class="text-[10px] text-emerald-600 font-medium"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
+                </label>
+                <div class="relative">
+                  <i class="fa-solid fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                  <input 
+                    type="tel" 
+                    id="editFacPhone" 
+                    class="form-control pl-9 font-mono" 
+                    placeholder="0300-1234567" 
+                    required
+                  >
+                </div>
+              </div>
+
+              <!-- Email (Optional) -->
+              <div>
+                <label class="form-label flex items-center justify-between" for="editFacEmail">
+                  <span>Official / Personal Email</span>
+                  <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+                </label>
+                <div class="relative">
+                  <i class="fa-solid fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                  <input 
+                    type="email" 
+                    id="editFacEmail" 
+                    class="form-control pl-9 font-mono text-xs" 
+                    placeholder="name@kims.edu.pk"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Academic Duties: Subject & Form Master -->
+          <div id="editAcademicDutiesSection" class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-4">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-blue-600"></i>
+                <span>Assigned Subject &amp; Class Form Master</span>
+              </div>
+              <span id="editRoleAcademicNotice" class="text-[10px] text-emerald-700 dark:text-emerald-300 font-medium">Academic Assignment</span>
+            </div>
+
+            <!-- Assigned Subject Dropdown + Inline Quick Add Subject -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="form-label !mb-0" for="editFacSubject">
+                  <span>Assigned Subject *</span>
+                </label>
+                <button type="button" onclick="toggleEditQuickAddSubject(true)" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                  <i class="fa-solid fa-plus-circle text-xs"></i>
+                  <span>+ Add New Subject</span>
+                </button>
+              </div>
+
+              <!-- Inline Quick Add Input Box (Initially Hidden) -->
+              <div id="editQuickAddSubjectBox" class="hidden mb-2 p-2.5 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 dark:border-emerald-700/60">
+                <div class="flex items-center gap-2">
+                  <div class="relative flex-1">
+                    <i class="fa-solid fa-book-bookmark absolute left-2.5 top-1/2 -translate-y-1/2 text-emerald-600 text-xs"></i>
+                    <input 
+                      type="text" 
+                      id="editQuickNewSubjectName" 
+                      placeholder="Type new subject name (e.g. Arabic, Civics, Robotics)..." 
+                      class="w-full pl-8 pr-3 py-1.5 bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-600 rounded-lg text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                    >
+                  </div>
+                  <button type="button" onclick="confirmEditQuickSubject()" class="btn-kims btn-primary !py-1.5 !px-3 text-xs shrink-0">
+                    Add
+                  </button>
+                  <button type="button" onclick="toggleEditQuickAddSubject(false)" class="p-1.5 text-slate-400 hover:text-rose-500 text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="relative">
+                <i class="fa-solid fa-book absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <select id="editFacSubject" class="form-control pl-9" required>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="English Literature & Grammar">English Literature &amp; Grammar</option>
+                  <option value="Urdu">Urdu</option>
+                  <option value="General Science">General Science</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Biology">Biology</option>
+                  <option value="Computer Science & IT">Computer Science &amp; IT</option>
+                  <option value="Pakistan Studies">Pakistan Studies</option>
+                  <option value="Islamiyat / Ethics">Islamiyat / Ethics</option>
+                  <option value="Social Studies / History">Social Studies / History</option>
+                  <option value="Art & Drawing">Art &amp; Drawing</option>
+                  <option value="Physical Education">Physical Education</option>
+                  <option value="N/A (General Duties)">N/A (General Duties)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Assigned Class (Form Master / In-Charge) -->
+            <div>
+              <label class="form-label flex items-center justify-between" for="editFacFormMaster">
+                <span>Assigned Class (Form Master)</span>
+                <span class="text-[10px] text-slate-400 font-normal">Class Teacher / In-charge</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-chalkboard absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <select id="editFacFormMaster" class="form-control pl-9">
+                  <option value="None">None / Subject Teacher Only</option>
+                  <option value="Class 0-1 (Nursery/Prep)">Class 0-1 (Nursery / Prep)</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9">Class 9 (Matriculation Part 1)</option>
+                  <option value="Class 10">Class 10 (Matriculation Part 2)</option>
+                  <option value="N/A (Support Staff)">N/A (Support Staff)</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 4. Education & Qualifications -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-3">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-user-graduate text-blue-600"></i>
+              <span>Education Degree Level</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="form-label" for="editFacDegreeLevel">Degree Level *</label>
+                <div class="relative">
+                  <i class="fa-solid fa-award absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                  <select id="editFacDegreeLevel" class="form-control pl-9" required>
+                    <option value="Master's (MS / M.Sc / MPhil / M.Ed)">Master's (MS / M.Sc / MPhil / M.Ed)</option>
+                    <option value="Bachelor's (BS / BA / BSc / B.Ed)">Bachelor's (BS / BA / BSc / B.Ed)</option>
+                    <option value="Doctorate (Ph.D.)">Doctorate (Ph.D.)</option>
+                    <option value="Intermediate (FA / FSc / ICS)">Intermediate (FA / FSc / ICS)</option>
+                    <option value="Matriculation (SSC)">Matriculation (SSC)</option>
+                    <option value="Primary / Middle Pass">Primary / Middle Pass (Support Staff)</option>
+                    <option value="Dars-e-Nizami / Shahadat-ul-Alimiya (Islamic)">Dars-e-Nizami / Shahadat-ul-Alimiya (Islamic)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="form-label" for="editFacDegreeMajor">Major / Degree Specification</label>
+                <div class="relative">
+                  <i class="fa-solid fa-certificate absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                  <input 
+                    type="text" 
+                    id="editFacDegreeMajor" 
+                    class="form-control pl-9" 
+                    placeholder="e.g. M.Sc Pure Mathematics, B.Ed"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Note / Remarks -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
+            <label class="form-label flex items-center justify-between" for="editFacNote">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-note-sticky text-amber-500"></i>
+                <span>Employee Notes &amp; Remarks</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+            </label>
+            <div class="relative">
+              <textarea 
+                id="editFacNote" 
+                rows="2" 
+                class="form-control" 
+                placeholder="Shift schedule, interview comments, past institutional experience, or emergency remarks..."
+              ></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-between">
+          <button type="button" class="btn-kims btn-secondary !py-2" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary !py-2">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Save Employee Changes</span>
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal: Delete Faculty Confirmation -->
+  <div class="modal-overlay" id="deleteFacultyConfirmModal">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header !border-b-0 pb-0">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 flex items-center justify-center text-base">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body text-center pt-2">
+        <h3 class="text-base font-bold text-slate-800 dark:text-white">Remove Staff Member?</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          Are you sure you want to remove <strong id="deleteFacultyTargetName" class="text-slate-900 dark:text-white">this employee</strong> (<span id="deleteFacultyTargetId" class="font-mono text-emerald-600">ID</span>) from the institutional roster?
+        </p>
+        <p class="text-[11px] text-rose-500 font-semibold mt-2">
+          This will revoke faculty portal credentials and duty posts.
+        </p>
+      </div>
+      <div class="modal-footer justify-center gap-3 !border-t-0 pt-2">
+        <button type="button" class="btn-kims btn-secondary !py-2 text-xs" data-modal-close>Cancel</button>
+        <button type="button" id="confirmDeleteFacultyBtn" onclick="executeDeleteFaculty()" class="btn-kims !bg-rose-600 hover:!bg-rose-700 !text-white !py-2 text-xs shadow-sm">
+          <i class="fa-solid fa-trash"></i>
+          <span>Confirm Remove</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -498,52 +1180,849 @@
 
   <script src="js/admin.js"></script>
   <script>
+    // =========================================================================
+    // REAL FACULTY & STAFF DIRECTORY DATA STORE (FULL CRUD)
+    // =========================================================================
+
+    const DEFAULT_FACULTY = [
+      {
+        id: "emp-2026-001",
+        title: "Prof. Dr.",
+        name: "Tariq Mehmood",
+        role: "Teacher",
+        gender: "Male",
+        phone: "0333-9182300",
+        email: "tariq.m@kims.edu.pk",
+        subject: "Mathematics",
+        formMaster: "Class 10",
+        degreeLevel: "Doctorate (Ph.D.)",
+        degreeMajor: "Ph.D. Pure Mathematics",
+        dutyPost: "Academic Block A, Room 204",
+        joiningDate: "15 Aug 2021",
+        note: "Head of Mathematics Department & Senior Form Master. 14 years teaching experience.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-002",
+        title: "Ms.",
+        name: "Ayesha Siddiqa",
+        role: "Teacher",
+        gender: "Female",
+        phone: "0300-5918273",
+        email: "ayesha.s@kims.edu.pk",
+        subject: "English Literature & Grammar",
+        formMaster: "Class 8",
+        degreeLevel: "Master's (MS / M.Sc / MPhil / M.Ed)",
+        degreeMajor: "M.Phil English Linguistics",
+        dutyPost: "Academic Block B, Room 102",
+        joiningDate: "01 Sep 2022",
+        note: "Coordinator for secondary English debate society and declamations.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-003",
+        title: "Ustadh",
+        name: "Muhammad Bilal",
+        role: "Teacher",
+        gender: "Male",
+        phone: "0312-9988776",
+        email: "bilal.m@kims.edu.pk",
+        subject: "General Science",
+        formMaster: "Class 6",
+        degreeLevel: "Bachelor's (BS / BA / BSc / B.Ed)",
+        degreeMajor: "BS Physics & B.Ed",
+        dutyPost: "Science Laboratory Block",
+        joiningDate: "10 Feb 2023",
+        note: "Science Lab Coordinator. Supervises science exhibition projects.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-004",
+        title: "Qari",
+        name: "Abdul Basit",
+        role: "Teacher",
+        gender: "Male",
+        phone: "0345-9871234",
+        email: "abdul.basit@kims.edu.pk",
+        subject: "Islamiyat / Ethics",
+        formMaster: "Class 0-1 (Nursery/Prep)",
+        degreeLevel: "Dars-e-Nizami / Shahadat-ul-Alimiya (Islamic)",
+        degreeMajor: "Shahadat-ul-Alimiya & Wifaq-ul-Madaris Certified",
+        dutyPost: "Prayer Hall & Junior Section",
+        joiningDate: "12 Mar 2020",
+        note: "Specialist in Nazra Quran, Tajweed, and ethics for early childhood & primary grades.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-005",
+        title: "Subedar (R)",
+        name: "Muhammad Rafiq",
+        role: "Security Guard",
+        gender: "Male",
+        phone: "0332-9182744",
+        email: "",
+        subject: "N/A (General Duties)",
+        formMaster: "None",
+        degreeLevel: "Matriculation (SSC)",
+        degreeMajor: "Ex-Army (Punjab Regiment)",
+        dutyPost: "Main Gate Security Post 1",
+        joiningDate: "05 Jan 2021",
+        note: "In-charge of campus perimeter security, gate visitor registry, and morning arrival monitoring.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-006",
+        title: "Mr.",
+        name: "Ghulam Rasool",
+        role: "Class 4 Staff",
+        gender: "Male",
+        phone: "0315-7721839",
+        email: "",
+        subject: "N/A (General Duties)",
+        formMaster: "None",
+        degreeLevel: "Primary / Middle Pass",
+        degreeMajor: "Middle Pass",
+        dutyPost: "Admin Block Ground Floor",
+        joiningDate: "18 Aug 2019",
+        note: "Senior office attendant for Admin Block, board file handling, and staff room logistics.",
+        status: "On Duty",
+        photo: ""
+      },
+      {
+        id: "emp-2026-007",
+        title: "Mrs.",
+        name: "Farzana Khattak",
+        role: "Teacher",
+        gender: "Female",
+        phone: "0333-5544332",
+        email: "farzana.k@kims.edu.pk",
+        subject: "Urdu",
+        formMaster: "Class 9",
+        degreeLevel: "Master's (MS / M.Sc / MPhil / M.Ed)",
+        degreeMajor: "M.A Urdu Literature & B.Ed",
+        dutyPost: "Library Wing",
+        joiningDate: "20 Sep 2022",
+        note: "Chief Editor of annual institutional school magazine and creative writing circle.",
+        status: "On Duty",
+        photo: ""
+      }
+    ];
+
+    let facultyData = [];
+    let currentRoleFilter = 'all';
+    let currentSearchTerm = '';
+    let pendingDeleteFacultyId = null;
+    let activeViewingFacultyId = null;
+
+    // Load Data from LocalStorage or Seed Defaults
+    function loadFacultyData() {
+      const stored = localStorage.getItem('kims_faculty_data');
+      if (stored) {
+        try {
+          facultyData = JSON.parse(stored);
+        } catch (err) {
+          facultyData = [...DEFAULT_FACULTY];
+        }
+      } else {
+        facultyData = [...DEFAULT_FACULTY];
+        saveFacultyData();
+      }
+    }
+
+    function saveFacultyData() {
+      localStorage.setItem('kims_faculty_data', JSON.stringify(facultyData));
+      updateKPICounters();
+    }
+
+    function updateKPICounters() {
+      const totalEl = document.getElementById('facultyTotalCount');
+      const displayEl = document.getElementById('facultyDisplayCount');
+      if (totalEl) totalEl.innerText = facultyData.length;
+    }
+
+    // =========================================================================
+    // TABLE RENDERING
+    // =========================================================================
+
+    function renderFacultyTable() {
+      const tbody = document.getElementById('facultyTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      const term = currentSearchTerm.toLowerCase().trim();
+      const filtered = facultyData.filter(fac => {
+        // Filter by Role
+        let matchesRole = true;
+        if (currentRoleFilter === 'Form Master') {
+          matchesRole = fac.formMaster && fac.formMaster !== 'None' && !fac.formMaster.includes('N/A');
+        } else if (currentRoleFilter !== 'all') {
+          matchesRole = fac.role === currentRoleFilter;
+        }
+
+        if (!matchesRole) return false;
+
+        if (!term) return true;
+        const fullName = `${fac.title || ''} ${fac.name}`.toLowerCase();
+        return (
+          fullName.includes(term) ||
+          fac.id.toLowerCase().includes(term) ||
+          fac.role.toLowerCase().includes(term) ||
+          fac.subject.toLowerCase().includes(term) ||
+          (fac.formMaster && fac.formMaster.toLowerCase().includes(term)) ||
+          (fac.phone && fac.phone.includes(term)) ||
+          (fac.email && fac.email.toLowerCase().includes(term))
+        );
+      });
+
+      const displayEl = document.getElementById('facultyDisplayCount');
+      if (displayEl) displayEl.innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-users-slash"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No faculty or staff found</div>
+              <div class="text-xs text-slate-400 mt-1">Try selecting a different filter pill or click "New Faculty / Staff".</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(fac => {
+        const fullName = `${fac.title ? fac.title + ' ' : ''}${fac.name}`;
+        const initials = fac.name.split(' ').map(n => n[0]).filter(Boolean).join('').substring(0, 2).toUpperCase() || 'ST';
+
+        // Avatar
+        let avatarHtml = '';
+        if (fac.photo) {
+          avatarHtml = `<img src="${fac.photo}" alt="${escapeHtml(fullName)}" class="w-9 h-9 rounded-xl object-cover border border-slate-200 shadow-xs">`;
+        } else {
+          avatarHtml = `<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white font-black flex items-center justify-center text-xs shadow-xs">${initials}</div>`;
+        }
+
+        // Role Badge
+        let roleBadgeHtml = '';
+        if (fac.role === 'Teacher') {
+          roleBadgeHtml = `<span class="badge badge-success"><i class="fa-solid fa-chalkboard-user text-[9px] mr-1"></i>Teacher</span>`;
+        } else if (fac.role === 'Security Guard') {
+          roleBadgeHtml = `<span class="badge badge-warning"><i class="fa-solid fa-shield-halved text-[9px] mr-1"></i>Security Guard</span>`;
+        } else if (fac.role === 'Class 4 Staff') {
+          roleBadgeHtml = `<span class="badge badge-info"><i class="fa-solid fa-user-gear text-[9px] mr-1"></i>Class 4 Staff</span>`;
+        } else {
+          roleBadgeHtml = `<span class="badge badge-neutral">${escapeHtml(fac.role)}</span>`;
+        }
+
+        // Subject & Form Master
+        let subjectHtml = '';
+        if (fac.role === 'Teacher') {
+          const formMasterBadge = (fac.formMaster && fac.formMaster !== 'None' && !fac.formMaster.includes('N/A'))
+            ? `<span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full inline-block mt-0.5"><i class="fa-solid fa-crown text-[8px] mr-1"></i>Form Master: ${escapeHtml(fac.formMaster)}</span>`
+            : `<span class="text-[10px] text-slate-400">Subject Faculty</span>`;
+          subjectHtml = `
+            <div class="font-semibold text-xs text-slate-800 dark:text-white">${escapeHtml(fac.subject)}</div>
+            ${formMasterBadge}
+          `;
+        } else {
+          subjectHtml = `
+            <div class="text-xs text-slate-600 dark:text-slate-400 font-medium">${escapeHtml(fac.role)}</div>
+            <span class="text-[10px] text-slate-400">${escapeHtml(fac.dutyPost || 'General Campus Duty')}</span>
+          `;
+        }
+
+        // Degree display
+        const degreeDisplay = fac.degreeMajor || fac.degreeLevel || 'N/A';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td>
+            <div class="flex items-center gap-3">
+              ${avatarHtml}
+              <div>
+                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span>${escapeHtml(fullName)}</span>
+                  <span class="text-[10px] font-normal text-slate-400">(${escapeHtml(fac.gender)})</span>
+                </div>
+                <div class="text-[11px] text-slate-400 font-mono">${escapeHtml(fac.id)}</div>
+                ${fac.note ? `<div class="text-[10px] text-emerald-700 dark:text-emerald-400 truncate max-w-[200px]" title="${escapeHtml(fac.note)}"><i class="fa-solid fa-note-sticky text-[9px] mr-1"></i>${escapeHtml(fac.note)}</div>` : ''}
+              </div>
+            </div>
+          </td>
+          <td>${roleBadgeHtml}</td>
+          <td>${subjectHtml}</td>
+          <td><span class="badge badge-neutral" title="${escapeHtml(degreeDisplay)}">${escapeHtml(degreeDisplay.length > 25 ? degreeDisplay.substring(0, 25) + '...' : degreeDisplay)}</span></td>
+          <td>
+            <div class="flex items-center gap-1.5 font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <a href="https://wa.me/92${fac.phone.replace(/[^0-9]/g, '').replace(/^0/, '')}" target="_blank" title="WhatsApp Message" class="text-emerald-600 hover:scale-110 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+              </a>
+              <span>${escapeHtml(fac.phone)}</span>
+            </div>
+            ${fac.email && fac.email !== 'N/A' ? `<div class="text-[10px] text-slate-400 truncate max-w-[150px] font-mono" title="${escapeHtml(fac.email)}">${escapeHtml(fac.email)}</div>` : ''}
+          </td>
+          <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[7px] mr-1"></i>On Duty</span></td>
+          <td class="text-right">
+            <div class="inline-flex gap-1.5">
+              <button type="button" onclick="openViewFacultyModal('${escapeHtml(fac.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Full Profile">
+                <i class="fa-solid fa-user text-xs"></i>
+              </button>
+              <button type="button" onclick="openEditFacultyModal('${escapeHtml(fac.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit Staff Member">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button type="button" onclick="confirmDeleteFaculty('${escapeHtml(fac.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Remove Staff Member">
+                <i class="fa-solid fa-trash text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Role Filter Pills
+    function filterFacultyByRole(role, btn) {
+      currentRoleFilter = role;
+      const tabs = document.querySelectorAll('#facultyRoleFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm';
+      renderFacultyTable();
+    }
+
+    // Search Handler
+    function handleFacultySearch(val) {
+      currentSearchTerm = val;
+      renderFacultyTable();
+    }
+
+    // =========================================================================
+    // READ / VIEW FACULTY MEMBER
+    // =========================================================================
+
+    function openViewFacultyModal(empId) {
+      const fac = facultyData.find(f => f.id === empId);
+      if (!fac) return;
+
+      activeViewingFacultyId = empId;
+      const fullName = `${fac.title ? fac.title + ' ' : ''}${fac.name}`;
+
+      document.getElementById('viewFacName').innerText = fullName;
+      document.getElementById('viewFacId').innerText = fac.id;
+      document.getElementById('viewFacGenderBadge').innerText = fac.gender;
+      document.getElementById('viewFacSubject').innerText = fac.subject;
+      document.getElementById('viewFacDegree').innerText = fac.degreeMajor || fac.degreeLevel || 'N/A';
+      document.getElementById('viewFacPhone').innerText = fac.phone;
+      document.getElementById('viewFacEmail').innerText = fac.email || 'None on file';
+      document.getElementById('viewFacDutyPost').innerText = fac.dutyPost || 'Academic Campus';
+      document.getElementById('viewFacJoiningDate').innerText = `Joined: ${fac.joiningDate || '15 Aug 2021'}`;
+      document.getElementById('viewFacNote').innerText = fac.note ? `"${fac.note}"` : 'No administrative notes on record.';
+      document.getElementById('viewFacRoleText').innerText = fac.role;
+
+      // Role badge
+      const roleBadge = document.getElementById('viewFacRoleBadge');
+      if (fac.role === 'Teacher') {
+        roleBadge.className = 'badge badge-success text-[10px]';
+        roleBadge.innerText = 'Teacher';
+      } else if (fac.role === 'Security Guard') {
+        roleBadge.className = 'badge badge-warning text-[10px]';
+        roleBadge.innerText = 'Security Guard';
+      } else if (fac.role === 'Class 4 Staff') {
+        roleBadge.className = 'badge badge-info text-[10px]';
+        roleBadge.innerText = 'Class 4 Staff';
+      } else {
+        roleBadge.className = 'badge badge-neutral text-[10px]';
+        roleBadge.innerText = fac.role;
+      }
+
+      // Form Master
+      const formMasterBox = document.getElementById('viewFacFormMaster');
+      if (fac.formMaster && fac.formMaster !== 'None' && !fac.formMaster.includes('N/A')) {
+        formMasterBox.innerHTML = `<span class="badge badge-success text-[10px]"><i class="fa-solid fa-crown mr-1 text-[8px]"></i>${escapeHtml(fac.formMaster)}</span>`;
+      } else {
+        formMasterBox.innerHTML = `<span class="text-slate-400 text-xs">None / N/A</span>`;
+      }
+
+      // WhatsApp link
+      const waLink = document.getElementById('viewFacWaLink');
+      if (waLink) {
+        const cleanPhone = fac.phone.replace(/[^0-9]/g, '').replace(/^0/, '');
+        waLink.href = `https://wa.me/92${cleanPhone}`;
+      }
+
+      // Avatar
+      const avatarBox = document.getElementById('viewFacAvatar');
+      if (fac.photo) {
+        avatarBox.innerHTML = `<img src="${fac.photo}" alt="${escapeHtml(fullName)}" class="w-full h-full object-cover">`;
+      } else {
+        const initials = fac.name.split(' ').map(n => n[0]).filter(Boolean).join('').substring(0, 2).toUpperCase() || 'ST';
+        avatarBox.innerText = initials;
+      }
+
+      openModal('viewFacultyModal');
+    }
+
+    function openEditModalFromView() {
+      closeModal('viewFacultyModal');
+      if (activeViewingFacultyId) {
+        setTimeout(() => openEditFacultyModal(activeViewingFacultyId), 150);
+      }
+    }
+
+    // =========================================================================
+    // UPDATE / EDIT FACULTY MEMBER
+    // =========================================================================
+
+    function openEditFacultyModal(empId) {
+      const fac = facultyData.find(f => f.id === empId);
+      if (!fac) return;
+
+      document.getElementById('editFacOriginalId').value = fac.id;
+      document.getElementById('editFacId').value = fac.id;
+      document.getElementById('editFacName').value = fac.name;
+      document.getElementById('editFacTitle').value = fac.title || 'Mr.';
+      document.getElementById('editFacRole').value = fac.role;
+      document.getElementById('editFacPhone').value = fac.phone;
+      document.getElementById('editFacEmail').value = fac.email || '';
+      document.getElementById('editFacFormMaster').value = fac.formMaster || 'None';
+      document.getElementById('editFacDegreeLevel').value = fac.degreeLevel || "Bachelor's (BS / BA / BSc / B.Ed)";
+      document.getElementById('editFacDegreeMajor').value = fac.degreeMajor || '';
+      document.getElementById('editFacNote').value = fac.note || '';
+
+      // Ensure subject is selectable (add option if custom)
+      const subjectSelect = document.getElementById('editFacSubject');
+      let optExists = Array.from(subjectSelect.options).some(o => o.value === fac.subject);
+      if (!optExists && fac.subject) {
+        const newOpt = document.createElement('option');
+        newOpt.value = fac.subject;
+        newOpt.text = fac.subject;
+        subjectSelect.appendChild(newOpt);
+      }
+      subjectSelect.value = fac.subject;
+
+      // Gender
+      handleEditFacGenderChange(fac.gender || 'Male');
+
+      // Role adjustment
+      handleEditRoleChange(fac.role);
+
+      // Photo
+      const img = document.getElementById('editFacPhotoImg');
+      const placeholder = document.getElementById('editFacPhotoPlaceholder');
+      const removeBtn = document.getElementById('editRemoveFacPhotoBtn');
+      if (fac.photo) {
+        img.src = fac.photo;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+      } else {
+        img.src = '';
+        img.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        removeBtn.classList.add('hidden');
+      }
+
+      openModal('editFacultyModal');
+    }
+
+    function handleEditFacGenderChange(gender) {
+      const maleLabel = document.getElementById('editFacGenderLabelMale');
+      const femaleLabel = document.getElementById('editFacGenderLabelFemale');
+      const radios = document.querySelectorAll('input[name="editFacGender"]');
+      radios.forEach(r => r.checked = (r.value === gender));
+
+      if (gender === 'Male') {
+        maleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        femaleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      } else {
+        femaleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        maleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      }
+    }
+
+    function handleEditRoleChange(role) {
+      const academicNotice = document.getElementById('editRoleAcademicNotice');
+      const subjectSelect = document.getElementById('editFacSubject');
+      const formMasterSelect = document.getElementById('editFacFormMaster');
+
+      if (role === 'Class 4 Staff' || role === 'Security Guard') {
+        academicNotice.innerText = 'Support Duty';
+        subjectSelect.value = 'N/A (General Duties)';
+        formMasterSelect.value = 'None';
+      } else {
+        academicNotice.innerText = 'Academic Assignment';
+        if (subjectSelect.value.includes('N/A')) {
+          subjectSelect.value = 'Mathematics';
+        }
+      }
+    }
+
+    function toggleEditQuickAddSubject(show = true) {
+      const box = document.getElementById('editQuickAddSubjectBox');
+      const input = document.getElementById('editQuickNewSubjectName');
+      if (show) {
+        box.classList.remove('hidden');
+        input.focus();
+      } else {
+        box.classList.add('hidden');
+        input.value = '';
+      }
+    }
+
+    function confirmEditQuickSubject() {
+      const input = document.getElementById('editQuickNewSubjectName');
+      const name = input.value.trim();
+      if (!name) {
+        showToast('Enter Subject', 'Please type the name of the subject.', 'error');
+        input.focus();
+        return;
+      }
+
+      const select = document.getElementById('editFacSubject');
+      let existingOption = Array.from(select.options).find(opt => opt.value.toLowerCase() === name.toLowerCase());
+      if (existingOption) {
+        select.value = existingOption.value;
+        showToast('Subject Selected', `"${name}" is already in the list.`, 'info');
+      } else {
+        const newOpt = document.createElement('option');
+        newOpt.value = name;
+        newOpt.text = name;
+        select.appendChild(newOpt);
+        select.value = name;
+        showToast('Subject Added', `"${name}" added to subject options!`, 'success');
+      }
+
+      toggleEditQuickAddSubject(false);
+    }
+
+    function previewEditFacultyPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById('editFacPhotoImg');
+        const placeholder = document.getElementById('editFacPhotoPlaceholder');
+        const removeBtn = document.getElementById('editRemoveFacPhotoBtn');
+        img.src = e.target.result;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeEditFacultyPhoto() {
+      const input = document.getElementById('editFacPhotoInput');
+      const img = document.getElementById('editFacPhotoImg');
+      const placeholder = document.getElementById('editFacPhotoPlaceholder');
+      const removeBtn = document.getElementById('editRemoveFacPhotoBtn');
+      if (input) input.value = '';
+      if (img) {
+        img.src = '';
+        img.classList.add('hidden');
+      }
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (removeBtn) removeBtn.classList.add('hidden');
+    }
+
+    function handleUpdateFaculty(e) {
+      e.preventDefault();
+      const originalId = document.getElementById('editFacOriginalId').value;
+      const index = facultyData.findIndex(f => f.id === originalId);
+      if (index === -1) return;
+
+      const newId = document.getElementById('editFacId').value.trim();
+      const title = document.getElementById('editFacTitle').value;
+      const name = document.getElementById('editFacName').value.trim();
+      const role = document.getElementById('editFacRole').value;
+      const phone = document.getElementById('editFacPhone').value.trim();
+      const email = document.getElementById('editFacEmail').value.trim();
+      const gender = document.querySelector('input[name="editFacGender"]:checked')?.value || 'Male';
+      const subject = document.getElementById('editFacSubject').value;
+      const formMaster = document.getElementById('editFacFormMaster').value;
+      const degreeLevel = document.getElementById('editFacDegreeLevel').value;
+      const degreeMajor = document.getElementById('editFacDegreeMajor').value.trim();
+      const note = document.getElementById('editFacNote').value.trim();
+
+      const img = document.getElementById('editFacPhotoImg');
+      const photoSrc = (!img.classList.contains('hidden') && img.src) ? img.src : '';
+
+      facultyData[index] = {
+        ...facultyData[index],
+        id: newId || originalId,
+        title,
+        name,
+        role,
+        gender,
+        phone,
+        email,
+        subject,
+        formMaster,
+        degreeLevel,
+        degreeMajor,
+        note,
+        photo: photoSrc
+      };
+
+      saveFacultyData();
+      renderFacultyTable();
+      closeModal('editFacultyModal');
+      showToast('Profile Updated', `${title} ${name} profile saved.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // DELETE FACULTY / STAFF MEMBER
+    // =========================================================================
+
+    function confirmDeleteFaculty(empId) {
+      const fac = facultyData.find(f => f.id === empId);
+      if (!fac) return;
+
+      pendingDeleteFacultyId = empId;
+      const fullName = `${fac.title ? fac.title + ' ' : ''}${fac.name}`;
+      document.getElementById('deleteFacultyTargetName').innerText = fullName;
+      document.getElementById('deleteFacultyTargetId').innerText = fac.id;
+
+      openModal('deleteFacultyConfirmModal');
+    }
+
+    function executeDeleteFaculty() {
+      if (!pendingDeleteFacultyId) return;
+
+      const fac = facultyData.find(f => f.id === pendingDeleteFacultyId);
+      const displayName = fac ? `${fac.title ? fac.title + ' ' : ''}${fac.name}` : 'Staff Member';
+
+      facultyData = facultyData.filter(f => f.id !== pendingDeleteFacultyId);
+      saveFacultyData();
+      renderFacultyTable();
+      closeModal('deleteFacultyConfirmModal');
+      pendingDeleteFacultyId = null;
+
+      showToast('Staff Removed', `${displayName} removed from institutional roster.`, 'info');
+    }
+
+    // =========================================================================
+    // CREATE NEW FACULTY / STAFF MEMBER (Add Modal)
+    // =========================================================================
+
+    function previewFacultyPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (file.size > 2 * 1024 * 1024) {
+        showToast('File Too Large', 'Please choose a photo smaller than 2MB.', 'error');
+        event.target.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById('facPhotoImg');
+        const placeholder = document.getElementById('facPhotoPlaceholder');
+        const removeBtn = document.getElementById('removeFacPhotoBtn');
+
+        img.src = e.target.result;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+        showToast('Photo Attached', 'Staff portrait loaded.', 'info');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeFacultyPhoto() {
+      const fileInput = document.getElementById('facPhoto');
+      const img = document.getElementById('facPhotoImg');
+      const placeholder = document.getElementById('facPhotoPlaceholder');
+      const removeBtn = document.getElementById('removeFacPhotoBtn');
+
+      if (fileInput) fileInput.value = '';
+      if (img) {
+        img.src = '';
+        img.classList.add('hidden');
+      }
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (removeBtn) removeBtn.classList.add('hidden');
+    }
+
+    function handleFacGenderChange(gender) {
+      const maleLabel = document.getElementById('facGenderLabelMale');
+      const femaleLabel = document.getElementById('facGenderLabelFemale');
+
+      if (gender === 'Male') {
+        maleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        femaleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      } else {
+        femaleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        maleLabel.className = 'flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      }
+    }
+
+    function handleRoleChange(role) {
+      const badge = document.getElementById('roleBadge');
+      const subjectSelect = document.getElementById('facSubject');
+      const formMasterSelect = document.getElementById('facFormMaster');
+      const degreeSelect = document.getElementById('facDegreeLevel');
+      const majorInput = document.getElementById('facDegreeMajor');
+
+      if (role === 'Class 4 Staff') {
+        if (badge) {
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300';
+          badge.innerText = 'Support Staff';
+        }
+        subjectSelect.value = 'N/A (General Duties)';
+        formMasterSelect.value = 'N/A (Support Staff)';
+        degreeSelect.value = 'Primary / Middle Pass';
+        if (majorInput && !majorInput.value) majorInput.placeholder = 'e.g. Middle Pass';
+      } else if (role === 'Security Guard') {
+        if (badge) {
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300';
+          badge.innerText = 'Security Personnel';
+        }
+        subjectSelect.value = 'N/A (General Duties)';
+        formMasterSelect.value = 'N/A (Support Staff)';
+        degreeSelect.value = 'Matriculation (SSC)';
+        if (majorInput && !majorInput.value) majorInput.placeholder = 'e.g. Matric / Ex-Armed Forces';
+      } else {
+        if (badge) {
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300';
+          badge.innerText = 'Academic Faculty';
+        }
+        if (subjectSelect.value.includes('N/A')) {
+          subjectSelect.value = 'Mathematics';
+        }
+        if (formMasterSelect.value.includes('N/A')) {
+          formMasterSelect.value = 'None';
+        }
+        degreeSelect.value = "Bachelor's (BS / BA / BSc / B.Ed)";
+        if (majorInput) majorInput.placeholder = 'e.g. BS Mathematics, B.Ed';
+      }
+    }
+
+    function toggleQuickAddSubject(show = true) {
+      const box = document.getElementById('quickAddSubjectBox');
+      const input = document.getElementById('quickNewSubjectName');
+      if (show) {
+        box.classList.remove('hidden');
+        input.focus();
+      } else {
+        box.classList.add('hidden');
+        input.value = '';
+      }
+    }
+
+    function confirmAddQuickSubject() {
+      const input = document.getElementById('quickNewSubjectName');
+      const name = input.value.trim();
+      if (!name) {
+        showToast('Enter Subject', 'Please type the name of the subject.', 'error');
+        input.focus();
+        return;
+      }
+
+      const select = document.getElementById('facSubject');
+      let existingOption = Array.from(select.options).find(opt => opt.value.toLowerCase() === name.toLowerCase());
+      if (existingOption) {
+        select.value = existingOption.value;
+        showToast('Subject Selected', `"${name}" is already in the list.`, 'info');
+      } else {
+        const newOpt = document.createElement('option');
+        newOpt.value = name;
+        newOpt.text = name;
+        const naOpt = Array.from(select.options).find(opt => opt.value.includes('N/A'));
+        if (naOpt) {
+          select.insertBefore(newOpt, naOpt);
+        } else {
+          select.appendChild(newOpt);
+        }
+        select.value = name;
+        showToast('Subject Added', `"${name}" added to subject options!`, 'success');
+      }
+
+      toggleQuickAddSubject(false);
+    }
+
+    function resetAddFacultyForm() {
+      const form = document.getElementById('newFacultyForm');
+      if (form) form.reset();
+      removeFacultyPhoto();
+      handleFacGenderChange('Male');
+      handleRoleChange('Teacher');
+      toggleQuickAddSubject(false);
+      showToast('Form Cleared', 'Appointment form reset to defaults.', 'info');
+    }
+
+    let empSerialCounter = 8;
     function handleCreateFaculty(e) {
       e.preventDefault();
+      const title = document.getElementById('facTitle').value;
       const name = document.getElementById('facName').value.trim();
-      const desig = document.getElementById('facDesig').value;
-      const dept = document.getElementById('facDept').value;
-      const degree = document.getElementById('facDegree').value.trim();
-      const email = document.getElementById('facEmail').value.trim();
+      const role = document.getElementById('facRole').value;
       const phone = document.getElementById('facPhone').value.trim();
-      const office = document.getElementById('facOffice').value.trim() || 'Main Campus';
+      const email = document.getElementById('facEmail').value.trim();
+      const gender = document.querySelector('input[name="facGender"]:checked')?.value || 'Male';
+      const subject = document.getElementById('facSubject').value;
+      const formMaster = document.getElementById('facFormMaster').value;
+      const degreeLevel = document.getElementById('facDegreeLevel').value;
+      const degreeMajor = document.getElementById('facDegreeMajor').value.trim();
+      const note = document.getElementById('facNote').value.trim();
 
-      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-      const tbody = document.getElementById('facultyTableBody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
-              ${initials}
-            </div>
-            <div>
-              <div class="font-bold text-slate-900 dark:text-white">${escapeHtml(name)}</div>
-              <div class="text-[11px] text-slate-400">${escapeHtml(desig)}</div>
-            </div>
-          </div>
-        </td>
-        <td><span class="font-semibold text-xs">${escapeHtml(desig)}</span></td>
-        <td>${escapeHtml(dept)}</td>
-        <td><span class="badge badge-neutral">${escapeHtml(degree)}</span></td>
-        <td>
-          <div class="text-xs font-semibold">${escapeHtml(email)}</div>
-          <div class="text-[11px] text-slate-400">${escapeHtml(phone)}</div>
-        </td>
-        <td>${escapeHtml(office)}</td>
-        <td><span class="badge badge-success"><i class="fa-solid fa-circle text-[8px]"></i> On Campus</span></td>
-        <td class="text-right">
-          <button onclick="showToast('Profile Opened', '${escapeHtml(name)} record', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">
-            <i class="fa-solid fa-id-badge text-xs"></i>
-          </button>
-        </td>
-      `;
+      const photoImg = document.getElementById('facPhotoImg');
+      const photoSrc = (!photoImg.classList.contains('hidden') && photoImg.src) ? photoImg.src : '';
 
-      tbody.prepend(tr);
+      const empId = `emp-2026-${String(empSerialCounter++).padStart(3, '0')}`;
+
+      const newFaculty = {
+        id: empId,
+        title,
+        name,
+        role,
+        gender,
+        phone,
+        email,
+        subject,
+        formMaster,
+        degreeLevel,
+        degreeMajor,
+        dutyPost: role === 'Teacher' ? 'Academic Wing' : 'Main Campus',
+        joiningDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+        note,
+        status: "On Duty",
+        photo: photoSrc
+      };
+
+      facultyData.unshift(newFaculty);
+      saveFacultyData();
+      renderFacultyTable();
       closeModal('addFacultyModal');
-      document.getElementById('newFacultyForm').reset();
-      showToast('Faculty Appointed', `${name} added to ${dept}.`, 'success');
+      resetAddFacultyForm();
+      showToast('Staff Appointed', `${title} ${name} registered as ${role} (${empId}).`, 'success');
       return false;
+    }
+
+    // Initialize Faculty Page Data
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFacultyData();
+      renderFacultyTable();
+    });
+
+    // Auto-open modal if URL has hash #add-faculty
+    if (window.location.hash === '#add-faculty' || window.location.hash === '#new-teacher') {
+      setTimeout(() => {
+        openModal('addFacultyModal');
+      }, 300);
     }
   </script>
 </body>

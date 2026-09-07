@@ -38,7 +38,7 @@
     <!-- Mobile Drawer Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Sidebar Navigation -->
+                <!-- Sidebar Navigation -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-brand">
@@ -47,7 +47,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>Kohat Institute</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +59,26 @@
             <li>
               <a href="index.html" class="nav-link active">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +91,26 @@
             <li>
               <a href="courses.html" class="nav-link">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +122,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +141,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +151,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -202,16 +203,40 @@
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <!-- Public Portal Link -->
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
             <span>Public Site</span>
           </a>
-
-          <!-- Dark/Light Theme Toggle -->
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <!-- Notifications Button & Popover -->
           <div class="relative">
@@ -292,7 +317,7 @@
               </p>
             </div>
             <div class="flex items-center gap-3 shrink-0">
-              <a href="students.html" class="btn-kims btn-gold text-xs sm:text-sm">
+              <a href="students.html#add-student" class="btn-kims btn-gold text-xs sm:text-sm">
                 <i class="fa-solid fa-user-plus"></i>
                 <span>Add Student</span>
               </a>

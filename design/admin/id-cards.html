@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ID Card Generation & Badging - KIMS Admin Portal</title>
-  <meta name="description" content="KIMS Institutional Management System Automated Student and Teacher ID Card Generator (Module 36)">
+  <meta name="description" content="KIMS Institutional Management System Automated Student and Teacher Portrait ID Card Generator with Front and Back Views (Module 36)">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,9 +27,253 @@
   </script>
 
   <!-- Google Fonts & FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&family=Great+Vibes&family=Libre+Barcode+39&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    /* Physical CR80 Portrait ID Card Dimensions (standard 54mm x 86mm ratio) */
+    .id-card-lanyard-holder {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      border-radius: 20px;
+      padding: 18px 14px 14px 14px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .dark .id-card-lanyard-holder {
+      background: rgba(15, 23, 42, 0.5);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Top Lanyard Clip Assembly */
+    .lanyard-clip-assembly {
+      position: absolute;
+      top: -38px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+    }
+    .lanyard-strap {
+      width: 22px;
+      height: 24px;
+      background: #1e3a8a; /* dynamically tinted by theme */
+      border-radius: 4px 4px 0 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    .lanyard-strap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #94a3b8;
+    }
+    .lanyard-metal-clip {
+      width: 16px;
+      height: 18px;
+      background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #cbd5e1 100%);
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    .lanyard-metal-clip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border: 2px solid #64748b;
+      border-radius: 50%;
+    }
+    .lanyard-slot-hole {
+      width: 26px;
+      height: 5px;
+      background: #cbd5e1;
+      border-radius: 4px;
+      margin: 0 auto 10px auto;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+    .dark .lanyard-slot-hole {
+      background: #334155;
+    }
+
+    /* Portrait Physical Card Canvas */
+    .cr80-portrait-card {
+      width: 255px;
+      height: 405px;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border: 1px solid #e2e8f0;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Theme Color Variables Applied to Cards */
+    /* 1. Theme Navy Blue (Reference Image) */
+    .theme-navy .card-header-bg {
+      background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%);
+      color: #ffffff;
+    }
+    .theme-navy .card-wave-fill {
+      fill: #1e40af;
+    }
+    .theme-navy .card-accent-text {
+      color: #1d4ed8;
+    }
+    .theme-navy .card-photo-border {
+      border-color: #2563eb;
+    }
+    .theme-navy .card-qr-color {
+      color: #1d4ed8;
+    }
+    .theme-navy .lanyard-strap {
+      background: #1e3a8a;
+    }
+    .theme-navy .card-stripe-bg {
+      background: #1e40af;
+    }
+
+    /* 2. Theme Royal Emerald (KIMS Green) */
+    .theme-emerald .card-header-bg {
+      background: linear-gradient(180deg, #047857 0%, #064e3b 100%);
+      color: #ffffff;
+    }
+    .theme-emerald .card-wave-fill {
+      fill: #064e3b;
+    }
+    .theme-emerald .card-accent-text {
+      color: #047857;
+    }
+    .theme-emerald .card-photo-border {
+      border-color: #059669;
+    }
+    .theme-emerald .card-qr-color {
+      color: #047857;
+    }
+    .theme-emerald .lanyard-strap {
+      background: #064e3b;
+    }
+    .theme-emerald .card-stripe-bg {
+      background: #064e3b;
+    }
+
+    /* 3. Theme Burgundy / Maroon */
+    .theme-burgundy .card-header-bg {
+      background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%);
+      color: #ffffff;
+    }
+    .theme-burgundy .card-wave-fill {
+      fill: #7f1d1d;
+    }
+    .theme-burgundy .card-accent-text {
+      color: #991b1b;
+    }
+    .theme-burgundy .card-photo-border {
+      border-color: #b91c1c;
+    }
+    .theme-burgundy .card-qr-color {
+      color: #991b1b;
+    }
+    .theme-burgundy .lanyard-strap {
+      background: #7f1d1d;
+    }
+    .theme-burgundy .card-stripe-bg {
+      background: #7f1d1d;
+    }
+
+    /* 4. Theme Slate Onyx */
+    .theme-slate .card-header-bg {
+      background: linear-gradient(180deg, #334155 0%, #0f172a 100%);
+      color: #ffffff;
+    }
+    .theme-slate .card-wave-fill {
+      fill: #0f172a;
+    }
+    .theme-slate .card-accent-text {
+      color: #0f172a;
+    }
+    .theme-slate .card-photo-border {
+      border-color: #475569;
+    }
+    .theme-slate .card-qr-color {
+      color: #0f172a;
+    }
+    .theme-slate .lanyard-strap {
+      background: #1e293b;
+    }
+    .theme-slate .card-stripe-bg {
+      background: #0f172a;
+    }
+
+    /* Cursive Signature Font */
+    .principal-signature-font {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.35rem;
+      line-height: 1;
+      color: #0f172a;
+      transform: rotate(-3deg);
+      display: inline-block;
+    }
+
+    /* Barcode simulation font */
+    .barcode-font {
+      font-family: 'Libre Barcode 39', cursive;
+      font-size: 1.7rem;
+      line-height: 1;
+      color: #334155;
+      letter-spacing: 2px;
+    }
+
+    /* Print styling strictly for CR80 ID cards */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printAreaCardsWrapper, #printAreaCardsWrapper * {
+        visibility: visible;
+      }
+      #printAreaCardsWrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 20px !important;
+        justify-content: center !important;
+        padding: 20px !important;
+        background: white !important;
+      }
+      .id-card-lanyard-holder {
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .lanyard-clip-assembly {
+        display: none !important;
+      }
+      .cr80-portrait-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -38,7 +282,7 @@
     <!-- Mobile Drawer Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Sidebar Navigation -->
+            <!-- Sidebar Navigation -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-brand">
@@ -47,7 +291,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>EduOS v2.4</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +303,26 @@
             <li>
               <a href="index.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +335,26 @@
             <li>
               <a href="courses.html" class="nav-link">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +366,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +385,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +395,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link active">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -197,19 +442,44 @@
           
           <div class="header-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search student or faculty ID card...">
+            <input type="text" id="quickCardSearch" onkeyup="searchAndSelectStudent(this.value)" placeholder="Search student by Roll #, name, class...">
           </div>
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
             <span>Public Site</span>
           </a>
-
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <div class="header-profile-menu">
             <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
@@ -229,78 +499,236 @@
         <!-- Title Bar -->
         <div class="page-header-bar">
           <div class="page-title">
-            <h1>Automated ID Card Generation System</h1>
-            <p>Generate verifiable institutional credentials for scholars and faculty directly from database records without re-entry (Module 36).</p>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-id-badge mr-1"></i>Official CR80 PVC Badging</span>
+              <span class="text-xs font-semibold text-slate-400">Portrait Dual-Sided Studio</span>
+            </div>
+            <h1>Portrait ID Card Generator (Front & Back)</h1>
+            <p>Generate professional vertical PVC identification cards with custom themes, QR authentication, and live dynamic data customization.</p>
           </div>
-          <div class="page-actions">
+          <div class="page-actions flex flex-wrap gap-2">
             <button type="button" onclick="window.print()" class="btn-kims btn-primary">
-              <i class="fa-solid fa-print"></i>
-              <span>Print Badge Preview</span>
+              <i class="fa-solid fa-print mr-1"></i>
+              <span>Print Both Sides</span>
+            </button>
+            <button type="button" onclick="exportCardPdf()" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-file-pdf mr-1"></i>
+              <span>Export PDF / Image</span>
             </button>
           </div>
         </div>
 
-        <!-- Toggle Mode -->
-        <div class="flex items-center gap-3 mb-6">
-          <button id="tabStudent" onclick="switchIdCardType('student')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md">
-            <i class="fa-solid fa-user-graduate mr-1.5"></i> Student ID Cards
-          </button>
-          <button id="tabFaculty" onclick="switchIdCardType('faculty')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-            <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Teacher ID Cards
-          </button>
+        <!-- Role Switcher & Theme Selector Bar -->
+        <div class="admin-card p-3 mb-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+          
+          <!-- Role Switcher (Student vs Teacher) -->
+          <div class="flex items-center gap-2">
+            <button type="button" id="roleBtnStudent" onclick="switchIdRole('student', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Student ID Card</span>
+            </button>
+            <button type="button" id="roleBtnTeacher" onclick="switchIdRole('teacher', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <span>Teacher & Staff Card</span>
+            </button>
+          </div>
+
+          <!-- Color Theme Picker -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1">Card Palette:</span>
+            
+            <!-- 1. Navy Blue (Reference Photo Theme) -->
+            <button type="button" onclick="switchCardTheme('theme-navy')" title="Classic Navy Blue (Reference Design)" class="theme-picker-btn w-8 h-8 rounded-full bg-blue-700 border-2 border-white dark:border-slate-800 shadow-sm transition transform hover:scale-110 flex items-center justify-center text-white text-xs">
+              <i class="fa-solid fa-check text-[10px] theme-check-icon"></i>
+            </button>
+            <!-- 2. Royal Emerald (KIMS Green) -->
+            <button type="button" onclick="switchCardTheme('theme-emerald')" title="Royal Emerald & Gold" class="theme-picker-btn w-8 h-8 rounded-full bg-emerald-700 border-2 border-white dark:border-slate-800 shadow-sm transition transform hover:scale-110 flex items-center justify-center text-white text-xs">
+              <i class="fa-solid fa-check text-[10px] theme-check-icon hidden"></i>
+            </button>
+            <!-- 3. Burgundy Maroon -->
+            <button type="button" onclick="switchCardTheme('theme-burgundy')" title="Prestige Burgundy & Gold" class="theme-picker-btn w-8 h-8 rounded-full bg-rose-800 border-2 border-white dark:border-slate-800 shadow-sm transition transform hover:scale-110 flex items-center justify-center text-white text-xs">
+              <i class="fa-solid fa-check text-[10px] theme-check-icon hidden"></i>
+            </button>
+            <!-- 4. Slate Onyx -->
+            <button type="button" onclick="switchCardTheme('theme-slate')" title="Slate Dark & Silver" class="theme-picker-btn w-8 h-8 rounded-full bg-slate-800 border-2 border-white dark:border-slate-800 shadow-sm transition transform hover:scale-110 flex items-center justify-center text-white text-xs">
+              <i class="fa-solid fa-check text-[10px] theme-check-icon hidden"></i>
+            </button>
+
+            <!-- Display Mode Toggle (Side-by-Side vs Front Only vs Back Only) -->
+            <div class="ml-3 pl-3 border-l border-slate-200 dark:border-slate-700 flex items-center gap-1">
+              <button type="button" id="btnViewBoth" onclick="toggleCardDisplayView('both')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white" title="Show Front & Back Side-by-Side">
+                Both Sides
+              </button>
+              <button type="button" id="btnViewFront" onclick="toggleCardDisplayView('front')" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800" title="Show Front Only">
+                Front
+              </button>
+              <button type="button" id="btnViewBack" onclick="toggleCardDisplayView('back')" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800" title="Show Back Only">
+                Back
+              </button>
+            </div>
+          </div>
+
         </div>
 
-        <!-- ID Card Workspace Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Main Workspace Grid: Controls & Customizer Form (Left 7 Cols) + Live Badge Preview (Right 5 Cols) -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-5 items-start mb-6">
 
-          <!-- Left Column: Card Selector & Customizer (7 Cols) -->
-          <div class="lg:col-span-7 space-y-6">
+          <!-- Left Column: Quick Profile Select & Dynamic Data Form -->
+          <div class="xl:col-span-5 space-y-4">
 
+            <!-- Card: Select Record & Autofill -->
             <div class="admin-card">
               <div class="card-header">
                 <div>
-                  <div class="card-title">Select Record for Automated Generation</div>
-                  <div class="card-subtitle">Information is pulled directly from verified administrative dossier</div>
+                  <div class="card-title text-sm">1. Select Registered Scholar / Staff</div>
+                  <div class="card-subtitle text-xs">Autofill credentials directly from active admission directory</div>
                 </div>
+                <span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-database mr-1"></i>Live Sync</span>
               </div>
+              <div class="card-body space-y-3">
+                <div id="studentDropdownWrapper">
+                  <label class="form-label text-xs font-bold" for="selectStudentDossier">
+                    Select Enrolled High School Scholar:
+                  </label>
+                  <select id="selectStudentDossier" onchange="handleSelectStudent(this.value)" class="form-control font-semibold text-xs text-slate-800 dark:text-white">
+                    <!-- Populated dynamically from localStorage['kims_students_data'] -->
+                  </select>
+                </div>
+
+                <div id="teacherDropdownWrapper" class="hidden">
+                  <label class="form-label text-xs font-bold" for="selectTeacherDossier">
+                    Select High School Faculty Member:
+                  </label>
+                  <select id="selectTeacherDossier" onchange="handleSelectTeacher(this.value)" class="form-control font-semibold text-xs text-slate-800 dark:text-white">
+                    <option value="tariq">Sir Tariq Mehmood Afridi (Senior Physics Lecturer - FAC-2026-018)</option>
+                    <option value="naila">Ms. Naila Jabeen Khattak (Senior Mathematics Teacher - FAC-2026-025)</option>
+                    <option value="bilal">Sir Bilal Ahmed Bangash (Chemistry Dept Incharge - FAC-2026-031)</option>
+                    <option value="asim">Dr. Asim Shah Shinwari (Biology & Science Dean - FAC-2026-004)</option>
+                  </select>
+                </div>
+
+                <p class="text-[11px] text-slate-400">
+                  Selecting a record automatically updates all fields below. You can also customize or type any custom data anytime.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card: Dynamic Form Editor -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title text-sm">2. Live Dynamic Card Customizer</div>
+                  <div class="card-subtitle text-xs">Every keystroke updates the portrait preview in real time</div>
+                </div>
+                <button type="button" onclick="resetCardToDefault()" class="text-xs text-slate-400 hover:text-rose-500 transition font-semibold">
+                  <i class="fa-solid fa-rotate-left mr-1"></i>Reset
+                </button>
+              </div>
+
               <div class="card-body space-y-4">
-                
-                <div id="studentSelectorBox">
-                  <label class="form-label">Select Student Scholar</label>
-                  <select class="form-control" id="selectStudentProfile" onchange="renderCardData()">
-                    <option value="abdullah">Abdullah Khan (KIMS-2024-CS-014 - BS CS)</option>
-                    <option value="fatima">Fatima Bibi (KIMS-2023-PH-029 - Pharm-D)</option>
-                    <option value="bilal">Bilal Ahmed (KIMS-2025-BB-077 - BBA)</option>
-                  </select>
-                </div>
 
-                <div id="facultySelectorBox" class="hidden">
-                  <label class="form-label">Select Faculty Member</label>
-                  <select class="form-control" id="selectFacultyProfile" onchange="renderCardData()">
-                    <option value="tariq">Prof. Dr. Tariq Mehmood (HOD Computer Science)</option>
-                    <option value="nargis">Prof. Dr. Nargis Parveen (Dean Faculty of Pharmacy)</option>
-                    <option value="faisal">Engr. Shah Faisal (Assistant Professor SE)</option>
-                  </select>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 text-xs pt-2">
-                  <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
-                    <span class="text-slate-400 block mb-1">Issue Date:</span>
-                    <strong class="text-slate-800 dark:text-white">Sep 01, 2026</strong>
+                <!-- Photo Upload & Quick Presets -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80">
+                  <div class="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+                    <span>Card Photograph (Portrait 3:4)</span>
+                    <span class="text-[10px] text-emerald-600 font-semibold">PNG / JPG Supported</span>
                   </div>
-                  <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
-                    <span class="text-slate-400 block mb-1">Valid Until:</span>
-                    <strong class="text-emerald-600">Aug 31, 2028</strong>
+                  <div class="flex items-center gap-3">
+                    <label for="uploadCardPhoto" class="btn-kims btn-secondary text-xs !py-1.5 cursor-pointer flex items-center gap-1.5 shadow-xs">
+                      <i class="fa-solid fa-camera text-emerald-600"></i>
+                      <span>Upload Custom Photo</span>
+                    </label>
+                    <input type="file" id="uploadCardPhoto" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+
+                    <button type="button" onclick="usePresetPhoto('student_boy')" class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-[10px] font-bold text-slate-700 dark:text-slate-300">
+                      Boy Preset
+                    </button>
+                    <button type="button" onclick="usePresetPhoto('student_girl')" class="px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-[10px] font-bold text-slate-700 dark:text-slate-300">
+                      Girl Preset
+                    </button>
+                    <button type="button" onclick="clearCardPhoto()" class="text-[10px] text-rose-500 font-semibold hover:underline">
+                      Use Initials
+                    </button>
                   </div>
                 </div>
 
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-2">
-                  <button type="button" onclick="showToast('Badge Downloaded', 'PDF ID Card rendered in high-resolution 300 DPI.', 'success')" class="btn-kims btn-secondary text-xs">
-                    <i class="fa-solid fa-download"></i> Download Vector PDF
-                  </button>
-                  <button type="button" onclick="showToast('NFC Sync', 'Smart card contactless chip serialized.', 'info')" class="btn-kims btn-secondary text-xs">
-                    <i class="fa-solid fa-wifi"></i> Write RFID / NFC
-                  </button>
+                <!-- Form Fields Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                  
+                  <!-- Full Legal Name -->
+                  <div>
+                    <label class="form-label" for="inputFullName">Full Name *</label>
+                    <input type="text" id="inputFullName" class="form-control" value="Muhammad Huzaifa Khan" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- ID / Roll No -->
+                  <div>
+                    <label class="form-label" for="inputIdNumber">Student / Card Roll # *</label>
+                    <input type="text" id="inputIdNumber" class="form-control font-mono font-bold text-emerald-700 dark:text-emerald-400" value="KIMS-2026-04851" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Father's Name -->
+                  <div>
+                    <label class="form-label" for="inputFatherName">Father's Name *</label>
+                    <input type="text" id="inputFatherName" class="form-control" value="Mr. Tariq Mehmood Afridi" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Class & Section or Designation -->
+                  <div>
+                    <label class="form-label" for="inputClassSection" id="labelClassOrDesig">Class & Section *</label>
+                    <input type="text" id="inputClassSection" class="form-control" value="10th Matric (Science)" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Date of Birth (DOB) -->
+                  <div>
+                    <label class="form-label" for="inputDob">Date of Birth (DOB) *</label>
+                    <input type="text" id="inputDob" class="form-control font-mono" value="14/03/2010" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Contact / WhatsApp -->
+                  <div>
+                    <label class="form-label" for="inputContactPhone">Contact / WhatsApp No. *</label>
+                    <input type="text" id="inputContactPhone" class="form-control font-mono" value="0333-9182341" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Blood Group -->
+                  <div>
+                    <label class="form-label" for="inputBloodGroup">Blood Group *</label>
+                    <select id="inputBloodGroup" class="form-control font-bold" onchange="updateLiveCard()">
+                      <option value="B+ Positive" selected>B+ Positive</option>
+                      <option value="A+ Positive">A+ Positive</option>
+                      <option value="O+ Positive">O+ Positive</option>
+                      <option value="AB+ Positive">AB+ Positive</option>
+                      <option value="B- Negative">B- Negative</option>
+                      <option value="A- Negative">A- Negative</option>
+                      <option value="O- Negative">O- Negative</option>
+                      <option value="AB- Negative">AB- Negative</option>
+                    </select>
+                  </div>
+
+                  <!-- Residential Address -->
+                  <div class="sm:col-span-2">
+                    <label class="form-label" for="inputAddress">Residential Address *</label>
+                    <input type="text" id="inputAddress" class="form-control" value="H.No 114, Sector 3, KDA, Kohat" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Validity & Issue Date -->
+                  <div>
+                    <label class="form-label" for="inputIssueDate">Issue Date</label>
+                    <input type="text" id="inputIssueDate" class="form-control font-mono" value="Sep 2026" oninput="updateLiveCard()">
+                  </div>
+
+                  <div>
+                    <label class="form-label" for="inputValidUntil">Valid Until / Expiry</label>
+                    <input type="text" id="inputValidUntil" class="form-control font-mono" value="Aug 2028" oninput="updateLiveCard()">
+                  </div>
+
+                  <!-- Principal Signature Title -->
+                  <div class="sm:col-span-2">
+                    <label class="form-label" for="inputPrincipalName">Principal Signatory Title</label>
+                    <input type="text" id="inputPrincipalName" class="form-control font-semibold" value="Principal Sign" oninput="updateLiveCard()">
+                  </div>
+
                 </div>
 
               </div>
@@ -308,64 +736,258 @@
 
           </div>
 
-          <!-- Right Column: Visual Live Badge Preview (5 Cols) -->
-          <div class="lg:col-span-5 flex flex-col items-center">
+          <!-- Right Column: Visual Live Badge Preview (Front & Back) -->
+          <div class="xl:col-span-7 flex flex-col items-center">
             
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Printable Preview</span>
-
-            <!-- The ID Card Badge -->
-            <div class="id-card-badge-preview p-6 flex flex-col justify-between" id="idBadgeContainer">
+            <div class="sticky top-6 w-full flex flex-col items-center">
               
-              <!-- Card Top Header -->
-              <div>
-                <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-700 border border-amber-400/50 flex items-center justify-center text-amber-300 font-extrabold text-xs">
-                      <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-extrabold text-sm tracking-tight leading-tight text-white">KIMS KOHAT</h4>
-                      <span class="text-[9px] uppercase tracking-wider text-emerald-300 font-semibold block">Institutional ID</span>
-                    </div>
-                  </div>
-                  <div class="id-card-chip"></div>
-                </div>
-
-                <!-- Photo & Name -->
-                <div class="text-center my-3">
-                  <div class="w-24 h-24 rounded-2xl bg-emerald-800 border-2 border-amber-400 mx-auto flex items-center justify-center text-3xl font-black text-amber-300 shadow-xl shadow-emerald-950 mb-3" id="cardAvatar">
-                    AK
-                  </div>
-                  <h3 class="text-lg font-extrabold text-white leading-tight" id="cardName">Abdullah Khan</h3>
-                  <p class="text-xs text-amber-300 font-bold tracking-wide mt-0.5" id="cardRole">BS Computer Science</p>
-                </div>
+              <!-- Top Preview Header & Tag -->
+              <div class="w-full flex items-center justify-between mb-3 px-2">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                  <i class="fa-solid fa-certificate text-emerald-600"></i>
+                  <span>Live CR80 Badge Preview</span>
+                </span>
+                <span class="text-[11px] font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full" id="activeThemeBadge">
+                  Classic Navy Blue
+                </span>
               </div>
 
-              <!-- Card Details Matrix -->
-              <div class="bg-black/25 backdrop-blur-sm rounded-xl p-3 border border-white/10 text-[11px] space-y-1.5 my-2">
-                <div class="flex justify-between">
-                  <span class="text-slate-300">Roll / Card #:</span>
-                  <span class="font-mono font-bold text-white" id="cardId">KIMS-2024-CS-014</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-300">Emergency Phone:</span>
-                  <span class="font-mono text-emerald-200">0333-9821455</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-300">Blood Group:</span>
-                  <span class="font-bold text-rose-400">B+ Positive</span>
-                </div>
-              </div>
+              <!-- CARDS PRINT/DISPLAY WRAPPER (Theme container: theme-navy by default) -->
+              <div id="printAreaCardsWrapper" class="theme-navy flex flex-wrap justify-center items-start gap-4 w-full py-2">
+                
+                <!-- ========================================================= -->
+                <!-- 1. FRONT SIDE ID CARD (CR80 PORTRAIT)                    -->
+                <!-- ========================================================= -->
+                <div id="frontCardHolder" class="id-card-lanyard-holder flex flex-col items-center">
+                  
+                  <!-- Top Realistic Lanyard Clip -->
+                  <div class="lanyard-clip-assembly">
+                    <div class="lanyard-strap"></div>
+                    <div class="lanyard-metal-clip"></div>
+                  </div>
 
-              <!-- Card Bottom -->
-              <div class="pt-3 border-t border-white/20 flex items-center justify-between text-[9px] text-slate-300">
-                <div>
-                  <span class="block text-emerald-300 font-bold">Kohat, KP, Pakistan</span>
-                  <span>www.kims.edu.pk</span>
+                  <!-- Top Slot Hole -->
+                  <div class="lanyard-slot-hole"></div>
+
+                  <!-- Actual Physical Portrait Card -->
+                  <div class="cr80-portrait-card" id="idCardFront">
+                    
+                    <!-- Card Top Header Block -->
+                    <div class="card-header-bg pt-3 px-3 pb-1 text-center relative">
+                      <div class="flex items-center justify-center gap-2 mb-0.5">
+                        <!-- School Crest Logo -->
+                        <div class="w-8 h-8 rounded-full bg-white text-blue-900 flex items-center justify-center text-sm font-black shadow-xs shrink-0">
+                          <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="text-center">
+                          <h3 class="text-[11px] font-black uppercase tracking-tight leading-tight m-0 text-white">Kohat Institute of Modern Sciences</h3>
+                          <span class="text-[8px] tracking-wide text-blue-100 font-semibold block uppercase leading-none mt-0.5">(Govt. Recognised / BISE Affiliated)</span>
+                        </div>
+                      </div>
+                      <div class="text-[7.5px] text-blue-100/90 leading-tight mt-0.5">
+                        Cantt Road, Sector 3, KDA, Kohat, Khyber Pakhtunkhwa
+                      </div>
+                      <div class="text-[7.5px] font-mono font-bold text-yellow-300">
+                        Phone No.: 0922-512345 / 0333-9182341
+                      </div>
+                    </div>
+
+                    <!-- Smooth Curved Decorative Ribbon SVG (as in reference image) -->
+                    <div class="w-full -mt-1 leading-none">
+                      <svg viewBox="0 0 290 28" preserveAspectRatio="none" class="w-full h-5">
+                        <path d="M0,0 C90,26 200,26 290,0 L290,28 L0,28 Z" class="card-wave-fill" fill="#1e40af"></path>
+                      </svg>
+                      <svg viewBox="0 0 290 14" preserveAspectRatio="none" class="w-full h-3 -mt-1">
+                        <path d="M0,0 C100,16 190,16 290,0 L290,14 L0,14 Z" fill="#ffffff"></path>
+                      </svg>
+                    </div>
+
+                    <!-- Centered Portrait Photo -->
+                    <div class="relative -mt-4 text-center z-10">
+                      <div class="w-20 h-24 rounded-xl bg-slate-100 card-photo-border border-2 border-blue-600 mx-auto overflow-hidden shadow-md relative flex items-center justify-center">
+                        <img id="cardPhotoImg" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=200&h=250&fit=crop&crop=faces" alt="Student Portrait" class="w-full h-full object-cover">
+                        <div id="cardPhotoFallback" class="hidden w-full h-full bg-gradient-to-br from-blue-700 to-indigo-900 text-white font-black text-2xl flex items-center justify-center">
+                          HK
+                        </div>
+                      </div>
+
+                      <!-- Student Name -->
+                      <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight mt-1 mb-0" id="cardDisplayFullName">
+                        Muhammad Huzaifa Khan
+                      </h4>
+                      <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-blue-100 text-blue-800 uppercase tracking-wider card-badge-role" id="cardDisplayRole">
+                        Class 10th Matric
+                      </span>
+                    </div>
+
+                    <!-- Data Attributes Table (Exact match to reference photo) -->
+                    <div class="px-4 py-1 flex-1 flex flex-col justify-between text-[9px] text-slate-700">
+                      
+                      <div class="space-y-1 mt-1 border-t border-slate-100 pt-1.5 font-medium">
+                        
+                        <div class="flex justify-between border-b border-dotted border-slate-200 pb-0.5">
+                          <span class="text-slate-500">Father's Name:</span>
+                          <strong class="text-slate-900 text-right truncate max-w-[150px]" id="cardDisplayFatherName">Mr. Tariq Mehmood Afridi</strong>
+                        </div>
+
+                        <div class="flex justify-between border-b border-dotted border-slate-200 pb-0.5">
+                          <span class="text-slate-500">DOB:</span>
+                          <span class="font-mono text-slate-900" id="cardDisplayDob">14/03/2010</span>
+                        </div>
+
+                        <div class="flex justify-between border-b border-dotted border-slate-200 pb-0.5">
+                          <span class="text-slate-500">Contact No.:</span>
+                          <span class="font-mono font-bold text-slate-900" id="cardDisplayContact">0333-9182341</span>
+                        </div>
+
+                        <div class="flex justify-between border-b border-dotted border-slate-200 pb-0.5">
+                          <span class="text-slate-500">Blood Group:</span>
+                          <span class="font-bold text-rose-600" id="cardDisplayBlood">B+ Positive</span>
+                        </div>
+
+                        <div class="flex justify-between border-b border-dotted border-slate-200 pb-0.5">
+                          <span class="text-slate-500 shrink-0 mr-1">Address:</span>
+                          <span class="text-slate-800 text-right truncate max-w-[160px]" id="cardDisplayAddress">H.No 114, Sector 3, KDA, Kohat</span>
+                        </div>
+
+                      </div>
+
+                      <!-- Bottom Row: Class on Left & Principal Signature on Right -->
+                      <div class="pt-2 flex items-end justify-between border-t border-slate-200">
+                        <div>
+                          <span class="text-[8px] text-slate-400 block uppercase">Class / Grade:</span>
+                          <strong class="text-xs font-black text-slate-900" id="cardDisplayBottomClass">Class: 10th</strong>
+                          <div class="barcode-font leading-none text-slate-600 mt-0.5" id="cardBarcodeSim">*KIMS2026*</div>
+                        </div>
+
+                        <!-- Principal Signature Script (as in reference image) -->
+                        <div class="text-right">
+                          <div class="principal-signature-font" id="cardPrincipalSignatureText">
+                            Dr. M. Tariq
+                          </div>
+                          <span class="text-[7.5px] font-bold text-slate-500 uppercase tracking-tight block border-t border-slate-400 pt-0.5" id="cardDisplaySignTitle">
+                            Principal Sign
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <!-- Front Label -->
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-2">Front Side</span>
                 </div>
-                <div class="text-center">
-                  <i class="fa-solid fa-qrcode text-2xl text-white"></i>
+
+                <!-- ========================================================= -->
+                <!-- 2. BACK SIDE ID CARD (CR80 PORTRAIT)                     -->
+                <!-- ========================================================= -->
+                <div id="backCardHolder" class="id-card-lanyard-holder flex flex-col items-center">
+                  
+                  <!-- Top Realistic Lanyard Clip -->
+                  <div class="lanyard-clip-assembly">
+                    <div class="lanyard-strap"></div>
+                    <div class="lanyard-metal-clip"></div>
+                  </div>
+
+                  <!-- Top Slot Hole -->
+                  <div class="lanyard-slot-hole"></div>
+
+                  <!-- Actual Physical Back Card -->
+                  <div class="cr80-portrait-card" id="idCardBack">
+                    
+                    <!-- Back Header Stripe -->
+                    <div class="card-stripe-bg py-2 px-3 text-center text-white">
+                      <h4 class="text-[10px] font-extrabold uppercase tracking-wider m-0">KIMS Institutional Directives</h4>
+                      <span class="text-[7.5px] text-blue-100 block">General Rules & Emergency Guidelines</span>
+                    </div>
+
+                    <!-- Rules & Instructions List (as in reference image) -->
+                    <div class="p-3 text-[8.5px] text-slate-700 leading-snug space-y-1.5 flex-1">
+                      
+                      <div class="flex items-start gap-1.5">
+                        <i class="fa-solid fa-circle-dot text-[7px] text-blue-600 mt-0.5 shrink-0"></i>
+                        <span>This ID card is official property of KIMS Kohat and must be displayed visibly at all times within school premises.</span>
+                      </div>
+
+                      <div class="flex items-start gap-1.5">
+                        <i class="fa-solid fa-circle-dot text-[7px] text-blue-600 mt-0.5 shrink-0"></i>
+                        <span>Card is strictly non-transferable. Misuse or sharing with unauthorized individuals will lead to disciplinary proceedings.</span>
+                      </div>
+
+                      <div class="flex items-start gap-1.5">
+                        <i class="fa-solid fa-circle-dot text-[7px] text-blue-600 mt-0.5 shrink-0"></i>
+                        <span>In case of loss or theft, report immediately to the Administration Office for duplicate issuance upon nominal fee.</span>
+                      </div>
+
+                      <div class="flex items-start gap-1.5">
+                        <i class="fa-solid fa-circle-dot text-[7px] text-blue-600 mt-0.5 shrink-0"></i>
+                        <span>Card must be produced upon demand for entry, laboratory access, and BISE examination hall seating.</span>
+                      </div>
+
+                      <!-- High-Resolution Scannable QR Code Box (as in reference image) -->
+                      <div class="my-2 p-2 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center gap-3">
+                        <!-- Custom Stylized SVG QR Code -->
+                        <div class="w-16 h-16 card-qr-color shrink-0 flex items-center justify-center">
+                          <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
+                            <!-- Outer Corners -->
+                            <rect x="5" y="5" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="12" y="12" width="14" height="14" fill="currentColor"/>
+                            <rect x="67" y="5" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="74" y="12" width="14" height="14" fill="currentColor"/>
+                            <rect x="5" y="67" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="12" y="74" width="14" height="14" fill="currentColor"/>
+                            <!-- Data modules simulation -->
+                            <rect x="40" y="8" width="6" height="6" fill="currentColor"/>
+                            <rect x="52" y="14" width="6" height="6" fill="currentColor"/>
+                            <rect x="42" y="24" width="8" height="8" fill="currentColor"/>
+                            <rect x="15" y="44" width="8" height="6" fill="currentColor"/>
+                            <rect x="28" y="40" width="6" height="8" fill="currentColor"/>
+                            <rect x="40" y="40" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <rect x="46" y="46" width="8" height="8" fill="currentColor"/>
+                            <rect x="68" y="42" width="8" height="6" fill="currentColor"/>
+                            <rect x="80" y="48" width="6" height="8" fill="currentColor"/>
+                            <rect x="42" y="68" width="6" height="8" fill="currentColor"/>
+                            <rect x="54" y="74" width="8" height="6" fill="currentColor"/>
+                            <rect x="68" y="68" width="8" height="8" fill="currentColor"/>
+                            <rect x="82" y="76" width="6" height="6" fill="currentColor"/>
+                            <rect x="74" y="86" width="14" height="6" fill="currentColor"/>
+                            <rect x="42" y="84" width="18" height="6" fill="currentColor"/>
+                          </svg>
+                        </div>
+                        <div class="text-[8px] leading-tight">
+                          <span class="font-bold text-slate-900 block uppercase">Scan to Verify</span>
+                          <span class="text-slate-500 font-mono text-[7.5px]" id="cardBackVerifyCode">ID: KIMS-2026-04851</span>
+                          <span class="text-[7px] text-emerald-600 font-bold block mt-0.5">● Active Biometric Record</span>
+                        </div>
+                      </div>
+
+                      <div class="flex items-start gap-1.5 text-slate-500 italic">
+                        <i class="fa-solid fa-location-arrow text-[7px] text-blue-600 mt-0.5 shrink-0"></i>
+                        <span>If found, please return to: KIMS Campus, Cantt Road, Sector 3 KDA, Kohat.</span>
+                      </div>
+
+                    </div>
+
+                    <!-- Back Footer Official Details (as in reference image) -->
+                    <div class="bg-slate-50 border-t border-slate-200 py-2 px-3 text-center text-[7.5px] text-slate-500">
+                      <div class="font-bold text-blue-700 tracking-wide" id="cardBackWebsite">
+                        www.kims.edu.pk &bull; info@kims.edu.pk
+                      </div>
+                      <div class="font-medium text-slate-600 mt-0.5">
+                        Emergency Control: 0922-512345 | 0333-9182341
+                      </div>
+                      <div class="text-[7px] text-slate-400 mt-0.5">
+                        Affiliated with BISE Kohat &bull; ISO 9001:2015 Certified
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Back Label -->
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-2">Back Side</span>
                 </div>
+
               </div>
 
             </div>
@@ -392,9 +1014,9 @@
         <i class="fa-solid fa-id-card"></i>
         <span>ID Cards</span>
       </a>
-      <a href="fees.html" class="bottom-nav-item">
-        <i class="fa-solid fa-coins"></i>
-        <span>Fees</span>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
       </a>
       <button type="button" class="bottom-nav-item mobile-menu-trigger">
         <i class="fa-solid fa-bars"></i>
@@ -409,63 +1031,415 @@
 
   <script src="js/admin.js"></script>
   <script>
-    let currentMode = 'student';
+    // =========================================================================
+    // ID CARD GENERATOR JAVASCRIPT LOGIC
+    // =========================================================================
 
-    function switchIdCardType(type) {
-      currentMode = type;
-      if (type === 'student') {
-        document.getElementById('tabStudent').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md';
-        document.getElementById('tabFaculty').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
-        document.getElementById('studentSelectorBox').classList.remove('hidden');
-        document.getElementById('facultySelectorBox').classList.add('hidden');
-      } else {
-        document.getElementById('tabFaculty').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-md';
-        document.getElementById('tabStudent').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
-        document.getElementById('facultySelectorBox').classList.remove('hidden');
-        document.getElementById('studentSelectorBox').classList.add('hidden');
+    let currentRole = 'student';
+    let currentTheme = 'theme-navy';
+
+    // Preset High School Students Data
+    const DEFAULT_STUDENTS_PRESET = [
+      {
+        id: "KIMS-2026-04851",
+        name: "Muhammad Huzaifa Khan",
+        fatherName: "Mr. Tariq Mehmood Afridi",
+        admitClass: "10th Matric (Science)",
+        dob: "14/03/2010",
+        phone: "0333-9182341",
+        blood: "B+ Positive",
+        address: "H.No 42, St 7, Umarzai, Kohat",
+        photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=200&h=250&fit=crop&crop=faces"
+      },
+      {
+        id: "KIMS-2026-04852",
+        name: "Fatima Zahra Afridi",
+        fatherName: "Mr. Syed Imtiaz Ali Shah",
+        admitClass: "Class 0-1 (Nursery / Prep)",
+        dob: "05/08/2021",
+        phone: "0300-5872149",
+        blood: "O+ Positive",
+        address: "Sector 4, KDA Kohat",
+        photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=250&fit=crop&crop=faces"
+      },
+      {
+        id: "KIMS-2026-04853",
+        name: "Abdullah Khan Bangash",
+        fatherName: "Dr. Asim Shah Bangash",
+        admitClass: "Class 9th (SSC-I Matric)",
+        dob: "20/11/2011",
+        phone: "0312-7654321",
+        blood: "A+ Positive",
+        address: "Officers Colony, Kohat Cantt",
+        photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=250&fit=crop&crop=faces"
+      },
+      {
+        id: "KIMS-2026-04854",
+        name: "Ayesha Noor Khattak",
+        fatherName: "Mr. Noor Muhammad Khattak",
+        admitClass: "Class 5 (Primary)",
+        dob: "12/04/2015",
+        phone: "0345-9110488",
+        blood: "AB+ Positive",
+        address: "Bannu Road, Near City Gate, Kohat",
+        photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=250&fit=crop&crop=faces"
+      },
+      {
+        id: "KIMS-2026-04855",
+        name: "Zaid Khan Orakzai",
+        fatherName: "Mr. Tariq Jamil Orakzai",
+        admitClass: "Class 1 (Primary)",
+        dob: "08/09/2019",
+        phone: "0334-8871234",
+        blood: "B+ Positive",
+        address: "Jungle Khel, Kohat",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=250&fit=crop&crop=faces"
       }
-      renderCardData();
+    ];
+
+    // Faculty Presets
+    const FACULTY_PRESET = {
+      tariq: {
+        id: "FAC-2026-018",
+        name: "Sir Tariq Mehmood Afridi",
+        fatherName: "Mr. Ghulam Sarwar Afridi",
+        designation: "Senior Physics Lecturer",
+        dob: "15/05/1986",
+        phone: "0333-9182341",
+        blood: "B+ Positive",
+        address: "Sector 3, KDA, Kohat",
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=250&fit=crop&crop=faces"
+      },
+      naila: {
+        id: "FAC-2026-025",
+        name: "Ms. Naila Jabeen Khattak",
+        fatherName: "Mr. Jabeen Ullah Khattak",
+        designation: "Senior Mathematics Teacher",
+        dob: "18/08/1990",
+        phone: "0345-9110488",
+        blood: "O+ Positive",
+        address: "Pindi Road, Kohat",
+        photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=250&fit=crop&crop=faces"
+      },
+      bilal: {
+        id: "FAC-2026-031",
+        name: "Sir Bilal Ahmed Bangash",
+        fatherName: "Mr. Shakeel Ahmed Bangash",
+        designation: "Chemistry Dept Incharge",
+        dob: "02/10/1988",
+        phone: "0314-5591280",
+        blood: "A+ Positive",
+        address: "Kohat Cantt, KP",
+        photo: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&h=250&fit=crop&crop=faces"
+      },
+      asim: {
+        id: "FAC-2026-004",
+        name: "Dr. Asim Shah Shinwari",
+        fatherName: "Mr. Syed Zafar Shah Shinwari",
+        designation: "Biology & Science Dean",
+        dob: "10/01/1980",
+        phone: "0312-7654321",
+        blood: "AB+ Positive",
+        address: "University Road, Kohat",
+        photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=250&fit=crop&crop=faces"
+      }
+    };
+
+    // Initialize Student Dropdown from active localStorage or fallback
+    function populateStudentSelect() {
+      const select = document.getElementById('selectStudentDossier');
+      if (!select) return;
+
+      select.innerHTML = '';
+      let students = DEFAULT_STUDENTS_PRESET;
+
+      const stored = localStorage.getItem('kims_students_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.length > 0) {
+            students = parsed;
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      }
+
+      students.forEach((stud, idx) => {
+        const opt = document.createElement('option');
+        opt.value = stud.id;
+        opt.innerText = `${stud.name} (${stud.id} - ${stud.admitClass || 'High School'})`;
+        select.appendChild(opt);
+      });
+
+      // Default load first student
+      if (students.length > 0) {
+        loadStudentIntoForm(students[0]);
+      }
     }
 
-    function renderCardData() {
-      if (currentMode === 'student') {
-        const val = document.getElementById('selectStudentProfile').value;
-        if (val === 'abdullah') {
-          document.getElementById('cardName').innerText = 'Abdullah Khan';
-          document.getElementById('cardRole').innerText = 'BS Computer Science (Sem 5)';
-          document.getElementById('cardId').innerText = 'KIMS-2024-CS-014';
-          document.getElementById('cardAvatar').innerText = 'AK';
-        } else if (val === 'fatima') {
-          document.getElementById('cardName').innerText = 'Fatima Bibi';
-          document.getElementById('cardRole').innerText = 'Doctor of Pharmacy (Sem 7)';
-          document.getElementById('cardId').innerText = 'KIMS-2023-PH-029';
-          document.getElementById('cardAvatar').innerText = 'FB';
-        } else {
-          document.getElementById('cardName').innerText = 'Bilal Ahmed';
-          document.getElementById('cardRole').innerText = 'BBA Business Admin (Sem 3)';
-          document.getElementById('cardId').innerText = 'KIMS-2025-BB-077';
-          document.getElementById('cardAvatar').innerText = 'BA';
-        }
+    function handleSelectStudent(studentId) {
+      let students = DEFAULT_STUDENTS_PRESET;
+      const stored = localStorage.getItem('kims_students_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.length > 0) students = parsed;
+        } catch (e) {}
+      }
+
+      const found = students.find(s => s.id === studentId);
+      if (found) {
+        loadStudentIntoForm(found);
+        showToast('Record Loaded', `Credentials for ${found.name} loaded into ID card studio.`, 'info');
+      }
+    }
+
+    function loadStudentIntoForm(stud) {
+      document.getElementById('inputFullName').value = stud.name || '';
+      document.getElementById('inputIdNumber').value = stud.id || '';
+      document.getElementById('inputFatherName').value = stud.fatherName || 'Parent / Guardian';
+      document.getElementById('inputClassSection').value = stud.admitClass || 'Class 10th Matric';
+      document.getElementById('inputDob').value = stud.dob || '14/03/2010';
+      document.getElementById('inputContactPhone').value = stud.fatherPhone || stud.phone || '0333-9182341';
+      document.getElementById('inputAddress').value = stud.address || 'Kohat, KP, Pakistan';
+      document.getElementById('inputBloodGroup').value = stud.blood || 'B+ Positive';
+
+      // Photo
+      const photoImg = document.getElementById('cardPhotoImg');
+      const fallback = document.getElementById('cardPhotoFallback');
+      if (stud.photo) {
+        photoImg.src = stud.photo;
+        photoImg.classList.remove('hidden');
+        fallback.classList.add('hidden');
       } else {
-        const val = document.getElementById('selectFacultyProfile').value;
-        if (val === 'tariq') {
-          document.getElementById('cardName').innerText = 'Prof. Dr. Tariq Mehmood';
-          document.getElementById('cardRole').innerText = 'Professor & Head of CS';
-          document.getElementById('cardId').innerText = 'EMP-FAC-001';
-          document.getElementById('cardAvatar').innerText = 'TM';
-        } else if (val === 'nargis') {
-          document.getElementById('cardName').innerText = 'Prof. Dr. Nargis Parveen';
-          document.getElementById('cardRole').innerText = 'Dean Faculty of Pharmacy';
-          document.getElementById('cardId').innerText = 'EMP-FAC-002';
-          document.getElementById('cardAvatar').innerText = 'NP';
+        photoImg.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        fallback.innerText = stud.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+      }
+
+      updateLiveCard();
+    }
+
+    function handleSelectTeacher(teacherKey) {
+      const teacher = FACULTY_PRESET[teacherKey];
+      if (!teacher) return;
+
+      document.getElementById('inputFullName').value = teacher.name;
+      document.getElementById('inputIdNumber').value = teacher.id;
+      document.getElementById('inputFatherName').value = teacher.fatherName;
+      document.getElementById('inputClassSection').value = teacher.designation;
+      document.getElementById('inputDob').value = teacher.dob;
+      document.getElementById('inputContactPhone').value = teacher.phone;
+      document.getElementById('inputAddress').value = teacher.address;
+      document.getElementById('inputBloodGroup').value = teacher.blood;
+
+      const photoImg = document.getElementById('cardPhotoImg');
+      const fallback = document.getElementById('cardPhotoFallback');
+      if (teacher.photo) {
+        photoImg.src = teacher.photo;
+        photoImg.classList.remove('hidden');
+        fallback.classList.add('hidden');
+      } else {
+        photoImg.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        fallback.innerText = teacher.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+      }
+
+      updateLiveCard();
+      showToast('Faculty Loaded', `Credentials for ${teacher.name} loaded.`, 'info');
+    }
+
+    // Live Two-Way Binding: Form to Card
+    function updateLiveCard() {
+      const name = document.getElementById('inputFullName').value || 'Muhammad Huzaifa Khan';
+      const id = document.getElementById('inputIdNumber').value || 'KIMS-2026-0000';
+      const father = document.getElementById('inputFatherName').value || 'Mr. Tariq Mehmood Afridi';
+      const classSec = document.getElementById('inputClassSection').value || 'Class / Role';
+      const dob = document.getElementById('inputDob').value || 'DD/MM/YYYY';
+      const phone = document.getElementById('inputContactPhone').value || '0300-0000000';
+      const address = document.getElementById('inputAddress').value || 'Kohat';
+      const blood = document.getElementById('inputBloodGroup').value;
+      const signTitle = document.getElementById('inputPrincipalName').value || 'Principal Sign';
+
+      // Update Front Card DOM
+      document.getElementById('cardDisplayFullName').innerText = name;
+      document.getElementById('cardDisplayRole').innerText = classSec;
+      document.getElementById('cardDisplayFatherName').innerText = father;
+      document.getElementById('cardDisplayDob').innerText = dob;
+      document.getElementById('cardDisplayContact').innerText = phone;
+      document.getElementById('cardDisplayBlood').innerText = blood;
+      document.getElementById('cardDisplayAddress').innerText = address;
+      document.getElementById('cardDisplayBottomClass').innerText = currentRole === 'student' ? `Class: ${classSec.split(' ')[0]}` : classSec;
+      document.getElementById('cardDisplaySignTitle').innerText = signTitle;
+
+      // Clean serial for barcode
+      const cleanId = id.replace(/[^A-Za-z0-9]/g, '');
+      document.getElementById('cardBarcodeSim').innerText = `*${cleanId}*`;
+
+      // Update Back Card DOM
+      document.getElementById('cardBackVerifyCode').innerText = `ID: ${id}`;
+    }
+
+    // Role Switcher: Student vs Teacher
+    function switchIdRole(role, btn) {
+      currentRole = role;
+      const btnStud = document.getElementById('roleBtnStudent');
+      const btnTeach = document.getElementById('roleBtnTeacher');
+      const studWrapper = document.getElementById('studentDropdownWrapper');
+      const teachWrapper = document.getElementById('teacherDropdownWrapper');
+      const labelClass = document.getElementById('labelClassOrDesig');
+
+      if (role === 'student') {
+        btnStud.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        btnTeach.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        studWrapper.classList.remove('hidden');
+        teachWrapper.classList.add('hidden');
+        labelClass.innerText = "Class & Section *";
+        populateStudentSelect();
+      } else {
+        btnTeach.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        btnStud.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        teachWrapper.classList.remove('hidden');
+        studWrapper.classList.add('hidden');
+        labelClass.innerText = "Designation & Dept *";
+        handleSelectTeacher('tariq');
+      }
+    }
+
+    // Theme Switcher: Navy, Emerald, Burgundy, Slate
+    function switchCardTheme(themeClass) {
+      currentTheme = themeClass;
+      const wrapper = document.getElementById('printAreaCardsWrapper');
+      if (wrapper) {
+        wrapper.className = `${themeClass} flex flex-wrap justify-center items-start gap-4 w-full py-2`;
+      }
+
+      // Update theme badge text
+      const badge = document.getElementById('activeThemeBadge');
+      if (badge) {
+        if (themeClass === 'theme-navy') badge.innerText = "Classic Navy Blue";
+        else if (themeClass === 'theme-emerald') badge.innerText = "Royal Emerald & Gold";
+        else if (themeClass === 'theme-burgundy') badge.innerText = "Prestige Burgundy";
+        else if (themeClass === 'theme-slate') badge.innerText = "Modern Slate Onyx";
+      }
+
+      // Toggle check icon on buttons
+      document.querySelectorAll('.theme-picker-btn').forEach(btn => {
+        const icon = btn.querySelector('.theme-check-icon');
+        if (btn.getAttribute('onclick').includes(themeClass)) {
+          icon.classList.remove('hidden');
         } else {
-          document.getElementById('cardName').innerText = 'Engr. Shah Faisal';
-          document.getElementById('cardRole').innerText = 'Assistant Professor (SE)';
-          document.getElementById('cardId').innerText = 'EMP-FAC-014';
-          document.getElementById('cardAvatar').innerText = 'SF';
+          icon.classList.add('hidden');
+        }
+      });
+
+      showToast('Theme Applied', `ID card styled with ${badge.innerText} palette.`, 'info');
+    }
+
+    // Display View Toggle (Both, Front Only, Back Only)
+    function toggleCardDisplayView(mode) {
+      const front = document.getElementById('frontCardHolder');
+      const back = document.getElementById('backCardHolder');
+      const btnBoth = document.getElementById('btnViewBoth');
+      const btnFront = document.getElementById('btnViewFront');
+      const btnBack = document.getElementById('btnViewBack');
+
+      [btnBoth, btnFront, btnBack].forEach(b => {
+        b.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800';
+      });
+
+      if (mode === 'both') {
+        front.classList.remove('hidden');
+        back.classList.remove('hidden');
+        btnBoth.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white';
+      } else if (mode === 'front') {
+        front.classList.remove('hidden');
+        back.classList.add('hidden');
+        btnFront.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white';
+      } else if (mode === 'back') {
+        front.classList.add('hidden');
+        back.classList.remove('hidden');
+        btnBack.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white';
+      }
+    }
+
+    // Custom Photo Upload Handler
+    function handlePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const photoImg = document.getElementById('cardPhotoImg');
+        const fallback = document.getElementById('cardPhotoFallback');
+        photoImg.src = e.target.result;
+        photoImg.classList.remove('hidden');
+        fallback.classList.add('hidden');
+        showToast('Photo Attached', 'Student portrait updated on card.', 'success');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function usePresetPhoto(type) {
+      const photoImg = document.getElementById('cardPhotoImg');
+      const fallback = document.getElementById('cardPhotoFallback');
+      if (type === 'student_boy') {
+        photoImg.src = "https://images.unsplash.com/photo-1544717305-2782549b5136?w=200&h=250&fit=crop&crop=faces";
+      } else {
+        photoImg.src = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=250&fit=crop&crop=faces";
+      }
+      photoImg.classList.remove('hidden');
+      fallback.classList.add('hidden');
+      showToast('Preset Loaded', 'Portrait photo updated.', 'info');
+    }
+
+    function clearCardPhoto() {
+      const photoImg = document.getElementById('cardPhotoImg');
+      const fallback = document.getElementById('cardPhotoFallback');
+      const name = document.getElementById('inputFullName').value || 'Muhammad Huzaifa Khan';
+      photoImg.classList.add('hidden');
+      fallback.classList.remove('hidden');
+      fallback.innerText = name.split(' ').map(n => n[0]).slice(0, 2).join('');
+      showToast('Using Initials', 'Portrait replaced with monogram.', 'info');
+    }
+
+    function resetCardToDefault() {
+      populateStudentSelect();
+      switchCardTheme('theme-navy');
+      toggleCardDisplayView('both');
+      showToast('Reset Complete', 'Card restored to default layout.', 'info');
+    }
+
+    function exportCardPdf() {
+      showToast('Generating Badge', 'Preparing high-resolution 300 DPI print packet...', 'info');
+      setTimeout(() => {
+        window.print();
+      }, 500);
+    }
+
+    function searchAndSelectStudent(val) {
+      if (!val || val.length < 2) return;
+      const term = val.toLowerCase().trim();
+      const select = document.getElementById('selectStudentDossier');
+      if (!select) return;
+
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.toLowerCase().includes(term)) {
+          select.selectedIndex = i;
+          handleSelectStudent(select.options[i].value);
+          break;
         }
       }
     }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      populateStudentSelect();
+      updateLiveCard();
+    });
   </script>
 </body>
 </html>

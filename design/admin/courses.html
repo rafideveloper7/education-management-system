@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses & Academic Programs - KIMS Admin Portal</title>
-  <meta name="description" content="KIMS Institutional Management System Academic Programs Catalog and Courses">
+  <title>Classes, Subjects & Educational Activities - KIMS High School Admin</title>
+  <meta name="description" content="KIMS High School Institutional Management System - Curriculum Subjects & Educational Activities/Tests for Classes 0-1 to 10">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,6 +30,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
+  <style>
+    .teacher-pill-checkbox:checked + label {
+      border-color: #059669;
+      background-color: #ecfdf5;
+      color: #065f46;
+    }
+    .dark .teacher-pill-checkbox:checked + label {
+      border-color: #059669;
+      background-color: rgba(6, 78, 59, 0.4);
+      color: #6ee7b7;
+    }
+  </style>
 </head>
 <body>
 
@@ -38,7 +50,7 @@
     <!-- Mobile Drawer Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Sidebar Navigation -->
+                <!-- Sidebar Navigation -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-brand">
@@ -47,7 +59,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>Kohat Institute</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +71,26 @@
             <li>
               <a href="index.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +103,26 @@
             <li>
               <a href="courses.html" class="nav-link active">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +134,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +153,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +163,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -197,26 +210,51 @@
           
           <div class="header-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" data-table-search="#coursesTable" placeholder="Filter courses by code, title, or instructor...">
+            <input type="text" id="headerQuickSearch" oninput="handleAcademicsSearch(this.value)" placeholder="Search subject, test, activity, teacher or class...">
           </div>
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
-            <span>Public Site</span>
+            <span>Public Portal</span>
           </a>
-
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <div class="header-profile-menu">
             <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
               <div class="profile-avatar">AD</div>
               <div class="hidden md:block">
-                <div class="profile-name">Executive Admin</div>
-                <div class="profile-role">Super Admin</div>
+                <div class="profile-name">Principal / Admin</div>
+                <div class="profile-role">Academic Controller</div>
               </div>
             </button>
           </div>
@@ -229,186 +267,218 @@
         <!-- Title Bar -->
         <div class="page-header-bar">
           <div class="page-title">
-            <h1>Academic Programs & Courses</h1>
-            <p>Maintain accredited degree programs, syllabus catalog, credit allocations, and course assignments.</p>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-school mr-1"></i>High School System</span>
+              <span class="text-xs font-semibold text-slate-400">Classes 0-1 to 10</span>
+            </div>
+            <h1>Classes, Subjects & Educational Activities</h1>
+            <p>Manage high school curriculum subjects and periodic educational activities/tests (Daily, Weekly, Monthly) with multi-teacher assignments.</p>
           </div>
-          <div class="page-actions">
-            <button type="button" data-modal-target="addCourseModal" class="btn-kims btn-primary">
-              <i class="fa-solid fa-folder-plus"></i>
-              <span>Add New Course</span>
+          <div class="page-actions flex flex-wrap gap-2">
+            <button type="button" onclick="openPeriodsTimetableModal()" class="btn-kims bg-slate-800 text-white hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 shadow-xs">
+              <i class="fa-solid fa-clock text-amber-400"></i>
+              <span>Daily Periods & Timetable</span>
+            </button>
+            <button type="button" onclick="openUrgentAssignModal()" class="btn-kims bg-gradient-to-r from-rose-600 to-amber-600 text-white hover:from-rose-700 hover:to-amber-700 shadow-xs">
+              <i class="fa-solid fa-bolt text-yellow-300"></i>
+              <span>⚡ Quick Urgent Assign</span>
+            </button>
+            <button type="button" onclick="openAddModal('subject')" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-book"></i>
+              <span>Add Subject</span>
+            </button>
+            <button type="button" onclick="openAddModal('activity')" class="btn-kims btn-primary">
+              <i class="fa-solid fa-clipboard-question"></i>
+              <span>Add Test / Activity</span>
             </button>
           </div>
         </div>
 
         <!-- Metric Stat Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
-          <div class="admin-card p-5 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
-              <i class="fa-solid fa-graduation-cap"></i>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="admin-card p-4 flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0 shadow-xs">
+              <i class="fa-solid fa-school"></i>
             </div>
             <div>
-              <div class="text-2xl font-extrabold text-slate-900 dark:text-white">36 Programs</div>
-              <div class="text-xs text-slate-400">HEC & Pharmacy Council Approved</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white">12 Classes</div>
+              <div class="text-xs text-slate-400 font-medium">Class 0-1 (Nursery) to Class 10</div>
             </div>
           </div>
 
-          <div class="admin-card p-5 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
-              <i class="fa-solid fa-book"></i>
+          <div class="admin-card p-4 flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl shrink-0 shadow-xs">
+              <i class="fa-solid fa-book-bookmark"></i>
             </div>
             <div>
-              <div class="text-2xl font-extrabold text-slate-900 dark:text-white">142 Courses</div>
-              <div class="text-xs text-slate-400">Undergraduate & Postgrad Modules</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white" id="kpiSubjectCount">0</div>
+              <div class="text-xs text-slate-400 font-medium">Core Curriculum Subjects</div>
             </div>
           </div>
 
-          <div class="admin-card p-5 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
-              <i class="fa-solid fa-award"></i>
+          <div class="admin-card p-4 flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl shrink-0 shadow-xs">
+              <i class="fa-solid fa-list-check"></i>
             </div>
             <div>
-              <div class="text-2xl font-extrabold text-slate-900 dark:text-white">134 Credit Hours</div>
-              <div class="text-xs text-slate-400">Average Degree Graduation Load</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white" id="kpiActivityCount">0</div>
+              <div class="text-xs text-slate-400 font-medium">Daily, Weekly & Monthly Tests</div>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl shrink-0 shadow-xs">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white" id="kpiTeachersAssigned">0</div>
+              <div class="text-xs text-slate-400 font-medium">Faculty Assignments</div>
             </div>
           </div>
         </div>
 
-        <!-- Courses Directory -->
+        <!-- Seasonal Bell Schedule & Today's Urgent Arrangements Ribbon -->
+        <div class="admin-card p-4 mb-6 border-l-4 border-l-amber-500 bg-gradient-to-r from-amber-50/50 via-white to-emerald-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 shadow-xs">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            
+            <!-- Left: Current Season Status -->
+            <div class="flex items-start sm:items-center gap-3">
+              <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 flex items-center justify-center text-xl shrink-0 shadow-xs" id="seasonIconBox">
+                <i class="fa-solid fa-sun"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold text-sm text-slate-900 dark:text-white" id="activeSeasonName">☀️ Summer Season Timetable</span>
+                  <span class="badge badge-success text-[10px] font-bold" id="activeSeasonStatusBadge">Active Bell Schedule</span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="activeSeasonHours">
+                  07:30 AM Assembly • 8 Periods (40 min) • 10:25 AM Recess • Dismissal 01:30 PM
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle: Quick Switch Season Controls -->
+            <div class="flex flex-wrap items-center gap-1.5 p-1.5 bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+              <button type="button" onclick="setSchoolSeason('summer')" id="seasonBtnSummer" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-amber-500 text-white shadow-xs">
+                <i class="fa-solid fa-sun text-[11px]"></i>
+                <span>Summer (07:30 - 01:30)</span>
+              </button>
+              <button type="button" onclick="setSchoolSeason('winter')" id="seasonBtnWinter" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                <i class="fa-solid fa-snowflake text-[11px]"></i>
+                <span>Winter (08:15 - 02:15)</span>
+              </button>
+              <button type="button" onclick="setSchoolSeason('friday')" id="seasonBtnFriday" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                <i class="fa-solid fa-mosque text-[11px]"></i>
+                <span>Friday Special (12:00 PM)</span>
+              </button>
+            </div>
+
+            <!-- Right: Urgent Arrangements Quick Indicator & Action -->
+            <div class="flex items-center gap-2 border-t lg:border-t-0 pt-2 lg:pt-0 border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="openActiveArrangementsModal()" class="px-3.5 py-2 rounded-xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/90 dark:bg-rose-950/40 hover:bg-rose-100 text-rose-700 dark:text-rose-300 text-xs font-bold flex items-center gap-2 transition shadow-xs">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+                <span>Today's Urgent Arrangements (<span id="urgentArrangementCountBadge">1</span>)</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Academic Catalog Directory Card -->
         <div class="admin-card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Curriculum Directory</div>
-              <div class="card-subtitle">Active subjects registered for Fall 2026 term</div>
+          <!-- Card Filter Header -->
+          <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 space-y-4">
+            
+            <!-- Upper row: Heading & Quick Filter Pills -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <div class="card-title flex items-center gap-2">
+                  <span>Academics & Assessment Directory</span>
+                  <span class="badge badge-neutral text-xs" id="displayItemCount">0 Items</span>
+                </div>
+                <div class="card-subtitle text-xs text-slate-400">Class 0-1 to Class 10 High School curriculum subjects, weekly tests, and monthly evaluations</div>
+              </div>
+
+              <!-- Filter Pills (Type) -->
+              <div class="flex flex-wrap items-center gap-1.5" id="typeFilterPills">
+                <button type="button" onclick="filterByType('all', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs">
+                  All (<span id="pillCountAll">0</span>)
+                </button>
+                <button type="button" onclick="filterByType('subject', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  <i class="fa-solid fa-book text-[10px] mr-1"></i>Subjects (<span id="pillCountSubjects">0</span>)
+                </button>
+                <button type="button" onclick="filterByType('activity', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  <i class="fa-solid fa-clipboard-check text-[10px] mr-1"></i>Tests & Activities (<span id="pillCountActivities">0</span>)
+                </button>
+                <button type="button" onclick="filterByType('Daily Test / Activity', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Daily
+                </button>
+                <button type="button" onclick="filterByType('Weekly Test', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Weekly
+                </button>
+                <button type="button" onclick="filterByType('Monthly Assessment', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Monthly
+                </button>
+              </div>
             </div>
-            <div class="flex items-center gap-2">
-              <input 
-                type="text" 
-                data-table-search="#coursesTable" 
-                placeholder="Quick search courses..."
-                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
-              />
+
+            <!-- Lower row: Class Selector & Live Search Input -->
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-1">
+              <div class="sm:col-span-5 md:col-span-4">
+                <div class="relative">
+                  <i class="fa-solid fa-graduation-cap absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <select id="classFilterSelect" onchange="handleClassFilterChange(this.value)" class="form-control pl-9 text-xs font-semibold bg-slate-50 dark:bg-slate-800">
+                    <option value="all">All High School Classes (0-1 to 10)</option>
+                    <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                    <option value="Class Prep / KG">Class Prep / KG</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                    <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-7 md:col-span-8">
+                <div class="relative">
+                  <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input 
+                    type="text" 
+                    id="tableLiveSearch"
+                    oninput="handleAcademicsSearch(this.value)" 
+                    placeholder="Search by title, subject code, assigned teacher, frequency, or syllabus remarks..."
+                    class="form-control pl-9 text-xs bg-slate-50 dark:bg-slate-800"
+                  />
+                </div>
+              </div>
             </div>
+
           </div>
 
+          <!-- Academic Table -->
           <div class="table-responsive">
-            <table class="admin-table" id="coursesTable">
+            <table class="admin-table" id="academicsTable">
               <thead>
                 <tr>
-                  <th>Course Code</th>
-                  <th>Course Title</th>
-                  <th>Department</th>
-                  <th>Credit Hours</th>
-                  <th>Lead Instructor</th>
-                  <th>Enrolled</th>
-                  <th>Status</th>
-                  <th class="text-right">Actions</th>
+                  <th style="min-width: 130px;">Type & Code</th>
+                  <th style="min-width: 240px;">Title & Curriculum</th>
+                  <th style="min-width: 140px;">Target Class</th>
+                  <th style="min-width: 160px;">Schedule / Duration</th>
+                  <th style="min-width: 120px;">Marks / Load</th>
+                  <th style="min-width: 220px;">Assigned Teacher(s)</th>
+                  <th style="min-width: 90px;">Status</th>
+                  <th class="text-right" style="min-width: 120px;">Actions</th>
                 </tr>
               </thead>
-              <tbody id="courseTableBody">
-                <tr>
-                  <td><span class="font-mono font-bold text-xs text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded-md">CS-301</span></td>
-                  <td>
-                    <div class="font-bold text-slate-900 dark:text-white">Data Structures & Algorithms</div>
-                    <div class="text-[11px] text-slate-400">Core CS Requirement</div>
-                  </td>
-                  <td>Computer Science</td>
-                  <td><span class="font-semibold">3 + 1 (Lab)</span></td>
-                  <td>Dr. Tariq Mehmood</td>
-                  <td><span class="font-semibold">185 Students</span></td>
-                  <td><span class="badge badge-success">Active</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for CS-301', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-                      <i class="fa-solid fa-file-lines text-xs"></i>
-                    </button>
-                    <button onclick="showToast('Course Editor', 'Edit CS-301 configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><span class="font-mono font-bold text-xs text-purple-600 bg-purple-50 dark:bg-purple-950 px-2.5 py-1 rounded-md">PH-412</span></td>
-                  <td>
-                    <div class="font-bold text-slate-900 dark:text-white">Advanced Pharmacology & Therapeutics</div>
-                    <div class="text-[11px] text-slate-400">Clinical Pharmacy Focus</div>
-                  </td>
-                  <td>Pharmacy (Pharm-D)</td>
-                  <td><span class="font-semibold">3 + 1 (Lab)</span></td>
-                  <td>Prof. Dr. Nargis Parveen</td>
-                  <td><span class="font-semibold">92 Students</span></td>
-                  <td><span class="badge badge-success">Active</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for PH-412', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-                      <i class="fa-solid fa-file-lines text-xs"></i>
-                    </button>
-                    <button onclick="showToast('Course Editor', 'Edit PH-412 configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><span class="font-mono font-bold text-xs text-blue-600 bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">SE-402</span></td>
-                  <td>
-                    <div class="font-bold text-slate-900 dark:text-white">Software Quality Engineering</div>
-                    <div class="text-[11px] text-slate-400">Software Architecture & Testing</div>
-                  </td>
-                  <td>Software Engineering</td>
-                  <td><span class="font-semibold">3 + 0</span></td>
-                  <td>Engr. Shah Faisal</td>
-                  <td><span class="font-semibold">120 Students</span></td>
-                  <td><span class="badge badge-success">Active</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for SE-402', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-                      <i class="fa-solid fa-file-lines text-xs"></i>
-                    </button>
-                    <button onclick="showToast('Course Editor', 'Edit SE-402 configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><span class="font-mono font-bold text-xs text-amber-600 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded-md">MGT-205</span></td>
-                  <td>
-                    <div class="font-bold text-slate-900 dark:text-white">Principles of Corporate Finance</div>
-                    <div class="text-[11px] text-slate-400">Financial Management Fundamentals</div>
-                  </td>
-                  <td>Management Sciences</td>
-                  <td><span class="font-semibold">3 + 0</span></td>
-                  <td>Mr. Asadullah Bangash</td>
-                  <td><span class="font-semibold">110 Students</span></td>
-                  <td><span class="badge badge-success">Active</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for MGT-205', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-                      <i class="fa-solid fa-file-lines text-xs"></i>
-                    </button>
-                    <button onclick="showToast('Course Editor', 'Edit MGT-205 configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><span class="font-mono font-bold text-xs text-teal-600 bg-teal-50 dark:bg-teal-950 px-2.5 py-1 rounded-md">MLT-301</span></td>
-                  <td>
-                    <div class="font-bold text-slate-900 dark:text-white">Clinical Pathology & Diagnostic Histology</div>
-                    <div class="text-[11px] text-slate-400">Laboratory Medical Science</div>
-                  </td>
-                  <td>Medical Lab Technology</td>
-                  <td><span class="font-semibold">3 + 1 (Lab)</span></td>
-                  <td>Dr. Zubair Shah</td>
-                  <td><span class="font-semibold">74 Students</span></td>
-                  <td><span class="badge badge-success">Active</span></td>
-                  <td class="text-right">
-                    <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for MLT-301', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-                      <i class="fa-solid fa-file-lines text-xs"></i>
-                    </button>
-                    <button onclick="showToast('Course Editor', 'Edit MLT-301 configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
+              <tbody id="academicsTableBody">
+                <!-- Populated dynamically by JavaScript -->
               </tbody>
             </table>
           </div>
@@ -430,11 +500,11 @@
       </a>
       <a href="courses.html" class="bottom-nav-item active">
         <i class="fa-solid fa-book-open"></i>
-        <span>Courses</span>
+        <span>Academics</span>
       </a>
-      <a href="attendance.html" class="bottom-nav-item">
-        <i class="fa-solid fa-calendar-check"></i>
-        <span>Attendance</span>
+      <a href="faculty.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <span>Teachers</span>
       </a>
       <button type="button" class="bottom-nav-item mobile-menu-trigger">
         <i class="fa-solid fa-bars"></i>
@@ -444,65 +514,888 @@
 
   </div>
 
-  <!-- Modal: Add New Course -->
-  <div class="modal-overlay" id="addCourseModal">
-    <div class="modal-container">
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADD NEW SUBJECT OR EDUCATIONAL ACTIVITY / TEST (DUAL-MODE) -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="addSubjectActivityModal">
+    <div class="modal-container !max-w-2xl">
       <div class="modal-header">
-        <h3 class="text-base font-bold text-slate-800 dark:text-white">Add New Academic Course</h3>
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <span id="addModalTitleIcon"><i class="fa-solid fa-circle-plus text-emerald-600"></i></span>
+            <span id="addModalTitleText">Register Academic Subject or Test</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">High School Curriculum (Classes 0-1 to 10) with multi-teacher assignment</p>
+        </div>
         <button type="button" class="modal-close-btn" data-modal-close>
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <form id="newCourseForm" onsubmit="return handleCreateCourse(event)">
-        <div class="modal-body space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="form-group">
-              <label class="form-label">Course Code *</label>
-              <input type="text" id="courseCode" class="form-control" required placeholder="e.g. AI-401">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Credit Hours *</label>
-              <select id="courseCredit" class="form-control" required>
-                <option value="3 + 0">3 + 0 (Theory)</option>
-                <option value="3 + 1 (Lab)">3 + 1 (Theory + Lab)</option>
-                <option value="2 + 1 (Lab)">2 + 1 (Theory + Lab)</option>
-                <option value="4 + 0">4 + 0 (Advanced)</option>
-              </select>
+      <form id="newAcademicForm" onsubmit="return handleCreateAcademicItem(event)">
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+
+          <!-- Option Switcher: Subject vs Test / Activity -->
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/40 p-3 rounded-2xl border border-emerald-200/80 dark:border-emerald-800">
+            <label class="block text-xs font-bold text-emerald-900 dark:text-emerald-300 uppercase tracking-wider mb-2">
+              Select What You Want to Add:
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="academicTypeOption" value="subject" class="sr-only peer" onchange="switchAcademicMode('subject')">
+                <div class="flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 peer-checked:border-emerald-600 peer-checked:bg-emerald-600 peer-checked:text-white transition font-bold text-xs shadow-xs">
+                  <i class="fa-solid fa-book"></i>
+                  <span>Option 1: Curriculum Subject</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="academicTypeOption" value="activity" class="sr-only peer" onchange="switchAcademicMode('activity')" checked>
+                <div class="flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 peer-checked:border-emerald-600 peer-checked:bg-emerald-600 peer-checked:text-white transition font-bold text-xs shadow-xs">
+                  <i class="fa-solid fa-clipboard-question"></i>
+                  <span>Option 2: Test / Activity / Course</span>
+                </div>
+              </label>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Course Title *</label>
-            <input type="text" id="courseTitle" class="form-control" required placeholder="e.g. Artificial Intelligence & Machine Learning">
+          <!-- ============================================== -->
+          <!-- OPTION 1: SUBJECT FORM FIELDS                  -->
+          <!-- ============================================== -->
+          <div id="subjectFieldsContainer" class="hidden space-y-4">
+            <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-book-open text-emerald-600"></i>
+                <span>Subject Details</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Subject Code *</label>
+                  <input type="text" id="subCode" class="form-control font-mono font-bold uppercase" placeholder="e.g. MATH-10 or ENG-08">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Weekly Periods *</label>
+                  <input type="number" id="subPeriods" class="form-control" min="1" max="15" value="6" placeholder="e.g. 6 periods/week">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Subject Title *</label>
+                <input type="text" id="subTitle" class="form-control" placeholder="e.g. Mathematics, General Science, Urdu Literature, Physics">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Target Class (0-1 to 10) *</label>
+                  <select id="subClass" class="form-control font-semibold">
+                    <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                    <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Class Prep / KG">Class Prep / KG</option>
+                    <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Subject Category *</label>
+                  <select id="subCategory" class="form-control">
+                    <option value="Core Science">Core Science (Math, Science, Bio, Chem)</option>
+                    <option value="Humanities & Languages">Humanities & Languages (English, Urdu)</option>
+                    <option value="Islamic & Moral Studies">Islamic & Moral Studies (Nazra, Islamiyat)</option>
+                    <option value="Early Childhood Foundation">Early Childhood Foundation</option>
+                    <option value="Technical & Computer">Technical & Computer Science</option>
+                    <option value="Social Studies / History">Social Studies / Pakistan Studies</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label flex items-center justify-between">
+                  <span>Prescribed Textbooks / Syllabus Note</span>
+                  <span class="text-[10px] text-slate-400 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-full">Optional</span>
+                </label>
+                <input type="text" id="subSyllabus" class="form-control text-xs" placeholder="e.g. KP Textbook Board Peshawar Grade 10, Complete Syllabus">
+              </div>
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="form-group">
-              <label class="form-label">Academic Department *</label>
-              <select id="courseDept" class="form-control" required>
-                <option value="Computer Science">Computer Science & IT</option>
-                <option value="Software Engineering">Software Engineering</option>
-                <option value="Pharmacy (Pharm-D)">Pharmacy & Health</option>
-                <option value="Management Sciences">Management Sciences</option>
-                <option value="Medical Lab Technology">Medical Lab Technology</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Lead Faculty Instructor *</label>
-              <input type="text" id="courseInstructor" class="form-control" required placeholder="e.g. Dr. Asif Khan">
+          <!-- ============================================== -->
+          <!-- OPTION 2: TEST / ACTIVITY / COURSE FIELDS     -->
+          <!-- ============================================== -->
+          <div id="activityFieldsContainer" class="space-y-4">
+            <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-clipboard-question text-emerald-600"></i>
+                <span>Educational Activity / Test Details</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Activity / Test / Course Name *</label>
+                <input type="text" id="actName" class="form-control font-semibold" placeholder="e.g. Weekly Mathematics Chapter Quiz or Monthly Science Lab Test">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Activity Type / Frequency *</label>
+                  <select id="actFrequency" class="form-control font-semibold text-emerald-700 dark:text-emerald-400">
+                    <option value="Daily Test / Activity">Daily Test / Activity</option>
+                    <option value="Weekly Test" selected>Weekly Test</option>
+                    <option value="Monthly Assessment">Monthly Assessment</option>
+                    <option value="Term Course / Periodic Activity">Term Course / Periodic Activity</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Linked Subject *</label>
+                  <select id="actSubject" class="form-control font-semibold">
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="General Science">General Science</option>
+                    <option value="Urdu Literature & Grammar">Urdu Literature & Grammar</option>
+                    <option value="English Literature & Grammar">English Literature & Grammar</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Computer Science & IT">Computer Science & IT</option>
+                    <option value="Islamiyat & Quran">Islamiyat & Quran</option>
+                    <option value="Pakistan Studies">Pakistan Studies</option>
+                    <option value="Art & Drawing">Art & Drawing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Target Class (0-1 to 10) *</label>
+                  <select id="actClass" class="form-control font-semibold">
+                    <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                    <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Class Prep / KG">Class Prep / KG</option>
+                    <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Duration *</label>
+                  <div class="relative">
+                    <input type="text" id="actDuration" class="form-control" value="45 Minutes" placeholder="e.g. 45 Minutes, 1 Hour, 2 Weeks">
+                  </div>
+                  <div class="flex gap-1 mt-1">
+                    <button type="button" onclick="document.getElementById('actDuration').value='30 Minutes'" class="text-[9px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded hover:bg-slate-300">30m</button>
+                    <button type="button" onclick="document.getElementById('actDuration').value='45 Minutes'" class="text-[9px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded hover:bg-slate-300">45m</button>
+                    <button type="button" onclick="document.getElementById('actDuration').value='1 Hour'" class="text-[9px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded hover:bg-slate-300">1h</button>
+                    <button type="button" onclick="document.getElementById('actDuration').value='1.5 Hours'" class="text-[9px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded hover:bg-slate-300">1.5h</button>
+                    <button type="button" onclick="document.getElementById('actDuration').value='2 Weeks'" class="text-[9px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded hover:bg-slate-300">2w</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Total Marks / Score *</label>
+                  <input type="text" id="actMarks" class="form-control font-semibold" value="25 Marks" placeholder="e.g. 20 Marks, 50 Marks, 100 Marks">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Schedule / Recurrence Day</span>
+                    <span class="text-[10px] text-slate-400 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-full">Optional</span>
+                  </label>
+                  <input type="text" id="actSchedule" class="form-control text-xs" placeholder="e.g. Every Monday 2nd Period or 1st of every month">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Instructions / Learning Topics</span>
+                    <span class="text-[10px] text-slate-400 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-full">Optional</span>
+                  </label>
+                  <input type="text" id="actInstructions" class="form-control text-xs" placeholder="e.g. MCQs (10 marks) + Short Questions (15 marks)">
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- ============================================== -->
+          <!-- SHARED: MULTI-TEACHER ASSIGNMENT (1 OR MORE)   -->
+          <!-- ============================================== -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="form-label !mb-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200">
+                <i class="fa-solid fa-user-check text-emerald-600"></i>
+                <span>Assign to Teacher(s) *</span>
+                <span class="text-[10px] text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full font-bold">Admin can select one or more teachers</span>
+              </label>
+              <button type="button" onclick="selectAllTeachers(true)" class="text-[10px] font-bold text-emerald-600 hover:underline">Select All</button>
+            </div>
+
+            <p class="text-[11px] text-slate-400">Choose the lead instructor and any co-teachers or proctors responsible for this subject or test:</p>
+
+            <!-- Dynamic Teacher Checklist Container -->
+            <div id="teacherChecklistContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto p-1">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
           <button type="submit" class="btn-kims btn-primary">
             <i class="fa-solid fa-plus"></i>
-            <span>Register Course</span>
+            <span id="addSubmitBtnText">Save Subject / Activity</span>
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: VIEW DOSSIER FOR SUBJECT / ACTIVITY                                -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="viewAcademicModal">
+    <div class="modal-container !max-w-xl">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span id="viewItemTypeBadge" class="badge badge-success text-xs">Subject</span>
+          <span id="viewItemCode" class="font-mono font-bold text-xs text-slate-500">MATH-10</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4">
+        <!-- Title Banner -->
+        <div class="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/40">
+          <h2 class="text-xl font-extrabold text-slate-900 dark:text-white" id="viewItemTitle">Mathematics Grade 10</h2>
+          <div class="text-xs text-emerald-700 dark:text-emerald-400 font-semibold mt-1 flex items-center gap-3">
+            <span><i class="fa-solid fa-school mr-1"></i><span id="viewItemClass">Class 10</span></span>
+            <span>•</span>
+            <span id="viewItemCategoryOrSubject">Core Science</span>
+          </div>
+        </div>
+
+        <!-- Key Specs Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Type / Cadence</div>
+            <div class="text-xs font-bold text-slate-800 dark:text-white mt-0.5" id="viewItemCadence">Curriculum Subject</div>
+          </div>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Duration / Load</div>
+            <div class="text-xs font-bold text-slate-800 dark:text-white mt-0.5" id="viewItemDuration">6 Periods / Week</div>
+          </div>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800 col-span-2 sm:col-span-1">
+            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Evaluation / Marks</div>
+            <div class="text-xs font-bold text-slate-800 dark:text-white mt-0.5" id="viewItemMarks">Annual SSC Exam</div>
+          </div>
+        </div>
+
+        <!-- Schedule / Details Note -->
+        <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1" id="viewItemNoteLabel">Syllabus & Course Details</div>
+          <div class="text-xs text-slate-700 dark:text-slate-300" id="viewItemNoteContent">Prescribed Textbook by KP Board</div>
+        </div>
+
+        <!-- Assigned Faculty Teachers -->
+        <div>
+          <div class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center justify-between mb-2">
+            <span><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-1.5"></i>Assigned Teacher(s)</span>
+            <span class="text-[10px] text-slate-400" id="viewTeacherCountBadge">2 Teachers</span>
+          </div>
+          <div id="viewTeachersList" class="space-y-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <button type="button" onclick="editFromViewModal()" class="btn-kims btn-secondary">
+          <i class="fa-solid fa-pen"></i>
+          <span>Edit This Item</span>
+        </button>
+        <button type="button" class="btn-kims btn-primary" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: EDIT SUBJECT / ACTIVITY                                            -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="editAcademicModal">
+    <div class="modal-container !max-w-2xl">
+      <div class="modal-header">
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-blue-600"></i>
+            <span>Edit Academic Record</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5" id="editModalSubtitle">Update title, class, duration, marks, and teacher assignments</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="editAcademicForm" onsubmit="return handleSaveEditAcademic(event)">
+        <input type="hidden" id="editItemId">
+        <input type="hidden" id="editItemType">
+
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+
+          <!-- Core details -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label">Code / ID *</label>
+                <input type="text" id="editCode" class="form-control font-mono font-bold uppercase" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Target Class (0-1 to 10) *</label>
+                <select id="editClass" class="form-control font-semibold" required>
+                  <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                  <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class Prep / KG">Class Prep / KG</option>
+                  <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Title / Activity Name *</label>
+              <input type="text" id="editTitle" class="form-control font-semibold" required>
+            </div>
+
+            <!-- Conditional fields container for Edit -->
+            <div id="editSpecificFields" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Remarks / Instructions / Syllabus</label>
+              <input type="text" id="editNotes" class="form-control text-xs">
+            </div>
+          </div>
+
+          <!-- Multi-Teacher Assignment -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="form-label !mb-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200">
+                <i class="fa-solid fa-user-check text-blue-600"></i>
+                <span>Assigned Teachers (Select One or More) *</span>
+              </label>
+            </div>
+            <div id="editTeacherChecklistContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto p-1">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-check"></i>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: DELETE CONFIRMATION                                                -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="deleteAcademicModal">
+    <div class="modal-container !max-w-md">
+      <div class="modal-header">
+        <h3 class="text-base font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Delete Academic Record</span>
+        </h3>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body text-center py-4 space-y-3">
+        <div class="w-14 h-14 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400 flex items-center justify-center mx-auto text-2xl">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-slate-900 dark:text-white" id="deleteTargetTitle">Mathematics Grade 10</h4>
+          <p class="text-xs text-slate-400 mt-1">Are you sure you want to remove this academic record? This action will unassign the scheduled teachers and cannot be undone.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer flex items-center justify-end gap-2">
+        <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+        <button type="button" onclick="executeDeleteAcademic()" class="btn-kims bg-rose-600 hover:bg-rose-700 text-white shadow-xs">
+          <i class="fa-solid fa-trash"></i>
+          <span>Delete Permanently</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: DAILY PERIODS & TEACHER TIMETABLE (SEASONAL BELL SCHEDULE)         -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="periodsTimetableModal">
+    <div class="modal-container !max-w-4xl">
+      <div class="modal-header">
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-400 flex items-center justify-center text-sm">
+              <i class="fa-solid fa-clock"></i>
+            </span>
+            <span>High School Daily Periods & Teacher Timetable</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Classes 0-1 to 10 High School Periods (1 to 8) & Faculty Teaching Allocations with Seasonal Bell Timings</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[80vh] overflow-y-auto pr-1">
+        
+        <!-- Controls & Filters Ribbon -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            
+            <!-- Season Toggle in Modal -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                <i class="fa-solid fa-sun text-amber-500"></i> Bell Season:
+              </span>
+              <div class="inline-flex rounded-xl bg-slate-200 dark:bg-slate-700 p-1 text-xs">
+                <button type="button" onclick="setSchoolSeason('summer')" id="modalSeasonBtnSummer" class="px-2.5 py-1 rounded-lg font-bold transition bg-amber-500 text-white shadow-xs">
+                  ☀️ Summer
+                </button>
+                <button type="button" onclick="setSchoolSeason('winter')" id="modalSeasonBtnWinter" class="px-2.5 py-1 rounded-lg font-bold transition text-slate-700 dark:text-slate-300">
+                  ❄️ Winter
+                </button>
+                <button type="button" onclick="setSchoolSeason('friday')" id="modalSeasonBtnFriday" class="px-2.5 py-1 rounded-lg font-bold transition text-slate-700 dark:text-slate-300">
+                  🕌 Friday
+                </button>
+              </div>
+            </div>
+
+            <!-- Action: Toggle Add Period Form -->
+            <button type="button" onclick="toggleAddPeriodForm()" id="btnToggleAddPeriod" class="btn-kims btn-primary !py-1.5 !px-3 text-xs font-bold self-start md:self-auto">
+              <i class="fa-solid fa-plus mr-1"></i>
+              <span>Assign Period to Teacher</span>
+            </button>
+          </div>
+
+          <!-- Filters: By Teacher & By Class -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-200 dark:border-slate-700/60">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-chalkboard-user text-emerald-600"></i> Filter by Faculty Teacher:
+              </label>
+              <select id="timetableTeacherFilter" onchange="handleTimetableFilterChange()" class="form-control text-xs font-semibold bg-white dark:bg-slate-900">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
+                <i class="fa-solid fa-school text-blue-600"></i> Filter by Target Class:
+              </label>
+              <select id="timetableClassFilter" onchange="handleTimetableFilterChange()" class="form-control text-xs font-semibold bg-white dark:bg-slate-900">
+                <option value="all">All High School Classes (0-1 to 10)</option>
+                <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                <option value="Class 8">Class 8</option>
+                <option value="Class 7">Class 7</option>
+                <option value="Class 6">Class 6</option>
+                <option value="Class 5">Class 5</option>
+                <option value="Class 4">Class 4</option>
+                <option value="Class 3">Class 3</option>
+                <option value="Class 2">Class 2</option>
+                <option value="Class 1">Class 1</option>
+                <option value="Class Prep / KG">Class Prep / KG</option>
+                <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- COLLAPSIBLE FORM: ASSIGN / ADD NEW PERIOD TO TEACHER -->
+        <!-- ==================================================== -->
+        <div id="addPeriodFormCard" class="hidden p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 space-y-3 transition duration-200">
+          <div class="flex items-center justify-between border-b border-emerald-200 dark:border-emerald-800 pb-2">
+            <h4 class="text-xs font-black text-emerald-900 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-calendar-plus text-emerald-600"></i>
+              <span id="periodFormTitleText">New Period Allocation for Teacher</span>
+            </h4>
+            <button type="button" onclick="toggleAddPeriodForm(false)" class="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <form id="assignPeriodForm" onsubmit="return handleAssignPeriodSubmit(event)" class="space-y-3">
+            <input type="hidden" id="editingPeriodId">
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="form-group">
+                <label class="form-label text-xs">Assign to Teacher *</label>
+                <select id="formPeriodTeacher" class="form-control text-xs font-semibold" required>
+                  <!-- Populated via JS -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Target Class (0-1 to 10) *</label>
+                <select id="formPeriodClass" class="form-control text-xs font-semibold" required>
+                  <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                  <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class Prep / KG">Class Prep / KG</option>
+                  <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Section *</label>
+                <select id="formPeriodSection" class="form-control text-xs font-semibold" required>
+                  <option value="Section A">Section A</option>
+                  <option value="Section B">Section B</option>
+                  <option value="Section C">Section C</option>
+                  <option value="Science Group">Science Group</option>
+                  <option value="Arts / Humanities">Arts / Humanities</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div class="form-group sm:col-span-2">
+                <label class="form-label text-xs">Subject / Activity *</label>
+                <input type="text" id="formPeriodSubject" class="form-control text-xs font-semibold" placeholder="e.g. Mathematics, English, Urdu, Physics" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Period Slot *</label>
+                <select id="formPeriodSlot" class="form-control text-xs font-bold text-emerald-700 dark:text-emerald-400" required>
+                  <option value="1">Period 1</option>
+                  <option value="2">Period 2</option>
+                  <option value="3">Period 3</option>
+                  <option value="4">Period 4</option>
+                  <option value="5">Period 5</option>
+                  <option value="6">Period 6</option>
+                  <option value="7">Period 7</option>
+                  <option value="8">Period 8</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Room / Lab *</label>
+                <input type="text" id="formPeriodRoom" class="form-control text-xs font-semibold" placeholder="e.g. Room 102 / Lab 1" required>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label text-xs">Scheduled Days</label>
+                <select id="formPeriodDays" class="form-control text-xs">
+                  <option value="Daily (Mon-Sat)">Daily (Mon-Sat)</option>
+                  <option value="Mon to Fri">Mon to Fri</option>
+                  <option value="Mon-Wed">Mon-Wed</option>
+                  <option value="Thu-Sat">Thu-Sat</option>
+                  <option value="Friday Special Only">Friday Special Only</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Period Note / Activity Type</label>
+                <input type="text" id="formPeriodNote" class="form-control text-xs" placeholder="e.g. Theory & Numerical Practice, Lab Experiment, Grammar Drill">
+              </div>
+            </div>
+
+            <!-- Clash Warning Box -->
+            <div id="periodClashWarning" class="hidden p-2.5 rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 text-xs font-semibold flex items-center gap-2">
+              <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+              <span id="periodClashWarningText">Warning: Teacher already has an assigned class for this period!</span>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button type="button" onclick="toggleAddPeriodForm(false)" class="btn-kims btn-secondary !py-1.5 !px-3 text-xs">Cancel</button>
+              <button type="submit" class="btn-kims btn-primary !py-1.5 !px-4 text-xs font-bold">
+                <i class="fa-solid fa-check mr-1"></i>
+                <span id="formPeriodSubmitText">Save Period Assignment</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- TIMETABLE PERIOD CARDS SEQUENCE (PERIODS 1 TO 8)     -->
+        <!-- ==================================================== -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-list-ol text-amber-500"></i>
+              <span>Daily High School Timetable Grid</span>
+              <span class="badge badge-neutral text-[10px]" id="timetableScheduleBadge">Summer Bell Timetable</span>
+            </h4>
+            <span class="text-[11px] text-slate-400" id="timetableActiveFilterSummary">Filter: All Records</span>
+          </div>
+
+          <div id="timetablePeriodsList" class="space-y-2.5">
+            <!-- Dynamic period cards rendered via JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" id="timetableFooterSummary">
+          Total periods scheduled: 8 periods daily
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="printTimetableSchedule()" class="btn-kims btn-secondary">
+            <i class="fa-solid fa-print"></i>
+            <span>Print Timetable</span>
+          </button>
+          <button type="button" class="btn-kims btn-primary" data-modal-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: QUICK / URGENT CLASS ASSIGN (EMERGENCY RELIEF ARRANGEMENT)         -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="urgentAssignModal">
+    <div class="modal-container !max-w-2xl">
+      <div class="modal-header bg-gradient-to-r from-rose-50 to-amber-50 dark:from-rose-950/40 dark:to-amber-950/30">
+        <div>
+          <h3 class="text-base font-bold text-rose-700 dark:text-rose-400 flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-900/60 dark:text-rose-300 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-bolt"></i>
+            </span>
+            <span>⚡ Quick Urgent Class Assign (Emergency Arrangement)</span>
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Rapidly assign a qualified substitute teacher when a faculty member is absent, on medical leave, or on urgent school duty.</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="urgentAssignForm" onsubmit="return handleUrgentAssignSubmit(event)">
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+
+          <!-- Notice Banner -->
+          <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-800 dark:text-amber-300 flex items-start gap-2.5">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5 shrink-0"></i>
+            <div>
+              <span class="font-bold">Arrangement Protocol Notice:</span> Assigning an urgent substitute period immediately logs the relief in today's official Arrangement Register and notifies the substitute teacher with period instructions.
+            </div>
+          </div>
+
+          <!-- Trigger & Absent Teacher -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-user-xmark"></i>
+              <span>Step 1: Absent / Relieved Faculty</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label text-xs">Urgent Situation / Reason *</label>
+                <select id="urgentReason" class="form-control text-xs font-semibold" required>
+                  <option value="Emergency Medical Leave">Emergency Medical Leave</option>
+                  <option value="Unscheduled Teacher Absence">Unscheduled Teacher Absence</option>
+                  <option value="Official Examination / Board Duty">Official Examination / Board Duty</option>
+                  <option value="Parent-Teacher Conference Duty">Parent-Teacher Conference Duty</option>
+                  <option value="Staff Meeting & Training Coverage">Staff Meeting & Training Coverage</option>
+                  <option value="Pre-Board Revision & Extra Period">Pre-Board Revision & Extra Period</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Absent / Relieved Teacher *</label>
+                <select id="urgentAbsentTeacher" onchange="handleAbsentTeacherChange(this.value)" class="form-control text-xs font-semibold" required>
+                  <!-- Populated via JS -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Class & Period Slot -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-clock text-amber-500"></i>
+              <span>Step 2: Class & Period Slot</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label text-xs">Class & Section Needing Teacher *</label>
+                <select id="urgentTargetClass" class="form-control text-xs font-semibold" required>
+                  <option value="Class 10 (SSC-II Matric) - Section A">Class 10 (SSC-II Matric) - Section A</option>
+                  <option value="Class 10 (SSC-II Matric) - Section B">Class 10 (SSC-II Matric) - Section B</option>
+                  <option value="Class 9 (SSC-I Matric) - Section A">Class 9 (SSC-I Matric) - Section A</option>
+                  <option value="Class 9 (SSC-I Matric) - Section B">Class 9 (SSC-I Matric) - Section B</option>
+                  <option value="Class 8 - Section A">Class 8 - Section A</option>
+                  <option value="Class 8 - Section B">Class 8 - Section B</option>
+                  <option value="Class 7 - Section A">Class 7 - Section A</option>
+                  <option value="Class 6 - Section A">Class 6 - Section A</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class Prep / KG">Class Prep / KG</option>
+                  <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Period Slot *</label>
+                <select id="urgentPeriodSlot" onchange="updateUrgentSubstituteOptions()" class="form-control text-xs font-bold text-amber-600 dark:text-amber-400" required>
+                  <!-- Populated via JS with active season timings -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Substitute Teacher & Task -->
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-user-check"></i>
+              <span>Step 3: Assign Substitute & Period Duty</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label text-xs">Substitute Teacher to Assign *</label>
+                <select id="urgentSubstituteTeacher" class="form-control text-xs font-bold text-emerald-700 dark:text-emerald-400" required>
+                  <!-- Populated via JS with free period hints -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label text-xs">Classroom / Location *</label>
+                <input type="text" id="urgentRoom" class="form-control text-xs font-semibold" value="Room 102 (Senior Wing)" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Duty Subject / Activity for this Period *</label>
+              <input type="text" id="urgentActivity" class="form-control text-xs font-semibold" placeholder="e.g. Conduct Physics Formula Quiz & Chapter 3 Problems" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Handover Instructions for Substitute</label>
+              <textarea id="urgentInstructions" rows="2" class="form-control text-xs" placeholder="e.g. Question worksheets are placed on staffroom desk. Take attendance on register and collect answer sheets before bell."></textarea>
+            </div>
+
+            <div class="flex items-center gap-3 pt-1">
+              <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+                <input type="checkbox" id="urgentDispatchAlertCheck" checked class="rounded text-emerald-600 focus:ring-emerald-500">
+                <span>Dispatch in-system high-priority alert to substitute</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer flex items-center justify-between">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600 hover:opacity-95 text-white font-extrabold shadow-sm">
+            <i class="fa-solid fa-bolt text-yellow-300 mr-1.5"></i>
+            <span>Dispatch Urgent Arrangement</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: TODAY'S ACTIVE URGENT ARRANGEMENTS REGISTER                        -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="activeArrangementsModal">
+    <div class="modal-container !max-w-3xl">
+      <div class="modal-header">
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-400 flex items-center justify-center text-sm">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </span>
+            <span>Today's Urgent Arrangements Register</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Emergency substitute teacher allocations dispatched for today's classes</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+        
+        <!-- Quick Stats Strip -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900/40 text-center">
+            <div class="text-xl font-black text-rose-700 dark:text-rose-300" id="statTotalArrangements">0</div>
+            <div class="text-[10px] text-rose-600 dark:text-rose-400 font-bold uppercase">Total Dispatched</div>
+          </div>
+          <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900/40 text-center">
+            <div class="text-xl font-black text-amber-700 dark:text-amber-300" id="statActiveArrangements">0</div>
+            <div class="text-[10px] text-amber-600 dark:text-amber-400 font-bold uppercase">Covering Active</div>
+          </div>
+          <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 text-center">
+            <div class="text-xl font-black text-emerald-700 dark:text-emerald-300" id="statCompletedArrangements">0</div>
+            <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase">Period Completed</div>
+          </div>
+        </div>
+
+        <!-- Arrangements Card List -->
+        <div id="activeArrangementsListContainer" class="space-y-3">
+          <!-- Rendered dynamically via JS -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <button type="button" onclick="closeModal('activeArrangementsModal'); setTimeout(openUrgentAssignModal, 200);" class="btn-kims bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold text-xs shadow-xs">
+          <i class="fa-solid fa-plus mr-1"></i>
+          <span>Add Another Urgent Assign</span>
+        </button>
+        <button type="button" class="btn-kims btn-primary" data-modal-close>Close</button>
+      </div>
     </div>
   </div>
 
@@ -511,43 +1404,1983 @@
 
   <script src="js/admin.js"></script>
   <script>
-    function handleCreateCourse(e) {
+    // =========================================================================
+    // HIGH SCHOOL ACADEMICS DATA (CLASSES 0-1 TO 10, SUBJECTS & TESTS/ACTIVITIES)
+    // =========================================================================
+
+    // Default Faculty Roster (Also synchronizes with localStorage: kims_faculty_data if available)
+    const DEFAULT_AVAILABLE_TEACHERS = [
+      { id: "emp-2026-001", name: "Dr. Tariq Mehmood", subject: "Mathematics", phone: "0333-9182300" },
+      { id: "emp-2026-002", name: "Ms. Ayesha Siddiqa", subject: "English", phone: "0345-8822191" },
+      { id: "emp-2026-003", name: "Ustadh Bilal Ahmad", subject: "Islamiyat", phone: "0312-4499201" },
+      { id: "emp-2026-004", name: "Engr. Shah Faisal", subject: "General Science", phone: "0300-6120934" },
+      { id: "emp-2026-005", name: "Qari Abdul Basit", subject: "Nazra Quran & Tajweed", phone: "0321-9988112" },
+      { id: "emp-2026-007", name: "Mrs. Farzana Khattak", subject: "Urdu", phone: "0333-5544332" },
+      { id: "emp-2026-008", name: "Sir Naeem Khattak", subject: "Physics", phone: "0333-7711223" }
+    ];
+
+    function getFacultyList() {
+      const stored = localStorage.getItem('kims_faculty_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          const teachers = parsed.filter(f => f.role === 'Teacher');
+          if (teachers.length > 0) {
+            return teachers.map(t => ({
+              id: t.id,
+              name: `${t.title ? t.title + ' ' : ''}${t.name}`,
+              subject: t.subject || 'General',
+              phone: t.phone || ''
+            }));
+          }
+        } catch(e) {}
+      }
+      return DEFAULT_AVAILABLE_TEACHERS;
+    }
+
+    // Default Seed Catalog (Class 0-1 to 10 High School curriculum subjects & tests)
+    const SEED_ACADEMICS = [
+      // 1. Class 10 - Mathematics (Subject)
+      {
+        id: "SUB-MATH-10",
+        type: "subject", // subject
+        code: "MATH-10",
+        title: "Mathematics (Science Group)",
+        targetClass: "Class 10 (SSC-II Matric)",
+        category: "Core Science",
+        weeklyPeriods: 6,
+        schedule: "Daily 2nd Period (09:00 AM - 09:45 AM)",
+        marksOrLoad: "Core Curriculum",
+        duration: "6 Periods / Week",
+        notes: "KP Textbook Board Peshawar - Grade 10 (Quadratic Equations, Geometry, Trigonometry)",
+        teachers: [
+          { id: "emp-2026-001", name: "Dr. Tariq Mehmood" },
+          { id: "emp-2026-004", name: "Engr. Shah Faisal" }
+        ],
+        status: "Active"
+      },
+
+      // 2. Class 10 - Weekly Mathematics Quiz (Test/Activity)
+      {
+        id: "ACT-2026-001",
+        type: "activity",
+        frequency: "Weekly Test",
+        code: "TEST-MATH-W1",
+        title: "Weekly Mathematics Problem Solving Quiz",
+        linkedSubject: "Mathematics",
+        targetClass: "Class 10 (SSC-II Matric)",
+        duration: "45 Minutes",
+        marksOrLoad: "25 Marks",
+        schedule: "Every Monday 2nd Period",
+        notes: "Unit 3 & 4: 10 Objective MCQs + 3 Short Solution Questions",
+        teachers: [
+          { id: "emp-2026-001", name: "Dr. Tariq Mehmood" },
+          { id: "emp-2026-002", name: "Ms. Ayesha Siddiqa" }
+        ],
+        status: "Active"
+      },
+
+      // 3. Class 9 - Urdu Literature (Subject)
+      {
+        id: "SUB-URD-09",
+        type: "subject",
+        code: "URD-09",
+        title: "Urdu Literature & Comprehensive Grammar",
+        targetClass: "Class 9 (SSC-I Matric)",
+        category: "Humanities & Languages",
+        weeklyPeriods: 5,
+        schedule: "Mon to Fri 3rd Period",
+        marksOrLoad: "Core Curriculum",
+        duration: "5 Periods / Week",
+        notes: "KPK Textbook Board - Prose, Poetry, Essay Composition and Syntax",
+        teachers: [
+          { id: "emp-2026-007", name: "Mrs. Farzana Khattak" }
+        ],
+        status: "Active"
+      },
+
+      // 4. Class 9 - Daily Urdu Dictation & Vocabulary (Test/Activity)
+      {
+        id: "ACT-2026-002",
+        type: "activity",
+        frequency: "Daily Test / Activity",
+        code: "ACT-URD-D1",
+        title: "Daily Urdu Dictation & Spelling Drill (Imla)",
+        linkedSubject: "Urdu Literature & Grammar",
+        targetClass: "Class 9 (SSC-I Matric)",
+        duration: "25 Minutes",
+        marksOrLoad: "10 Marks",
+        schedule: "Daily Morning 1st 20 minutes",
+        notes: "Focus on classical vocabulary, correct pronunciation (Talaffuz) and handwriting",
+        teachers: [
+          { id: "emp-2026-007", name: "Mrs. Farzana Khattak" },
+          { id: "emp-2026-003", name: "Ustadh Bilal Ahmad" }
+        ],
+        status: "Active"
+      },
+
+      // 5. Class 8 - General Science (Subject)
+      {
+        id: "SUB-SCI-08",
+        type: "subject",
+        code: "SCI-08",
+        title: "General Science & Experimental Lab",
+        targetClass: "Class 8",
+        category: "Core Science",
+        weeklyPeriods: 6,
+        schedule: "Mon to Sat 4th Period",
+        marksOrLoad: "Core Curriculum",
+        duration: "6 Periods / Week",
+        notes: "National Curriculum - Chemistry basics, Human organ systems, Electricity",
+        teachers: [
+          { id: "emp-2026-004", name: "Engr. Shah Faisal" }
+        ],
+        status: "Active"
+      },
+
+      // 6. Class 8 - Monthly Science Lab Assessment (Test/Activity)
+      {
+        id: "ACT-2026-003",
+        type: "activity",
+        frequency: "Monthly Assessment",
+        code: "TEST-SCI-M1",
+        title: "Monthly Science Practical & Lab Viva Assessment",
+        linkedSubject: "General Science",
+        targetClass: "Class 8",
+        duration: "1.5 Hours",
+        marksOrLoad: "50 Marks",
+        schedule: "Last Thursday of Each Month",
+        notes: "Hands-on apparatus handling (Microscope, Chemical Reactions, Circuit Building)",
+        teachers: [
+          { id: "emp-2026-004", name: "Engr. Shah Faisal" },
+          { id: "emp-2026-001", name: "Dr. Tariq Mehmood" }
+        ],
+        status: "Active"
+      },
+
+      // 7. Class 0-1 (Nursery/Playgroup) - Early Phonics & Numeracy (Subject)
+      {
+        id: "SUB-NUR-01",
+        type: "subject",
+        code: "ECF-01",
+        title: "Early Phonics, Alphabets & Basic Numeracy",
+        targetClass: "Class 0-1 (Nursery / Playgroup)",
+        category: "Early Childhood Foundation",
+        weeklyPeriods: 8,
+        schedule: "Daily Interactive Morning Circle",
+        marksOrLoad: "Foundation",
+        duration: "8 Periods / Week",
+        notes: "Montessori sensory learning, motor skills development, tracing and phonics",
+        teachers: [
+          { id: "emp-2026-002", name: "Ms. Ayesha Siddiqa" },
+          { id: "emp-2026-007", name: "Mrs. Farzana Khattak" }
+        ],
+        status: "Active"
+      },
+
+      // 8. Class 0-1 - Weekly Recognition Activity (Test/Activity)
+      {
+        id: "ACT-2026-004",
+        type: "activity",
+        frequency: "Weekly Test",
+        code: "ACT-NUR-W1",
+        title: "Weekly Object, Color & Alphabet Recognition Activity",
+        linkedSubject: "English Literature & Grammar",
+        targetClass: "Class 0-1 (Nursery / Playgroup)",
+        duration: "30 Minutes",
+        marksOrLoad: "Stars / A-Grade",
+        schedule: "Every Friday 10:00 AM",
+        notes: "Sensory flashcards, object association and interactive storytelling evaluation",
+        teachers: [
+          { id: "emp-2026-002", name: "Ms. Ayesha Siddiqa" }
+        ],
+        status: "Active"
+      },
+
+      // 9. Class 10 - Computer Science (Subject)
+      {
+        id: "SUB-CS-10",
+        type: "subject",
+        code: "CS-10",
+        title: "Computer Science & Programming in C",
+        targetClass: "Class 10 (SSC-II Matric)",
+        category: "Technical & Computer",
+        weeklyPeriods: 5,
+        schedule: "Mon to Fri 5th Period",
+        marksOrLoad: "Core Curriculum",
+        duration: "5 Periods / Week",
+        notes: "C Programming language fundamentals, loops, arrays, algorithms, database basics",
+        teachers: [
+          { id: "emp-2026-001", name: "Dr. Tariq Mehmood" }
+        ],
+        status: "Active"
+      },
+
+      // 10. Class 10 - Monthly Coding & Practical Evaluation (Test/Activity)
+      {
+        id: "ACT-2026-005",
+        type: "activity",
+        frequency: "Monthly Assessment",
+        code: "TEST-CS-M2",
+        title: "Monthly Computer Lab Practical & Coding Test",
+        linkedSubject: "Computer Science & IT",
+        targetClass: "Class 10 (SSC-II Matric)",
+        duration: "2 Hours",
+        marksOrLoad: "50 Marks",
+        schedule: "Last Saturday of Month (11:00 AM - 01:00 PM)",
+        notes: "Writing and executing C language programs in Turbo C / CodeBlocks lab environment",
+        teachers: [
+          { id: "emp-2026-001", name: "Dr. Tariq Mehmood" },
+          { id: "emp-2026-004", name: "Engr. Shah Faisal" }
+        ],
+        status: "Active"
+      }
+    ];
+
+    let academicsData = [];
+    let currentTypeFilter = 'all';
+    let currentClassFilter = 'all';
+    let currentSearchTerm = '';
+    let pendingDeleteId = null;
+    let viewingItemId = null;
+    let activeModalMode = 'activity'; // 'subject' or 'activity'
+
+    // =========================================================================
+    // LOCALSTORAGE SYNC & INITIALIZATION
+    // =========================================================================
+    function loadAcademicsData() {
+      const stored = localStorage.getItem('kims_academics_data');
+      if (stored) {
+        try {
+          academicsData = JSON.parse(stored);
+        } catch (e) {
+          academicsData = [...SEED_ACADEMICS];
+        }
+      } else {
+        academicsData = [...SEED_ACADEMICS];
+        saveAcademicsData();
+      }
+    }
+
+    function saveAcademicsData() {
+      localStorage.setItem('kims_academics_data', JSON.stringify(academicsData));
+      updateKPICounters();
+    }
+
+    function updateKPICounters() {
+      const subjects = academicsData.filter(i => i.type === 'subject');
+      const activities = academicsData.filter(i => i.type === 'activity');
+
+      // Unique teachers assigned
+      const teacherSet = new Set();
+      academicsData.forEach(item => {
+        if (item.teachers && Array.isArray(item.teachers)) {
+          item.teachers.forEach(t => teacherSet.add(t.id || t.name));
+        }
+      });
+
+      const subEl = document.getElementById('kpiSubjectCount');
+      const actEl = document.getElementById('kpiActivityCount');
+      const tchEl = document.getElementById('kpiTeachersAssigned');
+
+      if (subEl) subEl.innerText = `${subjects.length} Subjects`;
+      if (actEl) actEl.innerText = `${activities.length} Tests & Acts`;
+      if (tchEl) tchEl.innerText = `${teacherSet.size} Teachers`;
+
+      // Update Pill Counters
+      const countAll = document.getElementById('pillCountAll');
+      const countSubs = document.getElementById('pillCountSubjects');
+      const countActs = document.getElementById('pillCountActivities');
+      if (countAll) countAll.innerText = academicsData.length;
+      if (countSubs) countSubs.innerText = subjects.length;
+      if (countActs) countActs.innerText = activities.length;
+    }
+
+    // =========================================================================
+    // RENDER TABLE
+    // =========================================================================
+    function renderAcademicsTable() {
+      const tbody = document.getElementById('academicsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      const term = currentSearchTerm.toLowerCase().trim();
+
+      const filtered = academicsData.filter(item => {
+        // 1. Type Filter
+        if (currentTypeFilter === 'subject' && item.type !== 'subject') return false;
+        if (currentTypeFilter === 'activity' && item.type !== 'activity') return false;
+        if (currentTypeFilter === 'Daily Test / Activity' && item.frequency !== 'Daily Test / Activity') return false;
+        if (currentTypeFilter === 'Weekly Test' && item.frequency !== 'Weekly Test') return false;
+        if (currentTypeFilter === 'Monthly Assessment' && item.frequency !== 'Monthly Assessment') return false;
+
+        // 2. Class Filter
+        if (currentClassFilter !== 'all' && item.targetClass !== currentClassFilter) return false;
+
+        // 3. Search Term
+        if (!term) return true;
+
+        const titleMatch = (item.title || '').toLowerCase().includes(term);
+        const codeMatch = (item.code || '').toLowerCase().includes(term);
+        const classMatch = (item.targetClass || '').toLowerCase().includes(term);
+        const freqMatch = (item.frequency || '').toLowerCase().includes(term);
+        const notesMatch = (item.notes || '').toLowerCase().includes(term);
+        const teacherMatch = (item.teachers || []).some(t => t.name.toLowerCase().includes(term));
+
+        return titleMatch || codeMatch || classMatch || freqMatch || notesMatch || teacherMatch;
+      });
+
+      const displayEl = document.getElementById('displayItemCount');
+      if (displayEl) displayEl.innerText = `${filtered.length} Items`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No academic subjects or activities found</div>
+              <div class="text-xs text-slate-400 mt-1">Try changing your search or filter pills, or add a new subject or test.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const isSubject = item.type === 'subject';
+
+        // Type Badge
+        let typeBadgeHtml = '';
+        if (isSubject) {
+          typeBadgeHtml = `
+            <span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-book text-[9px] mr-1"></i>Subject</span>
+            <div class="font-mono font-bold text-xs text-emerald-700 dark:text-emerald-400 mt-1">${escapeHtml(item.code || item.id)}</div>
+          `;
+        } else {
+          let badgeClass = 'badge badge-info';
+          let icon = 'fa-clipboard-check';
+          if (item.frequency === 'Daily Test / Activity') {
+            badgeClass = 'badge badge-warning text-[10px]';
+            icon = 'fa-sun';
+          } else if (item.frequency === 'Weekly Test') {
+            badgeClass = 'badge badge-success text-[10px]';
+            icon = 'fa-calendar-week';
+          } else if (item.frequency === 'Monthly Assessment') {
+            badgeClass = 'badge bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 text-[10px]';
+            icon = 'fa-award';
+          }
+          typeBadgeHtml = `
+            <span class="${badgeClass} font-bold"><i class="fa-solid ${icon} text-[9px] mr-1"></i>${escapeHtml(item.frequency || 'Test')}</span>
+            <div class="font-mono font-bold text-xs text-slate-600 dark:text-slate-400 mt-1">${escapeHtml(item.code || item.id)}</div>
+          `;
+        }
+
+        // Title & Curriculum
+        let titleSub = '';
+        if (isSubject) {
+          titleSub = `<span class="text-slate-500 dark:text-slate-400">${escapeHtml(item.category || 'Curriculum')}</span>`;
+        } else {
+          titleSub = `<span class="text-emerald-700 dark:text-emerald-400 font-semibold"><i class="fa-solid fa-tag text-[9px] mr-1"></i>${escapeHtml(item.linkedSubject || 'Subject Test')}</span>`;
+        }
+
+        // Schedule & Duration
+        let scheduleDisplay = '';
+        if (isSubject) {
+          scheduleDisplay = `
+            <div class="font-bold text-xs text-slate-800 dark:text-white">${escapeHtml(item.duration || `${item.weeklyPeriods || 6} Periods/Wk`)}</div>
+            <div class="text-[11px] text-slate-400">${escapeHtml(item.schedule || 'Scheduled Period')}</div>
+          `;
+        } else {
+          scheduleDisplay = `
+            <div class="font-bold text-xs text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+              <i class="fa-solid fa-stopwatch text-[10px]"></i>
+              <span>${escapeHtml(item.duration || '45 Minutes')}</span>
+            </div>
+            <div class="text-[11px] text-slate-400">${escapeHtml(item.schedule || item.frequency || 'Periodic')}</div>
+          `;
+        }
+
+        // Marks / Load
+        let marksDisplay = '';
+        if (isSubject) {
+          marksDisplay = `<span class="badge badge-neutral text-xs font-semibold">${escapeHtml(item.marksOrLoad || 'Core Subject')}</span>`;
+        } else {
+          marksDisplay = `<span class="badge badge-success text-xs font-bold">${escapeHtml(item.marksOrLoad || 'Evaluation')}</span>`;
+        }
+
+        // Teachers (Multi-Teacher Badges)
+        let teachersHtml = '';
+        if (item.teachers && item.teachers.length > 0) {
+          teachersHtml = `
+            <div class="flex flex-wrap items-center gap-1">
+              ${item.teachers.map(t => `
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" title="${escapeHtml(t.id || '')}">
+                  <i class="fa-solid fa-chalkboard-user text-emerald-600 text-[9px]"></i>
+                  <span>${escapeHtml(t.name)}</span>
+                </span>
+              `).join('')}
+            </div>
+          `;
+        } else {
+          teachersHtml = `<span class="text-xs text-amber-500 font-semibold"><i class="fa-solid fa-circle-exclamation mr-1"></i>No Teacher Assigned</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td>${typeBadgeHtml}</td>
+          <td>
+            <div class="font-bold text-slate-900 dark:text-white text-xs">${escapeHtml(item.title)}</div>
+            <div class="text-[11px] mt-0.5">${titleSub}</div>
+          </td>
+          <td>
+            <span class="badge badge-neutral text-xs font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <i class="fa-solid fa-graduation-cap text-[9px] mr-1 text-emerald-600"></i>${escapeHtml(item.targetClass)}
+            </span>
+          </td>
+          <td>${scheduleDisplay}</td>
+          <td>${marksDisplay}</td>
+          <td>${teachersHtml}</td>
+          <td><span class="badge badge-success text-[10px]"><i class="fa-solid fa-circle text-[6px] mr-1"></i>Active</span></td>
+          <td class="text-right">
+            <div class="inline-flex gap-1.5">
+              <button type="button" onclick="openViewModal('${escapeHtml(item.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Full Details">
+                <i class="fa-solid fa-eye text-xs"></i>
+              </button>
+              <button type="button" onclick="openEditModal('${escapeHtml(item.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit Subject/Test">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button type="button" onclick="confirmDeleteAcademic('${escapeHtml(item.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete">
+                <i class="fa-solid fa-trash text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // FILTERING & SEARCH HANDLERS
+    // =========================================================================
+    function filterByType(type, btn) {
+      currentTypeFilter = type;
+      const pills = document.querySelectorAll('#typeFilterPills button');
+      pills.forEach(p => {
+        p.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs';
+      renderAcademicsTable();
+    }
+
+    function handleClassFilterChange(cls) {
+      currentClassFilter = cls;
+      renderAcademicsTable();
+    }
+
+    function handleAcademicsSearch(val) {
+      currentSearchTerm = val;
+      const headerInput = document.getElementById('headerQuickSearch');
+      const tableInput = document.getElementById('tableLiveSearch');
+      if (headerInput && headerInput.value !== val) headerInput.value = val;
+      if (tableInput && tableInput.value !== val) tableInput.value = val;
+      renderAcademicsTable();
+    }
+
+    // =========================================================================
+    // DUAL-MODE MODAL TOGGLING (SUBJECT VS ACTIVITY / TEST)
+    // =========================================================================
+    function switchAcademicMode(mode) {
+      activeModalMode = mode;
+      const subContainer = document.getElementById('subjectFieldsContainer');
+      const actContainer = document.getElementById('activityFieldsContainer');
+      const titleText = document.getElementById('addModalTitleText');
+      const titleIcon = document.getElementById('addModalTitleIcon');
+      const submitBtnText = document.getElementById('addSubmitBtnText');
+
+      if (mode === 'subject') {
+        subContainer.classList.remove('hidden');
+        actContainer.classList.add('hidden');
+        titleText.innerText = 'Register Curriculum Subject';
+        titleIcon.innerHTML = '<i class="fa-solid fa-book text-emerald-600"></i>';
+        submitBtnText.innerText = 'Register Subject';
+      } else {
+        subContainer.classList.add('hidden');
+        actContainer.classList.remove('hidden');
+        titleText.innerText = 'Schedule Educational Activity / Test';
+        titleIcon.innerHTML = '<i class="fa-solid fa-clipboard-question text-emerald-600"></i>';
+        submitBtnText.innerText = 'Schedule Test / Activity';
+      }
+    }
+
+    function renderTeacherChecklist(targetContainerId, selectedTeacherIds = []) {
+      const container = document.getElementById(targetContainerId);
+      if (!container) return;
+
+      const faculty = getFacultyList();
+      container.innerHTML = '';
+
+      faculty.forEach((teacher, idx) => {
+        const isChecked = selectedTeacherIds.includes(teacher.id) || selectedTeacherIds.includes(teacher.name);
+        const checkId = `${targetContainerId}_chk_${teacher.id}_${idx}`;
+
+        const div = document.createElement('div');
+        div.className = 'relative';
+        div.innerHTML = `
+          <input 
+            type="checkbox" 
+            id="${checkId}" 
+            value="${escapeHtml(teacher.id)}" 
+            data-teacher-name="${escapeHtml(teacher.name)}"
+            class="sr-only teacher-pill-checkbox"
+            ${isChecked ? 'checked' : ''}
+          />
+          <label for="${checkId}" class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer hover:border-slate-300 transition text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 flex items-center justify-center text-[10px] font-bold">
+                ${teacher.name.charAt(0)}
+              </div>
+              <div>
+                <div>${escapeHtml(teacher.name)}</div>
+                <div class="text-[10px] text-slate-400 font-normal">${escapeHtml(teacher.subject || 'Faculty')}</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-circle-check text-emerald-600 text-sm hidden peer-checked:inline"></i>
+          </label>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function selectAllTeachers(selectAll = true) {
+      const checkboxes = document.querySelectorAll('#teacherChecklistContainer input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = selectAll);
+    }
+
+    function openAddModal(mode = 'activity') {
+      const radio = document.querySelector(`input[name="academicTypeOption"][value="${mode}"]`);
+      if (radio) radio.checked = true;
+      switchAcademicMode(mode);
+      renderTeacherChecklist('teacherChecklistContainer', ['emp-2026-001']);
+      openModal('addSubjectActivityModal');
+    }
+
+    // =========================================================================
+    // CREATE NEW SUBJECT OR TEST/ACTIVITY (SUBMIT HANDLER)
+    // =========================================================================
+    let serialCodeCounter = 12;
+
+    function handleCreateAcademicItem(e) {
       e.preventDefault();
-      const code = document.getElementById('courseCode').value.trim();
-      const title = document.getElementById('courseTitle').value.trim();
-      const credit = document.getElementById('courseCredit').value;
-      const dept = document.getElementById('courseDept').value;
-      const instructor = document.getElementById('courseInstructor').value.trim();
 
-      const tbody = document.getElementById('courseTableBody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><span class="font-mono font-bold text-xs text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded-md">${escapeHtml(code)}</span></td>
-        <td>
-          <div class="font-bold text-slate-900 dark:text-white">${escapeHtml(title)}</div>
-          <div class="text-[11px] text-slate-400">Newly Registered Course</div>
-        </td>
-        <td>${escapeHtml(dept)}</td>
-        <td><span class="font-semibold">${escapeHtml(credit)}</span></td>
-        <td>${escapeHtml(instructor)}</td>
-        <td><span class="font-semibold">0 Students</span></td>
-        <td><span class="badge badge-success">Active</span></td>
-        <td class="text-right">
-          <button onclick="showToast('Syllabus Loaded', 'Downloading syllabus for ${escapeHtml(code)}', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Syllabus">
-            <i class="fa-solid fa-file-lines text-xs"></i>
-          </button>
-          <button onclick="showToast('Course Editor', 'Edit ${escapeHtml(code)} configuration', 'info')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit">
-            <i class="fa-solid fa-pen text-xs"></i>
-          </button>
-        </td>
-      `;
+      // Collect selected teachers (multi-teacher assignment)
+      const selectedTeachers = [];
+      const teacherCheckboxes = document.querySelectorAll('#teacherChecklistContainer input[type="checkbox"]:checked');
+      teacherCheckboxes.forEach(cb => {
+        selectedTeachers.push({
+          id: cb.value,
+          name: cb.getAttribute('data-teacher-name')
+        });
+      });
 
-      tbody.prepend(tr);
-      closeModal('addCourseModal');
-      document.getElementById('newCourseForm').reset();
-      showToast('Course Added', `${code} - ${title} registered successfully.`, 'success');
+      if (selectedTeachers.length === 0) {
+        showToast('Select Teacher', 'Please assign at least one teacher to this subject or test.', 'error');
+        return false;
+      }
+
+      if (activeModalMode === 'subject') {
+        const code = document.getElementById('subCode').value.trim() || `SUB-${serialCodeCounter++}`;
+        const title = document.getElementById('subTitle').value.trim();
+        const targetClass = document.getElementById('subClass').value;
+        const category = document.getElementById('subCategory').value;
+        const periods = parseInt(document.getElementById('subPeriods').value, 10) || 6;
+        const syllabus = document.getElementById('subSyllabus').value.trim();
+
+        if (!title) {
+          showToast('Required Field', 'Please enter the subject title.', 'error');
+          return false;
+        }
+
+        const newSubject = {
+          id: `SUB-${code}`,
+          type: "subject",
+          code: code,
+          title: title,
+          targetClass: targetClass,
+          category: category,
+          weeklyPeriods: periods,
+          duration: `${periods} Periods / Week`,
+          schedule: `Scheduled Periods`,
+          marksOrLoad: "Core Curriculum",
+          notes: syllabus || "Prescribed High School Textbook",
+          teachers: selectedTeachers,
+          status: "Active"
+        };
+
+        academicsData.unshift(newSubject);
+        saveAcademicsData();
+        renderAcademicsTable();
+        closeModal('addSubjectActivityModal');
+        document.getElementById('newAcademicForm').reset();
+        showToast('Subject Registered', `${code} - ${title} registered for ${targetClass}.`, 'success');
+
+      } else {
+        // Option 2: Test / Activity
+        const title = document.getElementById('actName').value.trim();
+        const frequency = document.getElementById('actFrequency').value;
+        const linkedSubject = document.getElementById('actSubject').value;
+        const targetClass = document.getElementById('actClass').value;
+        const duration = document.getElementById('actDuration').value.trim() || '45 Minutes';
+        const marks = document.getElementById('actMarks').value.trim() || '25 Marks';
+        const schedule = document.getElementById('actSchedule').value.trim() || frequency;
+        const instructions = document.getElementById('actInstructions').value.trim();
+
+        if (!title) {
+          showToast('Required Field', 'Please enter the activity or test name.', 'error');
+          return false;
+        }
+
+        const actId = `ACT-2026-${String(serialCodeCounter++).padStart(3, '0')}`;
+
+        const newActivity = {
+          id: actId,
+          type: "activity",
+          frequency: frequency,
+          code: actId,
+          title: title,
+          linkedSubject: linkedSubject,
+          targetClass: targetClass,
+          duration: duration,
+          marksOrLoad: marks,
+          schedule: schedule,
+          notes: instructions || `${frequency} for ${linkedSubject}`,
+          teachers: selectedTeachers,
+          status: "Active"
+        };
+
+        academicsData.unshift(newActivity);
+        saveAcademicsData();
+        renderAcademicsTable();
+        closeModal('addSubjectActivityModal');
+        document.getElementById('newAcademicForm').reset();
+        showToast('Test / Activity Scheduled', `"${title}" (${frequency}) created with ${selectedTeachers.length} teacher(s).`, 'success');
+      }
+
       return false;
     }
+
+    // =========================================================================
+    // VIEW DETAILS DOSSIER MODAL
+    // =========================================================================
+    function openViewModal(itemId) {
+      const item = academicsData.find(i => i.id === itemId);
+      if (!item) return;
+
+      viewingItemId = itemId;
+      const isSubject = item.type === 'subject';
+
+      const typeBadge = document.getElementById('viewItemTypeBadge');
+      if (isSubject) {
+        typeBadge.className = 'badge badge-success text-xs';
+        typeBadge.innerText = 'Curriculum Subject';
+      } else {
+        typeBadge.className = 'badge bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 text-xs font-bold';
+        typeBadge.innerText = item.frequency || 'Educational Activity';
+      }
+
+      document.getElementById('viewItemCode').innerText = item.code || item.id;
+      document.getElementById('viewItemTitle').innerText = item.title;
+      document.getElementById('viewItemClass').innerText = item.targetClass;
+      document.getElementById('viewItemCategoryOrSubject').innerText = isSubject ? (item.category || 'Curriculum') : `Subject: ${item.linkedSubject || 'All'}`;
+      document.getElementById('viewItemCadence').innerText = isSubject ? 'Annual Academic Load' : (item.frequency || 'Periodic Activity');
+      document.getElementById('viewItemDuration').innerText = item.duration || 'Standard Period';
+      document.getElementById('viewItemMarks').innerText = item.marksOrLoad || 'Evaluation';
+
+      document.getElementById('viewItemNoteLabel').innerText = isSubject ? 'Syllabus & Prescribed Book' : 'Activity Instructions & Topics';
+      document.getElementById('viewItemNoteContent').innerText = item.notes || 'No administrative instructions on file.';
+
+      // Render Teachers
+      const teachersContainer = document.getElementById('viewTeachersList');
+      teachersContainer.innerHTML = '';
+      const tCount = item.teachers ? item.teachers.length : 0;
+      document.getElementById('viewTeacherCountBadge').innerText = `${tCount} Teacher${tCount === 1 ? '' : 's'}`;
+
+      if (item.teachers && item.teachers.length > 0) {
+        item.teachers.forEach(t => {
+          const div = document.createElement('div');
+          div.className = 'p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 flex items-center justify-between';
+          div.innerHTML = `
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">
+                ${escapeHtml(t.name.charAt(0))}
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-800 dark:text-white">${escapeHtml(t.name)}</div>
+                <div class="text-[10px] text-slate-400 font-mono">${escapeHtml(t.id || 'Assigned Faculty')}</div>
+              </div>
+            </div>
+            <span class="badge badge-success text-[10px]">Appointed</span>
+          `;
+          teachersContainer.appendChild(div);
+        });
+      } else {
+        teachersContainer.innerHTML = `<div class="text-xs text-slate-400 italic">No teachers assigned.</div>`;
+      }
+
+      openModal('viewAcademicModal');
+    }
+
+    function editFromViewModal() {
+      closeModal('viewAcademicModal');
+      if (viewingItemId) {
+        setTimeout(() => openEditModal(viewingItemId), 200);
+      }
+    }
+
+    // =========================================================================
+    // EDIT MODAL
+    // =========================================================================
+    function openEditModal(itemId) {
+      const item = academicsData.find(i => i.id === itemId);
+      if (!item) return;
+
+      document.getElementById('editItemId').value = item.id;
+      document.getElementById('editItemType').value = item.type;
+      document.getElementById('editCode').value = item.code || item.id;
+      document.getElementById('editClass').value = item.targetClass;
+      document.getElementById('editTitle').value = item.title;
+      document.getElementById('editNotes').value = item.notes || '';
+
+      const specificContainer = document.getElementById('editSpecificFields');
+      const isSubject = item.type === 'subject';
+
+      if (isSubject) {
+        document.getElementById('editModalSubtitle').innerText = 'Update Curriculum Subject details and teaching faculty';
+        specificContainer.innerHTML = `
+          <div class="form-group">
+            <label class="form-label">Subject Category *</label>
+            <input type="text" id="editCategory" class="form-control" value="${escapeHtml(item.category || 'Core Science')}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Weekly Periods *</label>
+            <input type="number" id="editPeriods" class="form-control" value="${item.weeklyPeriods || 6}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration Text *</label>
+            <input type="text" id="editDuration" class="form-control" value="${escapeHtml(item.duration || '6 Periods / Week')}">
+          </div>
+        `;
+      } else {
+        document.getElementById('editModalSubtitle').innerText = 'Update Educational Activity / Test cadence, marks, and proctors';
+        specificContainer.innerHTML = `
+          <div class="form-group">
+            <label class="form-label">Activity Frequency *</label>
+            <select id="editFrequency" class="form-control font-semibold">
+              <option value="Daily Test / Activity" ${item.frequency === 'Daily Test / Activity' ? 'selected' : ''}>Daily Test / Activity</option>
+              <option value="Weekly Test" ${item.frequency === 'Weekly Test' ? 'selected' : ''}>Weekly Test</option>
+              <option value="Monthly Assessment" ${item.frequency === 'Monthly Assessment' ? 'selected' : ''}>Monthly Assessment</option>
+              <option value="Term Course / Periodic Activity" ${item.frequency === 'Term Course / Periodic Activity' ? 'selected' : ''}>Term Course / Periodic Activity</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration *</label>
+            <input type="text" id="editDuration" class="form-control font-semibold" value="${escapeHtml(item.duration || '45 Minutes')}">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Total Marks / Score *</label>
+            <input type="text" id="editMarks" class="form-control font-semibold" value="${escapeHtml(item.marksOrLoad || '25 Marks')}">
+          </div>
+        `;
+      }
+
+      // Check existing assigned teachers
+      const assignedIds = (item.teachers || []).map(t => t.id || t.name);
+      renderTeacherChecklist('editTeacherChecklistContainer', assignedIds);
+
+      openModal('editAcademicModal');
+    }
+
+    function handleSaveEditAcademic(e) {
+      e.preventDefault();
+      const itemId = document.getElementById('editItemId').value;
+      const index = academicsData.findIndex(i => i.id === itemId);
+      if (index === -1) return false;
+
+      const item = academicsData[index];
+      const isSubject = item.type === 'subject';
+
+      // Collect updated teachers
+      const selectedTeachers = [];
+      const teacherCheckboxes = document.querySelectorAll('#editTeacherChecklistContainer input[type="checkbox"]:checked');
+      teacherCheckboxes.forEach(cb => {
+        selectedTeachers.push({
+          id: cb.value,
+          name: cb.getAttribute('data-teacher-name')
+        });
+      });
+
+      if (selectedTeachers.length === 0) {
+        showToast('Select Teacher', 'Please assign at least one teacher.', 'error');
+        return false;
+      }
+
+      item.code = document.getElementById('editCode').value.trim();
+      item.targetClass = document.getElementById('editClass').value;
+      item.title = document.getElementById('editTitle').value.trim();
+      item.notes = document.getElementById('editNotes').value.trim();
+      item.teachers = selectedTeachers;
+
+      if (isSubject) {
+        item.category = document.getElementById('editCategory').value.trim();
+        item.weeklyPeriods = parseInt(document.getElementById('editPeriods').value, 10) || 6;
+        item.duration = document.getElementById('editDuration').value.trim() || `${item.weeklyPeriods} Periods / Week`;
+      } else {
+        item.frequency = document.getElementById('editFrequency').value;
+        item.duration = document.getElementById('editDuration').value.trim();
+        item.marksOrLoad = document.getElementById('editMarks').value.trim();
+      }
+
+      academicsData[index] = item;
+      saveAcademicsData();
+      renderAcademicsTable();
+      closeModal('editAcademicModal');
+      showToast('Record Updated', `"${item.title}" successfully updated.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // DELETE MODAL
+    // =========================================================================
+    function confirmDeleteAcademic(itemId) {
+      const item = academicsData.find(i => i.id === itemId);
+      if (!item) return;
+
+      pendingDeleteId = itemId;
+      document.getElementById('deleteTargetTitle').innerText = `${item.code ? item.code + ' - ' : ''}${item.title}`;
+      openModal('deleteAcademicModal');
+    }
+
+    function executeDeleteAcademic() {
+      if (!pendingDeleteId) return;
+
+      const item = academicsData.find(i => i.id === pendingDeleteId);
+      const name = item ? item.title : 'Record';
+
+      academicsData = academicsData.filter(i => i.id !== pendingDeleteId);
+      saveAcademicsData();
+      renderAcademicsTable();
+      closeModal('deleteAcademicModal');
+      pendingDeleteId = null;
+
+      showToast('Record Deleted', `"${name}" removed from curriculum catalog.`, 'info');
+    }
+
+    // =========================================================================
+    // HIGH SCHOOL BELL TIMINGS & TIME SEASONS (SUMMER / WINTER / FRIDAY)
+    // =========================================================================
+    const SEASON_TIMINGS = {
+      summer: {
+        key: 'summer',
+        name: '☀️ Summer Season Timetable',
+        badgeText: 'Active Bell Schedule',
+        hoursText: '07:30 AM Assembly • 8 Periods (40 min) • 10:25 AM Recess • Dismissal 01:30 PM',
+        iconClass: 'fa-solid fa-sun',
+        totalPeriods: 8,
+        recessAfter: 4,
+        recessTime: '10:25 AM – 10:55 AM (30 Min Recess / Tiffin Break)',
+        periods: {
+          1: { label: 'Period 1', start: '07:45 AM', end: '08:25 AM', duration: '40m' },
+          2: { label: 'Period 2', start: '08:25 AM', end: '09:05 AM', duration: '40m' },
+          3: { label: 'Period 3', start: '09:05 AM', end: '09:45 AM', duration: '40m' },
+          4: { label: 'Period 4', start: '09:45 AM', end: '10:25 AM', duration: '40m' },
+          5: { label: 'Period 5', start: '10:55 AM', end: '11:35 AM', duration: '40m' },
+          6: { label: 'Period 6', start: '11:35 AM', end: '12:15 PM', duration: '40m' },
+          7: { label: 'Period 7', start: '12:15 PM', end: '12:55 PM', duration: '40m' },
+          8: { label: 'Period 8', start: '12:55 PM', end: '01:30 PM', duration: '35m' }
+        }
+      },
+      winter: {
+        key: 'winter',
+        name: '❄️ Winter Season Timetable',
+        badgeText: 'Winter Bell Schedule',
+        hoursText: '08:15 AM Assembly • 8 Periods (40 min) • 11:10 AM Recess • Dismissal 02:15 PM',
+        iconClass: 'fa-solid fa-snowflake',
+        totalPeriods: 8,
+        recessAfter: 4,
+        recessTime: '11:10 AM – 11:40 AM (30 Min Recess / Tiffin Break)',
+        periods: {
+          1: { label: 'Period 1', start: '08:30 AM', end: '09:10 AM', duration: '40m' },
+          2: { label: 'Period 2', start: '09:10 AM', end: '09:50 AM', duration: '40m' },
+          3: { label: 'Period 3', start: '09:50 AM', end: '10:30 AM', duration: '40m' },
+          4: { label: 'Period 4', start: '10:30 AM', end: '11:10 AM', duration: '40m' },
+          5: { label: 'Period 5', start: '11:40 AM', end: '12:20 PM', duration: '40m' },
+          6: { label: 'Period 6', start: '12:20 PM', end: '01:00 PM', duration: '40m' },
+          7: { label: 'Period 7', start: '01:00 PM', end: '01:40 PM', duration: '40m' },
+          8: { label: 'Period 8', start: '01:40 PM', end: '02:15 PM', duration: '35m' }
+        }
+      },
+      friday: {
+        key: 'friday',
+        name: '🕌 Friday Special Timetable',
+        badgeText: 'Friday Prayer Schedule',
+        hoursText: '08:00 AM Assembly • 5 Periods (40 min) • 10:15 AM Recess • Dismissal 12:00 PM (Juma)',
+        iconClass: 'fa-solid fa-mosque',
+        totalPeriods: 5,
+        recessAfter: 3,
+        recessTime: '10:15 AM – 10:35 AM (20 Min Short Recess)',
+        periods: {
+          1: { label: 'Period 1', start: '08:15 AM', end: '08:55 AM', duration: '40m' },
+          2: { label: 'Period 2', start: '08:55 AM', end: '09:35 AM', duration: '40m' },
+          3: { label: 'Period 3', start: '09:35 AM', end: '10:15 AM', duration: '40m' },
+          4: { label: 'Period 4', start: '10:35 AM', end: '11:15 AM', duration: '40m' },
+          5: { label: 'Period 5', start: '11:15 AM', end: '11:55 AM', duration: '40m' }
+        }
+      }
+    };
+
+    // Default Seed Data: High School Teacher Period Allocations
+    const SEED_TEACHER_PERIODS = [
+      // Dr. Tariq Mehmood (Mathematics)
+      {
+        id: "PRD-EMP001-P1",
+        teacherId: "emp-2026-001",
+        teacherName: "Dr. Tariq Mehmood",
+        periodSlot: 1,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "Mathematics (Science)",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Algebra Unit 2 & Geometry"
+      },
+      {
+        id: "PRD-EMP001-P2",
+        teacherId: "emp-2026-001",
+        teacherName: "Dr. Tariq Mehmood",
+        periodSlot: 2,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Mathematics (Science)",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "Quadratic Equations & Trigonometry"
+      },
+      {
+        id: "PRD-EMP001-P4",
+        teacherId: "emp-2026-001",
+        teacherName: "Dr. Tariq Mehmood",
+        periodSlot: 4,
+        targetClass: "Class 8",
+        section: "Section B",
+        subject: "General Mathematics",
+        room: "Room 104",
+        days: "Daily (Mon-Sat)",
+        note: "Basic Factorization Drill"
+      },
+      {
+        id: "PRD-EMP001-P5",
+        teacherId: "emp-2026-001",
+        teacherName: "Dr. Tariq Mehmood",
+        periodSlot: 5,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section B",
+        subject: "Mathematics Revision",
+        room: "Room 103",
+        days: "Daily (Mon-Sat)",
+        note: "Board send-up preparation"
+      },
+      {
+        id: "PRD-EMP001-P7",
+        teacherId: "emp-2026-001",
+        teacherName: "Dr. Tariq Mehmood",
+        periodSlot: 7,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section B",
+        subject: "Mathematics Tutorial",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Weak students remedial class"
+      },
+
+      // Ms. Ayesha Siddiqa (English)
+      {
+        id: "PRD-EMP002-P1",
+        teacherId: "emp-2026-002",
+        teacherName: "Ms. Ayesha Siddiqa",
+        periodSlot: 1,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "English Compulsory",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "Grammar & Essay Writing"
+      },
+      {
+        id: "PRD-EMP002-P2",
+        teacherId: "emp-2026-002",
+        teacherName: "Ms. Ayesha Siddiqa",
+        periodSlot: 2,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "English Literature",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Unit 3 Comprehension"
+      },
+      {
+        id: "PRD-EMP002-P3",
+        teacherId: "emp-2026-002",
+        teacherName: "Ms. Ayesha Siddiqa",
+        periodSlot: 3,
+        targetClass: "Class 0-1 (Nursery / Playgroup)",
+        section: "Section A",
+        subject: "Early Phonics & Numeracy",
+        room: "Montessori Hall",
+        days: "Daily (Mon-Sat)",
+        note: "Phonetic sounds and tracing"
+      },
+      {
+        id: "PRD-EMP002-P5",
+        teacherId: "emp-2026-002",
+        teacherName: "Ms. Ayesha Siddiqa",
+        periodSlot: 5,
+        targetClass: "Class Prep / KG",
+        section: "Section A",
+        subject: "English Reading Circle",
+        room: "KG Room",
+        days: "Daily (Mon-Sat)",
+        note: "Interactive storytelling"
+      },
+      {
+        id: "PRD-EMP002-P6",
+        teacherId: "emp-2026-002",
+        teacherName: "Ms. Ayesha Siddiqa",
+        periodSlot: 6,
+        targetClass: "Class 8",
+        section: "Section A",
+        subject: "English Grammar",
+        room: "Room 104",
+        days: "Daily (Mon-Sat)",
+        note: "Active & Passive voice"
+      },
+
+      // Ustadh Bilal Ahmad (Islamiyat & Social Studies)
+      {
+        id: "PRD-EMP003-P1",
+        teacherId: "emp-2026-003",
+        teacherName: "Ustadh Bilal Ahmad",
+        periodSlot: 1,
+        targetClass: "Class 8",
+        section: "Section A",
+        subject: "Islamiyat Compulsory",
+        room: "Room 104",
+        days: "Daily (Mon-Sat)",
+        note: "Surah Al-Ahzab & Hadith translation"
+      },
+      {
+        id: "PRD-EMP003-P2",
+        teacherId: "emp-2026-003",
+        teacherName: "Ustadh Bilal Ahmad",
+        periodSlot: 2,
+        targetClass: "Class 7",
+        section: "Section B",
+        subject: "Social Studies & History",
+        room: "Room 105",
+        days: "Daily (Mon-Sat)",
+        note: "Mughal Empire Chapter 4"
+      },
+      {
+        id: "PRD-EMP003-P3",
+        teacherId: "emp-2026-003",
+        teacherName: "Ustadh Bilal Ahmad",
+        periodSlot: 3,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Islamiyat & Ethics",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "Tafseer & moral obligations"
+      },
+      {
+        id: "PRD-EMP003-P4",
+        teacherId: "emp-2026-003",
+        teacherName: "Ustadh Bilal Ahmad",
+        periodSlot: 4,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "Pakistan Studies",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Ideology of Pakistan & 1940 Resolution"
+      },
+
+      // Engr. Shah Faisal (Computer Science & Science)
+      {
+        id: "PRD-EMP004-P1",
+        teacherId: "emp-2026-004",
+        teacherName: "Engr. Shah Faisal",
+        periodSlot: 1,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Computer Science Theory",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "C Language control structures"
+      },
+      {
+        id: "PRD-EMP004-P3",
+        teacherId: "emp-2026-004",
+        teacherName: "Engr. Shah Faisal",
+        periodSlot: 3,
+        targetClass: "Class 8",
+        section: "Section A",
+        subject: "General Science",
+        room: "Room 104",
+        days: "Daily (Mon-Sat)",
+        note: "Chemical reactions and balancing"
+      },
+      {
+        id: "PRD-EMP004-P4",
+        teacherId: "emp-2026-004",
+        teacherName: "Engr. Shah Faisal",
+        periodSlot: 4,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Computer Science Lab",
+        room: "Computer Lab 1",
+        days: "Daily (Mon-Sat)",
+        note: "Writing loops in Turbo C"
+      },
+      {
+        id: "PRD-EMP004-P5",
+        teacherId: "emp-2026-004",
+        teacherName: "Engr. Shah Faisal",
+        periodSlot: 5,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "Computer Lab Practical",
+        room: "Computer Lab 1",
+        days: "Daily (Mon-Sat)",
+        note: "MS Word & Flowcharts"
+      },
+
+      // Mrs. Farzana Khattak (Urdu)
+      {
+        id: "PRD-EMP007-P1",
+        teacherId: "emp-2026-007",
+        teacherName: "Mrs. Farzana Khattak",
+        periodSlot: 1,
+        targetClass: "Class 0-1 (Nursery / Playgroup)",
+        section: "Section A",
+        subject: "Urdu Phonics & Rhymes",
+        room: "Montessori Hall",
+        days: "Daily (Mon-Sat)",
+        note: "Urdu alphabets and poems"
+      },
+      {
+        id: "PRD-EMP007-P3",
+        teacherId: "emp-2026-007",
+        teacherName: "Mrs. Farzana Khattak",
+        periodSlot: 3,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "Urdu Literature & Grammar",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Prose & Poetry explanations"
+      },
+      {
+        id: "PRD-EMP007-P4",
+        teacherId: "emp-2026-007",
+        teacherName: "Mrs. Farzana Khattak",
+        periodSlot: 4,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Urdu Insha & Composition",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "Essay writing & comprehension"
+      },
+
+      // Sir Naeem Khattak (Physics)
+      {
+        id: "PRD-EMP008-P2",
+        teacherId: "emp-2026-008",
+        teacherName: "Sir Naeem Khattak",
+        periodSlot: 2,
+        targetClass: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        subject: "Physics SSC-I",
+        room: "Room 101",
+        days: "Daily (Mon-Sat)",
+        note: "Kinematics & Newton's Laws"
+      },
+      {
+        id: "PRD-EMP008-P3",
+        teacherId: "emp-2026-008",
+        teacherName: "Sir Naeem Khattak",
+        periodSlot: 3,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        subject: "Physics SSC-II",
+        room: "Room 102",
+        days: "Daily (Mon-Sat)",
+        note: "Electromagnetism (Arrangement Active)"
+      },
+      {
+        id: "PRD-EMP008-P4",
+        teacherId: "emp-2026-008",
+        teacherName: "Sir Naeem Khattak",
+        periodSlot: 4,
+        targetClass: "Class 10 (SSC-II Matric)",
+        section: "Section B",
+        subject: "Physics Lab Practical",
+        room: "Science Lab 2",
+        days: "Daily (Mon-Sat)",
+        note: "Vernier caliper and screw gauge"
+      }
+    ];
+
+    // Default Seed Data: Today's Urgent Arrangements
+    const SEED_URGENT_ARRANGEMENTS = [
+      {
+        id: "ARR-20260907-001",
+        date: "2026-09-07",
+        reason: "Emergency Medical Leave",
+        absentTeacherId: "emp-2026-008",
+        absentTeacherName: "Sir Naeem Khattak",
+        substituteTeacherId: "emp-2026-001",
+        substituteTeacherName: "Dr. Tariq Mehmood",
+        targetClass: "Class 10 (SSC-II Matric) - Section A",
+        periodSlot: 3,
+        periodTime: "09:05 AM - 09:45 AM",
+        room: "Room 102 (Senior Wing)",
+        activity: "Conduct Physics Formula Quiz & Chapter 3 Problems",
+        instructions: "Question worksheets are placed on staffroom desk. Take attendance on register and collect answer sheets before bell.",
+        status: "Covering Active",
+        dispatchedAt: "08:45 AM"
+      }
+    ];
+
+    // State Variables for Timetable & Arrangements
+    let activeSeason = 'summer';
+    let teacherPeriodsData = [];
+    let urgentArrangementsData = [];
+    let currentTimetableTeacherFilter = 'emp-2026-001';
+    let currentTimetableClassFilter = 'all';
+
+    // =========================================================================
+    // STORAGE & SEASON SYNC
+    // =========================================================================
+    function loadSeasonAndPeriodData() {
+      // 1. Season
+      const savedSeason = localStorage.getItem('kims_active_season');
+      if (savedSeason && SEASON_TIMINGS[savedSeason]) {
+        activeSeason = savedSeason;
+      } else {
+        activeSeason = 'summer';
+        localStorage.setItem('kims_active_season', 'summer');
+      }
+
+      // 2. Teacher Periods
+      const savedPeriods = localStorage.getItem('kims_teacher_periods');
+      if (savedPeriods) {
+        try {
+          teacherPeriodsData = JSON.parse(savedPeriods);
+        } catch(e) {
+          teacherPeriodsData = [...SEED_TEACHER_PERIODS];
+        }
+      } else {
+        teacherPeriodsData = [...SEED_TEACHER_PERIODS];
+        savePeriodData();
+      }
+
+      // 3. Urgent Arrangements
+      const savedArrangements = localStorage.getItem('kims_urgent_arrangements');
+      if (savedArrangements) {
+        try {
+          urgentArrangementsData = JSON.parse(savedArrangements);
+        } catch(e) {
+          urgentArrangementsData = [...SEED_URGENT_ARRANGEMENTS];
+        }
+      } else {
+        urgentArrangementsData = [...SEED_URGENT_ARRANGEMENTS];
+        saveUrgentArrangementsData();
+      }
+    }
+
+    function savePeriodData() {
+      localStorage.setItem('kims_teacher_periods', JSON.stringify(teacherPeriodsData));
+    }
+
+    function saveUrgentArrangementsData() {
+      localStorage.setItem('kims_urgent_arrangements', JSON.stringify(urgentArrangementsData));
+      updateUrgentArrangementsBadge();
+    }
+
+    function updateUrgentArrangementsBadge() {
+      const activeCount = urgentArrangementsData.filter(a => a.status === 'Covering Active').length;
+      const countBadge = document.getElementById('urgentArrangementCountBadge');
+      if (countBadge) countBadge.innerText = activeCount;
+    }
+
+    // =========================================================================
+    // SEASON SWITCHING ENGINE (REAL-TIME RECALCULATION)
+    // =========================================================================
+    function setSchoolSeason(seasonKey) {
+      if (!SEASON_TIMINGS[seasonKey]) return;
+
+      activeSeason = seasonKey;
+      localStorage.setItem('kims_active_season', seasonKey);
+
+      updateSeasonUI();
+
+      // If timetable modal is open, re-render timetable
+      const modal = document.getElementById('periodsTimetableModal');
+      if (modal && modal.classList.contains('active')) {
+        renderTimetableGrid();
+      }
+
+      // If urgent assign modal is open, update its period dropdown
+      const urgModal = document.getElementById('urgentAssignModal');
+      if (urgModal && urgModal.classList.contains('active')) {
+        updateUrgentPeriodSlotOptions();
+      }
+
+      showToast('Season Bell Timings Updated', `Switched school bell schedule to ${SEASON_TIMINGS[seasonKey].name}.`, 'info');
+    }
+
+    function updateSeasonUI() {
+      const config = SEASON_TIMINGS[activeSeason];
+      if (!config) return;
+
+      // Update Ribbon Elements
+      const iconBox = document.getElementById('seasonIconBox');
+      const nameEl = document.getElementById('activeSeasonName');
+      const badgeEl = document.getElementById('activeSeasonStatusBadge');
+      const hoursEl = document.getElementById('activeSeasonHours');
+
+      if (iconBox) iconBox.innerHTML = `<i class="${config.iconClass}"></i>`;
+      if (nameEl) nameEl.innerText = config.name;
+      if (badgeEl) badgeEl.innerText = config.badgeText;
+      if (hoursEl) hoursEl.innerText = config.hoursText;
+
+      // Highlight Active Ribbon Buttons
+      const keys = ['summer', 'winter', 'friday'];
+      keys.forEach(k => {
+        const btn = document.getElementById(`seasonBtn${k.charAt(0).toUpperCase() + k.slice(1)}`);
+        const modalBtn = document.getElementById(`modalSeasonBtn${k.charAt(0).toUpperCase() + k.slice(1)}`);
+        const isActive = (k === activeSeason);
+
+        const activeClass = (k === 'summer') ? 'bg-amber-500 text-white shadow-xs' : (k === 'winter' ? 'bg-blue-600 text-white shadow-xs' : 'bg-emerald-600 text-white shadow-xs');
+        const inactiveClass = 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
+
+        if (btn) {
+          btn.className = `px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${isActive ? activeClass : inactiveClass}`;
+        }
+        if (modalBtn) {
+          modalBtn.className = `px-2.5 py-1 rounded-lg font-bold transition ${isActive ? activeClass : 'text-slate-700 dark:text-slate-300'}`;
+        }
+      });
+
+      updateUrgentArrangementsBadge();
+    }
+
+    // =========================================================================
+    // PERIODS TIMETABLE MODAL (GRID, FILTERS, ADD / REMOVE)
+    // =========================================================================
+    function openPeriodsTimetableModal() {
+      const faculty = getFacultyList();
+
+      // Populate filter dropdown
+      const filterSelect = document.getElementById('timetableTeacherFilter');
+      if (filterSelect) {
+        let html = `<option value="all">All Faculty Teachers (${faculty.length})</option>`;
+        faculty.forEach(f => {
+          const isSelected = f.id === currentTimetableTeacherFilter;
+          html += `<option value="${escapeHtml(f.id)}" ${isSelected ? 'selected' : ''}>${escapeHtml(f.name)} (${escapeHtml(f.subject || 'Faculty')})</option>`;
+        });
+        filterSelect.innerHTML = html;
+      }
+
+      // Populate Period Form Teacher Dropdown
+      const formTeacherSelect = document.getElementById('formPeriodTeacher');
+      if (formTeacherSelect) {
+        let html = '';
+        faculty.forEach(f => {
+          html += `<option value="${escapeHtml(f.id)}" data-name="${escapeHtml(f.name)}" data-sub="${escapeHtml(f.subject || '')}">${escapeHtml(f.name)} - ${escapeHtml(f.subject || 'Faculty')}</option>`;
+        });
+        formTeacherSelect.innerHTML = html;
+      }
+
+      populatePeriodFormSlots();
+      renderTimetableGrid();
+      openModal('periodsTimetableModal');
+    }
+
+    function handleTimetableFilterChange() {
+      const tSelect = document.getElementById('timetableTeacherFilter');
+      const cSelect = document.getElementById('timetableClassFilter');
+      if (tSelect) currentTimetableTeacherFilter = tSelect.value;
+      if (cSelect) currentTimetableClassFilter = cSelect.value;
+      renderTimetableGrid();
+    }
+
+    function populatePeriodFormSlots() {
+      const slotSelect = document.getElementById('formPeriodSlot');
+      if (!slotSelect) return;
+
+      const season = SEASON_TIMINGS[activeSeason];
+      let html = '';
+      for (let p = 1; p <= season.totalPeriods; p++) {
+        const periodInfo = season.periods[p];
+        html += `<option value="${p}">Period ${p} (${periodInfo.start} - ${periodInfo.end})</option>`;
+      }
+      slotSelect.innerHTML = html;
+    }
+
+    function toggleAddPeriodForm(show = null, prefillSlot = null) {
+      const formCard = document.getElementById('addPeriodFormCard');
+      const btn = document.getElementById('btnToggleAddPeriod');
+      if (!formCard) return;
+
+      const willShow = (show !== null) ? show : formCard.classList.contains('hidden');
+
+      if (willShow) {
+        formCard.classList.remove('hidden');
+        populatePeriodFormSlots();
+        if (btn) btn.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i><span>Close Assign Form</span>`;
+
+        // If specific teacher is filtered, pre-select teacher in form
+        if (currentTimetableTeacherFilter && currentTimetableTeacherFilter !== 'all') {
+          const tSel = document.getElementById('formPeriodTeacher');
+          if (tSel) tSel.value = currentTimetableTeacherFilter;
+        }
+
+        // If prefill slot given
+        if (prefillSlot) {
+          const sSel = document.getElementById('formPeriodSlot');
+          if (sSel) sSel.value = prefillSlot;
+        }
+
+        document.getElementById('periodFormTitleText').innerText = 'New Period Allocation for Teacher';
+        document.getElementById('formPeriodSubmitText').innerText = 'Save Period Assignment';
+        document.getElementById('editingPeriodId').value = '';
+        formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        formCard.classList.add('hidden');
+        if (btn) btn.innerHTML = `<i class="fa-solid fa-plus mr-1"></i><span>Assign Period to Teacher</span>`;
+        document.getElementById('assignPeriodForm').reset();
+        document.getElementById('periodClashWarning').classList.add('hidden');
+      }
+    }
+
+    function renderTimetableGrid() {
+      const container = document.getElementById('timetablePeriodsList');
+      if (!container) return;
+
+      const season = SEASON_TIMINGS[activeSeason];
+      const faculty = getFacultyList();
+
+      // Update badge and summary text
+      const badge = document.getElementById('timetableScheduleBadge');
+      if (badge) badge.innerText = `${season.name} (${season.totalPeriods} Periods)`;
+
+      const summary = document.getElementById('timetableActiveFilterSummary');
+      let teacherName = 'All Teachers';
+      if (currentTimetableTeacherFilter !== 'all') {
+        const found = faculty.find(f => f.id === currentTimetableTeacherFilter);
+        teacherName = found ? found.name : 'Selected Teacher';
+      }
+      if (summary) {
+        summary.innerText = `Viewing: ${teacherName} • ${currentTimetableClassFilter === 'all' ? 'All Classes' : currentTimetableClassFilter}`;
+      }
+
+      container.innerHTML = '';
+      let totalAssignedPeriods = 0;
+
+      for (let p = 1; p <= season.totalPeriods; p++) {
+        const periodTiming = season.periods[p];
+
+        // Find periods matching current slot & filters
+        const matchingPeriods = teacherPeriodsData.filter(prd => {
+          if (parseInt(prd.periodSlot, 10) !== p) return false;
+          if (currentTimetableTeacherFilter !== 'all' && prd.teacherId !== currentTimetableTeacherFilter) return false;
+          if (currentTimetableClassFilter !== 'all' && prd.targetClass !== currentTimetableClassFilter) return false;
+          return true;
+        });
+
+        totalAssignedPeriods += matchingPeriods.length;
+
+        // Render Period Row Card
+        const periodCard = document.createElement('div');
+        periodCard.className = 'p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition';
+
+        if (matchingPeriods.length > 0) {
+          // One or more assignments for this period slot
+          let assignmentsHtml = matchingPeriods.map(item => `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 mt-2 first:mt-0">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold flex items-center justify-center text-xs shrink-0">
+                  ${escapeHtml(item.teacherName.charAt(0))}
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-bold text-xs text-slate-900 dark:text-white">${escapeHtml(item.teacherName)}</span>
+                    <span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-book-open mr-1"></i>${escapeHtml(item.subject)}</span>
+                    <span class="badge badge-neutral text-[10px] font-semibold"><i class="fa-solid fa-graduation-cap text-emerald-600 mr-1"></i>${escapeHtml(item.targetClass)} (${escapeHtml(item.section || 'A')})</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5 flex items-center gap-3 flex-wrap">
+                    <span><i class="fa-solid fa-door-open mr-1 text-slate-500"></i>${escapeHtml(item.room || 'Room 101')}</span>
+                    <span>•</span>
+                    <span><i class="fa-solid fa-calendar-days mr-1 text-slate-500"></i>${escapeHtml(item.days || 'Daily')}</span>
+                    ${item.note ? `<span>•</span> <span class="italic text-slate-500">"${escapeHtml(item.note)}"</span>` : ''}
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 self-end sm:self-auto shrink-0">
+                <button type="button" onclick="removePeriodAssignment('${escapeHtml(item.id)}')" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-xs transition" title="Unassign Period">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+          `).join('');
+
+          periodCard.innerHTML = `
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-extrabold text-xs shadow-xs">
+                  Period ${p}
+                </span>
+                <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+                  <i class="fa-solid fa-clock text-slate-400 text-[10px]"></i>
+                  <span>${periodTiming.start} – ${periodTiming.end}</span>
+                </span>
+                <span class="text-[10px] text-slate-400 font-semibold">(${periodTiming.duration})</span>
+              </div>
+              <button type="button" onclick="toggleAddPeriodForm(true, ${p})" class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-plus text-[10px]"></i> Assign Another
+              </button>
+            </div>
+            <div class="space-y-2">
+              ${assignmentsHtml}
+            </div>
+          `;
+        } else {
+          // Free period / Unassigned for this slot under current filter
+          const isSingleTeacherFilter = (currentTimetableTeacherFilter !== 'all');
+          periodCard.innerHTML = `
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 font-extrabold text-xs">
+                  Period ${p}
+                </span>
+                <span class="font-mono text-xs font-bold text-slate-500 dark:text-slate-400">
+                  ${periodTiming.start} – ${periodTiming.end}
+                </span>
+                <span class="text-[10px] text-slate-400 font-semibold">(${periodTiming.duration})</span>
+                <span class="badge ${isSingleTeacherFilter ? 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300' : 'badge-neutral'} text-[10px] font-bold ml-2">
+                  ${isSingleTeacherFilter ? '<i class="fa-solid fa-mug-hot mr-1"></i>Free Period / Staffroom' : 'No Allocation'}
+                </span>
+              </div>
+              <button type="button" onclick="toggleAddPeriodForm(true, ${p})" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-emerald-950 transition flex items-center gap-1">
+                <i class="fa-solid fa-plus text-[10px]"></i> Assign Slot
+              </button>
+            </div>
+          `;
+        }
+
+        container.appendChild(periodCard);
+
+        // Insert Recess Break banner after designated recess period
+        if (p === season.recessAfter) {
+          const recessBanner = document.createElement('div');
+          recessBanner.className = 'p-3 rounded-2xl bg-amber-50/90 dark:bg-amber-950/40 border-2 border-dashed border-amber-300 dark:border-amber-800/80 flex items-center justify-between text-amber-900 dark:text-amber-300 text-xs font-bold my-1';
+          recessBanner.innerHTML = `
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-amber-200 text-amber-800 dark:bg-amber-900 dark:text-amber-300 flex items-center justify-center text-xs">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+              <div>
+                <span>${season.recessTime}</span>
+                <span class="text-[10px] text-amber-700 dark:text-amber-400 block font-medium">Students and teachers tiffin break / Morning prayer interval</span>
+              </div>
+            </div>
+            <span class="badge bg-amber-200 text-amber-900 dark:bg-amber-900 dark:text-amber-200 text-[10px] font-black">SCHOOL RECESS</span>
+          `;
+          container.appendChild(recessBanner);
+        }
+      }
+
+      // Update footer summary
+      const foot = document.getElementById('timetableFooterSummary');
+      if (foot) {
+        foot.innerText = `Scheduled periods count: ${totalAssignedPeriods} allocation(s) active across ${season.totalPeriods} daily periods.`;
+      }
+    }
+
+    function handleAssignPeriodSubmit(e) {
+      e.preventDefault();
+
+      const teacherSelect = document.getElementById('formPeriodTeacher');
+      const selectedOption = teacherSelect.options[teacherSelect.selectedIndex];
+      const teacherId = teacherSelect.value;
+      const teacherName = selectedOption ? selectedOption.getAttribute('data-name') : 'Teacher';
+
+      const targetClass = document.getElementById('formPeriodClass').value;
+      const section = document.getElementById('formPeriodSection').value;
+      const subject = document.getElementById('formPeriodSubject').value.trim();
+      const slot = parseInt(document.getElementById('formPeriodSlot').value, 10);
+      const room = document.getElementById('formPeriodRoom').value.trim() || 'Room 101';
+      const days = document.getElementById('formPeriodDays').value;
+      const note = document.getElementById('formPeriodNote').value.trim();
+
+      if (!subject) {
+        showToast('Required Field', 'Please specify the subject or activity name.', 'error');
+        return false;
+      }
+
+      // Collision Check: Does this teacher already have an assignment for this period slot on the same days?
+      const existingClash = teacherPeriodsData.find(prd => prd.teacherId === teacherId && parseInt(prd.periodSlot, 10) === slot);
+      if (existingClash) {
+        const warning = document.getElementById('periodClashWarning');
+        const warningText = document.getElementById('periodClashWarningText');
+        if (warning && warningText) {
+          warningText.innerText = `Schedule Conflict: ${teacherName} is already assigned to ${existingClash.targetClass} (${existingClash.section}) in Period ${slot}. Replacing existing assignment.`;
+          warning.classList.remove('hidden');
+        }
+        // Remove prior clashed assignment
+        teacherPeriodsData = teacherPeriodsData.filter(prd => prd.id !== existingClash.id);
+      }
+
+      const newPeriod = {
+        id: `PRD-${teacherId.replace(/[^a-zA-Z0-9]/g, '')}-P${slot}-${Date.now().toString().slice(-4)}`,
+        teacherId: teacherId,
+        teacherName: teacherName,
+        periodSlot: slot,
+        targetClass: targetClass,
+        section: section,
+        subject: subject,
+        room: room,
+        days: days,
+        note: note
+      };
+
+      teacherPeriodsData.push(newPeriod);
+      savePeriodData();
+      renderTimetableGrid();
+      toggleAddPeriodForm(false);
+      showToast('Period Assigned', `Period ${slot} successfully assigned to ${teacherName} for ${targetClass}.`, 'success');
+      return false;
+    }
+
+    function removePeriodAssignment(periodId) {
+      const prd = teacherPeriodsData.find(p => p.id === periodId);
+      const name = prd ? `${prd.teacherName} (Period ${prd.periodSlot})` : 'Period allocation';
+
+      teacherPeriodsData = teacherPeriodsData.filter(p => p.id !== periodId);
+      savePeriodData();
+      renderTimetableGrid();
+      showToast('Period Unassigned', `${name} removed from schedule.`, 'info');
+    }
+
+    function printTimetableSchedule() {
+      window.print();
+    }
+
+    // =========================================================================
+    // QUICK / URGENT CLASS ASSIGN ENGINE (EMERGENCY ARRANGEMENT PROTOCOL)
+    // =========================================================================
+    function openUrgentAssignModal() {
+      const faculty = getFacultyList();
+
+      // Populate absent teacher dropdown
+      const absentSelect = document.getElementById('urgentAbsentTeacher');
+      if (absentSelect) {
+        let html = '<option value="">-- Select Absent / Relieved Faculty --</option>';
+        faculty.forEach(f => {
+          html += `<option value="${escapeHtml(f.id)}" data-name="${escapeHtml(f.name)}" data-sub="${escapeHtml(f.subject || '')}">${escapeHtml(f.name)} (${escapeHtml(f.subject || 'Faculty')})</option>`;
+        });
+        absentSelect.innerHTML = html;
+        // Default to Sir Naeem Khattak if present
+        const defaultAbsent = faculty.find(f => f.name.includes('Naeem') || f.subject === 'Physics');
+        if (defaultAbsent) absentSelect.value = defaultAbsent.id;
+      }
+
+      updateUrgentPeriodSlotOptions();
+      updateUrgentSubstituteOptions();
+      openModal('urgentAssignModal');
+    }
+
+    function updateUrgentPeriodSlotOptions() {
+      const slotSelect = document.getElementById('urgentPeriodSlot');
+      if (!slotSelect) return;
+
+      const season = SEASON_TIMINGS[activeSeason];
+      let html = '';
+      for (let p = 1; p <= season.totalPeriods; p++) {
+        const periodInfo = season.periods[p];
+        html += `<option value="${p}">Period ${p} (${periodInfo.start} - ${periodInfo.end} [${season.name.split(' ')[0]}])</option>`;
+      }
+      slotSelect.innerHTML = html;
+      // Default to period 3
+      slotSelect.value = "3";
+    }
+
+    function handleAbsentTeacherChange(teacherId) {
+      if (!teacherId) return;
+
+      // Check if this teacher has a scheduled period 3
+      const foundPeriod = teacherPeriodsData.find(p => p.teacherId === teacherId);
+      if (foundPeriod) {
+        const classSelect = document.getElementById('urgentTargetClass');
+        const slotSelect = document.getElementById('urgentPeriodSlot');
+        const actInput = document.getElementById('urgentActivity');
+        const roomInput = document.getElementById('urgentRoom');
+
+        if (classSelect) classSelect.value = `${foundPeriod.targetClass} - ${foundPeriod.section}`;
+        if (slotSelect) slotSelect.value = String(foundPeriod.periodSlot);
+        if (roomInput) roomInput.value = foundPeriod.room || 'Room 102';
+        if (actInput) actInput.value = `Conduct ${foundPeriod.subject} Revision Quiz & Problem Solving`;
+      }
+
+      updateUrgentSubstituteOptions();
+    }
+
+    function updateUrgentSubstituteOptions() {
+      const subSelect = document.getElementById('urgentSubstituteTeacher');
+      const absentSelect = document.getElementById('urgentAbsentTeacher');
+      const slotSelect = document.getElementById('urgentPeriodSlot');
+      if (!subSelect) return;
+
+      const absentId = absentSelect ? absentSelect.value : '';
+      const selectedSlot = slotSelect ? parseInt(slotSelect.value, 10) : 3;
+
+      const faculty = getFacultyList();
+      let html = '';
+
+      faculty.forEach(f => {
+        if (f.id === absentId) return; // Cannot substitute for oneself
+
+        // Check if teacher has an active period at this slot
+        const isOccupied = teacherPeriodsData.some(p => p.teacherId === f.id && parseInt(p.periodSlot, 10) === selectedSlot);
+
+        if (!isOccupied) {
+          html += `<option value="${escapeHtml(f.id)}" data-name="${escapeHtml(f.name)}">🟢 ${escapeHtml(f.name)} [FREE this period • Staffroom]</option>`;
+        } else {
+          html += `<option value="${escapeHtml(f.id)}" data-name="${escapeHtml(f.name)}">⚠️ ${escapeHtml(f.name)} [Has another class, can arrange]</option>`;
+        }
+      });
+
+      subSelect.innerHTML = html;
+    }
+
+    function handleUrgentAssignSubmit(e) {
+      e.preventDefault();
+
+      const reason = document.getElementById('urgentReason').value;
+      const absentSelect = document.getElementById('urgentAbsentTeacher');
+      const absentOption = absentSelect.options[absentSelect.selectedIndex];
+      const absentTeacherId = absentSelect.value;
+      const absentTeacherName = absentOption ? absentOption.getAttribute('data-name') : 'Absent Teacher';
+
+      const substituteSelect = document.getElementById('urgentSubstituteTeacher');
+      const substituteOption = substituteSelect.options[substituteSelect.selectedIndex];
+      const substituteTeacherId = substituteSelect.value;
+      const substituteTeacherName = substituteOption ? substituteOption.getAttribute('data-name') : 'Substitute Teacher';
+
+      const targetClass = document.getElementById('urgentTargetClass').value;
+      const slot = parseInt(document.getElementById('urgentPeriodSlot').value, 10);
+      const room = document.getElementById('urgentRoom').value.trim() || 'Room 102';
+      const activity = document.getElementById('urgentActivity').value.trim();
+      const instructions = document.getElementById('urgentInstructions').value.trim();
+
+      const season = SEASON_TIMINGS[activeSeason];
+      const periodTiming = season.periods[slot] ? `${season.periods[slot].start} - ${season.periods[slot].end}` : 'Standard Period';
+
+      if (!absentTeacherId || !substituteTeacherId) {
+        showToast('Required Selection', 'Please select both absent teacher and substitute teacher.', 'error');
+        return false;
+      }
+
+      const newArrangement = {
+        id: `ARR-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${String(urgentArrangementsData.length + 1).padStart(3, '0')}`,
+        date: new Date().toISOString().slice(0, 10),
+        reason: reason,
+        absentTeacherId: absentTeacherId,
+        absentTeacherName: absentTeacherName,
+        substituteTeacherId: substituteTeacherId,
+        substituteTeacherName: substituteTeacherName,
+        targetClass: targetClass,
+        periodSlot: slot,
+        periodTime: periodTiming,
+        room: room,
+        activity: activity,
+        instructions: instructions || 'Conduct supervised revision and record student attendance.',
+        status: 'Covering Active',
+        dispatchedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      urgentArrangementsData.unshift(newArrangement);
+      saveUrgentArrangementsData();
+      closeModal('urgentAssignModal');
+      document.getElementById('urgentAssignForm').reset();
+
+      showToast('⚡ Urgent Arrangement Dispatched!', `${substituteTeacherName} appointed to cover ${targetClass} (Period ${slot}) for ${absentTeacherName}.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // ACTIVE URGENT ARRANGEMENTS REGISTER MODAL
+    // =========================================================================
+    function openActiveArrangementsModal() {
+      renderActiveArrangements();
+      openModal('activeArrangementsModal');
+    }
+
+    function renderActiveArrangements() {
+      const container = document.getElementById('activeArrangementsListContainer');
+      if (!container) return;
+
+      const totalEl = document.getElementById('statTotalArrangements');
+      const activeEl = document.getElementById('statActiveArrangements');
+      const compEl = document.getElementById('statCompletedArrangements');
+
+      const activeList = urgentArrangementsData.filter(a => a.status === 'Covering Active');
+      const completedList = urgentArrangementsData.filter(a => a.status === 'Completed');
+
+      if (totalEl) totalEl.innerText = urgentArrangementsData.length;
+      if (activeEl) activeEl.innerText = activeList.length;
+      if (compEl) compEl.innerText = completedList.length;
+
+      if (urgentArrangementsData.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-400 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400 flex items-center justify-center mx-auto mb-2 text-lg">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="font-bold text-slate-700 dark:text-slate-300">No urgent arrangements required today</div>
+            <div class="text-xs text-slate-400 mt-0.5">All regular scheduled teachers are on active duty.</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = urgentArrangementsData.map(arr => {
+        const isCovering = (arr.status === 'Covering Active');
+        return `
+          <div class="p-3.5 rounded-2xl border ${isCovering ? 'border-amber-200 bg-amber-50/50 dark:border-amber-800 dark:bg-amber-950/30' : 'border-slate-200 bg-slate-50/50 dark:border-slate-800 dark:bg-slate-900/40'} space-y-2.5 transition">
+            
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-xl ${isCovering ? 'bg-rose-600 text-white' : 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200'} text-[11px] font-black">
+                  Period ${arr.periodSlot} (${arr.periodTime})
+                </span>
+                <span class="badge ${isCovering ? 'badge-warning text-[10px] animate-pulse' : 'badge-success text-[10px]'} font-bold">
+                  <i class="fa-solid ${isCovering ? 'fa-bolt' : 'fa-check-double'} mr-1"></i>${arr.status}
+                </span>
+                <span class="text-[11px] font-mono text-slate-400 font-bold">${arr.id}</span>
+              </div>
+              <span class="text-[11px] text-slate-400 font-semibold"><i class="fa-solid fa-clock mr-1"></i>Dispatched: ${arr.dispatchedAt || 'Today'}</span>
+            </div>
+
+            <!-- Teacher Handover Flow -->
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              
+              <!-- Absent Teacher -->
+              <div class="sm:col-span-5 flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 font-bold flex items-center justify-center text-xs shrink-0">
+                  <i class="fa-solid fa-user-xmark"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-rose-600 dark:text-rose-400 font-bold uppercase">${escapeHtml(arr.reason || 'Absent')}</div>
+                  <div class="font-bold text-xs text-slate-800 dark:text-white line-through opacity-80">${escapeHtml(arr.absentTeacherName)}</div>
+                </div>
+              </div>
+
+              <!-- Direction Arrow -->
+              <div class="sm:col-span-2 text-center text-emerald-600 text-xs font-black">
+                <i class="fa-solid fa-arrow-right hidden sm:inline"></i>
+                <i class="fa-solid fa-arrow-down sm:hidden"></i>
+              </div>
+
+              <!-- Substitute Covering Teacher -->
+              <div class="sm:col-span-5 flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold flex items-center justify-center text-xs shrink-0">
+                  <i class="fa-solid fa-user-check"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold uppercase">Covering Substitute</div>
+                  <div class="font-extrabold text-xs text-slate-900 dark:text-white">${escapeHtml(arr.substituteTeacherName)}</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Details, Room & Instructions -->
+            <div class="text-xs space-y-1">
+              <div class="flex items-center gap-2 flex-wrap text-slate-700 dark:text-slate-300">
+                <span class="font-bold text-slate-900 dark:text-white"><i class="fa-solid fa-graduation-cap text-emerald-600 mr-1"></i>${escapeHtml(arr.targetClass)}</span>
+                <span>•</span>
+                <span class="font-semibold"><i class="fa-solid fa-door-open text-blue-600 mr-1"></i>${escapeHtml(arr.room)}</span>
+                <span>•</span>
+                <span class="text-emerald-700 dark:text-emerald-400 font-bold"><i class="fa-solid fa-list-check mr-1"></i>${escapeHtml(arr.activity)}</span>
+              </div>
+              ${arr.instructions ? `<div class="text-[11px] text-slate-500 dark:text-slate-400 italic bg-slate-100 dark:bg-slate-800/80 p-2 rounded-lg">Duty Notes: "${escapeHtml(arr.instructions)}"</div>` : ''}
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-200/80 dark:border-slate-800">
+              ${isCovering ? `
+                <button type="button" onclick="markArrangementCompleted('${arr.id}')" class="btn-kims btn-primary !py-1 !px-2.5 text-xs">
+                  <i class="fa-solid fa-circle-check mr-1"></i> Mark Completed
+                </button>
+              ` : `
+                <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                  <i class="fa-solid fa-check-double"></i> Period Finished
+                </span>
+              `}
+              <button type="button" onclick="cancelArrangement('${arr.id}')" class="p-1 text-slate-400 hover:text-rose-600 text-xs transition" title="Delete record">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    function markArrangementCompleted(arrId) {
+      const arr = urgentArrangementsData.find(a => a.id === arrId);
+      if (!arr) return;
+
+      arr.status = 'Completed';
+      saveUrgentArrangementsData();
+      renderActiveArrangements();
+      showToast('Arrangement Finished', `Substitute period marked as completed for ${arr.targetClass}.`, 'success');
+    }
+
+    function cancelArrangement(arrId) {
+      urgentArrangementsData = urgentArrangementsData.filter(a => a.id !== arrId);
+      saveUrgentArrangementsData();
+      renderActiveArrangements();
+      showToast('Record Removed', 'Arrangement removed from log.', 'info');
+    }
+
+    // =========================================================================
+    // INITIALIZATION ON DOM READY
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAcademicsData();
+      loadSeasonAndPeriodData();
+      renderAcademicsTable();
+      updateSeasonUI();
+    });
   </script>
 </body>
 </html>

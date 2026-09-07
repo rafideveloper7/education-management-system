@@ -38,7 +38,7 @@
     <!-- Mobile Drawer Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Sidebar Navigation -->
+                <!-- Sidebar Navigation -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="index.html" class="sidebar-brand">
@@ -47,7 +47,7 @@
           </div>
           <div class="brand-text">
             <h2>KIMS Admin</h2>
-            <span>Kohat Institute</span>
+            <span>High School System</span>
           </div>
         </a>
       </div>
@@ -59,26 +59,26 @@
             <li>
               <a href="index.html" class="nav-link">
                 <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard (M5)</span>
+                <span>Dashboard</span>
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <div class="nav-section-label">User Management (M6, M8)</div>
+          <div class="nav-section-label">User Management</div>
           <ul class="sidebar-nav">
             <li>
               <a href="students.html" class="nav-link">
                 <i class="fa-solid fa-user-graduate"></i>
-                <span>Students 360° (M8)</span>
+                <span>Students Directory</span>
                 <span class="nav-badge">4,850</span>
               </a>
             </li>
             <li>
               <a href="faculty.html" class="nav-link">
                 <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Teachers & Staff (M6)</span>
+                <span>Teachers & Staff</span>
                 <span class="nav-badge">182</span>
               </a>
             </li>
@@ -91,19 +91,26 @@
             <li>
               <a href="courses.html" class="nav-link">
                 <i class="fa-solid fa-book-open"></i>
-                <span>Classes & Subjects (M7)</span>
+                <span>Classes & Subjects</span>
               </a>
             </li>
             <li>
               <a href="attendance.html" class="nav-link">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Attendance (M9)</span>
+                <span>Attendance</span>
               </a>
             </li>
             <li>
               <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
                 <i class="fa-solid fa-award"></i>
-                <span>Exams & Results (M11)</span>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
               </a>
             </li>
           </ul>
@@ -115,13 +122,13 @@
             <li>
               <a href="fees.html" class="nav-link">
                 <i class="fa-solid fa-coins"></i>
-                <span>Fee Management (M12)</span>
+                <span>Fee Management</span>
               </a>
             </li>
             <li>
               <a href="admissions.html" class="nav-link">
                 <i class="fa-solid fa-clipboard-check"></i>
-                <span>Admissions (M13)</span>
+                <span>Admissions</span>
                 <span class="nav-badge badge-gold">28 New</span>
               </a>
             </li>
@@ -134,7 +141,7 @@
             <li>
               <a href="requests.html" class="nav-link">
                 <i class="fa-solid fa-envelope-open-text"></i>
-                <span>Applications & Desk (M14-21)</span>
+                <span>Applications & Desk</span>
               </a>
             </li>
           </ul>
@@ -144,27 +151,21 @@
           <div class="nav-section-label">Institutional Tools</div>
           <ul class="sidebar-nav">
             <li>
-              <a href="website-cms.html" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                <span>Dynamic Website CMS (M1,2)</span>
-              </a>
-            </li>
-            <li>
               <a href="id-cards.html" class="nav-link">
                 <i class="fa-solid fa-id-card"></i>
-                <span>ID Card System (M36)</span>
+                <span>ID Card Studio</span>
               </a>
             </li>
             <li>
               <a href="reports.html" class="nav-link">
                 <i class="fa-solid fa-chart-line"></i>
-                <span>Reports & Audit (M27,28)</span>
+                <span>Reports & Analytics</span>
               </a>
             </li>
             <li>
               <a href="settings.html" class="nav-link active">
                 <i class="fa-solid fa-sliders"></i>
-                <span>Admin Settings (M29)</span>
+                <span>Settings</span>
               </a>
             </li>
           </ul>
@@ -202,14 +203,39 @@
         </div>
 
         <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
           <a href="../index.html" class="public-site-link hidden sm:inline-flex">
             <i class="fa-solid fa-globe"></i>
             <span>Public Site</span>
           </a>
-
-          <button type="button" class="header-action-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-moon text-slate-600"></i>
-          </button>
 
           <div class="header-profile-menu">
             <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
@@ -230,7 +256,7 @@
         <div class="page-header-bar">
           <div class="page-title">
             <h1>Campus & Institutional Configuration</h1>
-            <p>Administer KIMS institutional credentials, active academic terms, administrator permissions, and communications.</p>
+            <p>Administer KIMS institutional credentials, active academic terms, and system access permissions.</p>
           </div>
           <div class="page-actions">
             <button type="button" onclick="saveAllSettings()" class="btn-kims btn-primary">
@@ -240,11 +266,8 @@
           </div>
         </div>
 
-        <!-- Settings Cards Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          <!-- Left Column: Institute Profile & Admin User Account -->
-          <div class="lg:col-span-2 space-y-6">
+        <!-- Settings Cards -->
+        <div class="space-y-6">
 
             <!-- Card 1: Institute Profile -->
             <div class="admin-card">
@@ -284,158 +307,344 @@
               </div>
             </div>
 
-            <!-- Card 2: Academic Terms -->
-            <div class="admin-card">
+                        <!-- Card 2: Kohat Board Academic Sessions & Season Management -->
+            <div class="admin-card" id="academic-sessions">
               <div class="card-header">
                 <div>
-                  <div class="card-title">Academic Session Configuration</div>
-                  <div class="card-subtitle">Current semester dates and grading scheme</div>
+                  <div class="card-title flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-emerald-600"></i>
+                    <span>Kohat Board Academic Sessions (BISE Kohat)</span>
+                  </div>
+                  <div class="card-subtitle">Configure start/end academic years, manage examination cycles, and switch the portal's active session</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-success px-2.5 py-1 text-xs flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Active: <strong id="settingsActiveBadgeLabel">Session 2025–2026</strong></span>
+                  </span>
                 </div>
               </div>
-              <div class="card-body space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div class="form-group">
-                    <label class="form-label">Active Academic Session</label>
-                    <input type="text" class="form-control" value="Fall 2026">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Term Commencement</label>
-                    <input type="date" class="form-control" value="2026-09-01">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Term Conclusion</label>
-                    <input type="date" class="form-control" value="2027-01-20">
+
+              <div class="card-body space-y-6">
+                <!-- Active Session Control Panel & Quick Switcher -->
+                <div class="p-4 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/50 rounded-xl">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <div class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-school-flag"></i>
+                        <span>Current System Academic Session</span>
+                      </div>
+                      <h4 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="currentSessionHeaderTitle">Session 2025–2026 (BISE Kohat)</h4>
+                      <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
+                        Annual Academic Cycle: <span class="font-semibold font-mono text-emerald-700 dark:text-emerald-400" id="currentSessionCycle">April 2025 – March 2026</span> &bull; SSC & HSSC Matric/Inter Regular
+                      </p>
+                    </div>
+
+                    <!-- Quick Switcher Dropdown -->
+                    <div class="flex items-center gap-2">
+                      <label for="activeSessionSelect" class="text-xs font-bold text-slate-700 dark:text-slate-300 whitespace-nowrap">Switch Session:</label>
+                      <select id="activeSessionSelect" class="form-control !py-1.5 !text-xs font-semibold" onchange="handleSessionSelectChange(this.value)">
+                        <!-- Populated by JS -->
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="form-group">
-                    <label class="form-label">Minimum Statutory Attendance %</label>
-                    <input type="text" class="form-control" value="75% (HEC Standard)">
+                <!-- Create / Modify Academic Session Form -->
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-slate-50/50 dark:bg-slate-800/30">
+                  <h5 class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus-circle text-emerald-600"></i>
+                    <span>Register New Academic Session / Cycle</span>
+                  </h5>
+
+                  <form id="newSessionForm" onsubmit="handleCreateSession(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div class="form-group">
+                        <label class="form-label">Session Name / Label</label>
+                        <input type="text" id="sessionNameInput" class="form-control" placeholder="e.g., Session 2027–2028" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Start Year</label>
+                        <input type="number" id="startYearInput" class="form-control" min="2020" max="2035" value="2027" required onchange="autoFillEndYear()">
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">End Year</label>
+                        <input type="number" id="endYearInput" class="form-control" min="2021" max="2036" value="2028" required>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                      <div class="form-group">
+                        <label class="form-label">Start Month</label>
+                        <select id="startMonthSelect" class="form-control">
+                          <option value="April" selected>April (BISE Standard)</option>
+                          <option value="August">August (College Regular)</option>
+                          <option value="September">September (Autumn)</option>
+                          <option value="January">January</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">End Month</label>
+                        <select id="endMonthSelect" class="form-control">
+                          <option value="March" selected>March (Annual Exams)</option>
+                          <option value="May">May (Board Gazette)</option>
+                          <option value="June">June (Summer Break)</option>
+                          <option value="December">December</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Affiliation Board</label>
+                        <input type="text" id="boardAffiliationInput" class="form-control" value="BISE Kohat" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Initial Status</label>
+                        <select id="sessionStatusSelect" class="form-control">
+                          <option value="Upcoming">Upcoming (Admissions)</option>
+                          <option value="Active">Set Active Immediately</option>
+                          <option value="Archived">Archived Record</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800">
+                      <div class="text-[11px] text-slate-500">
+                        <i class="fa-solid fa-circle-info text-emerald-600 mr-1"></i>
+                        BISE Kohat regular matric & inter sessions run annually from April to March.
+                      </div>
+                      <button type="submit" class="btn-kims btn-primary !py-1.5 !px-4 text-xs">
+                        <i class="fa-solid fa-save"></i>
+                        <span>Save Academic Session</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Configured Sessions Master Table -->
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                      Configured Kohat Board Sessions Registry
+                    </h5>
+                    <span class="text-[11px] text-slate-400">Instant 1-Click Switcher Available</span>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label">Grading System</label>
-                    <select class="form-control">
-                      <option selected>4.00 Scale (HEC Relative Grading)</option>
-                      <option>Percentage Marks System</option>
-                    </select>
+
+                  <div class="table-responsive border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th>Session Title</th>
+                          <th>Academic Cycle</th>
+                          <th>Board Authority</th>
+                          <th>Status</th>
+                          <th class="text-right">Action / Switch</th>
+                        </tr>
+                      </thead>
+                      <tbody id="settingsSessionsTableBody">
+                        <!-- Populated dynamically by JS -->
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Card 3: Administrator Accounts -->
-            <div class="admin-card">
+                <!-- Statutory Rules & Attendance Policy -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div class="p-3.5 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold text-slate-700 dark:text-slate-200">BISE Kohat Mandatory Attendance Threshold</span>
+                      <span class="text-xs font-mono font-bold text-emerald-600">75% Statutory</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Students below 75% attendance are disqualified from board roll number slips.</p>
+                  </div>
+
+                  <div class="p-3.5 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold text-slate-700 dark:text-slate-200">Board Examination Scheme</span>
+                      <span class="text-xs font-mono font-bold text-emerald-600">Annual (Part-I & Part-II)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Grading scale aligned with Khyber Pakhtunkhwa Board Curriculum Standard.</p>
+                  </div>
+                </div>
+
+            <!-- Card 3: System Access & Portal Permissions -->
+            <div class="admin-card" id="system-permissions">
               <div class="card-header">
                 <div>
-                  <div class="card-title">Authorized Admin Accounts</div>
-                  <div class="card-subtitle">Role-based institutional access</div>
+                  <div class="card-title flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                    <span>System Access & Portal Permissions</span>
+                  </div>
+                  <div class="card-subtitle">Configure public portal features, student/parent self-service access, and administrative locks</div>
                 </div>
-                <button type="button" onclick="showToast('Add Role', 'Administrator invite dialog', 'info')" class="btn-kims btn-secondary !py-1 !px-3 text-xs">
-                  <i class="fa-solid fa-user-shield"></i> Add Administrator
-                </button>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="resetPermissionsToDefaults()" class="btn-kims btn-secondary !py-1 !px-3 text-xs">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Reset Defaults</span>
+                  </button>
+                </div>
               </div>
 
-              <div class="table-responsive">
-                <table class="admin-table">
-                  <thead>
-                    <tr>
-                      <th>Account</th>
-                      <th>Role</th>
-                      <th>Email</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong class="text-xs">Executive Super Admin</strong></td>
-                      <td><span class="badge badge-success">Super Admin</span></td>
-                      <td class="font-mono text-xs">admin@gmail.com</td>
-                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong class="text-xs">Office of the Registrar</strong></td>
-                      <td><span class="badge badge-info">Registrar</span></td>
-                      <td class="font-mono text-xs">registrar@kims.edu.pk</td>
-                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong class="text-xs">Treasurer & Finance Head</strong></td>
-                      <td><span class="badge badge-warning">Finance</span></td>
-                      <td class="font-mono text-xs">finance@kims.edu.pk</td>
-                      <td><span class="text-xs text-emerald-600 font-bold">Active</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="card-body space-y-6">
+
+                <!-- Section A: Public Portal & Inquiries Visibility -->
+                <div>
+                  <div class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-emerald-600"></i>
+                    <span>Public Portal & Inquiries Visibility</span>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Toggle: Public Result -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-award text-emerald-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Public Result & Gazette Lookup</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Allow students and parents to check term and annual BISE examination results and view published gazettes via roll number search.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_public_results" class="sr-only peer" checked onchange="handlePermissionToggle('perm_public_results', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: Online Admissions -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clipboard-check text-blue-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Online Public Admissions</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Accept new student admission applications and registration forms through the public website.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_public_admissions" class="sr-only peer" checked onchange="handlePermissionToggle('perm_public_admissions', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: Fee Verification -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-receipt text-amber-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Public Fee Voucher Verification</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Allow parents to verify fee deposit challans and outstanding balance status using roll number or challan ID.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_fee_verification" class="sr-only peer" checked onchange="handlePermissionToggle('perm_fee_verification', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: Public Datesheet -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-purple-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Public Datesheet & Schedules</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Show published exam date sheets, timetable schedules, and academic calendars on public pages.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_public_datesheet" class="sr-only peer" checked onchange="handlePermissionToggle('perm_public_datesheet', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Section B: Student Self-Service & Digital Security -->
+                <div>
+                  <div class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-users text-emerald-600"></i>
+                    <span>Student Self-Service & Operational Controls</span>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Toggle: Student/Parent Portal Logins -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-user-lock text-emerald-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Student & Parent Portal Login</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Allow enrolled students and guardians to sign into their dashboards for live attendance, courses, and syllabus.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_student_portal" class="sr-only peer" checked onchange="handlePermissionToggle('perm_student_portal', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: Digital ID QR Code Verification -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-qrcode text-indigo-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Digital ID QR Verification</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Enable online authentication scan verification for student physical/digital ID cards and gate passes.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_id_qr_verify" class="sr-only peer" checked onchange="handlePermissionToggle('perm_id_qr_verify', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: Teacher Grade Entry Lock -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-lock text-rose-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Lock Faculty Marks Entry</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Freeze faculty marks submission and grade edit permissions across all terms and academic subjects.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_teacher_grade_lock" class="sr-only peer" onchange="handlePermissionToggle('perm_teacher_grade_lock', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                    <!-- Toggle: SMS Notifications Gateway -->
+                    <div class="p-4 bg-slate-50/70 dark:bg-slate-800/40 rounded-xl border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-3 hover:border-emerald-500/40 transition">
+                      <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-comment-sms text-emerald-600 text-sm"></i>
+                          <span class="text-xs font-bold text-slate-800 dark:text-white">Automated SMS Attendance Alerts</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Automatically dispatch instant SMS alerts to parents when a student is marked unexcused absent.
+                        </p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-0.5">
+                        <input type="checkbox" id="perm_sms_notifications" class="sr-only peer" checked onchange="handlePermissionToggle('perm_sms_notifications', this.checked)">
+                        <div class="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-600"></div>
+                      </label>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
             </div>
-
-          </div>
-
-          <!-- Right Column: System Notifications, SMS Gateway & Backups -->
-          <div class="space-y-6">
-            
-            <!-- SMS & Automated Alerts -->
-            <div class="admin-card">
-              <div class="card-header">
-                <div class="card-title">Communication Gateways</div>
-              </div>
-              <div class="card-body space-y-4">
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
-                  <div>
-                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">SMS Gateway (Zong/Jazz API)</h5>
-                    <p class="text-[11px] text-slate-400">Dispatch fee challan & attendance alerts to parents</p>
-                  </div>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
-                  </label>
-                </div>
-
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
-                  <div>
-                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Email SMTP Relay</h5>
-                    <p class="text-[11px] text-slate-400">Formal admission offers & grade transcripts</p>
-                  </div>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
-                  </label>
-                </div>
-
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
-                  <div>
-                    <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Biometric Attendance Sync</h5>
-                    <p class="text-[11px] text-slate-400">Automatic morning faculty clock-in relay</p>
-                  </div>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Backup & Disaster Recovery -->
-            <div class="admin-card">
-              <div class="card-header">
-                <div class="card-title">Database & Snapshots</div>
-              </div>
-              <div class="card-body space-y-3">
-                <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
-                  <span class="text-xs text-slate-400 block mb-1">Last Automated Backup:</span>
-                  <div class="text-xs font-bold text-emerald-600">Today at 04:00 AM (Encrypted)</div>
-                  <span class="text-[11px] text-slate-400">Size: 42.8 MB &bull; Cloud Server (Islamabad DC)</span>
-                </div>
-
-                <button type="button" onclick="showToast('Backup Triggered', 'Encrypted database snapshot compiled successfully.', 'success')" class="btn-kims btn-secondary w-full text-xs">
-                  <i class="fa-solid fa-database"></i>
-                  <span>Compile Manual Snapshot Now</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
 
         </div>
 
@@ -474,9 +683,214 @@
 
   <script src="js/admin.js"></script>
   <script>
-    function saveAllSettings() {
-      showToast('Settings Saved', 'Institutional configuration and gateway policies updated.', 'success');
+    const DEFAULT_PERMISSIONS = {
+      perm_public_results: true,
+      perm_public_admissions: true,
+      perm_fee_verification: true,
+      perm_public_datesheet: true,
+      perm_student_portal: true,
+      perm_id_qr_verify: true,
+      perm_teacher_grade_lock: false,
+      perm_sms_notifications: true
+    };
+
+    function getStoredPermissions() {
+      try {
+        const stored = localStorage.getItem('kims_system_permissions');
+        return stored ? Object.assign({}, DEFAULT_PERMISSIONS, JSON.parse(stored)) : Object.assign({}, DEFAULT_PERMISSIONS);
+      } catch (e) {
+        return Object.assign({}, DEFAULT_PERMISSIONS);
+      }
     }
+
+    function savePermissions(perms) {
+      localStorage.setItem('kims_system_permissions', JSON.stringify(perms));
+    }
+
+    function applyPermissionsToUI() {
+      const perms = getStoredPermissions();
+      Object.keys(perms).forEach(key => {
+        const el = document.getElementById(key);
+        if (el) {
+          el.checked = !!perms[key];
+        }
+      });
+    }
+
+    function handlePermissionToggle(key, isChecked) {
+      const perms = getStoredPermissions();
+      perms[key] = isChecked;
+      savePermissions(perms);
+      
+      const labels = {
+        perm_public_results: 'Public Result Portal',
+        perm_public_admissions: 'Public Online Admissions',
+        perm_fee_verification: 'Public Fee Voucher Verification',
+        perm_public_datesheet: 'Public Datesheet Schedules',
+        perm_student_portal: 'Student & Parent Portal Login',
+        perm_id_qr_verify: 'Digital ID QR Verification',
+        perm_teacher_grade_lock: 'Faculty Marks Entry Lock',
+        perm_sms_notifications: 'Automated SMS Alerts'
+      };
+
+      const title = labels[key] || 'Permission';
+      const statusText = isChecked ? 'Enabled' : 'Disabled';
+      showToast(title + ' ' + statusText, `${title} permission has been ${statusText.toLowerCase()}.`, isChecked ? 'success' : 'info');
+    }
+
+    function resetPermissionsToDefaults() {
+      savePermissions(DEFAULT_PERMISSIONS);
+      applyPermissionsToUI();
+      showToast('Permissions Reset', 'System access permissions have been restored to recommended defaults.', 'info');
+    }
+
+    function saveAllSettings() {
+      // Gather current permission checkbox states
+      const perms = {};
+      Object.keys(DEFAULT_PERMISSIONS).forEach(key => {
+        const el = document.getElementById(key);
+        perms[key] = el ? el.checked : DEFAULT_PERMISSIONS[key];
+      });
+      savePermissions(perms);
+      showToast('Configuration Saved', 'Institutional profile, academic sessions, and access permissions saved successfully.', 'success');
+    }
+
+    function autoFillEndYear() {
+      const startYear = parseInt(document.getElementById('startYearInput').value, 10);
+      if (!isNaN(startYear)) {
+        document.getElementById('endYearInput').value = startYear + 1;
+        document.getElementById('sessionNameInput').value = 'Session ' + startYear + '–' + (startYear + 1);
+      }
+    }
+
+    function renderSettingsSessions() {
+      const sessions = getStoredSessions();
+      const active = getActiveSession();
+
+      // Update badge and headers
+      const badgeLabel = document.getElementById('settingsActiveBadgeLabel');
+      if (badgeLabel) badgeLabel.textContent = active.name;
+
+      const headerTitle = document.getElementById('currentSessionHeaderTitle');
+      if (headerTitle) headerTitle.textContent = active.name + ' (' + active.board + ')';
+
+      const cycleLabel = document.getElementById('currentSessionCycle');
+      if (cycleLabel) cycleLabel.textContent = active.startMonth + ' ' + active.startYear + ' – ' + active.endMonth + ' ' + active.endYear;
+
+      // Update select dropdown
+      const select = document.getElementById('activeSessionSelect');
+      if (select) {
+        select.innerHTML = sessions.map(s => {
+          return '<option value="' + s.id + '" ' + (s.id === active.id ? 'selected' : '') + '>' + escapeHtml(s.name) + ' (' + escapeHtml(s.status) + ')</option>';
+        }).join('');
+      }
+
+      // Update table
+      const tbody = document.getElementById('settingsSessionsTableBody');
+      if (tbody) {
+        tbody.innerHTML = sessions.map(s => {
+          const isActive = (s.id === active.id);
+          let badgeHtml = '<span class="badge badge-secondary text-xs">Archived</span>';
+          if (s.status === 'Active' || isActive) {
+            badgeHtml = '<span class="badge badge-success text-xs flex items-center gap-1 w-max"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Active Current</span>';
+          } else if (s.status === 'Upcoming') {
+            badgeHtml = '<span class="badge badge-gold text-xs">Upcoming</span>';
+          }
+
+          return '<tr class="' + (isActive ? 'bg-emerald-50/40 dark:bg-emerald-950/20' : '') + '">' +
+            '<td><strong class="text-xs font-bold text-slate-800 dark:text-slate-100">' + escapeHtml(s.name) + '</strong>' +
+            '<div class="text-[11px] text-slate-400">' + escapeHtml(s.notes || '') + '</div></td>' +
+            '<td><span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">' + escapeHtml(s.startMonth) + ' ' + s.startYear + ' – ' + escapeHtml(s.endMonth) + ' ' + s.endYear + '</span></td>' +
+            '<td><span class="text-xs font-semibold text-emerald-600">' + escapeHtml(s.board) + '</span></td>' +
+            '<td>' + badgeHtml + '</td>' +
+            '<td class="text-right">' +
+              (isActive 
+                ? '<span class="text-xs font-bold text-emerald-600 py-1 px-3 bg-emerald-100/60 dark:bg-emerald-950/50 rounded-lg inline-flex items-center gap-1"><i class="fa-solid fa-check-circle"></i> Current Active</span>'
+                : '<button type="button" onclick="switchAcademicSession(\'' + s.id + '\')" class="btn-kims btn-secondary !py-1 !px-3 text-xs">' +
+                  '<i class="fa-solid fa-arrow-right-arrow-left"></i> Switch to This' +
+                  '</button>'
+              ) +
+            '</td>' +
+          '</tr>';
+        }).join('');
+      }
+    }
+
+    function handleSessionSelectChange(sessionId) {
+      switchAcademicSession(sessionId);
+    }
+
+    function handleCreateSession(e) {
+      e.preventDefault();
+      const name = document.getElementById('sessionNameInput').value.trim();
+      const startYear = parseInt(document.getElementById('startYearInput').value, 10);
+      const endYear = parseInt(document.getElementById('endYearInput').value, 10);
+      const startMonth = document.getElementById('startMonthSelect').value;
+      const endMonth = document.getElementById('endMonthSelect').value;
+      const board = document.getElementById('boardAffiliationInput').value.trim();
+      const status = document.getElementById('sessionStatusSelect').value;
+
+      if (!name || isNaN(startYear) || isNaN(endYear)) {
+        showToast('Incomplete Data', 'Please provide valid session name and start/end years', 'error');
+        return;
+      }
+
+      const sessions = getStoredSessions();
+      const id = startYear + '-' + endYear;
+
+      // Check if ID already exists
+      const existing = sessions.find(s => s.id === id || s.name.toLowerCase() === name.toLowerCase());
+      if (existing) {
+        showToast('Session Exists', 'A session for years ' + id + ' already exists in registry', 'warning');
+        return;
+      }
+
+      const newSession = {
+        id: id,
+        name: name,
+        startYear: startYear,
+        startMonth: startMonth,
+        endYear: endYear,
+        endMonth: endMonth,
+        board: board,
+        status: status,
+        isCurrent: (status === 'Active'),
+        notes: status === 'Active' ? 'Activated Regular Academic Cycle' : 'Registered Session'
+      };
+
+      if (status === 'Active') {
+        sessions.forEach(s => {
+          s.isCurrent = false;
+          if (s.status === 'Active') s.status = 'Archived';
+        });
+      }
+
+      sessions.unshift(newSession);
+      saveStoredSessions(sessions);
+
+      if (status === 'Active') {
+        localStorage.setItem('kims_active_session', id);
+        updateHeaderSessionDisplay();
+      }
+
+      renderSettingsSessions();
+      showToast('Session Registered', name + ' successfully added to Kohat Board Registry', 'success');
+
+      // Reset form
+      document.getElementById('newSessionForm').reset();
+      autoFillEndYear();
+    }
+
+    // Listen for custom event
+    window.addEventListener('academicSessionChanged', () => {
+      renderSettingsSessions();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSettingsSessions();
+      applyPermissionsToUI();
+      autoFillEndYear();
+    });
   </script>
 </body>
 </html>
