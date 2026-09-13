@@ -2,6 +2,7 @@
 
 *Student Admission Schema Specification*
 
+
 ```yaml
 # ==========================================================
 # KIMS Institutional Management System - Student Admission
