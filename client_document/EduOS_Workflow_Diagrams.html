@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduOS — Institutional Workflow Diagrams & Operational Lifecycles</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Mermaid.js for Vector Flowcharts -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      themeVariables: {
+        fontFamily: 'Plus Jakarta Sans',
+        primaryColor: '#eef6ff',
+        primaryTextColor: '#173680',
+        primaryBorderColor: '#8ec4fe',
+        lineColor: '#2563eb',
+        secondaryColor: '#f0fdf4',
+        tertiaryColor: '#fffbeb'
+      },
+      flowchart: {
+        curve: 'basis',
+        htmlLabels: true
+      }
+    });
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef6ff',
+              100: '#d9ebff',
+              200: '#bcdbff',
+              600: '#1d60e7',
+              700: '#174ac9',
+              800: '#173da2',
+              900: '#173680',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff !important; color: #000 !important; font-size: 10pt !important; }
+      .avoid-break { page-break-inside: avoid; }
+      header { position: static !important; }
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      background: #ffffff;
+      padding: 1.25rem;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-600 selection:text-white">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="EduOS_Executive_Proposal.html" class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-brand-600/20">
+          E
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-extrabold text-slate-900 tracking-tight">EduOS</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-700 px-2 py-0.5 rounded border border-brand-200">17 Visual Workflows</span>
+          </div>
+          <p class="text-[11px] text-slate-500">Institutional Lifecycles & Operational Process Blueprints</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="EduOS_Executive_Proposal.html" class="no-print px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs transition flex items-center gap-1.5">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>36 Modules Specification</span>
+        </a>
+        <button onclick="window.print()" class="no-print px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs shadow-sm transition flex items-center gap-1.5">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>Print / PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- QUICK CATEGORY JUMP NAV -->
+    <div class="bg-slate-100 border-t border-slate-200/80 px-4 sm:px-6 py-2 overflow-x-auto no-print">
+      <div class="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
+        <span class="text-slate-400 uppercase text-[10px] tracking-wider pr-2">Lifecycles:</span>
+        <a href="#master-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">01. Architecture</a>
+        <a href="#admission-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">02. Admissions</a>
+        <a href="#attendance-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">03. Attendance</a>
+        <a href="#task-assign-flow" class="px-2.5 py-1 rounded bg-brand-50 text-brand-800 border border-brand-300 font-bold">04. Assign Task</a>
+        <a href="#task-submit-flow" class="px-2.5 py-1 rounded bg-brand-50 text-brand-800 border border-brand-300 font-bold">05. Submit Task</a>
+        <a href="#task-grade-flow" class="px-2.5 py-1 rounded bg-brand-50 text-brand-800 border border-brand-300 font-bold">06. Grading & Return</a>
+        <a href="#quiz-flow" class="px-2.5 py-1 rounded bg-purple-50 text-purple-800 border border-purple-200">07. Timed Quizzes</a>
+        <a href="#lesson-flow" class="px-2.5 py-1 rounded bg-blue-50 text-blue-800 border border-blue-200">08. Lesson Progress</a>
+        <a href="#discipline-flow" class="px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200">09. Merits / Demerits</a>
+        <a href="#substitution-flow" class="px-2.5 py-1 rounded bg-rose-50 text-rose-800 border border-rose-200">10. Substitution Cover</a>
+        <a href="#fee-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">11. Fee Billing</a>
+        <a href="#exam-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">12. Exams & Cards</a>
+        <a href="#comms-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">13. Leaves & Tickets</a>
+        <a href="#timetable-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">14. Timetable</a>
+        <a href="#cms-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">15. CMS</a>
+        <a href="#sibling-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">16. Sibling Bar</a>
+        <a href="#audit-flow" class="px-2.5 py-1 rounded bg-white hover:bg-brand-50 text-slate-700 border border-slate-200">17. Zero-Trust Audit</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-12">
+
+    <!-- HERO SECTION -->
+    <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+      <div class="relative z-10 max-w-3xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brand-100 text-xs font-semibold backdrop-blur-xs border border-white/10">
+          <i data-lucide="git-branch" class="w-3.5 h-3.5"></i>
+          <span>17 Complete End-to-End Visual Operational Flows</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Institutional System Workflows & Operational Activities</h1>
+        <p class="text-sm sm:text-base text-brand-100 font-light leading-relaxed">
+          Clear, vector-rendered lifecycle flowcharts mapping every primary interaction in EduOS: from how a teacher designs and assigns coursework with rubrics, how students turn in digital tasks, how grading and revisions loop back, to timetable conflict prevention, fee generation, smart teacher substitution, and zero-trust audit verification.
+        </p>
+      </div>
+      <div class="absolute -right-12 -bottom-12 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION GROUP 1: CORE ARCHITECTURE & ADMISSIONS                           -->
+    <!-- ========================================================================= -->
+
+    <!-- DIAGRAM 1: MASTER SYSTEM ARCHITECTURE -->
+    <section id="master-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 01</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Master Architecture & Central Data Hub (Module 35)</h2>
+          <p class="text-xs text-slate-500">How 5 independent interfaces synchronize around the central institutional database</p>
+        </div>
+        <span class="text-xs font-bold text-brand-700 bg-brand-50 px-3 py-1 rounded-lg">Central Data Exchange</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TB
+    DB[("🏛️ Central Institutional Database<br/>(Master Ledger, Dossiers & State)")]
+    
+    subgraph Portals["5 Fully Independent Institutional Portals"]
+        direction LR
+        PUB["🌐 Public Website & CMS<br/>(Admissions, News & Gallery)"]
+        ADM["🛡️ Admin Panel<br/>(Control Cockpit & Governance)"]
+        TEA["👨‍🏫 Teacher Panel<br/>(Attendance, Grading & Diary)"]
+        STU["👨‍🎓 Student Panel<br/>(Lectures, Tasks & Results)"]
+        PAR["👨‍👩‍👧 Parent Portal<br/>(Multi-Child, Fees & Tracking)"]
+    end
+    
+    PUB <-->|"Inquiries, Leads & Dynamic Pages"| DB
+    ADM <-->|"System Config, Billing & Approvals"| DB
+    TEA <-->|"Attendance Rolls & Coursework Marks"| DB
+    STU <-->|"Task Submissions & Learning Records"| DB
+    PAR <-->|"Online Fee Slips & Leave Petitions"| DB
+    
+    NOTIF["🔔 Central Multi-Channel Notification Engine<br/>(In-App Bell &bull; Real-time SMS &bull; Automated Emails)"]
+    AUDIT["📜 Immutable Forensic Audit Logger<br/>(Every Grade, Fee & Permission Change)"]
+    
+    DB --> NOTIF
+    DB --> AUDIT
+    NOTIF -.->|"Alerts"| TEA
+    NOTIF -.->|"Alerts"| STU
+    NOTIF -.->|"Alerts"| PAR
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2">
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Single Source of Truth</span>
+          <p class="text-slate-600 text-[11px] mt-1">Every student, teacher, and financial record is unified. Zero duplicated data or manual reconciliation.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Independent UX Layers</span>
+          <p class="text-slate-600 text-[11px] mt-1">Teachers see only their assigned classes; students see only their coursework; parents toggle between siblings effortlessly.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Real-Time Event Engine</span>
+          <p class="text-slate-600 text-[11px] mt-1">Database state changes (attendance marked, task published, fee generated) trigger immediate downstream events.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGRAM 2: ONLINE ADMISSION TO ID CARD -->
+    <section id="admission-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 02</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Online Admission to Verified ID Card (Modules 03, 13, 36)</h2>
+          <p class="text-xs text-slate-500">From initial parent submission to automated enrollment, parent account linking, and card generation</p>
+        </div>
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg">5-Step Paperless Enrolment</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart LR
+    A["1. Parent Fills Online Admission<br/>(Student bio, target class, photo & docs)"] --> B["2. Lands in Admin Review Inbox<br/>(Documents & eligibility verified)"]
+    B --> C{"Decision Point<br/>Admin Review"}
+    C -- "Need Info" --> ReqInfo["Request Extra Documents<br/>(Parent notified online)"]
+    ReqInfo --> B
+    C -- "Rejected" --> Rej["Application Rejected<br/>(Reason logged & notified)"]
+    C -- "Approved" --> D["3. Admin Clicks Approve<br/>(Assigns Class & Section)"]
+    
+    D --> E["4. Automated System Execution<br/>• Student Account Created<br/>• Parent Account Linked<br/>• Admission Fee Challan Issued"]
+    E --> F["5. ID Card Generated Instantly<br/>• Crest, Verified Photo & QR Code<br/>• Student/Parent Downloads & Prints"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 3: 30-SECOND ATTENDANCE ROLL-CALL -->
+    <section id="attendance-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 03</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">30-Second Attendance Roll-Call & Instant Alert (Modules 09, 21, 22)</h2>
+          <p class="text-xs text-slate-500">Rapid classroom roll-call, approved leave check, and automated guardian alert dispatch</p>
+        </div>
+        <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-lg">Real-Time Attendance</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    StartRoll["🔔 Period Starts<br/>(Teacher opens roster on mobile/PC)"] --> DefaultPresent["All Students Default to 'Present'<br/>(Student roster with verified photos)"]
+    DefaultPresent --> TapAbsent["Teacher Taps ONLY Absent Students<br/>(Takes under 30 seconds)"]
+    TapAbsent --> SubmitLedger["Click Submit & Save<br/>(Instant commit to institutional ledger)"]
+    
+    SubmitLedger --> CheckLeave{"System Automated Check:<br/>Is Student on Approved Leave?"}
+    
+    CheckLeave -- "YES (Approved Medical Leave)" --> LogLeave["Marked as 'Approved Leave'<br/>(No absence penalty applied)"]
+    CheckLeave -- "NO (Unexcused Absence)" --> LogAbsent["Marked as 'Unexcused Absent'"]
+    
+    LogAbsent --> DispatchAlert["📲 Instant Automated Push/SMS Alert<br/>Sent to Parent Phone within 60s"]
+    LogAbsent --> UpdateDossier["Attendance Percentage Updated<br/>in Student 360° Dossier & Principal Cockpit"]
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION GROUP 2: ACADEMIC & CLASSROOM INTERACTION LIFECYCLE (DEEP DIVE)   -->
+    <!-- ========================================================================= -->
+
+    <!-- DIAGRAM 4: TEACHER ASSIGNS TASK (DEEP-DIVE SETUP) -->
+    <section id="task-assign-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-brand-200 shadow-md space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-brand-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-800 bg-brand-100 px-2.5 py-0.5 rounded">Diagram 04 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Teacher Coursework Creation & Task Assignment Workflow (Modules 10, 21, 23)</h2>
+          <p class="text-xs text-slate-500">How teachers configure target classes, attach learning resources, define rubrics, set deadlines, and broadcast</p>
+        </div>
+        <span class="text-xs font-bold text-brand-700 bg-brand-50 px-3 py-1 rounded-lg">Coursework Authoring</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    T1["👨‍🏫 1. Teacher Launches 'Create Assignment'<br/>(Selects target Class, Section & Subject e.g. Grade 9-A Physics)"] --> T2{"2. Choose Assignment Audience"}
+    
+    T2 -- "Standard Scope" --> T2A["Whole Section (All 32 Enrolled Students)"]
+    T2 -- "Targeted Scope" --> T2B["Specific Cohort / Remedial Students / Advanced Project Group"]
+    
+    T2A --> T3["3. Coursework Details & Pedagogy<br/>• Title, Chapter & Pedagogical Instructions<br/>• Total Maximum Marks (e.g. 50 Marks)"]
+    T2B --> T3
+    
+    T3 --> T4["4. Attach Learning Resources & Materials<br/>• Upload Handout Worksheets (PDF / Docs)<br/>• Reference Video Links & Lab Guides<br/>• Scanned Example Solutions"]
+    
+    T4 --> T5["5. Setup Scoring Rubric Breakdown<br/>• Theoretical Understanding: 20 Pts<br/>• Mathematical Derivation: 20 Pts<br/>• Presentation & Punctuality: 10 Pts"]
+    
+    T5 --> T6["6. Define Submission Schedule & Rules<br/>• Publishing Date & Time<br/>• Hard Due Date & Deadline Timer<br/>• Late Submission Policy: Disallow OR Allow with 10% penalty/day"]
+    
+    T6 --> T7["7. Teacher Clicks 'Publish & Assign'"]
+    
+    T7 --> T8["⚙️ Automatic System Broadcast Engine<br/>• Task posted to Student Learning Desk with countdown<br/>• Parent Portal updated with task notice & due date<br/>• Pushed to School Master Academic Calendar"]
+      </div>
+
+      <!-- Step Cards Breakdown -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs pt-2">
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">1. Audience Targeting</span>
+          <p class="text-slate-600 text-[11px] mt-1">Teachers can target entire classes or curate specialized assignments for remedial students needing extra practice.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">2. Multi-Media Attachments</span>
+          <p class="text-slate-600 text-[11px] mt-1">Attach unlimited reference documents, lab sheets, and video links directly delivered into student devices.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">3. Transparent Rubrics</span>
+          <p class="text-slate-600 text-[11px] mt-1">Students see the exact criteria beforehand, eliminating subjective grading disputes.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">4. Immediate Visibility</span>
+          <p class="text-slate-600 text-[11px] mt-1">Parents receive instant notification preventing the classic excuse: "I had no homework assigned today."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGRAM 5: STUDENT SUBMITS TASK (DEEP-DIVE SUBMISSION) -->
+    <section id="task-submit-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-brand-200 shadow-md space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-brand-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-800 bg-brand-100 px-2.5 py-0.5 rounded">Diagram 05 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Student Task Receipt, Work & Submission Workflow (Modules 30, 31)</h2>
+          <p class="text-xs text-slate-500">Student notification, resource download, offline/online execution, multi-format upload, and timestamp verification</p>
+        </div>
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg">Student Execution Desk</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    S1["📲 1. Notification Arrives on Student Dashboard<br/>(Badge appears on mobile / web & push alert)"] --> S2["2. Student Opens Task Workspace<br/>• Reads teacher brief & rubric standards<br/>• Downloads attached worksheets & reference files<br/>• Monitors live deadline countdown"]
+    
+    S2 --> S3["3. Student Solves Assignment<br/>(Solves problems in notebook, writes essay, or completes project)"]
+    
+    S3 --> S4["4. Prepares Digital Deliverable<br/>• Option A: Upload multi-page photos of notebook (JPG/PNG)<br/>• Option B: Upload compiled PDF / Word Doc<br/>• Option C: Type direct answer / code in rich-text editor"]
+    
+    S4 --> S5{"5. Save Progress as Draft OR Turn In?"}
+    
+    S5 -- "Save as Draft" --> S5_Draft["💾 Saved Locally & in Cloud<br/>(Student can re-edit & add pages later)"]
+    S5_Draft --> S4
+    
+    S5 -- "Turn In / Final Submit" --> S6{"6. System Timestamp & Policy Check"}
+    
+    S6 -- "Before Deadline" --> S7A["✅ Tagged 'Turned In On-Time'<br/>• Cryptographic timestamp logged in database<br/>• File locked to prevent unauthorized tampering"]
+    
+    S6 -- "Past Deadline" --> S7B{"Is Late Submission Permitted?"}
+    S7B -- "Permitted" --> S7C["⚠️ Tagged 'Late Submission (+X Hours)'<br/>• Automated penalty flag attached<br/>• Submission accepted for grading"]
+    S7B -- "Strictly Blocked" --> S7D["❌ Submission Portal Closed<br/>• Student prompted to apply for official deadline extension"]
+    
+    S7A --> S8["7. Digital Confirmation Receipt<br/>• Submission receipt code generated<br/>• Parent portal updates: 'Child turned in Physics task'"]
+    S7C --> S8
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2">
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Multi-Device Mobile Capture</span>
+          <p class="text-slate-600 text-[11px] mt-1">Students can photograph written exercise pages directly using phone camera; system auto-optimizes and compresses files.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Tamper-Proof Timestamps</span>
+          <p class="text-slate-600 text-[11px] mt-1">Submissions receive immutable server timestamps. Eliminates all ambiguity regarding deadlines and late penalties.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Automatic Parent Synchronization</span>
+          <p class="text-slate-600 text-[11px] mt-1">Parents can verify with their own eyes that homework has been submitted, including the exact uploaded file.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGRAM 6: TEACHER EVALUATION & RUBRIC GRADING (DEEP-DIVE EVALUATION) -->
+    <section id="task-grade-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-brand-200 shadow-md space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-brand-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-800 bg-brand-100 px-2.5 py-0.5 rounded">Diagram 06 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Teacher Evaluation, Rubric Scoring & Feedback Loop (Modules 10, 21, 30)</h2>
+          <p class="text-xs text-slate-500">Submission desk review, in-browser annotation, rubric scoring, resubmission loop, and gradebook synchronization</p>
+        </div>
+        <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-lg">Evaluation Suite</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    G1["👨‍🏫 1. Teacher Submission Dashboard<br/>• Live Tally: 30/32 Submitted (28 On-Time, 2 Late) • 2 Missing"] --> G2["2. Teacher Clicks a Student's Submission"]
+    
+    G2 --> G3["3. Integrated In-Browser Document Viewer<br/>• Full PDF & image viewer without downloading<br/>• Pen markup, highlight tool & inline comment sticky notes"]
+    
+    G3 --> G4{"4. Teacher Assessment Decision"}
+    
+    G4 -- "Satisfactory Work" --> G5A["5A. Fill Out Pre-Set Rubric Scorecard<br/>• Theory: 18/20<br/>• Methodology: 19/20<br/>• Presentation: 9/10<br/>• Total Score: 46/50 (Grade A)"]
+    G5A --> G6A["6A. Add Qualitative Feedback Note<br/>(e.g., 'Great working on Step 3, review question 5 formula')"]
+    G6A --> G7A["7A. Click 'Commit Grade & Return to Student'"]
+    
+    G7A --> G8A["📊 Automated Multi-System Sync:<br/>• Pushed to Continuous Assessment Ledger<br/>• Student notified with score & annotated file<br/>• Parent app displays verified score & remarks<br/>• Class average & score distribution recalculated"]
+    
+    G4 -- "Incomplete / Wrong File / Missing Steps" --> G5B["5B. Click 'Request Resubmission'<br/>• Teacher notes exact reason for rejection<br/>• Sets 24-hour revision grace deadline"]
+    G5B --> G6B["🔄 Student Portal Status changes to 'Revision Required'<br/>• Student uploads corrected version<br/>• Re-enters teacher queue tagged as 'Resubmitted'"]
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2">
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Zero Manual Math</span>
+          <p class="text-slate-600 text-[11px] mt-1">The system calculates rubric totals and percentages automatically. No gradebook calculations or manual transcription.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Pedagogical Revisions</span>
+          <p class="text-slate-600 text-[11px] mt-1">If a student uploads the wrong file or an unreadable page, the teacher rejects with 1 click rather than awarding zero.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="font-bold text-slate-900 block font-mono text-xs">Continuous Assessment</span>
+          <p class="text-slate-600 text-[11px] mt-1">Task scores automatically flow into the student's term gradebook, ensuring transparent ongoing evaluation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGRAM 7: ONLINE TIMED QUIZ & AUTO-EVALUATION (NEW DEEP DIVE) -->
+    <section id="quiz-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded">Diagram 07 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Online Timed Quiz & Auto-Evaluation Lifecycle (Modules 10, 21, 30)</h2>
+          <p class="text-xs text-slate-500">Question bank setup, randomized testing, browser security, auto-scoring, and immediate analytics</p>
+        </div>
+        <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-lg">Instant Grading Engine</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    Q1["👨‍🏫 1. Teacher Builds Assessment<br/>• Question Bank: MCQs, True/False, Short Answer<br/>• Randomize question sequence & option order<br/>• Set timer (e.g. 25 mins) & active access window"] --> Q2["2. Quiz Publishes on Schedule"]
+    
+    Q2 --> Q3["👨‍🎓 3. Student Launches Assessment<br/>• Pre-test check & rules acknowledgment<br/>• Full-screen focus enabled with tab-switching detection<br/>• Countdown timer begins ticking"]
+    
+    Q3 --> Q4["4. Student Answers Questions<br/>• Auto-saved to server after every click<br/>• Question navigation palette (Answered, Flagged, Unvisited)"]
+    
+    Q4 --> Q5{"5. Completion Trigger"}
+    Q5 -- "Student Clicks Submit" --> Q6["Submitted Gracefully"]
+    Q5 -- "Timer Reaches 00:00" --> Q6_Auto["System Auto-Submits Immediately"]
+    
+    Q6 --> Q7{"6. Evaluation Engine"}
+    Q6_Auto --> Q7
+    
+    Q7 -- "100% Objective (MCQ/TF)" --> Q8A["⚡ 100% Instant Grading<br/>• Total marks calculated in 1 second<br/>• Solution review & explanations unlocked<br/>• Score reflected on parent & student dashboard"]
+    
+    Q7 -- "Contains Short Answers" --> Q8B["Hybrid Evaluation<br/>• Objective section scored automatically<br/>• Subjective questions sent to teacher rapid-grading queue<br/>• Final grade released once teacher reviews"]
+    
+    Q8A --> Q9["📈 Bell-Curve & Topic Mastery Analytics Generated for Principal & HOD"]
+    Q8B --> Q9
+      </div>
+    </section>
+
+    <!-- DIAGRAM 8: LESSON PLANNING & SYLLABUS TRACKING (NEW DEEP DIVE) -->
+    <section id="lesson-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded">Diagram 08 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Lesson Planning & Syllabus Coverage Progress Tracker (Modules 08, 21, 24)</h2>
+          <p class="text-xs text-slate-500">How teachers file weekly schemes of work, track covered topics in 15 seconds, and notify leadership of syllabus pace</p>
+        </div>
+        <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg">Curriculum Governance</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart LR
+    L1["👨‍🏫 1. Teacher Enters Term Scheme of Work<br/>• Weekly breakdown of topics & experiments<br/>• Learning objectives & required lab equipment"] --> L2["2. Academic Coordinator / HOD Review<br/>(Approves pacing & institutional rigor)"]
+    
+    L2 --> L3["3. Daily Classroom Delivery<br/>• Teacher conducts period in classroom<br/>• Opens Lesson Log at end of lesson"]
+    
+    L3 --> L4["4. 15-Second Topic Checkoff<br/>• Taps: 'Topic 4.3 Newton's Third Law Done'<br/>• Checks: 'Classroom practice completed'<br/>• Flags pace status: On Schedule / Behind"]
+    
+    L4 --> L5["5. Real-Time Syllabus Cockpit<br/>• Principal dashboard shows school-wide coverage %<br/>• HOD spots lagging subjects 4 weeks before exams<br/>• Student portal displays completed learning checklist"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 9: STUDENT MERIT, DEMERIT & DISCIPLINE (NEW DEEP DIVE) -->
+    <section id="discipline-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded">Diagram 09 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Student Merit, Demerit & Disciplinary Incident Workflow (Modules 14, 21, 32)</h2>
+          <p class="text-xs text-slate-500">From teacher classroom observation to positive reward points, disciplinary warnings, automated escalation, and parent sign-off</p>
+        </div>
+        <span class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-lg">Behavior Governance</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    D1["👨‍🏫 1. Staff Observes Notable Student Conduct"] --> D2{"Behavior Type"}
+    
+    D2 -- "Positive (Academic, Civic, Sports)" --> M1["2A. Award Merit Points / Star<br/>• Category: Outstanding Project, Helping Peer, Leadership<br/>• Adds description & +10 Points"]
+    M1 --> M2["⭐ Commendation Badge added to Student Dossier<br/>• Real-time praise alert sent to Parent Phone<br/>• Contributes to Annual Excellence & Honor Roll"]
+    
+    D2 -- "Negative / Behavioral Infraction" --> D3["2B. Log Disciplinary Demerit<br/>• Select violation: Tardy, Uniform, Disruptive, Academic Dishonesty<br/>• Enter factual incident details & witness statement"]
+    
+    D3 --> D4{"Incident Severity Check"}
+    
+    D4 -- "Minor Violation (Demerit 1-2)" --> D5A["⚠️ Formal Warning Logged<br/>• Student counseled by Class Teacher<br/>• Notification sent to Parent Portal"]
+    
+    D4 -- "Severe / Repeated Infractions (Demerits ≥ 3)" --> D5B["🚨 Automated Escalation to Vice Principal<br/>• Case referred to Disciplinary Committee<br/>• Formal meeting summoned with parents<br/>• Corrective behavioral contract generated"]
+    
+    D5A --> D6["Parent Digital Acknowledgment Required in Portal"]
+    D5B --> D6
+      </div>
+    </section>
+
+    <!-- DIAGRAM 10: TEACHER LEAVE & SMART SUBSTITUTION (NEW DEEP DIVE) -->
+    <section id="substitution-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded">Diagram 10 &bull; Deep-Dive</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Teacher Leave Request & Smart Class Substitution Cover Engine (Modules 07, 15, 21)</h2>
+          <p class="text-xs text-slate-500">Automated clash-free faculty substitution when teachers take approved medical or emergency leaves</p>
+        </div>
+        <span class="text-xs font-bold text-rose-700 bg-rose-50 px-3 py-1 rounded-lg">Zero Unattended Classes</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    TL1["👨‍🏫 1. Teacher Submits Online Leave Request<br/>• Dates, leave type (Casual, Sick) & hand-off notes"] --> TL2{"2. Principal / HR Approval"}
+    
+    TL2 -- "Denied" --> TL_Rej["Leave Denied & Reason Logged"]
+    
+    TL2 -- "Approved" --> AutoScan["⚙️ 3. Smart Substitution Engine Triggers<br/>• Scans approved timetable for absent teacher's periods<br/>• E.g., Period 2 (Grade 9A Math) & Period 5 (Grade 10B Physics)"]
+    
+    AutoScan --> FreeFinder["4. Real-Time Available Faculty Matcher<br/>• Identifies teachers with free slots during those exact periods<br/>• Prioritizes same-department faculty (Science / Math staff)<br/>• Balances faculty substitution workload fairly"]
+    
+    FreeFinder --> AssignCover["5. Substitution Assignment Confirmed<br/>• Covering teacher assigned with 1 click or auto-assigned<br/>• Hand-off lesson instructions routed to covering teacher"]
+    
+    AssignCover --> DispatchCover["📲 Instant Institutional Broadcast:<br/>• Covering teacher notified on phone with room & class notes<br/>• Class 9A digital board displays: 'Period 2 Cover by Mr. Tariq'<br/>• Zero vacant or noisy classrooms"]
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION GROUP 3: INSTITUTIONAL ADMINISTRATION, FINANCE & SECURITY         -->
+    <!-- ========================================================================= -->
+
+    <!-- DIAGRAM 11: MONTHLY FEE BILLING & DEFAULTER AUTOMATION -->
+    <section id="fee-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 11</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Monthly Fee Billing, Bank Challans & Defaulters (Module 12)</h2>
+          <p class="text-xs text-slate-500">From 1-click batch invoice creation to bank reconciliation, late fine rules, and parent receipts</p>
+        </div>
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg">Financial Automation</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    GenBill["1. 1st of Month: Admin Clicks 'Generate Monthly Invoices'<br/>(Applies tuition, lab fees, sibling discounts, scholarships)"] --> ChallanGen["2. System Generates Official Bank Challans<br/>(3-ply: Student Copy &bull; School Copy &bull; Bank Copy with Barcode)"]
+    
+    ChallanGen --> ParentNotice["3. Parent Notified Instantly via SMS & App<br/>(Downloadable PDF Challan available in Parent Portal)"]
+    
+    ParentNotice --> PayAction{"4. Parent Payment Channel"}
+    
+    PayAction -- "Pays at Bank Counter" --> BankSync["Bank sends daily collection scroll / CSV<br/>Admin imports in 1 click"]
+    PayAction -- "Pays at School Cash Desk" --> CashEntry["Cashier enters Challan No.<br/>Instant receipt generated"]
+    PayAction -- "Online Payment Gateway" --> AutoRecon["Instant payment confirmation via API"]
+    
+    BankSync --> SettleLedger["5. System Settles Student Account to 'PAID'<br/>• Parent app updates in real-time<br/>• Revenue logs in Principal Financial Cockpit"]
+    CashEntry --> SettleLedger
+    AutoRecon --> SettleLedger
+    
+    ParentNotice -.->|"If Unpaid after 10th of Month"| LateFine["⚠️ System Automatically Appends Late Fine<br/>Defaulter SMS sent & flagged in Admin roster"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 12: EXAMS, GRADEBOOK & REPORT CARDS -->
+    <section id="exam-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 12</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Examination, Gradebook & Report Card Engine (Module 11)</h2>
+          <p class="text-xs text-slate-500">Exam scheduling, roll slips, teacher marks entry, GPA calculation, and tamper-proof report cards</p>
+        </div>
+        <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-lg">Academic Engine</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart LR
+    E1["1. Admin Sets Exam Term<br/>(Midterm / Final Term)<br/>Creates Date-Sheet"] --> E2["2. Roll No Slips Issued<br/>• Student seat numbers<br/>• Room allocation<br/>• Downloaded online"]
+    
+    E2 --> E3["3. Exam Conducted"]
+    
+    E3 --> E4["4. Teacher Marks Entry<br/>• Enter marks per paper<br/>• System locks marks after deadline<br/>• No unauthorized edits"]
+    
+    E4 --> E5["5. Automated Calculations<br/>• Total Marks & Percentages<br/>• Grade / GPA Assignment<br/>• Class Rank & Position<br/>• Remarks generation"]
+    
+    E5 --> E6["6. 1-Click Printable Cards<br/>• Institution Crest & Watermark<br/>• Teacher & Principal Signatures<br/>• Published to Parent App"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 13: GOVERNED REQUESTS & LEAVES -->
+    <section id="comms-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 13</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Governed Requests, Medical Leaves & Tickets (Modules 14, 15, 16, 17, 18, 19, 20)</h2>
+          <p class="text-xs text-slate-500">Official digital requests with tracking, medical certificate uploads, approvals, and full audit trail</p>
+        </div>
+        <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg">Governed Communications</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    InitReq["1. Parent / Student Files Request Online<br/>(Medical Leave, Certificate Request, Fee Query, Meeting Request)"] --> AttachDocs["2. Uploads Doctor Slip / Document<br/>(Optional digital attachment)"]
+    
+    AttachDocs --> RouteTicket{"3. Automated Smart Routing"}
+    
+    RouteTicket -- "Medical Leave" --> ClassTeacher["Assigned to Class Teacher<br/>for preliminary review"]
+    RouteTicket -- "Fee Issue" --> AccountsOffice["Assigned to Accounts Officer"]
+    RouteTicket -- "Official Certificate" --> Registrar["Assigned to Registrar / Admin"]
+    
+    ClassTeacher --> ApprovalGate{"4. Authorized Officer Reviews"}
+    AccountsOffice --> ApprovalGate
+    Registrar --> ApprovalGate
+    
+    ApprovalGate -- "Reject" --> RejNotice["Rejected with Reason Noted<br/>(Parent notified in app)"]
+    ApprovalGate -- "Approve" --> ExecAction["5. Action Executed Automatically<br/>• Attendance ledger updated to 'Approved Leave'<br/>• Certificate PDF generated with verification QR<br/>• Parent receives official notification"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 14: TIMETABLE ENGINE -->
+    <section id="timetable-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 14</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Conflict-Free Timetable & Room Allocation Matrix (Modules 07, 21, 24)</h2>
+          <p class="text-xs text-slate-500">Preventing double-booked teachers, room collisions, and faculty overload across the institution</p>
+        </div>
+        <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-lg">Clash Prevention</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    AdminInputs["1. Admin Configures Grid Parameters<br/>• Working Days & Periods per day<br/>• Subject Weekly Hour Quotas<br/>• Teacher Subject Specializations<br/>• Rooms & Laboratories"] --> MatrixGen["2. Drag & Drop Visual Timetable Matrix"]
+    
+    MatrixGen --> ClashCheck{"3. Real-Time Conflict Detection Engine"}
+    
+    ClashCheck -- "Teacher Busy in Class 8B" --> AlertClash["❌ Clash Alert: Teacher already assigned in this period!"]
+    AlertClash --> MatrixGen
+    
+    ClashCheck -- "Science Lab Occupied" --> AlertLab["❌ Room Alert: Lab already booked!"]
+    AlertLab --> MatrixGen
+    
+    ClashCheck -- "No Conflicts Found" --> CommitTT["4. Timetable Saved & Published"]
+    
+    CommitTT --> ViewDistribute["5. Filtered Personalized Views Delivered Instantly:<br/>• Teacher Panel: Personal daily teaching schedule<br/>• Student Panel: Class-specific timetable<br/>• Parent Portal: Child's daily routine & periods<br/>• Admin Cockpit: Master institutional master grid"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 15: DYNAMIC WEBSITE CMS -->
+    <section id="cms-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 15</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Dynamic Public Website Management & Instant Publishing (Modules 01, 02, 20, 23)</h2>
+          <p class="text-xs text-slate-500">Zero-code live website editing, news flash broadcasts, and gallery updates by administrative staff</p>
+        </div>
+        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg">Zero-Code Web CMS</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart LR
+    AdminCMS["1. Admin Opens Website CMS in Admin Panel"] --> ChooseAction{"Select What to Update"}
+    
+    ChooseAction -- "Hero Banner / News Flash" --> B1["Update Heading, Subtext, Action Button & Image"]
+    ChooseAction -- "Notice / Circular" --> N1["Compose Title, Description, Validity Expiry<br/>Attach Official PDF Circular"]
+    
+    B1 --> CCommit["2. Click 'Save & Publish'"]
+    
+    N1 --> TargetAudience["Select Target Audience:<br/>• Public Website Visitors<br/>• Entire School<br/>• Staff Only<br/>• Specific Grade (e.g. Class 10)"]
+    
+    TargetAudience --> CCommit
+    
+    CCommit --> WebLive["3. Instantly Live across Devices<br/>• Public Website updates in real-time<br/>• Relevant User Notice Boards update<br/>• No outside programmer or hosting fees"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 16: PARENT SIBLING PORTAL -->
+    <section id="sibling-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 16</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Unified Multi-Child Parent Experience & Sibling Switcher (Modules 16, 32)</h2>
+          <p class="text-xs text-slate-500">Single guardian login connecting multiple enrolled siblings with 1-tap workspace toggling</p>
+        </div>
+        <span class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-lg">Single Family Login</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart TD
+    PLogin["1. Parent Signs In with 1 Login<br/>(Single username & password for the household)"] --> PDetect["2. System Identifies Linked Children via CNIC<br/>(e.g., Child A: Grade 4 • Child B: Grade 9)"]
+    
+    PDetect --> PSwitch{"3. 1-Tap Sibling Switcher Bar"}
+    
+    PSwitch -- "Selects Child A (Grade 4)" --> ViewA["Dossier Child A:<br/>• Class 4 Attendance (98%)<br/>• Junior homework tasks & reading list<br/>• Primary school fee challan<br/>• Class 4 teacher inquiry thread"]
+    
+    PSwitch -- "Selects Child B (Grade 9)" --> ViewB["Dossier Child B:<br/>• Class 9 Attendance (92%)<br/>• Science lab homework & math tests<br/>• High school fee challan<br/>• Board exam roll slip & transcript"]
+      </div>
+    </section>
+
+    <!-- DIAGRAM 17: ZERO-TRUST AUDIT & SECURITY -->
+    <section id="audit-flow" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded">Diagram 17</span>
+          <h2 class="text-lg sm:text-2xl font-bold text-slate-900 mt-1">Zero-Trust Backend Security & Forensic Audit Logging (Modules 28, 34)</h2>
+          <p class="text-xs text-slate-500">Tamper-proof permanent record for every sensitive grade alteration, fee waiver, and permission update</p>
+        </div>
+        <span class="text-xs font-bold text-rose-700 bg-rose-50 px-3 py-1 rounded-lg">Immutable Governance</span>
+      </div>
+
+      <div class="mermaid overflow-x-auto border border-slate-100 rounded-2xl shadow-xs py-4">
+flowchart LR
+    Act["1. Sensitive Action Triggered<br/>(e.g., Alter exam score, grant fee waiver,<br/>modify past attendance, change role)"] --> ZTCheck{"2. Backend Zero-Trust Check<br/>Does user have verified authority?"}
+    
+    ZTCheck -- "Unauthorized" --> Blocked["❌ Action Blocked & Security Alert Logged"]
+    
+    ZTCheck -- "Authorized" --> Exec["3. Action Committed to Database"]
+    
+    Exec --> AuditLog["4. Immutable Audit Record Created<br/>• Staff User ID & Name<br/>• Exact Action Type<br/>• Previous Old Value & New Value<br/>• Exact Timestamp & Client IP Address"]
+    
+    AuditLog --> AdminCockpit["5. Visible in Principal Audit Roster<br/>(Permanent record; cannot be erased)"]
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-4 sm:px-6 text-center text-xs text-slate-500 bg-white border-t border-slate-200 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-brand-600 flex items-center justify-center text-white font-extrabold text-xs">E</div>
+        <span class="font-bold text-slate-800">EduOS</span>
+        <span>&bull; 17 Master Institutional Workflows & Operational Lifecycles</span>
+      </div>
+      <p>&copy; 2026 EduOS &bull; Prepared exclusively for School Leadership & Board Review.</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

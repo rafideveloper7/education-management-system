@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduOS — Education Management System — Client Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1a3a5c;
+      --navy2:      #1e4976;
+      --gold:       #c9a84c;
+      --gold2:      #f0c060;
+      --sky:        #e8f4fd;
+      --green:      #1a6b4a;
+      --green-bg:   #eaf7f1;
+      --red:        #8b1a1a;
+      --red-bg:     #fdf0f0;
+      --purple:     #4a1a6b;
+      --purple-bg:  #f4f0fd;
+      --orange:     #7a3a00;
+      --orange-bg:  #fdf4e8;
+      --gray:       #6b7280;
+      --light:      #f8fafc;
+      --border:     #dde4ed;
+      --text:       #1f2937;
+      --text2:      #4b5563;
+    }
+
+    html { font-size: 14px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    @media print {
+      html { font-size: 11px; }
+      body  { background: #fff !important; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      .avoid-break { page-break-inside: avoid; }
+      a { color: inherit !important; text-decoration: none !important; }
+      @page { size: A4; margin: 15mm; }
+    }
+
+    .document { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* ── Print hint ── */
+    .print-hint {
+      background: linear-gradient(135deg, #1a3a5c, #1e4976);
+      color: #fff; padding: 14px 24px; text-align: center;
+      font-size: 0.85rem; letter-spacing: 0.02em;
+    }
+    .print-hint strong { color: var(--gold2); }
+
+    /* ── Cover ── */
+    .cover {
+      min-height: 80vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 80px 40px 60px; border-bottom: 3px solid var(--gold);
+    }
+    .cover-logo { width: 90px; height: 90px; object-fit: contain; margin-bottom: 28px; }
+    .cover-badge {
+      display: inline-block; background: var(--gold); color: var(--navy);
+      font-weight: 700; font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 5px 18px; border-radius: 20px; margin-bottom: 22px;
+    }
+    .cover h1 {
+      font-family: 'Playfair Display', serif; font-size: 3rem;
+      color: var(--navy); line-height: 1.15; margin-bottom: 14px;
+    }
+    .cover h1 span { color: var(--gold); }
+    .cover .subtitle {
+      font-size: 1.15rem; color: var(--text2);
+      max-width: 520px; margin-bottom: 40px;
+    }
+    .cover-divider { width: 60px; height: 3px; background: var(--gold); border-radius: 2px; margin: 0 auto 40px; }
+    .cover-meta { font-size: 0.85rem; color: var(--gray); margin-top: 8px; }
+
+    /* ── Section header ── */
+    .section-header { display: flex; align-items: center; gap: 14px; margin: 52px 0 24px; }
+    .section-number {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--navy);
+      color: #fff; font-weight: 700; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--navy); }
+    .section-intro { font-size: 1rem; color: var(--text2); margin-bottom: 28px; max-width: 700px; line-height: 1.8; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1.5px solid var(--border); margin: 44px 0; }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--sky); border-left: 4px solid var(--navy2);
+      border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0;
+      font-size: 0.95rem; color: var(--text);
+    }
+    .callout strong { color: var(--navy); }
+
+    /* ── Roles grid ── */
+    .roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
+    .role-card { border-radius: 12px; padding: 22px 22px 18px; border: 1.5px solid transparent; }
+    .role-card.admin   { background: var(--sky);       border-color: var(--navy);   }
+    .role-card.teacher { background: var(--green-bg);  border-color: var(--green);  }
+    .role-card.student { background: var(--purple-bg); border-color: var(--purple); }
+    .role-card.parent  { background: var(--orange-bg); border-color: var(--orange); }
+    .role-card.public  { background: #f4f4f4;          border-color: #888;          }
+    .role-card-header  { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .role-icon { font-size: 1.6rem; }
+    .role-card h3 { font-size: 1.05rem; font-weight: 700; }
+    .role-card.admin   h3 { color: var(--navy); }
+    .role-card.teacher h3 { color: var(--green); }
+    .role-card.student h3 { color: var(--purple); }
+    .role-card.parent  h3 { color: var(--orange); }
+    .role-card.public  h3 { color: #555; }
+    .role-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 10px; border-radius: 10px; margin-bottom: 10px;
+    }
+    .role-card.admin   .role-tag { background: var(--navy);   color: #fff; }
+    .role-card.teacher .role-tag { background: var(--green);  color: #fff; }
+    .role-card.student .role-tag { background: var(--purple); color: #fff; }
+    .role-card.parent  .role-tag { background: var(--orange); color: #fff; }
+    .role-card.public  .role-tag { background: #888;          color: #fff; }
+    .role-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+    .role-card ul { list-style: none; margin-top: 10px; }
+    .role-card ul li { font-size: 0.87rem; color: var(--text); padding: 3px 0; display: flex; align-items: flex-start; gap: 7px; }
+    .role-card ul li::before { content: 'v'; font-weight: 700; font-size: 0.8rem; margin-top: 2px; flex-shrink: 0; }
+    .role-card.admin   ul li::before { color: var(--navy); content: '✓'; }
+    .role-card.teacher ul li::before { color: var(--green); content: '✓'; }
+    .role-card.student ul li::before { color: var(--purple); content: '✓'; }
+    .role-card.parent  ul li::before { color: var(--orange); content: '✓'; }
+    .role-card.public  ul li::before { color: #888; content: '✓'; }
+
+    /* ── Flow diagram ── */
+    .flow-wrap {
+      background: var(--light); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 28px 24px; margin: 24px 0;
+    }
+    .flow-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 22px; }
+    .flow { display: flex; flex-direction: column; align-items: flex-start; }
+    .flow-step { display: flex; align-items: flex-start; gap: 16px; }
+    .flow-left { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
+    .flow-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; z-index: 1;
+    }
+    .flow-line { width: 2px; height: 32px; background: var(--border); margin: 0 auto; }
+    .flow-content { padding: 4px 0 28px; }
+    .flow-content h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .flow-content p  { font-size: 0.84rem; color: var(--text2); line-height: 1.6; }
+    .flow-dot.blue   { background: var(--navy);   color: #fff; }
+    .flow-dot.gold   { background: var(--gold);   color: var(--navy); }
+    .flow-dot.green  { background: var(--green);  color: #fff; }
+    .flow-dot.purple { background: var(--purple); color: #fff; }
+
+    /* Horizontal flow */
+    .flow-h { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 16px 0; }
+    .flow-h-step { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; min-width: 90px; }
+    .flow-h-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; background: var(--navy); color: #fff;
+    }
+    .flow-h-label { font-size: 0.78rem; font-weight: 600; color: var(--text); max-width: 90px; }
+    .flow-h-arrow { font-size: 1.3rem; color: var(--gold); padding: 0 4px; margin-bottom: 22px; }
+
+    /* ── System map ── */
+    .system-map { background: var(--navy); color: #fff; border-radius: 14px; padding: 32px 28px; margin: 24px 0; }
+    .system-map-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold2); margin-bottom: 24px; text-align: center; }
+    .sm-layer { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .sm-box {
+      background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 8px; padding: 8px 16px; font-size: 0.82rem;
+      font-weight: 600; text-align: center; letter-spacing: 0.02em; white-space: nowrap;
+    }
+    .sm-box.highlight { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
+    .sm-box.accent    { background: rgba(201,168,76,0.2); border-color: var(--gold2); }
+    .sm-connector     { width: 100%; text-align: center; color: var(--gold2); font-size: 1.4rem; margin: 4px 0; }
+
+    /* ── Table ── */
+    .features-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.87rem; }
+    .features-table th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+    .features-table th:first-child { border-radius: 8px 0 0 0; }
+    .features-table th:last-child  { border-radius: 0 8px 0 0; }
+    .features-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .features-table tr:last-child td { border-bottom: none; }
+    .features-table tr:nth-child(even) td { background: var(--light); }
+
+    /* ── Panel cards ── */
+    .panel-card { border-radius: 12px; overflow: hidden; margin: 20px 0; border: 1.5px solid var(--border); }
+    .panel-card-header { padding: 16px 22px; display: flex; align-items: center; gap: 12px; }
+    .panel-card-header .icon { font-size: 1.5rem; }
+    .panel-card-header .info h3 { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .panel-card-header .info p  { font-size: 0.82rem; opacity: 0.85; color: #fff; }
+    .panel-card-header.admin   { background: linear-gradient(135deg,#1a3a5c,#1e4976); }
+    .panel-card-header.teacher { background: linear-gradient(135deg,#1a6b4a,#22875e); }
+    .panel-card-header.student { background: linear-gradient(135deg,#4a1a6b,#5e228a); }
+    .panel-card-header.parent  { background: linear-gradient(135deg,#7a3a00,#9a4a00); }
+    .panel-card-body { padding: 20px 22px; background: #fff; }
+    .feature-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: 0.78rem; font-weight: 500; padding: 4px 12px; border-radius: 16px; border: 1.5px solid; }
+    .chip.admin   { border-color: var(--navy);   color: var(--navy);   background: var(--sky);       }
+    .chip.teacher { border-color: var(--green);  color: var(--green);  background: var(--green-bg);  }
+    .chip.student { border-color: var(--purple); color: var(--purple); background: var(--purple-bg); }
+    .chip.parent  { border-color: var(--orange); color: var(--orange); background: var(--orange-bg); }
+
+    /* ── Summary grid ── */
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .summary-box {
+      background: var(--light); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 18px 16px; text-align: center;
+    }
+    .summary-box .num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .summary-box .num span { color: var(--gold); font-size: 1.5rem; }
+    .summary-box p { font-size: 0.82rem; color: var(--text2); font-weight: 500; }
+
+    /* ── TOC ── */
+    .toc { background: var(--light); border: 1.5px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 36px 0; }
+    .toc h3 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+    .toc ol { list-style: none; counter-reset: toc-counter; }
+    .toc ol li { counter-increment: toc-counter; display: flex; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px dashed var(--border); }
+    .toc ol li:last-child { border-bottom: none; }
+    .toc ol li::before { content: counter(toc-counter, decimal-leading-zero); font-size: 0.75rem; font-weight: 700; color: var(--gold); min-width: 22px; }
+    .toc ol li span { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+
+    /* ── Principle box ── */
+    .principle-box { background: linear-gradient(135deg,#1a3a5c 0%,#1e4976 100%); color: #fff; border-radius: 14px; padding: 32px 30px; margin: 28px 0; text-align: center; }
+    .principle-box .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold2); margin-bottom: 14px; }
+    .principle-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 12px; }
+    .principle-box p { font-size: 0.92rem; opacity: 0.85; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── Step label ── */
+    .step-label {
+      display: inline-block; background: var(--gold); color: var(--navy);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 2px 10px; border-radius: 10px; margin-bottom: 4px;
+    }
+
+    /* ── Two-col ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0; }
+    .info-box { background: var(--light); border: 1.5px solid var(--border); border-radius: 10px; padding: 18px; }
+    .info-box h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .info-box ul { list-style: none; }
+    .info-box ul li { font-size: 0.84rem; color: var(--text2); padding: 3px 0; display: flex; align-items: flex-start; gap: 7px; }
+    .info-box ul li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* ── Confidential bar ── */
+    .confidential-bar { background: #fefce8; border: 1px solid #fde68a; border-radius: 6px; padding: 8px 16px; font-size: 0.78rem; color: #92400e; text-align: center; margin: 16px 0; font-weight: 500; }
+
+    /* ── Footer ── */
+    .doc-footer { margin-top: 60px; border-top: 2px solid var(--navy); padding-top: 28px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+    .doc-footer .left h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); }
+    .doc-footer .left p  { font-size: 0.82rem; color: var(--gray); margin-top: 4px; }
+    .doc-footer .right   { font-size: 0.78rem; color: var(--gray); text-align: right; }
+  </style>
+</head>
+<body>
+
+  <div class="print-hint no-print">
+    📄 <strong>To save as PDF:</strong> Press <strong>Ctrl + P</strong> → Change destination to <strong>"Save as PDF"</strong> → Click Save
+  </div>
+
+  <div class="document">
+
+    <!-- ═══════════ COVER ═══════════ -->
+    <div class="cover avoid-break">
+      <div class="cover-badge">Client Overview Document</div>
+      <h1>Education Management<br /><span>System</span></h1>
+      <p class="subtitle">
+        A complete digital operating system for your educational institution —
+        explained simply, clearly, and without technical jargon.
+      </p>
+      <div class="cover-divider"></div>
+      <p class="cover-meta">Prepared for Client Review &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2026</p>
+    </div>
+
+    <div class="confidential-bar">
+      🔒 This document is confidential and prepared exclusively for client review.
+    </div>
+
+    <!-- ═══════════ TOC ═══════════ -->
+    <div class="toc avoid-break">
+      <h3>📋 What's Inside This Document</h3>
+      <ol>
+        <li><span>What Is This System?</span></li>
+        <li><span>Who Uses It? — The 5 Roles</span></li>
+        <li><span>How the System Works — Big Picture</span></li>
+        <li><span>The Public Website</span></li>
+        <li><span>Admin Panel — The Control Center</span></li>
+        <li><span>Teacher Panel</span></li>
+        <li><span>Student Panel</span></li>
+        <li><span>Parent Panel</span></li>
+        <li><span>How a Student Joins — Admission Flow</span></li>
+        <li><span>How Applications &amp; Complaints Work</span></li>
+        <li><span>Exams &amp; Results Flow</span></li>
+        <li><span>Fee Management</span></li>
+        <li><span>Notifications — How People Stay Informed</span></li>
+        <li><span>ID Cards</span></li>
+        <li><span>Summary &amp; Key Numbers</span></li>
+      </ol>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 1. WHAT IS THIS ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">1</div>
+      <h2>What Is This System?</h2>
+    </div>
+    <p class="section-intro">
+      Think of this as your school or institution's <strong>complete digital brain</strong>.
+      Instead of using separate tools for attendance, fees, exams, notices, and communication —
+      everything lives in one place, connected, and under your full control.
+    </p>
+    <div class="principle-box avoid-break">
+      <div class="label">Core Idea</div>
+      <h3>One System. Everything Connected.</h3>
+      <p>Not just a website with four dashboards. This is a complete digital operating system
+      for your institution — where every activity has a clear owner, a proper process, and a full history.</p>
+    </div>
+    <div class="two-col avoid-break">
+      <div class="info-box">
+        <h4>🏫 What it replaces</h4>
+        <ul>
+          <li>Paper attendance registers</li>
+          <li>Manual fee receipts and ledgers</li>
+          <li>WhatsApp groups for notices</li>
+          <li>Physical complaint letters</li>
+          <li>Printed result sheets</li>
+          <li>Separate admission paperwork</li>
+          <li>Physical ID card printing process</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>✨ What you get instead</h4>
+        <ul>
+          <li>Digital attendance with reports</li>
+          <li>Automated fee tracking and receipts</li>
+          <li>Official notice board system</li>
+          <li>Tracked formal applications</li>
+          <li>Published results with grade cards</li>
+          <li>Online admission workflow</li>
+          <li>Auto-generated digital ID cards</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 2. ROLES ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">2</div>
+      <h2>Who Uses It? — The 5 Roles</h2>
+    </div>
+    <p class="section-intro">
+      The system serves five different types of people. Each person only sees what is relevant to them.
+      They all log in through the same door, but are taken to their own private area.
+    </p>
+    <div class="callout avoid-break">
+      <strong>🔑 One Login, Smart Routing:</strong> When a user logs in, the system automatically
+      recognises who they are and takes them to the correct panel. A teacher never sees the admin controls.
+      A student never sees another student's data.
+    </div>
+    <div class="roles-grid avoid-break">
+      <div class="role-card admin">
+        <div class="role-card-header"><div class="role-icon">🏛️</div><h3>Admin / Principal</h3></div>
+        <div class="role-tag">Full Control</div>
+        <p>Runs and controls the entire institution. Has the highest level of access.</p>
+        <ul>
+          <li>Manages all students, teachers and parents</li>
+          <li>Controls fees, exams and results</li>
+          <li>Reviews and approves admissions</li>
+          <li>Manages the public website</li>
+          <li>Views all reports and activity</li>
+        </ul>
+      </div>
+      <div class="role-card teacher">
+        <div class="role-card-header"><div class="role-icon">👨‍🏫</div><h3>Teacher</h3></div>
+        <div class="role-tag">Teaching Tools</div>
+        <p>Manages teaching responsibilities for their assigned classes and subjects only.</p>
+        <ul>
+          <li>Takes attendance for assigned classes</li>
+          <li>Creates and marks assignments</li>
+          <li>Enters exam marks</li>
+          <li>Views their class timetable</li>
+          <li>Submits leave applications</li>
+        </ul>
+      </div>
+      <div class="role-card student">
+        <div class="role-card-header"><div class="role-icon">🎓</div><h3>Student</h3></div>
+        <div class="role-tag">My Education</div>
+        <p>Accesses their own academic life — assignments, results, fees, notices and more.</p>
+        <ul>
+          <li>Views attendance and results</li>
+          <li>Submits assignments online</li>
+          <li>Checks exam schedule</li>
+          <li>Submits leave and fee applications</li>
+          <li>Downloads their digital ID card</li>
+        </ul>
+      </div>
+      <div class="role-card parent">
+        <div class="role-card-header"><div class="role-icon">👨‍👩‍👧</div><h3>Parent / Guardian</h3></div>
+        <div class="role-tag">My Children</div>
+        <p>Monitors their child's academic life and communicates with the institution formally.</p>
+        <ul>
+          <li>Views child's attendance and results</li>
+          <li>Checks fee status and receipts</li>
+          <li>Submits leave requests for child</li>
+          <li>Communicates with teachers and admin</li>
+          <li>Receives important notifications</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role-card public avoid-break" style="margin-top:18px;">
+      <div class="role-card-header"><div class="role-icon">🌐</div><h3>Public Visitor</h3></div>
+      <div class="role-tag">Website Access</div>
+      <p>Anyone browsing the internet can visit the public website. They can view institution information,
+      browse programs, and submit an admission application. They do <strong>not</strong> get access to any academic area.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 3. BIG PICTURE ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">3</div>
+      <h2>How the System Works — Big Picture</h2>
+    </div>
+    <p class="section-intro">
+      Here is the complete picture of how all the pieces connect. Think of it like a building —
+      the public website is the front door, the login is the security gate, and each panel is a separate
+      department inside.
+    </p>
+    <div class="system-map avoid-break">
+      <div class="system-map-title">Complete System Map</div>
+      <div class="sm-layer"><div class="sm-box highlight">🌐 Public Website</div></div>
+      <div class="sm-connector">↓</div>
+      <div class="sm-layer">
+        <div class="sm-box">ℹ️ Information</div>
+        <div class="sm-box">📋 Admission Form</div>
+        <div class="sm-box">📬 Contact Us</div>
+      </div>
+      <div class="sm-connector">↓</div>
+      <div class="sm-layer"><div class="sm-box highlight">🔐 Login / Authentication</div></div>
+      <div class="sm-connector">↓</div>
+      <div class="sm-layer">
+        <div class="sm-box accent">🏛️ Admin Panel</div>
+        <div class="sm-box accent">👨‍🏫 Teacher Panel</div>
+        <div class="sm-box accent">🎓 Student Panel</div>
+        <div class="sm-box accent">👨‍👩‍👧 Parent Panel</div>
+      </div>
+      <div class="sm-connector">↓</div>
+      <div class="sm-layer">
+        <div class="sm-box">📊 Attendance</div>
+        <div class="sm-box">📝 Assignments</div>
+        <div class="sm-box">📚 Exams</div>
+        <div class="sm-box">💰 Fees</div>
+        <div class="sm-box">🔔 Notifications</div>
+      </div>
+      <div class="sm-connector">↓</div>
+      <div class="sm-layer"><div class="sm-box highlight">📨 Communication System — Applications &amp; Complaints</div></div>
+    </div>
+
+    <hr class="divider page-break" />
+
+    <!-- ═══════════ 4. PUBLIC WEBSITE ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">4</div>
+      <h2>The Public Website</h2>
+    </div>
+    <p class="section-intro">
+      Your institution's face to the world. Anyone with internet access can visit it.
+      The most important thing: <strong>Admin can update every word, image, color, and section
+      without needing a developer.</strong>
+    </p>
+    <div class="two-col avoid-break">
+      <div class="info-box">
+        <h4>📄 What visitors can see</h4>
+        <ul>
+          <li>Homepage with hero section and stats</li>
+          <li>About the institution</li>
+          <li>Programs and departments</li>
+          <li>Faculty profiles</li>
+          <li>Admissions information</li>
+          <li>Events and notices</li>
+          <li>Photo gallery</li>
+          <li>Contact information and map</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>⚙️ What Admin controls</h4>
+        <ul>
+          <li>Institute name, logo and branding</li>
+          <li>Colors, fonts and theme</li>
+          <li>Homepage sections (on/off)</li>
+          <li>Navigation menu items</li>
+          <li>All page content and images</li>
+          <li>Contact details and social links</li>
+          <li>Downloadable documents</li>
+          <li>FAQs and important links</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout avoid-break">
+      <strong>📋 Online Admissions:</strong> Prospective students or parents can fill out and submit
+      an admission application directly from the website. The application is automatically received
+      in the Admin Panel for review.
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 5. ADMIN ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">5</div>
+      <h2>Admin Panel — The Control Center</h2>
+    </div>
+    <p class="section-intro">
+      The Admin Panel is the heart of the system. This is where the institution is managed —
+      students enrolled, fees collected, exams organised, and results published.
+    </p>
+    <div class="panel-card avoid-break">
+      <div class="panel-card-header admin">
+        <div class="icon">🏛️</div>
+        <div class="info"><h3>Admin Panel</h3><p>Complete institutional management — everything in one dashboard</p></div>
+      </div>
+      <div class="panel-card-body">
+        <div class="feature-chips">
+          <span class="chip admin">📊 Dashboard Overview</span>
+          <span class="chip admin">👨‍🎓 Student Management</span>
+          <span class="chip admin">👨‍🏫 Teacher Management</span>
+          <span class="chip admin">👨‍👩‍👧 Parent Management</span>
+          <span class="chip admin">📋 Admission Applications</span>
+          <span class="chip admin">🏛️ Academic Structure</span>
+          <span class="chip admin">📅 Timetable</span>
+          <span class="chip admin">📊 Attendance Supervision</span>
+          <span class="chip admin">📝 Assignment Monitoring</span>
+          <span class="chip admin">📚 Exam Management</span>
+          <span class="chip admin">📈 Results and Grading</span>
+          <span class="chip admin">💰 Fee Structure and Collection</span>
+          <span class="chip admin">📨 Applications and Complaints</span>
+          <span class="chip admin">📢 Notices and Announcements</span>
+          <span class="chip admin">🪪 ID Card Generation</span>
+          <span class="chip admin">📊 Reports and Analytics</span>
+          <span class="chip admin">🌐 Website Management</span>
+          <span class="chip admin">⚙️ System Settings</span>
+          <span class="chip admin">🔔 Notification Control</span>
+          <span class="chip admin">📜 Activity History</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 6. TEACHER ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">6</div>
+      <h2>Teacher Panel</h2>
+    </div>
+    <p class="section-intro">
+      Teachers only see what is assigned to them. A teacher cannot access another teacher's classes
+      or any student not in their assigned sections.
+    </p>
+    <div class="panel-card avoid-break">
+      <div class="panel-card-header teacher">
+        <div class="icon">👨‍🏫</div>
+        <div class="info"><h3>Teacher Panel</h3><p>Teaching tools — focused on assigned classes and subjects only</p></div>
+      </div>
+      <div class="panel-card-body">
+        <div class="feature-chips">
+          <span class="chip teacher">📊 My Dashboard</span>
+          <span class="chip teacher">📅 My Timetable</span>
+          <span class="chip teacher">👨‍🎓 My Students</span>
+          <span class="chip teacher">✅ Take Attendance</span>
+          <span class="chip teacher">📝 Create Assignments</span>
+          <span class="chip teacher">📬 Review Submissions</span>
+          <span class="chip teacher">✍️ Enter Exam Marks</span>
+          <span class="chip teacher">📋 View My Exams</span>
+          <span class="chip teacher">📨 Submit Applications</span>
+          <span class="chip teacher">🏖️ Leave Requests</span>
+          <span class="chip teacher">🔔 Notifications</span>
+          <span class="chip teacher">📢 View Notices</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 7. STUDENT ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">7</div>
+      <h2>Student Panel</h2>
+    </div>
+    <p class="section-intro">
+      The student's personal academic workspace. Students can only see their own data —
+      never another student's information.
+    </p>
+    <div class="panel-card avoid-break">
+      <div class="panel-card-header student">
+        <div class="icon">🎓</div>
+        <div class="info"><h3>Student Panel</h3><p>My education — assignments, results, fees, and communication in one place</p></div>
+      </div>
+      <div class="panel-card-body">
+        <div class="feature-chips">
+          <span class="chip student">📊 My Dashboard</span>
+          <span class="chip student">📅 My Timetable</span>
+          <span class="chip student">✅ My Attendance</span>
+          <span class="chip student">📝 My Assignments</span>
+          <span class="chip student">📤 Submit Work</span>
+          <span class="chip student">📚 My Exam Schedule</span>
+          <span class="chip student">📈 My Results</span>
+          <span class="chip student">💰 My Fee Status</span>
+          <span class="chip student">📨 Submit Applications</span>
+          <span class="chip student">🏖️ Leave Request</span>
+          <span class="chip student">🪪 My ID Card</span>
+          <span class="chip student">🔔 Notifications</span>
+          <span class="chip student">📢 Notice Board</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 8. PARENT ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">8</div>
+      <h2>Parent Panel</h2>
+    </div>
+    <p class="section-intro">
+      Parents stay fully informed and connected without needing to call the school every day.
+      If a parent has multiple children enrolled, they can switch between children's profiles easily.
+    </p>
+    <div class="panel-card avoid-break">
+      <div class="panel-card-header parent">
+        <div class="icon">👨‍👩‍👧</div>
+        <div class="info"><h3>Parent Panel</h3><p>Monitor my children's progress and communicate formally with the institution</p></div>
+      </div>
+      <div class="panel-card-body">
+        <div class="feature-chips">
+          <span class="chip parent">📊 My Dashboard</span>
+          <span class="chip parent">👶 My Children</span>
+          <span class="chip parent">✅ Child's Attendance</span>
+          <span class="chip parent">📝 Child's Assignments</span>
+          <span class="chip parent">📚 Child's Exam Schedule</span>
+          <span class="chip parent">📈 Child's Results</span>
+          <span class="chip parent">💰 Child's Fee Status</span>
+          <span class="chip parent">📨 Submit Applications</span>
+          <span class="chip parent">🏖️ Child Leave Request</span>
+          <span class="chip parent">🔔 Notifications</span>
+          <span class="chip parent">📢 Notices</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider page-break" />
+
+    <!-- ═══════════ 9. ADMISSION FLOW ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">9</div>
+      <h2>How a Student Joins — Admission Flow</h2>
+    </div>
+    <p class="section-intro">
+      The entire admission process happens inside the system — from the moment a parent fills out an
+      online form, to the moment a student is enrolled and their ID card is ready.
+    </p>
+    <div class="flow-wrap avoid-break">
+      <div class="flow-title">Step-by-Step Admission Process</div>
+      <div class="flow">
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot blue">🌐</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 1</div>
+            <h4>Parent Visits the Website</h4>
+            <p>A parent goes to the public website and clicks on Admissions. They fill out the online admission form with the student's details.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot gold">📬</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 2</div>
+            <h4>Application Arrives in Admin Panel</h4>
+            <p>The moment the form is submitted, it appears automatically in the Admin's admission inbox. Admin receives a notification.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot blue">🔍</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 3</div>
+            <h4>Admin Reviews the Application</h4>
+            <p>Admin opens the application, reviews all details, and can request additional documents if needed.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot green">✅</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 4</div>
+            <h4>Admin Approves (or Rejects)</h4>
+            <p>Admin clicks Approve. If rejected, a reason is recorded and the applicant is notified automatically.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot blue">👤</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 5</div>
+            <h4>Student Account is Created</h4>
+            <p>Admin creates the student's account in the system. Login credentials are generated. The parent account is also linked at this stage.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot gold">🏫</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 6</div>
+            <h4>Class and Section Assigned</h4>
+            <p>Admin assigns the student to their class and section. The student now appears in the teacher's attendance list and class records.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot green">🪪</div></div>
+          <div class="flow-content">
+            <div class="step-label">Step 7</div>
+            <h4>ID Card Ready</h4>
+            <p>Once the profile is complete, the system automatically generates the student's official ID card. The student can view, download, or print it from their panel.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 10. APPLICATIONS ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">10</div>
+      <h2>How Applications &amp; Complaints Work</h2>
+    </div>
+    <p class="section-intro">
+      Instead of informal WhatsApp messages or physical letters that get lost, the system provides
+      a <strong>formal, tracked communication channel</strong>. Every request has a unique ID,
+      a status, and a complete history.
+    </p>
+    <div class="callout avoid-break">
+      <strong>Important:</strong> This is NOT a chat system. It is a controlled, formal workflow —
+      like submitting a ticket to a helpdesk. Both sides get notifications at every step.
+    </div>
+    <div class="two-col avoid-break">
+      <div class="info-box">
+        <h4>📨 What can be submitted?</h4>
+        <ul>
+          <li>Leave application</li>
+          <li>Fee-related request or concern</li>
+          <li>Certificate or document request</li>
+          <li>Academic concern or complaint</li>
+          <li>Teacher-related complaint</li>
+          <li>Schedule or timetable request</li>
+          <li>Meeting request</li>
+          <li>General complaint or application</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>👥 Who communicates with whom?</h4>
+        <ul>
+          <li>Student → Teacher / Admin / Principal</li>
+          <li>Parent → Teacher / Admin / Principal</li>
+          <li>Teacher → Admin / Principal</li>
+          <li>Admin → Anyone (responds and assigns)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-wrap avoid-break">
+      <div class="flow-title">Application Lifecycle</div>
+      <div class="flow-h">
+        <div class="flow-h-step"><div class="flow-h-dot">📝</div><div class="flow-h-label">Submitted</div></div>
+        <div class="flow-h-arrow">→</div>
+        <div class="flow-h-step"><div class="flow-h-dot">🔍</div><div class="flow-h-label">Under Review</div></div>
+        <div class="flow-h-arrow">→</div>
+        <div class="flow-h-step"><div class="flow-h-dot" style="background:#7a3a00;">❓</div><div class="flow-h-label">Info Needed (if required)</div></div>
+        <div class="flow-h-arrow">→</div>
+        <div class="flow-h-step"><div class="flow-h-dot" style="background:#1a6b4a;">✅</div><div class="flow-h-label">Resolved / Approved</div></div>
+      </div>
+      <p style="font-size:0.83rem;color:var(--text2);margin-top:8px;">
+        At every step, both the applicant and the reviewer receive an automatic notification.
+        The complete history is saved permanently.
+      </p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 11. EXAMS ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">11</div>
+      <h2>Exams &amp; Results Flow</h2>
+    </div>
+    <p class="section-intro">
+      From creating the exam schedule to publishing final results, everything is controlled and tracked.
+      No result can be published without admin finalisation.
+    </p>
+    <div class="flow-wrap avoid-break">
+      <div class="flow-title">How Exams and Results Work</div>
+      <div class="flow">
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot blue">📅</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Admin</div>
+            <h4>Creates Exam Schedule</h4>
+            <p>Admin sets up the exam — name, type (monthly/mid-term/final), date, subject, class, and total marks. Students and teachers are notified automatically.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot green">✍️</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Teacher</div>
+            <h4>Enters Marks</h4>
+            <p>After the exam, the teacher logs into their panel and enters each student's marks. They can edit marks until they submit for finalisation.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot gold">🔍</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <div class="step-label">Admin</div>
+            <h4>Reviews and Finalises</h4>
+            <p>Admin reviews the entered marks, applies the grading system, and checks everything before publishing.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left"><div class="flow-dot green">📢</div></div>
+          <div class="flow-content">
+            <div class="step-label">Published</div>
+            <h4>Results Visible to Students and Parents</h4>
+            <p>Once published, students see their marks, grades, and performance. Parents see the same for their children. Notifications are sent automatically.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider page-break" />
+
+    <!-- ═══════════ 12. FEES ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">12</div>
+      <h2>Fee Management</h2>
+    </div>
+    <p class="section-intro">
+      The system keeps a complete, transparent record of every fee — what is owed, what has been paid,
+      and what is outstanding. No more manual ledgers or lost receipts.
+    </p>
+    <div class="two-col avoid-break">
+      <div class="info-box">
+        <h4>💰 Fee Types Supported</h4>
+        <ul>
+          <li>Admission fee</li>
+          <li>Monthly / tuition fee</li>
+          <li>Exam fee</li>
+          <li>Transport fee</li>
+          <li>Other charges</li>
+          <li>Discounts and scholarships</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>📊 Admin Reports Include</h4>
+        <ul>
+          <li>Daily and monthly collections</li>
+          <li>Outstanding (unpaid) fees</li>
+          <li>Student-wise fee history</li>
+          <li>Class-wise fee summary</li>
+          <li>Partial payment tracking</li>
+          <li>Digital receipts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout avoid-break">
+      <strong>Parent visibility:</strong> Parents can log in and instantly see what fees are due,
+      what has been paid, and download receipts — without calling the school.
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 13. NOTIFICATIONS ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">13</div>
+      <h2>Notifications — How People Stay Informed</h2>
+    </div>
+    <p class="section-intro">
+      The system automatically sends notifications when important things happen.
+      Users always know what needs their attention — without anyone manually sending messages.
+    </p>
+    <table class="features-table avoid-break">
+      <thead>
+        <tr><th>What Happened</th><th>Who Gets Notified</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>New admission application submitted</td><td>Admin</td></tr>
+        <tr><td>Admission approved</td><td>Parent / Applicant</td></tr>
+        <tr><td>New assignment created</td><td>Students in that class</td></tr>
+        <tr><td>Assignment deadline approaching</td><td>Students</td></tr>
+        <tr><td>Assignment marked and feedback given</td><td>Student + Parent</td></tr>
+        <tr><td>Low attendance alert</td><td>Student + Parent + Admin</td></tr>
+        <tr><td>Exam schedule announced</td><td>Students + Parents + Teachers</td></tr>
+        <tr><td>Results published</td><td>Students + Parents</td></tr>
+        <tr><td>Fee reminder / overdue fee</td><td>Student + Parent</td></tr>
+        <tr><td>Application response received</td><td>Applicant</td></tr>
+        <tr><td>New notice published</td><td>Targeted audience</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 14. ID CARDS ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">14</div>
+      <h2>ID Cards</h2>
+    </div>
+    <p class="section-intro">
+      The system automatically generates official ID cards for students and teachers using
+      information already stored. No manual data entry. No separate design software needed.
+    </p>
+    <div class="two-col avoid-break">
+      <div class="info-box">
+        <h4>🎓 Student ID Card Includes</h4>
+        <ul>
+          <li>Institute logo and name</li>
+          <li>Student photo</li>
+          <li>Student name and ID number</li>
+          <li>Class and section</li>
+          <li>Academic session</li>
+          <li>Parent or guardian name</li>
+          <li>Issue and expiry date</li>
+          <li>QR code for verification</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h4>👨‍🏫 Teacher ID Card Includes</h4>
+        <ul>
+          <li>Institute logo and name</li>
+          <li>Teacher photo</li>
+          <li>Teacher name and ID number</li>
+          <li>Designation and department</li>
+          <li>Assigned subjects</li>
+          <li>Contact information</li>
+          <li>Issue and expiry date</li>
+          <li>QR code for verification</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout avoid-break">
+      <strong>How it works:</strong> Once admission is approved and the student's profile (including photo)
+      is complete, the ID card is automatically ready. The student can view, download, and print it
+      from their panel. Admin can also print cards in bulk.
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════ 15. SUMMARY ═══════════ -->
+    <div class="section-header avoid-break">
+      <div class="section-number">15</div>
+      <h2>Summary &amp; Key Numbers</h2>
+    </div>
+    <div class="summary-grid avoid-break">
+      <div class="summary-box"><div class="num">5<span>+</span></div><p>User Roles (Admin, Teacher, Student, Parent, Public)</p></div>
+      <div class="summary-box"><div class="num">4<span>+</span></div><p>Independent Panels — each with its own interface</p></div>
+      <div class="summary-box"><div class="num">36<span>+</span></div><p>Functional Modules across the complete system</p></div>
+      <div class="summary-box"><div class="num">1</div><p>Unified Login — smart routing to the right panel</p></div>
+      <div class="summary-box"><div class="num">100<span>%</span></div><p>Website control by Admin — no developer needed</p></div>
+      <div class="summary-box"><div class="num">0</div><p>Paper registers, lost receipts, or missed messages</p></div>
+    </div>
+
+    <div class="principle-box avoid-break">
+      <div class="label">The Core Promise</div>
+      <h3>Everything Your Institution Does,<br/>Digitised and Connected.</h3>
+      <p>Every real-world activity — from a student's first admission to a teacher's daily attendance,
+      from a parent's fee payment to the admin's exam results — has a clear owner,
+      a proper process, and a complete digital history.</p>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <div class="doc-footer avoid-break">
+      <div class="left">
+        <h4>Education Management System</h4>
+        <p>Complete Digital Operating System for Educational Institutions</p>
+      </div>
+      <div class="right">
+        <p>Confidential — Client Overview Document</p>
+        <p>Prepared: September 2026</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
