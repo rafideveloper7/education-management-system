@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Directory & Management - KIMS Admin Portal</title>
+  <meta name="description" content="KIMS Institutional Management System Student Records and Enrollment">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link active">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" data-table-search="#studentsTable" placeholder="Filter student roll, name, or degree...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Header Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-school mr-1"></i>High School (Classes 0-1 to 10)</span>
+              <span class="text-xs font-semibold text-slate-400">Scholars & Admissions Roster</span>
+            </div>
+            <h1>Students & Admissions Management</h1>
+            <p>Unified directory of enrolled high school students, online admission applications review, and direct student registration.</p>
+          </div>
+          <div class="page-actions flex flex-wrap gap-2">
+            <button type="button" onclick="showToast('Exporting Report', 'Generating Student CSV Registry...', 'info')" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-file-csv mr-1"></i>
+              <span>Export CSV</span>
+            </button>
+            <button type="button" onclick="openNewAdmissionModal()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-user-plus mr-1"></i>
+              <span>Admit New Student</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Student & Admissions Summary KPIs -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Total Scholars</span>
+            <div class="text-2xl font-black text-slate-800 dark:text-white mt-1" id="kpiTotalStudents">0</div>
+            <span class="text-[11px] text-emerald-500 font-bold">&bull; Class 0-1 to 10</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 border-l-4 border-l-amber-500">
+            <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold uppercase">Online Applications</span>
+            <div class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-1" id="kpiNewApplications">0</div>
+            <span class="text-[11px] text-amber-500 font-bold" id="kpiApplicationsSub">&bull; Incoming submissions</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Junior Prep & Primary</span>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1" id="kpiActiveStudents">0</div>
+            <span class="text-[11px] text-emerald-500 font-bold">&bull; Classes 0-1 to 5</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <span class="text-xs text-slate-400 font-semibold uppercase">Middle & Matric (BISE)</span>
+            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 mt-1" id="kpiMatricStudents">0</div>
+            <span class="text-[11px] text-purple-500 font-bold">&bull; Classes 6 to 10</span>
+          </div>
+        </div>
+
+        <!-- Main Unified Card with Tabs -->
+        <div class="admin-card mb-6">
+          
+          <!-- View Switcher Tabs -->
+          <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50 dark:bg-slate-800/20">
+            <div class="flex items-center gap-2">
+              <button type="button" id="tabBtnEnrolled" onclick="switchMainViewTab('enrolled', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Enrolled Students (<span id="countEnrolledTab">0</span>)</span>
+              </button>
+              <button type="button" id="tabBtnApplications" onclick="switchMainViewTab('applications', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-inbox"></i>
+                <span>Online Admission Applications (<span id="countApplicationsTab">0</span>)</span>
+                <span class="px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[9px] font-extrabold" id="badgeAppNew">New</span>
+              </button>
+            </div>
+            <div class="text-xs text-slate-400 font-medium" id="tabSubtitleText">
+              Officially registered high school scholars (Classes 0-1 to 10)
+            </div>
+          </div>
+
+          <!-- TAB 1: ENROLLED STUDENTS DIRECTORY -->
+          <div id="viewEnrolledContainer">
+            <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800">
+              <!-- Filter Pills -->
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="classFilterTabs">
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm" onclick="filterByClassGroup('all', this)">
+                  All Classes
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByClassGroup('prep', this)">
+                  Class 0-1 (Prep)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByClassGroup('primary', this)">
+                  Primary (1-5)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByClassGroup('middle', this)">
+                  Middle (6-8)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterByClassGroup('secondary', this)">
+                  Secondary (9-10)
+                </button>
+              </div>
+
+              <!-- Table Live Search -->
+              <div class="relative w-full md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input 
+                  type="text" 
+                  id="studentLiveSearchInput"
+                  onkeyup="handleStudentSearch(this.value)"
+                  placeholder="Search name, father, ID, class, B-Form..."
+                  class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="table-responsive">
+              <table class="admin-table" id="studentsTable">
+                <thead>
+                  <tr>
+                    <th class="w-10">
+                      <input type="checkbox" id="selectAllStudentsCheckbox" onchange="toggleSelectAllStudents(this)" class="rounded border-slate-300 text-emerald-600">
+                    </th>
+                    <th>Student Profile</th>
+                    <th>Student ID</th>
+                    <th>Admitted Class</th>
+                    <th>Father WhatsApp / Phone</th>
+                    <th>B-Form / CNIC</th>
+                    <th>Previous School / Type</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamically populated by renderStudentTable() from real data & localStorage -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+              <div>
+                Showing <span class="font-bold text-slate-700 dark:text-slate-300" id="studentDisplayCount">0</span> of <span class="font-bold text-slate-700 dark:text-slate-300" id="studentTotalCount">0</span> registered scholars
+              </div>
+              <div class="inline-flex gap-1">
+                <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition" disabled>
+                  Previous
+                </button>
+                <button class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">1</button>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition">2</button>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition">Next</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: ONLINE ADMISSION APPLICATIONS -->
+          <div id="viewApplicationsContainer" class="hidden">
+            <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800">
+              
+              <!-- Application Status Pills -->
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0" id="appStatusFilterTabs">
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm" onclick="filterApplicationsByStatus('all', this)">
+                  All Submissions (<span id="pillAppAll">0</span>)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterApplicationsByStatus('New Submission', this)">
+                  New Submissions (<span id="pillAppNew">0</span>)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterApplicationsByStatus('Under Review', this)">
+                  Under Review (<span id="pillAppReview">0</span>)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterApplicationsByStatus('Approved', this)">
+                  Approved (<span id="pillAppApproved">0</span>)
+                </button>
+                <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" onclick="filterApplicationsByStatus('Admitted', this)">
+                  Admitted (<span id="pillAppAdmitted">0</span>)
+                </button>
+              </div>
+
+              <!-- Applications Search -->
+              <div class="relative w-full md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input 
+                  type="text" 
+                  id="appLiveSearchInput"
+                  onkeyup="handleApplicationSearch(this.value)"
+                  placeholder="Search applicant name, father, app ID..."
+                  class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+            </div>
+
+            <!-- Online Applications Table -->
+            <div class="table-responsive">
+              <table class="admin-table" id="applicationsTable">
+                <thead>
+                  <tr>
+                    <th>App ID & Date</th>
+                    <th>Applicant Child</th>
+                    <th>Target Class</th>
+                    <th>Parent / Father & WhatsApp</th>
+                    <th>Previous School / Score</th>
+                    <th>Status</th>
+                    <th class="text-right" style="min-width: 170px;">Admission Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationTableBody">
+                  <!-- Dynamically populated via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Applications Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+              <div>
+                Showing <span class="font-bold text-slate-700 dark:text-slate-300" id="appDisplayCount">0</span> of <span class="font-bold text-slate-700 dark:text-slate-300" id="appTotalCount">0</span> online applicants
+              </div>
+              <div class="text-slate-400">
+                <i class="fa-solid fa-circle-info text-emerald-600 mr-1"></i>Click "Admit as Student" to automatically enroll any candidate.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Modal: Register New Student -->
+  <div class="modal-overlay" id="addStudentModal">
+    <div class="modal-container" style="max-width: 780px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white">Admit New Student</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Enter official registration details and student academic profile</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="newStudentForm" onsubmit="return handleCreateStudent(event)">
+        <input type="hidden" id="newStudSourceAppId" value="">
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-2">
+
+          <!-- 1. Photo & Basic Student Identity Section -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-id-badge text-emerald-600"></i>
+              <span>Student Identity & Photo</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <!-- Photo Upload Card (Optional) -->
+              <div class="flex flex-col items-center text-center w-full sm:w-auto shrink-0">
+                <div class="relative group">
+                  <div id="photoPreviewBox" class="w-28 h-28 rounded-2xl border-2 border-dashed border-emerald-500/40 dark:border-emerald-500/30 bg-white dark:bg-slate-900 flex flex-col items-center justify-center overflow-hidden shadow-xs relative">
+                    <img id="studPhotoImg" src="" alt="Student Preview" class="hidden w-full h-full object-cover rounded-2xl">
+                    <div id="studPhotoPlaceholder" class="flex flex-col items-center justify-center p-2 text-slate-400">
+                      <i class="fa-solid fa-camera text-2xl text-emerald-600/70 dark:text-emerald-400/70 mb-1"></i>
+                      <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Photo Upload</span>
+                      <span class="text-[9px] text-slate-400">PNG / JPG &lt; 2MB</span>
+                    </div>
+                  </div>
+                  <!-- Camera overlay button -->
+                  <label for="newStudPhoto" class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-md cursor-pointer transition transform hover:scale-105" title="Choose Photo">
+                    <i class="fa-solid fa-camera text-xs"></i>
+                  </label>
+                  <input type="file" id="newStudPhoto" accept="image/*" class="hidden" onchange="previewStudentPhoto(event)">
+                </div>
+                
+                <div class="mt-2 flex items-center gap-1.5">
+                  <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-700/60 px-2 py-0.5 rounded-full">
+                    Optional
+                  </span>
+                  <button type="button" id="removePhotoBtn" onclick="removeStudentPhoto()" class="hidden text-[10px] text-rose-500 hover:underline font-semibold">
+                    Remove
+                  </button>
+                </div>
+              </div>
+
+              <!-- Full Name, Father Name & Student ID -->
+              <div class="flex-1 w-full space-y-3">
+                <!-- Auto-Generated Student ID (Editable by Admin) -->
+                <div class="form-group">
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="form-label !mb-0 flex items-center gap-1.5 font-bold text-xs">
+                      <i class="fa-solid fa-id-card-clip text-emerald-600"></i>
+                      <span>Student ID / Roll No. <span class="text-rose-500 font-bold">*</span></span>
+                    </label>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles text-[9px]"></i> Auto-Generated
+                      </span>
+                      <button type="button" onclick="regenerateStudentId()" class="text-[11px] font-semibold text-slate-500 hover:text-emerald-600 transition flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-slate-200/60 dark:hover:bg-slate-700" title="Generate New Serial ID">
+                        <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                        <span>New ID</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="relative">
+                    <i class="fa-solid fa-hashtag absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 font-bold text-xs"></i>
+                    <input type="text" id="newStudId" class="form-control pl-9 font-mono font-bold text-xs tracking-wider text-emerald-800 dark:text-emerald-300 bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-700 focus:border-emerald-500" required placeholder="e.g. KIMS-2026-04851">
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1">Unique school-wide ID. Pre-filled automatically — admin can edit or customize it anytime.</p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Full Name <span class="text-rose-500 font-bold">*</span></span>
+                    <span class="text-[11px] text-slate-400 font-normal">Student legal name</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="newStudName" class="form-control pl-9" required placeholder="e.g. Muhammad Huzaifa">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label flex items-center justify-between">
+                    <span>Father Name <span class="text-rose-500 font-bold">*</span></span>
+                    <span class="text-[11px] text-slate-400 font-normal">Parent / Guardian name</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user-tie absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="newStudFatherName" class="form-control pl-9" required placeholder="e.g. Tariq Mehmood Afridi">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Contact & National Identification Section -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Father WhatsApp / Mobile No. * -->
+            <div class="form-group">
+              <label class="form-label flex items-center justify-between">
+                <span>Father WhatsApp / Mobile No. <span class="text-rose-500 font-bold">*</span></span>
+                <span class="inline-flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-phone absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-xs"></i>
+                <input type="tel" id="newStudFatherPhone" class="form-control pl-9 font-mono text-xs" required placeholder="0300-1234567" pattern="[0-9\-\+\s]{10,16}">
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Official channel for attendance alerts, announcements & fee receipts.</p>
+            </div>
+
+            <!-- Student B-Form / CNIC No. (optional) -->
+            <div class="form-group">
+              <label class="form-label flex items-center justify-between">
+                <span>Student B-Form / CNIC No.</span>
+                <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Optional</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-id-card absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="newStudCnic" class="form-control pl-9 font-mono text-xs" placeholder="14301-1234567-1" maxlength="15">
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">NADRA 13-digit Child Registration Certificate (CRC) or CNIC.</p>
+            </div>
+          </div>
+
+          <!-- 3. Gender & Residential Address Section -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Gender * -->
+            <div class="form-group sm:col-span-1">
+              <label class="form-label">
+                Gender <span class="text-rose-500 font-bold">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-2 mt-1">
+                <label id="genderLabelMale" class="flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs">
+                  <input type="radio" name="studentGender" value="Male" checked class="accent-emerald-600" onchange="handleGenderChange(this.value)">
+                  <i class="fa-solid fa-mars text-blue-500"></i>
+                  <span>Male</span>
+                </label>
+                <label id="genderLabelFemale" class="flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300">
+                  <input type="radio" name="studentGender" value="Female" class="accent-emerald-600" onchange="handleGenderChange(this.value)">
+                  <i class="fa-solid fa-venus text-pink-500"></i>
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Permanent Residential Address (optional) -->
+            <div class="form-group sm:col-span-2">
+              <label class="form-label flex items-center justify-between">
+                <span>Permanent Residential Address</span>
+                <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Optional</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-location-dot absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                <textarea id="newStudAddress" rows="2" class="form-control pl-9 resize-none text-xs" placeholder="House #, Street / Mohallah, Sector / Village, City & District (e.g. Sector 4, KDA Kohat)"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Academic Placement & Previous Schooling History -->
+          <div class="bg-gradient-to-br from-emerald-50/50 via-slate-50 to-amber-50/30 dark:from-emerald-950/20 dark:via-slate-800/40 dark:to-slate-900/40 p-4 rounded-2xl border border-emerald-500/20 dark:border-emerald-500/20 space-y-4">
+            
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-school text-emerald-600"></i>
+                <span>Academic Placement & School History</span>
+              </span>
+              <span class="text-[11px] text-emerald-600 font-semibold lowercase">grades 0-1 to 10</span>
+            </div>
+
+            <!-- Admit in Class Dropdown (0-1 to 10) -->
+            <div class="form-group">
+              <label class="form-label flex items-center justify-between">
+                <span>Admit in Class <span class="text-rose-500 font-bold">*</span></span>
+                <span class="text-[11px] text-slate-400 font-normal">Select intended target grade level</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-graduation-cap absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <select id="newStudClass" class="form-control pl-9 font-semibold text-slate-800 dark:text-white" required onchange="handleClassSelection(this.value)">
+                  <option value="" disabled selected>-- Select Grade / Class (0-1 to 10) --</option>
+                  <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                  <option value="Class Prep / KG">Class Prep / Kindergarten (KG)</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                  <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Previous School Attended Options -->
+            <div class="space-y-3 pt-2 border-t border-slate-200/80 dark:border-slate-700/60">
+              <div class="flex items-center justify-between flex-wrap gap-1">
+                <label class="form-label !mb-0 font-bold">
+                  Previous School Attended Status
+                  <span class="text-xs text-slate-400 font-normal ml-1">(Optional History)</span>
+                </label>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400">Choose admission background</span>
+              </div>
+
+              <!-- Two Options: Fresh Admission vs From Other School -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Option 1: Fresh New Admission -->
+                <label id="optFreshLabel" class="flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-white dark:bg-slate-800 cursor-pointer transition shadow-xs">
+                  <input type="radio" name="admissionType" value="fresh" checked class="mt-1 accent-emerald-600" onchange="togglePrevSchool('fresh')">
+                  <div>
+                    <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <i class="fa-solid fa-seedling text-emerald-600"></i>
+                      <span>Fresh New Admission</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      First-time school entry (e.g. Class 0-1, Nursery, KG, or beginner). No prior school record.
+                    </p>
+                  </div>
+                </label>
+
+                <!-- Option 2: From Other School -->
+                <label id="optOtherLabel" class="flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs">
+                  <input type="radio" name="admissionType" value="other_school" class="mt-1 accent-emerald-600" onchange="togglePrevSchool('other_school')">
+                  <div>
+                    <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <i class="fa-solid fa-school-flag text-amber-600"></i>
+                      <span>From Other School</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      Transferred from another institution / previous school attended.
+                    </p>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Previous School Name Input (Active when 'From Other School' is selected) -->
+              <div id="prevSchoolFieldWrapper" class="transition-all duration-300">
+                <div class="flex items-center justify-between mb-1.5">
+                  <label for="newStudPrevSchool" class="form-label !mb-0 text-xs font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-building-columns text-slate-400" id="prevSchoolIcon"></i>
+                    <span>Previous School Name</span>
+                    <span class="text-slate-400 font-normal">(Optional)</span>
+                  </label>
+                  <span id="prevSchoolStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                    <i class="fa-solid fa-ban text-[9px]"></i> Disabled (Fresh Admission)
+                  </span>
+                </div>
+
+                <div class="relative">
+                  <i class="fa-solid fa-pen-to-square absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input 
+                    type="text" 
+                    id="newStudPrevSchool" 
+                    class="form-control pl-9 bg-slate-100/70 dark:bg-slate-800/40 text-slate-400 cursor-not-allowed transition" 
+                    disabled 
+                    placeholder="Not applicable for fresh admission"
+                  >
+                </div>
+                <p id="prevSchoolHint" class="text-[11px] text-slate-400 mt-1">
+                  Active when "From Other School" is selected above. Admin can enter the previous school or institute name.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 5. Student Reference & Admission Note (Optional) -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="form-label !mb-0 flex items-center gap-2 font-bold text-xs">
+                <i class="fa-solid fa-clipboard-user text-emerald-600"></i>
+                <span>Student Reference / Admission Notes</span>
+              </label>
+              <span class="text-[10px] font-bold text-slate-400 bg-slate-200/80 dark:bg-slate-700 px-2 py-0.5 rounded-full">
+                Optional
+              </span>
+            </div>
+            <div class="relative">
+              <i class="fa-solid fa-note-sticky absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+              <textarea 
+                id="newStudReference" 
+                rows="2" 
+                class="form-control pl-9 resize-none text-xs" 
+                placeholder="e.g. Referred by Sir Tariq (Physics Dept), sibling of Roll #1042 (20% fee waiver), board scholarship recipient, special medical instruction..."
+              ></textarea>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Record internal school references, staff recommendation, sibling discount link, or any remarks for administrative records.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-between">
+          <button type="button" onclick="resetAddStudentForm()" class="btn-kims btn-secondary !text-xs !py-2 text-slate-500 hover:text-rose-600">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Clear Form</span>
+          </button>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-kims btn-secondary !py-2" data-modal-close>Cancel</button>
+            <button type="submit" class="btn-kims btn-primary !py-2">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Complete Admission</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: View Student Profile & Admission Record (Read) -->
+  <div class="modal-overlay" id="studentDetailModal">
+    <div class="modal-container" style="max-width: 780px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div id="viewStudAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white font-black text-base flex items-center justify-center shadow-sm overflow-hidden">
+            AK
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-slate-800 dark:text-white" id="viewStudName">Muhammad Huzaifa Khan</h3>
+              <span id="viewStudGenderBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Male</span>
+            </div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-bold" id="viewStudId">KIMS-2026-04851</span>
+              <span class="text-slate-300 dark:text-slate-600">&bull;</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400" id="viewStudClass">Class 8</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[72vh] overflow-y-auto pr-1">
+        
+        <!-- Top Status Banner -->
+        <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-500/20 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success"><i class="fa-solid fa-circle-check text-[9px] mr-1"></i>Enrolled Scholar</span>
+            <span class="text-xs text-emerald-800 dark:text-emerald-300 font-medium" id="viewStudSession">Academic Session 2026-2027</span>
+          </div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400" id="viewStudAdmissionDate">Admitted: 07 Sep 2026</span>
+        </div>
+
+        <!-- Two Column Key Details Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          
+          <!-- Identity & Academic Placement -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+            <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-graduation-cap text-emerald-600"></i>
+              <span>Academic Placement</span>
+            </div>
+            
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Admitted In Class:</span>
+              <strong class="text-slate-800 dark:text-white font-bold" id="viewDetailClass">Class 8</strong>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">NADRA B-Form / CNIC:</span>
+              <strong class="font-mono text-slate-800 dark:text-white font-semibold" id="viewDetailCnic">14301-8923411-3</strong>
+            </div>
+
+            <div class="flex justify-between items-start py-1">
+              <span class="text-slate-400">Admission Background:</span>
+              <div class="text-right" id="viewDetailPrevSchool">
+                <span class="badge badge-info text-[10px]">Fresh Admission</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parent & Emergency Communication -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+            <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-users text-emerald-600"></i>
+              <span>Parent & Contact Information</span>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Father / Guardian Name:</span>
+              <strong class="text-slate-800 dark:text-white font-bold" id="viewDetailFatherName">Tariq Mehmood</strong>
+            </div>
+
+            <div class="flex justify-between items-center py-1 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span class="text-slate-400">Father WhatsApp / Mobile:</span>
+              <div class="flex items-center gap-1.5" id="viewDetailFatherPhoneBox">
+                <a id="viewDetailFatherWaLink" href="#" target="_blank" class="font-mono font-bold text-emerald-600 hover:underline flex items-center gap-1">
+                  <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                  <span id="viewDetailFatherPhone">0333-9182341</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-start py-1">
+              <span class="text-slate-400 shrink-0 mr-2">Residential Address:</span>
+              <span class="text-right text-slate-700 dark:text-slate-300 font-medium" id="viewDetailAddress">House #42, Street 7, Mohallah Umarzai, Kohat</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Student Reference & Notes Section -->
+        <div class="bg-slate-50/70 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800">
+          <div class="font-bold text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-note-sticky text-amber-500"></i>
+            <span>Admission Note & Internal Reference</span>
+          </div>
+          <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200/60 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 leading-relaxed italic" id="viewDetailReference">
+            "Admitted on principal recommendation. Elder brother Hamza is an alumnus. 15% sibling concession granted."
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer justify-between">
+        <button type="button" onclick="openEditModalFromView()" class="btn-kims btn-secondary !py-1.5 text-xs text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>Edit This Student</span>
+        </button>
+        <button type="button" class="btn-kims btn-primary !py-1.5 text-xs" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Student (Update) -->
+  <div class="modal-overlay" id="editStudentModal">
+    <div class="modal-container" style="max-width: 780px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-user-pen"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white">Update Scholar Information</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Modify student registration data, enrolled class, or contact details</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="editStudentForm" onsubmit="return handleUpdateStudent(event)">
+        <input type="hidden" id="editOriginalId" value="">
+
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-2">
+
+          <!-- 1. Photo & Basic Student Identity Section -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-id-badge text-blue-600"></i>
+              <span>Student Identity & Photo</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-5 items-start">
+              <!-- Photo Upload Card (Optional) -->
+              <div class="flex flex-col items-center text-center w-full sm:w-auto shrink-0">
+                <div class="relative group">
+                  <div class="w-28 h-28 rounded-2xl border-2 border-dashed border-blue-500/40 bg-white dark:bg-slate-900 flex flex-col items-center justify-center overflow-hidden shadow-xs relative">
+                    <img id="editStudPhotoImg" src="" alt="Student Preview" class="hidden w-full h-full object-cover rounded-2xl">
+                    <div id="editStudPhotoPlaceholder" class="flex flex-col items-center justify-center p-2 text-slate-400">
+                      <i class="fa-solid fa-camera text-2xl text-blue-600/70 mb-1"></i>
+                      <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Photo Upload</span>
+                      <span class="text-[9px] text-slate-400">Optional</span>
+                    </div>
+                  </div>
+                  <label for="editStudPhotoInput" class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md cursor-pointer transition" title="Change Photo">
+                    <i class="fa-solid fa-camera text-xs"></i>
+                  </label>
+                  <input type="file" id="editStudPhotoInput" accept="image/*" class="hidden" onchange="previewEditStudentPhoto(event)">
+                </div>
+                
+                <button type="button" id="editRemovePhotoBtn" onclick="removeEditStudentPhoto()" class="hidden mt-2 text-[10px] text-rose-500 hover:underline flex items-center gap-1">
+                  <i class="fa-solid fa-trash text-[9px]"></i> Remove Photo
+                </button>
+              </div>
+
+              <!-- Name, Father Name & System ID -->
+              <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                
+                <!-- School-wide Auto-Generated Student ID (Editable) -->
+                <div class="sm:col-span-2">
+                  <label class="form-label flex items-center justify-between" for="editStudId">
+                    <span>Student Institutional ID *</span>
+                    <span class="text-[10px] text-slate-400 font-normal">School-wide Unique ID</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-fingerprint absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="text" 
+                      id="editStudId" 
+                      class="form-control pl-9 font-mono font-bold text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-900" 
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Full Legal Name * -->
+                <div>
+                  <label class="form-label" for="editStudName">Full Name *</label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="text" 
+                      id="editStudName" 
+                      class="form-control pl-9" 
+                      placeholder="e.g. Muhammad Huzaifa"
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Father Name * -->
+                <div>
+                  <label class="form-label" for="editStudFatherName">Father Name *</label>
+                  <div class="relative">
+                    <i class="fa-solid fa-user-shield absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="text" 
+                      id="editStudFatherName" 
+                      class="form-control pl-9" 
+                      placeholder="e.g. Tariq Mehmood"
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Father WhatsApp / Mobile No. * -->
+                <div>
+                  <label class="form-label flex items-center justify-between" for="editStudFatherPhone">
+                    <span>Father WhatsApp / Mobile *</span>
+                    <span class="text-[10px] text-emerald-600 font-medium"><i class="fa-brands fa-whatsapp"></i> Alerts Active</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="tel" 
+                      id="editStudFatherPhone" 
+                      class="form-control pl-9 font-mono" 
+                      placeholder="0300-1234567" 
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Student B-Form / CNIC No. (Optional) -->
+                <div>
+                  <label class="form-label flex items-center justify-between" for="editStudCnic">
+                    <span>Student B-Form / CNIC</span>
+                    <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+                  </label>
+                  <div class="relative">
+                    <i class="fa-solid fa-address-card absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                      type="text" 
+                      id="editStudCnic" 
+                      class="form-control pl-9 font-mono" 
+                      placeholder="14301-XXXXXXX-X"
+                    >
+                  </div>
+                </div>
+
+                <!-- Gender * -->
+                <div class="sm:col-span-2">
+                  <label class="form-label">Gender *</label>
+                  <div class="grid grid-cols-2 gap-3">
+                    <label id="editGenderLabelMale" class="flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs">
+                      <input type="radio" name="editStudentGender" value="Male" class="hidden" onchange="handleEditGenderChange('Male')" checked>
+                      <i class="fa-solid fa-person text-base"></i>
+                      <span>Male Student</span>
+                    </label>
+
+                    <label id="editGenderLabelFemale" class="flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300">
+                      <input type="radio" name="editStudentGender" value="Female" class="hidden" onchange="handleEditGenderChange('Female')">
+                      <i class="fa-solid fa-person-dress text-base"></i>
+                      <span>Female Student</span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Academic Admission & Class Placement -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-4">
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+              <span>Academic Enrollment</span>
+            </div>
+
+            <!-- Admit in Class Dropdown (0-1 to 10) -->
+            <div>
+              <label class="form-label" for="editStudClass">Admit in Class (0-1 to 10) *</label>
+              <div class="relative">
+                <i class="fa-solid fa-chalkboard-user absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <select id="editStudClass" class="form-control pl-9" required>
+                  <option value="">-- Choose Class --</option>
+                  <option value="Class 0-1 (Nursery/Prep)">Class 0-1 (Early Childhood / Nursery &amp; Prep)</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9">Class 9 (Matriculation Part 1)</option>
+                  <option value="Class 10">Class 10 (Matriculation Part 2)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Previous School Attended Options -->
+            <div>
+              <label class="form-label flex items-center justify-between">
+                <span>Previous School Attended</span>
+                <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                <label id="editOptFreshLabel" class="flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/20 cursor-pointer transition shadow-xs">
+                  <input type="radio" name="editAdmissionType" value="fresh" class="mt-0.5 text-emerald-600" onchange="toggleEditPrevSchool('fresh')" checked>
+                  <div>
+                    <div class="font-bold text-xs text-slate-800 dark:text-white">Fresh New Admission</div>
+                    <div class="text-[11px] text-slate-400 mt-0.5">First-time admission (e.g. into Class 0-1 or beginner level)</div>
+                  </div>
+                </label>
+
+                <label id="editOptOtherLabel" class="flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs">
+                  <input type="radio" name="editAdmissionType" value="other_school" class="mt-0.5 text-emerald-600" onchange="toggleEditPrevSchool('other_school')">
+                  <div>
+                    <div class="font-bold text-xs text-slate-800 dark:text-white">From Other School</div>
+                    <div class="text-[11px] text-slate-400 mt-0.5">Transferred from another school or institute</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Previous School Name Input -->
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="text-xs font-semibold text-slate-700 dark:text-slate-300" for="editStudPrevSchool">
+                    Previous School / Institution Name
+                  </label>
+                  <span id="editPrevSchoolStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                    <i class="fa-solid fa-ban text-[9px]"></i> Disabled (Fresh Admission)
+                  </span>
+                </div>
+                <div class="relative">
+                  <i id="editPrevSchoolIcon" class="fa-solid fa-building-columns absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                  <input 
+                    type="text" 
+                    id="editStudPrevSchool" 
+                    class="form-control pl-9 bg-slate-100/70 dark:bg-slate-800/40 text-slate-400 cursor-not-allowed transition" 
+                    placeholder="Not applicable for fresh admission"
+                    disabled
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Permanent Residential Address (Optional) -->
+            <div>
+              <label class="form-label flex items-center justify-between" for="editStudAddress">
+                <span>Permanent Residential Address</span>
+                <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-map-location-dot absolute left-3 top-3 text-slate-400"></i>
+                <textarea 
+                  id="editStudAddress" 
+                  rows="2" 
+                  class="form-control pl-9" 
+                  placeholder="House #, Street, Mohallah / Sector, City, District"
+                ></textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. Reference / Note Input -->
+          <div class="bg-slate-50/70 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
+            <label class="form-label flex items-center justify-between" for="editStudReference">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-note-sticky text-amber-500"></i>
+                <span>Reference / Admission Note</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-normal">Optional</span>
+            </label>
+            <div class="relative">
+              <textarea 
+                id="editStudReference" 
+                rows="2" 
+                class="form-control" 
+                placeholder="e.g. Referred by Vice Principal; Elder brother Hamza graduated from Class 10 in 2024..."
+              ></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-between">
+          <button type="button" class="btn-kims btn-secondary !py-2" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary !py-2">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Save Scholar Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Delete Student Confirmation -->
+  <div class="modal-overlay" id="deleteStudentConfirmModal">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header !border-b-0 pb-0">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 flex items-center justify-center text-base">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body text-center pt-2">
+        <h3 class="text-base font-bold text-slate-800 dark:text-white">Delete Student Record?</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          Are you sure you want to permanently remove <strong id="deleteStudentTargetName" class="text-slate-900 dark:text-white">this student</strong> (<span id="deleteStudentTargetId" class="font-mono text-emerald-600">ID</span>) from the institutional directory?
+        </p>
+        <p class="text-[11px] text-rose-500 font-semibold mt-2">
+          This action will remove the record from active rosters.
+        </p>
+      </div>
+      <div class="modal-footer justify-center gap-3 !border-t-0 pt-2">
+        <button type="button" class="btn-kims btn-secondary !py-2 text-xs" data-modal-close>Cancel</button>
+        <button type="button" id="confirmDeleteStudentBtn" onclick="executeDeleteStudent()" class="btn-kims !bg-rose-600 hover:!bg-rose-700 !text-white !py-2 text-xs shadow-sm">
+          <i class="fa-solid fa-trash"></i>
+          <span>Confirm Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: View Online Application Details -->
+  <div class="modal-overlay" id="viewApplicationModal">
+    <div class="modal-container" style="max-width: 680px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-slate-800 dark:text-white" id="modalAppApplicantName">Applicant Candidate</h3>
+              <span id="modalAppStatusBadge" class="badge badge-warning text-[10px]">New Submission</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Online admission candidate dossier &bull; <span id="modalAppId" class="font-mono font-bold text-amber-600">APP-2026-081</span></p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[72vh] overflow-y-auto pr-1 text-xs">
+        
+        <!-- Target Grade Banner -->
+        <div class="p-3 bg-amber-50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800/50 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-amber-600 text-base"></i>
+            <div>
+              <span class="text-[11px] text-slate-400">Target Grade Level:</span>
+              <strong class="text-slate-800 dark:text-white font-bold ml-1 text-sm" id="modalAppTargetClass">Class 9 (SSC-I Matric)</strong>
+            </div>
+          </div>
+          <span class="text-slate-400 text-[11px]" id="modalAppDate">Applied: 07 Sep 2026</span>
+        </div>
+
+        <!-- Two Column Key Details Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Candidate & NADRA -->
+          <div class="bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-id-card text-emerald-600"></i> Candidate Identity
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400">Full Name:</span>
+              <strong class="text-slate-800 dark:text-white" id="modalAppDetailName">Muhammad Farhan</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400">Gender:</span>
+              <strong class="text-slate-800 dark:text-white" id="modalAppDetailGender">Male</strong>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-slate-400">B-Form / CNIC:</span>
+              <strong class="font-mono text-slate-800 dark:text-white" id="modalAppDetailCnic">14301-9238411-5</strong>
+            </div>
+          </div>
+
+          <!-- Parent & Contact -->
+          <div class="bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-user-tie text-emerald-600"></i> Parent / Guardian
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400">Father Name:</span>
+              <strong class="text-slate-800 dark:text-white" id="modalAppDetailFather">Farhan Ullah Khan</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-700/60">
+              <span class="text-slate-400">WhatsApp / Mobile:</span>
+              <a href="#" id="modalAppWaLink" target="_blank" class="font-mono font-bold text-emerald-600 hover:underline flex items-center gap-1">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span id="modalAppDetailPhone">0301-8237194</span>
+              </a>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-slate-400">Address:</span>
+              <span class="text-right text-slate-700 dark:text-slate-300 font-medium truncate max-w-[140px]" id="modalAppDetailAddress">Sector 3 KDA, Kohat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Academic Record -->
+        <div class="bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-school text-emerald-600"></i> Academic Background & Previous School
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div>
+              <span class="text-slate-400 block mb-0.5">Previous School:</span>
+              <strong class="text-slate-800 dark:text-white" id="modalAppDetailPrevSchool">Cadet Prep Academy, Kohat</strong>
+            </div>
+            <div>
+              <span class="text-slate-400 block mb-0.5">Prior Marks / Percentage:</span>
+              <strong class="text-emerald-600 dark:text-emerald-400" id="modalAppDetailMarks">482/550 (87.6%)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parent Submission Remarks -->
+        <div class="bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1.5">
+          <div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-comment-dots text-amber-500"></i> Parent / Applicant Remarks
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic" id="modalAppDetailNotes">
+            "Applied for Pre-Medical Science group. Father is Govt officer."
+          </p>
+        </div>
+
+      </div>
+
+      <div class="modal-footer justify-between">
+        <button type="button" class="btn-kims btn-secondary !py-1.5 text-xs" data-modal-close>Close</button>
+        <button type="button" id="modalAppAdmitBtn" onclick="openAdmitModalFromAppView()" class="btn-kims btn-primary !py-1.5 text-xs">
+          <i class="fa-solid fa-user-check"></i>
+          <span>Admit Candidate as Student</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // STUDENT DIRECTORY & REAL CRUD DATA STORE
+    // =========================================================================
+
+    const DEFAULT_STUDENTS = [
+      {
+        id: "KIMS-2026-04851",
+        name: "Muhammad Huzaifa Khan",
+        fatherName: "Tariq Mehmood",
+        gender: "Male",
+        fatherPhone: "0333-9182341",
+        cnic: "14301-8923411-3",
+        admitClass: "Class 8",
+        classGroup: "middle",
+        admissionType: "other_school",
+        prevSchool: "Govt High School No. 1, Kohat",
+        address: "House #42, Street 7, Mohallah Umarzai, Kohat",
+        reference: "Elder brother Hamza is an alumnus. 15% sibling concession applied.",
+        admissionDate: "07 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      },
+      {
+        id: "KIMS-2026-04852",
+        name: "Fatima Zahra",
+        fatherName: "Syed Imtiaz Ali",
+        gender: "Female",
+        fatherPhone: "0300-5872149",
+        cnic: "14301-5521940-2",
+        admitClass: "Class 0-1 (Nursery/Prep)",
+        classGroup: "prep",
+        admissionType: "fresh",
+        prevSchool: "",
+        address: "Sector 4, KDA Kohat",
+        reference: "Younger sister of Class 5 student. Early foundation batch.",
+        admissionDate: "06 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      },
+      {
+        id: "KIMS-2026-04853",
+        name: "Abdullah Shah",
+        fatherName: "Dr. Asim Shah",
+        gender: "Male",
+        fatherPhone: "0312-7654321",
+        cnic: "14301-1294812-7",
+        admitClass: "Class 10",
+        classGroup: "secondary",
+        admissionType: "other_school",
+        prevSchool: "Army Public School & College, Kohat",
+        address: "Officers Colony, Kohat Cantt",
+        reference: "Transfer case. Enrolled in Science group (Computer Science & Math).",
+        admissionDate: "05 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      },
+      {
+        id: "KIMS-2026-04854",
+        name: "Ayesha Noor",
+        fatherName: "Noor Muhammad",
+        gender: "Female",
+        fatherPhone: "0345-9110488",
+        cnic: "14301-9018244-6",
+        admitClass: "Class 5",
+        classGroup: "primary",
+        admissionType: "fresh",
+        prevSchool: "",
+        address: "Bannu Road, Near City Gate, Kohat",
+        reference: "Merit scholarship applicant. Scored 94% in entrance evaluation.",
+        admissionDate: "04 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      },
+      {
+        id: "KIMS-2026-04855",
+        name: "Zaid Tariq",
+        fatherName: "Tariq Jamil",
+        gender: "Male",
+        fatherPhone: "0334-8871234",
+        cnic: "14301-3349182-1",
+        admitClass: "Class 1",
+        classGroup: "primary",
+        admissionType: "fresh",
+        prevSchool: "",
+        address: "Jungle Khel, Kohat",
+        reference: "Primary foundation admission.",
+        admissionDate: "03 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      },
+      {
+        id: "KIMS-2026-04856",
+        name: "Maryam Bibi",
+        fatherName: "Qari Abdul Rehman",
+        gender: "Female",
+        fatherPhone: "0315-7721839",
+        cnic: "14301-4418290-8",
+        admitClass: "Class 9",
+        classGroup: "secondary",
+        admissionType: "other_school",
+        prevSchool: "Islamia Model High School, Kohat",
+        address: "Pindi Road, Kohat",
+        reference: "Biology group (Pre-Medical preparation). Highly disciplined.",
+        admissionDate: "01 Sep 2026",
+        status: "Enrolled",
+        photo: ""
+      }
+    ];
+
+    const DEFAULT_APPLICATIONS = [
+      {
+        id: "APP-2026-081",
+        date: "07 Sep 2026",
+        applicantName: "Muhammad Farhan",
+        fatherName: "Farhan Ullah Khan",
+        gender: "Male",
+        phone: "0301-8237194",
+        cnic: "14301-9238411-5",
+        targetClass: "Class 9 (SSC-I Matric)",
+        prevSchool: "Cadet Prep Academy, Kohat",
+        marks: "482/550 (87.6%)",
+        address: "Bannu Road, Sector 3 KDA, Kohat",
+        notes: "Applied for Pre-Medical Science group. Father is Govt officer.",
+        status: "New Submission"
+      },
+      {
+        id: "APP-2026-082",
+        date: "06 Sep 2026",
+        applicantName: "Zunaira Tariq",
+        fatherName: "Tariq Mehmood Afridi",
+        gender: "Female",
+        phone: "0333-9182341",
+        cnic: "14301-8841203-4",
+        targetClass: "Class 0-1 (Nursery / Playgroup)",
+        prevSchool: "",
+        marks: "Fresh Kid",
+        address: "Mohallah Umarzai, Kohat",
+        notes: "Elder brother Huzaifa Khan enrolled in Class 8. Sibling concession requested.",
+        status: "Approved"
+      },
+      {
+        id: "APP-2026-083",
+        date: "06 Sep 2026",
+        applicantName: "Bilal Ahmed",
+        fatherName: "Shakeel Ahmed",
+        gender: "Male",
+        phone: "0314-5591280",
+        cnic: "14301-4478129-1",
+        targetClass: "Class 5",
+        prevSchool: "Bloomfield Hall School, Peshawar",
+        marks: "410/500 (82.0%)",
+        address: "PAF Base Road, Kohat Cantt",
+        notes: "Family recently relocated from Peshawar.",
+        status: "Under Review"
+      },
+      {
+        id: "APP-2026-084",
+        date: "05 Sep 2026",
+        applicantName: "Hania Imran",
+        fatherName: "Imran Qureshi",
+        gender: "Female",
+        phone: "0345-6671822",
+        cnic: "14301-3310928-6",
+        targetClass: "Class 6",
+        prevSchool: "Govt Girls Middle School, Kohat",
+        marks: "445/500 (89.0%)",
+        address: "Near General Bus Stand, Kohat",
+        notes: "First position holder in previous school class 5.",
+        status: "New Submission"
+      },
+      {
+        id: "APP-2026-085",
+        date: "04 Sep 2026",
+        applicantName: "Saadullah Jan",
+        fatherName: "Jan Muhammad",
+        gender: "Male",
+        phone: "0321-9988231",
+        cnic: "14301-1182390-3",
+        targetClass: "Class 10 (SSC-II Matric)",
+        prevSchool: "Islamia Model High School, Karak",
+        marks: "460/550 (83.6%) in 9th Board",
+        address: "College Road, Kohat",
+        notes: "Matric Board migration certificate attached.",
+        status: "Admitted"
+      },
+      {
+        id: "APP-2026-086",
+        date: "03 Sep 2026",
+        applicantName: "Areeba Gul",
+        fatherName: "Gul Faraz",
+        gender: "Female",
+        phone: "0312-3456789",
+        cnic: "14301-7712399-2",
+        targetClass: "Class Prep / KG",
+        prevSchool: "",
+        marks: "Beginner",
+        address: "Jungle Khel, Kohat",
+        notes: "Requested morning assembly bus seat.",
+        status: "New Submission"
+      }
+    ];
+
+    let studentsData = [];
+    let applicationsData = [];
+    let currentClassFilter = 'all';
+    let currentSearchTerm = '';
+    let currentAppStatusFilter = 'all';
+    let currentAppSearchTerm = '';
+    let selectedAppForModal = null;
+    let pendingDeleteStudentId = null;
+
+    // Load Data from LocalStorage or Seed Defaults
+    function loadStudentsData() {
+      const stored = localStorage.getItem('kims_students_data');
+      if (stored) {
+        try {
+          studentsData = JSON.parse(stored);
+        } catch (err) {
+          studentsData = [...DEFAULT_STUDENTS];
+        }
+      } else {
+        studentsData = [...DEFAULT_STUDENTS];
+        saveStudentsData();
+      }
+    }
+
+    function saveStudentsData() {
+      localStorage.setItem('kims_students_data', JSON.stringify(studentsData));
+      updateKPICounters();
+    }
+
+    function loadApplicationsData() {
+      const stored = localStorage.getItem('kims_online_applications');
+      if (stored) {
+        try {
+          applicationsData = JSON.parse(stored);
+        } catch (err) {
+          applicationsData = [...DEFAULT_APPLICATIONS];
+        }
+      } else {
+        applicationsData = [...DEFAULT_APPLICATIONS];
+        saveApplicationsData();
+      }
+    }
+
+    function saveApplicationsData() {
+      localStorage.setItem('kims_online_applications', JSON.stringify(applicationsData));
+      updateKPICounters();
+    }
+
+    function getGroupForClass(className) {
+      if (!className) return 'middle';
+      if (className.includes('0-1') || className.includes('Prep') || className.includes('Nursery')) return 'prep';
+      if (className.includes('Class 1') || className.includes('Class 2') || className.includes('Class 3') || className.includes('Class 4') || className.includes('Class 5')) return 'primary';
+      if (className.includes('Class 6') || className.includes('Class 7') || className.includes('Class 8')) return 'middle';
+      if (className.includes('Class 9') || className.includes('Class 10')) return 'secondary';
+      return 'middle';
+    }
+
+    function updateKPICounters() {
+      const totalEl = document.getElementById('studentTotalCount');
+      const displayEl = document.getElementById('studentDisplayCount');
+      const kpiTotalEl = document.getElementById('kpiTotalStudents');
+      const kpiActiveEl = document.getElementById('kpiActiveStudents');
+      const kpiMatricEl = document.getElementById('kpiMatricStudents');
+      const kpiNewAppsEl = document.getElementById('kpiNewApplications');
+      const countEnrolledTab = document.getElementById('countEnrolledTab');
+      const countApplicationsTab = document.getElementById('countApplicationsTab');
+      const badgeAppNew = document.getElementById('badgeAppNew');
+
+      const totalStudents = studentsData.length;
+      const primaryStudents = studentsData.filter(s => s.classGroup === 'prep' || s.classGroup === 'primary').length;
+      const matricStudents = studentsData.filter(s => s.classGroup === 'middle' || s.classGroup === 'secondary').length;
+      const newAppsCount = applicationsData.filter(a => a.status === 'New Submission').length;
+
+      if (kpiTotalEl) kpiTotalEl.innerText = (4844 + totalStudents).toLocaleString();
+      if (kpiActiveEl) kpiActiveEl.innerText = (2410 + primaryStudents).toLocaleString();
+      if (kpiMatricEl) kpiMatricEl.innerText = (2434 + matricStudents).toLocaleString();
+      if (kpiNewAppsEl) kpiNewAppsEl.innerText = newAppsCount;
+      if (totalEl) totalEl.innerText = totalStudents;
+      if (countEnrolledTab) countEnrolledTab.innerText = totalStudents;
+      if (countApplicationsTab) countApplicationsTab.innerText = applicationsData.length;
+      if (badgeAppNew) {
+        badgeAppNew.innerText = `${newAppsCount} New`;
+        badgeAppNew.style.display = newAppsCount > 0 ? 'inline-block' : 'none';
+      }
+
+      // Update application filter pill counters
+      const pillAll = document.getElementById('pillAppAll');
+      const pillNew = document.getElementById('pillAppNew');
+      const pillReview = document.getElementById('pillAppReview');
+      const pillApproved = document.getElementById('pillAppApproved');
+      const pillAdmitted = document.getElementById('pillAppAdmitted');
+
+      if (pillAll) pillAll.innerText = applicationsData.length;
+      if (pillNew) pillNew.innerText = applicationsData.filter(a => a.status === 'New Submission').length;
+      if (pillReview) pillReview.innerText = applicationsData.filter(a => a.status === 'Under Review').length;
+      if (pillApproved) pillApproved.innerText = applicationsData.filter(a => a.status === 'Approved').length;
+      if (pillAdmitted) pillAdmitted.innerText = applicationsData.filter(a => a.status === 'Admitted').length;
+    }
+
+    // =========================================================================
+    // TABLE RENDERING
+    // =========================================================================
+
+    function renderStudentTable() {
+      const tbody = document.getElementById('studentTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      const term = currentSearchTerm.toLowerCase().trim();
+      const filtered = studentsData.filter(student => {
+        const matchesGroup = currentClassFilter === 'all' || student.classGroup === currentClassFilter;
+        if (!matchesGroup) return false;
+
+        if (!term) return true;
+        return (
+          student.name.toLowerCase().includes(term) ||
+          student.fatherName.toLowerCase().includes(term) ||
+          student.id.toLowerCase().includes(term) ||
+          student.admitClass.toLowerCase().includes(term) ||
+          (student.cnic && student.cnic.includes(term)) ||
+          (student.fatherPhone && student.fatherPhone.includes(term)) ||
+          (student.prevSchool && student.prevSchool.toLowerCase().includes(term))
+        );
+      });
+
+      const displayEl = document.getElementById('studentDisplayCount');
+      if (displayEl) displayEl.innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-user-slash"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No student records found</div>
+              <div class="text-xs text-slate-400 mt-1">Try clearing your search query or filter pills, or click "Register New Student".</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(student => {
+        const initials = student.name.split(' ').map(n => n[0]).filter(Boolean).join('').substring(0, 2).toUpperCase() || 'ST';
+        
+        // Avatar HTML
+        let avatarHtml = '';
+        if (student.photo) {
+          avatarHtml = `<img src="${student.photo}" alt="${escapeHtml(student.name)}" class="w-9 h-9 rounded-xl object-cover border border-slate-200 shadow-xs">`;
+        } else {
+          avatarHtml = `<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white font-black flex items-center justify-center text-xs shadow-xs">${initials}</div>`;
+        }
+
+        // Previous School / Type Badge
+        let prevSchoolHtml = '';
+        if (student.admissionType === 'fresh') {
+          prevSchoolHtml = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100/90 dark:bg-emerald-950 px-2 py-0.5 rounded-full"><i class="fa-solid fa-seedling text-[8px]"></i> Fresh Admission</span>`;
+        } else {
+          const schoolName = student.prevSchool || 'Other School';
+          prevSchoolHtml = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-950 px-2 py-0.5 rounded-full" title="${escapeHtml(schoolName)}"><i class="fa-solid fa-school text-[8px]"></i> ${escapeHtml(schoolName.length > 20 ? schoolName.substring(0, 20) + '...' : schoolName)}</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td><input type="checkbox" class="student-row-checkbox rounded border-slate-300"></td>
+          <td>
+            <div class="flex items-center gap-3">
+              ${avatarHtml}
+              <div>
+                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span>${escapeHtml(student.name)}</span>
+                  <span class="text-[10px] font-medium text-slate-400">(${escapeHtml(student.gender)})</span>
+                </div>
+                <div class="text-[11px] text-slate-400">
+                  <span>Father: <strong class="text-slate-600 dark:text-slate-300 font-semibold">${escapeHtml(student.fatherName)}</strong></span>
+                </div>
+                ${student.reference ? `<div class="text-[10px] text-emerald-700 dark:text-emerald-400 truncate max-w-[200px]" title="${escapeHtml(student.reference)}"><i class="fa-solid fa-note-sticky text-[9px] mr-1"></i>${escapeHtml(student.reference)}</div>` : ''}
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="font-mono text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/70 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800/60">
+              ${escapeHtml(student.id)}
+            </span>
+          </td>
+          <td>
+            <span class="font-semibold text-xs text-slate-800 dark:text-white">${escapeHtml(student.admitClass)}</span>
+          </td>
+          <td>
+            <div class="flex items-center gap-1.5 font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <a href="https://wa.me/92${student.fatherPhone.replace(/[^0-9]/g, '').replace(/^0/, '')}" target="_blank" title="WhatsApp Message" class="text-emerald-600 hover:scale-110 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+              </a>
+              <span>${escapeHtml(student.fatherPhone)}</span>
+            </div>
+            ${student.address ? `<div class="text-[10px] text-slate-400 truncate max-w-[150px]" title="${escapeHtml(student.address)}">${escapeHtml(student.address)}</div>` : ''}
+          </td>
+          <td>
+            <span class="font-mono text-[11px] text-slate-600 dark:text-slate-400">${escapeHtml(student.cnic || 'N/A')}</span>
+          </td>
+          <td>${prevSchoolHtml}</td>
+          <td>
+            <span class="badge badge-success"><i class="fa-solid fa-circle text-[7px] mr-1"></i>Enrolled</span>
+          </td>
+          <td class="text-right">
+            <div class="inline-flex gap-1.5">
+              <button type="button" onclick="openViewStudentModal('${escapeHtml(student.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 transition" title="View Full Profile">
+                <i class="fa-solid fa-user text-xs"></i>
+              </button>
+              <button type="button" onclick="openEditStudentModal('${escapeHtml(student.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Edit Student">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button type="button" onclick="confirmDeleteStudent('${escapeHtml(student.id)}')" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-300 transition" title="Delete Student">
+                <i class="fa-solid fa-trash text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Class Filter Pills
+    function filterByClassGroup(group, btn) {
+      currentClassFilter = group;
+      const tabs = document.querySelectorAll('#classFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm';
+      renderStudentTable();
+    }
+
+    // Search Handler
+    function handleStudentSearch(val) {
+      currentSearchTerm = val;
+      renderStudentTable();
+    }
+
+    // Select All Checkbox
+    function toggleSelectAllStudents(master) {
+      const boxes = document.querySelectorAll('.student-row-checkbox');
+      boxes.forEach(b => b.checked = master.checked);
+    }
+
+    // =========================================================================
+    // READ / VIEW STUDENT DETAILS (Full Dossier)
+    // =========================================================================
+
+    let activeViewingStudentId = null;
+
+    function openViewStudentModal(studentId) {
+      const student = studentsData.find(s => s.id === studentId);
+      if (!student) return;
+
+      activeViewingStudentId = studentId;
+
+      document.getElementById('viewStudName').innerText = student.name;
+      document.getElementById('viewStudId').innerText = student.id;
+      document.getElementById('viewStudClass').innerText = student.admitClass;
+      document.getElementById('viewStudGenderBadge').innerText = student.gender;
+      document.getElementById('viewDetailClass').innerText = student.admitClass;
+      document.getElementById('viewDetailCnic').innerText = student.cnic || 'Not Submitted';
+      document.getElementById('viewDetailFatherName').innerText = student.fatherName;
+      document.getElementById('viewDetailFatherPhone').innerText = student.fatherPhone;
+      document.getElementById('viewDetailAddress').innerText = student.address || 'Address on file not updated';
+      document.getElementById('viewDetailReference').innerText = student.reference ? `"${student.reference}"` : 'No administrative notes on file.';
+      document.getElementById('viewStudAdmissionDate').innerText = `Admitted: ${student.admissionDate || '07 Sep 2026'}`;
+
+      const waLink = document.getElementById('viewDetailFatherWaLink');
+      if (waLink) {
+        const cleanPhone = student.fatherPhone.replace(/[^0-9]/g, '').replace(/^0/, '');
+        waLink.href = `https://wa.me/92${cleanPhone}`;
+      }
+
+      // Previous school badge
+      const prevBox = document.getElementById('viewDetailPrevSchool');
+      if (student.admissionType === 'fresh') {
+        prevBox.innerHTML = `<span class="badge badge-info text-[10px]"><i class="fa-solid fa-seedling mr-1"></i>Fresh Admission</span>`;
+      } else {
+        prevBox.innerHTML = `<span class="badge badge-warning text-[10px]" title="${escapeHtml(student.prevSchool || '')}"><i class="fa-solid fa-school mr-1"></i>${escapeHtml(student.prevSchool || 'Other School')}</span>`;
+      }
+
+      // Avatar
+      const avatarBox = document.getElementById('viewStudAvatar');
+      if (student.photo) {
+        avatarBox.innerHTML = `<img src="${student.photo}" alt="${escapeHtml(student.name)}" class="w-full h-full object-cover">`;
+      } else {
+        const initials = student.name.split(' ').map(n => n[0]).filter(Boolean).join('').substring(0, 2).toUpperCase() || 'ST';
+        avatarBox.innerText = initials;
+      }
+
+      openModal('studentDetailModal');
+    }
+
+    function openEditModalFromView() {
+      closeModal('studentDetailModal');
+      if (activeViewingStudentId) {
+        setTimeout(() => openEditStudentModal(activeViewingStudentId), 150);
+      }
+    }
+
+    // =========================================================================
+    // UPDATE / EDIT STUDENT
+    // =========================================================================
+
+    function openEditStudentModal(studentId) {
+      const student = studentsData.find(s => s.id === studentId);
+      if (!student) return;
+
+      document.getElementById('editOriginalId').value = student.id;
+      document.getElementById('editStudId').value = student.id;
+      document.getElementById('editStudName').value = student.name;
+      document.getElementById('editStudFatherName').value = student.fatherName;
+      document.getElementById('editStudFatherPhone').value = student.fatherPhone;
+      document.getElementById('editStudCnic').value = student.cnic || '';
+      document.getElementById('editStudClass').value = student.admitClass;
+      document.getElementById('editStudAddress').value = student.address || '';
+      document.getElementById('editStudReference').value = student.reference || '';
+
+      // Gender radio
+      handleEditGenderChange(student.gender || 'Male');
+
+      // Previous School
+      const admissionType = student.admissionType || 'fresh';
+      const radios = document.querySelectorAll('input[name="editAdmissionType"]');
+      radios.forEach(r => r.checked = (r.value === admissionType));
+      toggleEditPrevSchool(admissionType);
+      if (admissionType === 'other_school') {
+        document.getElementById('editStudPrevSchool').value = student.prevSchool || '';
+      }
+
+      // Photo
+      const img = document.getElementById('editStudPhotoImg');
+      const placeholder = document.getElementById('editStudPhotoPlaceholder');
+      const removeBtn = document.getElementById('editRemovePhotoBtn');
+      if (student.photo) {
+        img.src = student.photo;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+      } else {
+        img.src = '';
+        img.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        removeBtn.classList.add('hidden');
+      }
+
+      openModal('editStudentModal');
+    }
+
+    function handleEditGenderChange(gender) {
+      const maleLabel = document.getElementById('editGenderLabelMale');
+      const femaleLabel = document.getElementById('editGenderLabelFemale');
+      const radios = document.querySelectorAll('input[name="editStudentGender"]');
+      radios.forEach(r => r.checked = (r.value === gender));
+
+      if (gender === 'Male') {
+        maleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        femaleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      } else {
+        femaleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        maleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      }
+    }
+
+    function toggleEditPrevSchool(type) {
+      const freshLabel = document.getElementById('editOptFreshLabel');
+      const otherLabel = document.getElementById('editOptOtherLabel');
+      const prevInput = document.getElementById('editStudPrevSchool');
+      const statusBadge = document.getElementById('editPrevSchoolStatusBadge');
+      const icon = document.getElementById('editPrevSchoolIcon');
+
+      if (type === 'other_school') {
+        otherLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/20 cursor-pointer transition shadow-xs';
+        freshLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs';
+        prevInput.disabled = false;
+        prevInput.className = 'form-control pl-9 bg-white dark:bg-slate-900 border-emerald-400 dark:border-emerald-600 focus:border-emerald-500 text-slate-900 dark:text-white cursor-text transition';
+        prevInput.placeholder = 'e.g. Army Public School, Cadet College Kohat, Govt High School...';
+        statusBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 flex items-center gap-1';
+        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check text-[9px]"></i> Active (Enter School Name)';
+        if (icon) icon.className = 'fa-solid fa-building-columns text-emerald-600';
+      } else {
+        freshLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/20 cursor-pointer transition shadow-xs';
+        otherLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs';
+        prevInput.disabled = true;
+        prevInput.value = '';
+        prevInput.className = 'form-control pl-9 bg-slate-100/70 dark:bg-slate-800/40 text-slate-400 cursor-not-allowed transition';
+        prevInput.placeholder = 'Not applicable for fresh admission';
+        statusBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center gap-1';
+        statusBadge.innerHTML = '<i class="fa-solid fa-ban text-[9px]"></i> Disabled (Fresh Admission)';
+        if (icon) icon.className = 'fa-solid fa-building-columns text-slate-400';
+      }
+    }
+
+    function previewEditStudentPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById('editStudPhotoImg');
+        const placeholder = document.getElementById('editStudPhotoPlaceholder');
+        const removeBtn = document.getElementById('editRemovePhotoBtn');
+        img.src = e.target.result;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeEditStudentPhoto() {
+      const input = document.getElementById('editStudPhotoInput');
+      const img = document.getElementById('editStudPhotoImg');
+      const placeholder = document.getElementById('editStudPhotoPlaceholder');
+      const removeBtn = document.getElementById('editRemovePhotoBtn');
+      if (input) input.value = '';
+      if (img) {
+        img.src = '';
+        img.classList.add('hidden');
+      }
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (removeBtn) removeBtn.classList.add('hidden');
+    }
+
+    function handleUpdateStudent(e) {
+      e.preventDefault();
+      const originalId = document.getElementById('editOriginalId').value;
+      const index = studentsData.findIndex(s => s.id === originalId);
+      if (index === -1) return;
+
+      const newId = document.getElementById('editStudId').value.trim();
+      const name = document.getElementById('editStudName').value.trim();
+      const fatherName = document.getElementById('editStudFatherName').value.trim();
+      const fatherPhone = document.getElementById('editStudFatherPhone').value.trim();
+      const cnic = document.getElementById('editStudCnic').value.trim();
+      const gender = document.querySelector('input[name="editStudentGender"]:checked')?.value || 'Male';
+      const admitClass = document.getElementById('editStudClass').value;
+      const admissionType = document.querySelector('input[name="editAdmissionType"]:checked')?.value || 'fresh';
+      const prevSchool = admissionType === 'other_school' ? document.getElementById('editStudPrevSchool').value.trim() : '';
+      const address = document.getElementById('editStudAddress').value.trim();
+      const reference = document.getElementById('editStudReference').value.trim();
+
+      const img = document.getElementById('editStudPhotoImg');
+      const photoSrc = (!img.classList.contains('hidden') && img.src) ? img.src : '';
+
+      studentsData[index] = {
+        ...studentsData[index],
+        id: newId || originalId,
+        name,
+        fatherName,
+        fatherPhone,
+        cnic,
+        gender,
+        admitClass,
+        classGroup: getGroupForClass(admitClass),
+        admissionType,
+        prevSchool,
+        address,
+        reference,
+        photo: photoSrc
+      };
+
+      saveStudentsData();
+      renderStudentTable();
+      closeModal('editStudentModal');
+      showToast('Record Updated', `${name} (${newId}) information successfully updated.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // DELETE STUDENT
+    // =========================================================================
+
+    function confirmDeleteStudent(studentId) {
+      const student = studentsData.find(s => s.id === studentId);
+      if (!student) return;
+
+      pendingDeleteStudentId = studentId;
+      document.getElementById('deleteStudentTargetName').innerText = student.name;
+      document.getElementById('deleteStudentTargetId').innerText = student.id;
+
+      openModal('deleteStudentConfirmModal');
+    }
+
+    function executeDeleteStudent() {
+      if (!pendingDeleteStudentId) return;
+
+      const student = studentsData.find(s => s.id === pendingDeleteStudentId);
+      const studentName = student ? student.name : 'Student';
+
+      studentsData = studentsData.filter(s => s.id !== pendingDeleteStudentId);
+      saveStudentsData();
+      renderStudentTable();
+      closeModal('deleteStudentConfirmModal');
+      pendingDeleteStudentId = null;
+
+      showToast('Scholar Removed', `${studentName} record deleted from active roster.`, 'info');
+    }
+
+    // =========================================================================
+    // CREATE NEW STUDENT (Add Modal)
+    // =========================================================================
+
+    // Student Photo Preview & Management
+    function previewStudentPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (file.size > 2 * 1024 * 1024) {
+        showToast('File Too Large', 'Please choose an image file smaller than 2MB.', 'error');
+        event.target.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById('studPhotoImg');
+        const placeholder = document.getElementById('studPhotoPlaceholder');
+        const removeBtn = document.getElementById('removePhotoBtn');
+        
+        img.src = e.target.result;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        removeBtn.classList.remove('hidden');
+        showToast('Photo Attached', 'Student portrait loaded successfully.', 'info');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeStudentPhoto() {
+      const fileInput = document.getElementById('newStudPhoto');
+      const img = document.getElementById('studPhotoImg');
+      const placeholder = document.getElementById('studPhotoPlaceholder');
+      const removeBtn = document.getElementById('removePhotoBtn');
+
+      if (fileInput) fileInput.value = '';
+      if (img) {
+        img.src = '';
+        img.classList.add('hidden');
+      }
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (removeBtn) removeBtn.classList.add('hidden');
+    }
+
+    // Gender Selection Pill Styling
+    function handleGenderChange(gender) {
+      const maleLabel = document.getElementById('genderLabelMale');
+      const femaleLabel = document.getElementById('genderLabelFemale');
+      
+      if (gender === 'Male') {
+        maleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        femaleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      } else {
+        femaleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-xs cursor-pointer transition shadow-xs';
+        maleLabel.className = 'flex items-center justify-center gap-2 p-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-xs cursor-pointer transition hover:border-slate-300';
+      }
+    }
+
+    // Toggle Previous School Input Status
+    function togglePrevSchool(type) {
+      const freshLabel = document.getElementById('optFreshLabel');
+      const otherLabel = document.getElementById('optOtherLabel');
+      const prevSchoolInput = document.getElementById('newStudPrevSchool');
+      const statusBadge = document.getElementById('prevSchoolStatusBadge');
+      const hint = document.getElementById('prevSchoolHint');
+      const icon = document.getElementById('prevSchoolIcon');
+
+      if (type === 'other_school') {
+        otherLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/20 cursor-pointer transition shadow-xs';
+        freshLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs';
+        prevSchoolInput.disabled = false;
+        prevSchoolInput.className = 'form-control pl-9 bg-white dark:bg-slate-900 border-emerald-400 dark:border-emerald-600 focus:border-emerald-500 text-slate-900 dark:text-white cursor-text transition';
+        prevSchoolInput.placeholder = 'e.g. Army Public School, Cadet College Kohat, Govt High School...';
+        
+        statusBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 flex items-center gap-1';
+        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check text-[9px]"></i> Active (Enter School Name)';
+
+        hint.innerHTML = '<span class="text-emerald-700 dark:text-emerald-400 font-medium"><i class="fa-solid fa-circle-info mr-1"></i>Field activated:</span> Enter the previous institution or school name (optional).';
+        if (icon) icon.className = 'fa-solid fa-building-columns text-emerald-600';
+        prevSchoolInput.focus();
+      } else {
+        freshLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 dark:bg-emerald-950/20 cursor-pointer transition shadow-xs';
+        otherLabel.className = 'flex items-start gap-3 p-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer transition hover:border-slate-300 shadow-xs';
+        prevSchoolInput.disabled = true;
+        prevSchoolInput.value = '';
+        prevSchoolInput.className = 'form-control pl-9 bg-slate-100/70 dark:bg-slate-800/40 text-slate-400 cursor-not-allowed transition';
+        prevSchoolInput.placeholder = 'Not applicable for fresh admission';
+
+        statusBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center gap-1';
+        statusBadge.innerHTML = '<i class="fa-solid fa-ban text-[9px]"></i> Disabled (Fresh Admission)';
+
+        hint.innerHTML = 'Active when "From Other School" is selected above. Admin can enter the previous school or institute name.';
+        if (icon) icon.className = 'fa-solid fa-building-columns text-slate-400';
+      }
+    }
+
+    function handleClassSelection(className) {
+      if (className.includes('0-1') || className.includes('Prep')) {
+        const freshRadio = document.querySelector('input[name="admissionType"][value="fresh"]');
+        if (freshRadio && !freshRadio.checked) {
+          freshRadio.checked = true;
+          togglePrevSchool('fresh');
+        }
+      }
+    }
+
+    // Auto-Generated Student ID
+    let studentIdCounter = 4857;
+    function generateStudentId() {
+      const currentYear = new Date().getFullYear();
+      const currentSeq = studentIdCounter++;
+      const formattedSeq = String(currentSeq).padStart(5, '0');
+      return `KIMS-${currentYear}-${formattedSeq}`;
+    }
+
+    function initOrRegenerateStudentId(force = false) {
+      const idInput = document.getElementById('newStudId');
+      if (!idInput) return;
+      if (force || !idInput.value.trim()) {
+        idInput.value = generateStudentId();
+      }
+    }
+
+    function regenerateStudentId() {
+      const idInput = document.getElementById('newStudId');
+      if (idInput) {
+        idInput.value = generateStudentId();
+        showToast('ID Generated', `New Student ID assigned: ${idInput.value}`, 'info');
+      }
+    }
+
+    function resetAddStudentForm() {
+      const form = document.getElementById('newStudentForm');
+      if (form) form.reset();
+      removeStudentPhoto();
+      handleGenderChange('Male');
+      togglePrevSchool('fresh');
+      initOrRegenerateStudentId(true);
+      showToast('Form Reset', 'Admission form cleared to default state.', 'info');
+    }
+
+    function handleCreateStudent(event) {
+      event.preventDefault();
+      const name = document.getElementById('newStudName').value.trim();
+      const fatherName = document.getElementById('newStudFatherName').value.trim();
+      const fatherPhone = document.getElementById('newStudFatherPhone').value.trim();
+      const cnic = document.getElementById('newStudCnic').value.trim();
+      const gender = document.querySelector('input[name="studentGender"]:checked')?.value || 'Male';
+      const address = document.getElementById('newStudAddress').value.trim();
+      const admitClass = document.getElementById('newStudClass').value;
+      const admissionType = document.querySelector('input[name="admissionType"]:checked')?.value || 'fresh';
+      const prevSchool = admissionType === 'other_school' ? document.getElementById('newStudPrevSchool').value.trim() : '';
+      const customId = document.getElementById('newStudId') ? document.getElementById('newStudId').value.trim() : '';
+      const finalStudentId = customId || generateStudentId();
+      const reference = document.getElementById('newStudReference') ? document.getElementById('newStudReference').value.trim() : '';
+
+      const photoImg = document.getElementById('studPhotoImg');
+      const photoSrc = (!photoImg.classList.contains('hidden') && photoImg.src) ? photoImg.src : '';
+
+      if (!admitClass) {
+        showToast('Class Required', 'Please select target class to admit student.', 'error');
+        document.getElementById('newStudClass').focus();
+        return;
+      }
+
+      const newStudent = {
+        id: finalStudentId,
+        name,
+        fatherName,
+        gender,
+        fatherPhone,
+        cnic,
+        admitClass,
+        classGroup: getGroupForClass(admitClass),
+        admissionType,
+        prevSchool,
+        address,
+        reference,
+        admissionDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+        status: "Enrolled",
+        photo: photoSrc
+      };
+
+      studentsData.unshift(newStudent);
+      saveStudentsData();
+
+      // Check if candidate came from online application
+      const sourceAppId = document.getElementById('newStudSourceAppId') ? document.getElementById('newStudSourceAppId').value.trim() : '';
+      if (sourceAppId) {
+        const appIdx = applicationsData.findIndex(a => a.id === sourceAppId);
+        if (appIdx !== -1) {
+          applicationsData[appIdx].status = 'Admitted';
+          saveApplicationsData();
+          renderApplicationsTable();
+        }
+      }
+
+      renderStudentTable();
+      closeModal('addStudentModal');
+      resetAddStudentForm();
+      showToast('Scholar Admitted!', `${name} (${finalStudentId}) enrolled into ${admitClass}.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // UNIFIED VIEW TABS: ENROLLED STUDENTS VS ONLINE APPLICATIONS
+    // =========================================================================
+
+    function switchMainViewTab(tab, btn) {
+      const tabEnrolled = document.getElementById('tabBtnEnrolled');
+      const tabApps = document.getElementById('tabBtnApplications');
+      const viewEnrolled = document.getElementById('viewEnrolledContainer');
+      const viewApps = document.getElementById('viewApplicationsContainer');
+      const subText = document.getElementById('tabSubtitleText');
+
+      if (tab === 'enrolled') {
+        if (tabEnrolled) {
+          tabEnrolled.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        }
+        if (tabApps) {
+          tabApps.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        }
+        if (viewEnrolled) viewEnrolled.classList.remove('hidden');
+        if (viewApps) viewApps.classList.add('hidden');
+        if (subText) subText.innerText = 'Officially registered high school scholars (Classes 0-1 to 10)';
+        renderStudentTable();
+      } else {
+        if (tabApps) {
+          tabApps.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        }
+        if (tabEnrolled) {
+          tabEnrolled.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        }
+        if (viewEnrolled) viewEnrolled.classList.add('hidden');
+        if (viewApps) viewApps.classList.remove('hidden');
+        if (subText) subText.innerText = 'Online parent submissions & candidate evaluations with 1-click student admission';
+        renderApplicationsTable();
+      }
+    }
+
+    // =========================================================================
+    // ONLINE APPLICATIONS RENDERING & 1-CLICK ADMISSION
+    // =========================================================================
+
+    function renderApplicationsTable() {
+      const tbody = document.getElementById('applicationTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentAppSearchTerm.toLowerCase().trim();
+
+      const filtered = applicationsData.filter(app => {
+        const matchesStatus = currentAppStatusFilter === 'all' || app.status === currentAppStatusFilter;
+        if (!matchesStatus) return false;
+
+        if (!term) return true;
+        return (
+          app.applicantName.toLowerCase().includes(term) ||
+          app.fatherName.toLowerCase().includes(term) ||
+          app.id.toLowerCase().includes(term) ||
+          app.targetClass.toLowerCase().includes(term) ||
+          (app.phone && app.phone.includes(term)) ||
+          (app.cnic && app.cnic.includes(term)) ||
+          (app.prevSchool && app.prevSchool.toLowerCase().includes(term))
+        );
+      });
+
+      const displayCountEl = document.getElementById('appDisplayCount');
+      const totalCountEl = document.getElementById('appTotalCount');
+      if (displayCountEl) displayCountEl.innerText = filtered.length;
+      if (totalCountEl) totalCountEl.innerText = applicationsData.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-12 text-slate-400">
+              <div class="flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-2">
+                  <i class="fa-solid fa-inbox text-xl text-slate-400"></i>
+                </div>
+                <p class="font-bold text-slate-600 dark:text-slate-300 text-sm">No applications found</p>
+                <p class="text-xs text-slate-400 mt-1">No online submissions match the selected status or filter query.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(app => {
+        let statusBadge = '';
+        if (app.status === 'New Submission') {
+          statusBadge = '<span class="badge badge-warning text-[10px]"><i class="fa-solid fa-sparkles mr-1"></i>New Submission</span>';
+        } else if (app.status === 'Under Review') {
+          statusBadge = '<span class="badge badge-info text-[10px]"><i class="fa-solid fa-magnifying-glass mr-1"></i>Under Review</span>';
+        } else if (app.status === 'Approved') {
+          statusBadge = '<span class="badge badge-success text-[10px]"><i class="fa-solid fa-circle-check mr-1"></i>Approved</span>';
+        } else if (app.status === 'Admitted') {
+          statusBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300"><i class="fa-solid fa-user-graduate mr-1"></i>Admitted</span>';
+        } else {
+          statusBadge = `<span class="badge badge-secondary text-[10px]">${app.status}</span>`;
+        }
+
+        const isAdmitted = app.status === 'Admitted';
+        const admitBtnMarkup = isAdmitted
+          ? `<span class="text-[11px] font-bold text-emerald-600 inline-flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Enrolled</span>`
+          : `<button type="button" onclick="openAdmitModalForApplication('${app.id}')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-1.5 shadow-xs" title="Admit as Student">
+               <i class="fa-solid fa-user-plus text-[11px]"></i>
+               <span>Admit as Student</span>
+             </button>`;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
+        tr.innerHTML = `
+          <td>
+            <div class="font-mono font-bold text-xs text-slate-800 dark:text-white">${app.id}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">${app.date}</div>
+          </td>
+          <td>
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                ${app.applicantName.charAt(0)}
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-800 dark:text-white">${app.applicantName}</div>
+                <div class="text-[10px] text-slate-400 flex items-center gap-1.5">
+                  <span>${app.gender}</span>
+                  ${app.cnic ? `<span>&bull;</span><span class="font-mono">${app.cnic}</span>` : ''}
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="font-semibold text-xs text-slate-800 dark:text-slate-200">${app.targetClass}</span>
+          </td>
+          <td>
+            <div class="text-xs font-medium text-slate-800 dark:text-white">${app.fatherName}</div>
+            <div class="mt-0.5">
+              <a href="https://wa.me/${app.phone.replace(/[^0-9]/g, '')}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-600 hover:underline">
+                <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                <span>${app.phone}</span>
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="text-xs text-slate-700 dark:text-slate-300 font-medium">${app.prevSchool || '<span class="text-slate-400 italic">Fresh Admission</span>'}</div>
+            <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">${app.marks || ''}</div>
+          </td>
+          <td>
+            ${statusBadge}
+          </td>
+          <td class="text-right">
+            <div class="flex items-center justify-end gap-2">
+              ${admitBtnMarkup}
+              <button type="button" onclick="viewApplicationDetails('${app.id}')" class="px-2 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="View Application Dossier">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterApplicationsByStatus(status, btn) {
+      currentAppStatusFilter = status;
+      if (btn) {
+        const parent = btn.parentElement;
+        if (parent) {
+          parent.querySelectorAll('button').forEach(b => {
+            b.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+          });
+          btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm';
+        }
+      }
+      renderApplicationsTable();
+    }
+
+    function handleApplicationSearch(val) {
+      currentAppSearchTerm = val;
+      renderApplicationsTable();
+    }
+
+    function viewApplicationDetails(appId) {
+      const app = applicationsData.find(a => a.id === appId);
+      if (!app) return;
+      selectedAppForModal = app;
+
+      document.getElementById('modalAppApplicantName').innerText = app.applicantName;
+      document.getElementById('modalAppId').innerText = app.id;
+      document.getElementById('modalAppTargetClass').innerText = app.targetClass;
+      document.getElementById('modalAppDate').innerText = `Applied: ${app.date}`;
+      document.getElementById('modalAppDetailName').innerText = app.applicantName;
+      document.getElementById('modalAppDetailGender').innerText = app.gender;
+      document.getElementById('modalAppDetailCnic').innerText = app.cnic || 'Not Provided';
+      document.getElementById('modalAppDetailFather').innerText = app.fatherName;
+      document.getElementById('modalAppDetailPhone').innerText = app.phone;
+      document.getElementById('modalAppWaLink').href = `https://wa.me/${app.phone.replace(/[^0-9]/g, '')}`;
+      document.getElementById('modalAppDetailAddress').innerText = app.address || 'Kohat';
+      document.getElementById('modalAppDetailPrevSchool').innerText = app.prevSchool || 'Fresh Kid / Beginner';
+      document.getElementById('modalAppDetailMarks').innerText = app.marks || 'None';
+      document.getElementById('modalAppDetailNotes').innerText = app.notes ? `"${app.notes}"` : 'No additional remarks provided.';
+
+      const badgeEl = document.getElementById('modalAppStatusBadge');
+      if (badgeEl) {
+        badgeEl.innerText = app.status;
+        badgeEl.className = app.status === 'Approved' ? 'badge badge-success text-[10px]' : (app.status === 'Admitted' ? 'badge badge-primary text-[10px]' : 'badge badge-warning text-[10px]');
+      }
+
+      const admitBtn = document.getElementById('modalAppAdmitBtn');
+      if (admitBtn) {
+        if (app.status === 'Admitted') {
+          admitBtn.disabled = true;
+          admitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Already Enrolled';
+          admitBtn.className = 'btn-kims btn-secondary !py-1.5 text-xs opacity-60 cursor-not-allowed';
+        } else {
+          admitBtn.disabled = false;
+          admitBtn.innerHTML = '<i class="fa-solid fa-user-check"></i> Admit Candidate as Student';
+          admitBtn.className = 'btn-kims btn-primary !py-1.5 text-xs';
+        }
+      }
+
+      openModal('viewApplicationModal');
+    }
+
+    function openAdmitModalFromAppView() {
+      closeModal('viewApplicationModal');
+      if (selectedAppForModal) {
+        openAdmitModalForApplication(selectedAppForModal.id);
+      }
+    }
+
+    function openNewAdmissionModal() {
+      const hiddenApp = document.getElementById('newStudSourceAppId');
+      if (hiddenApp) hiddenApp.value = '';
+      initOrRegenerateStudentId();
+      openModal('addStudentModal');
+    }
+
+    function openAdmitModalForApplication(appId) {
+      const app = applicationsData.find(a => a.id === appId);
+      if (!app) return;
+
+      // Pre-fill form fields
+      document.getElementById('newStudName').value = app.applicantName;
+      document.getElementById('newStudFatherName').value = app.fatherName;
+      document.getElementById('newStudFatherPhone').value = app.phone;
+      document.getElementById('newStudCnic').value = app.cnic || '';
+      document.getElementById('newStudAddress').value = app.address || '';
+      
+      const refText = app.notes ? `Admitted via Online App ${app.id}: ${app.notes}` : `Admitted via Online Application ${app.id}`;
+      const refEl = document.getElementById('newStudReference');
+      if (refEl) refEl.value = refText;
+
+      const hiddenApp = document.getElementById('newStudSourceAppId');
+      if (hiddenApp) hiddenApp.value = app.id;
+
+      // Gender Radio
+      const genderRadio = document.querySelector(`input[name="studentGender"][value="${app.gender}"]`);
+      if (genderRadio) {
+        genderRadio.checked = true;
+        handleGenderChange(app.gender);
+      }
+
+      // Target Class Dropdown Match
+      const classSelect = document.getElementById('newStudClass');
+      if (classSelect) {
+        let matched = false;
+        for (let opt of classSelect.options) {
+          if (opt.value && (opt.value === app.targetClass || app.targetClass.includes(opt.value) || opt.value.includes(app.targetClass))) {
+            classSelect.value = opt.value;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched) {
+          if (app.targetClass.includes('9')) classSelect.value = 'Class 9 (SSC-I Matric)';
+          else if (app.targetClass.includes('10')) classSelect.value = 'Class 10 (SSC-II Matric)';
+          else if (app.targetClass.includes('0-1') || app.targetClass.includes('Nursery')) classSelect.value = 'Class 0-1 (Nursery / Playgroup)';
+          else if (app.targetClass.includes('Prep') || app.targetClass.includes('KG')) classSelect.value = 'Class Prep / KG';
+          else classSelect.selectedIndex = 1;
+        }
+      }
+
+      // Previous School Handling
+      if (app.prevSchool && app.prevSchool.trim()) {
+        const otherRadio = document.querySelector('input[name="admissionType"][value="other_school"]');
+        if (otherRadio) otherRadio.checked = true;
+        togglePrevSchool('other_school');
+        const prevSchoolInput = document.getElementById('newStudPrevSchool');
+        if (prevSchoolInput) {
+          prevSchoolInput.value = app.prevSchool + (app.marks ? ` (${app.marks})` : '');
+        }
+      } else {
+        const freshRadio = document.querySelector('input[name="admissionType"][value="fresh"]');
+        if (freshRadio) freshRadio.checked = true;
+        togglePrevSchool('fresh');
+      }
+
+      initOrRegenerateStudentId();
+      openModal('addStudentModal');
+      showToast('Candidate Pre-filled', `Application details for ${app.applicantName} loaded. Review and complete admission.`, 'info');
+    }
+
+    // Initialize Page Data & Handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      loadStudentsData();
+      loadApplicationsData();
+      renderStudentTable();
+      renderApplicationsTable();
+      initOrRegenerateStudentId();
+      
+      document.querySelectorAll('[data-modal-target="addStudentModal"]').forEach(el => {
+        el.addEventListener('click', () => initOrRegenerateStudentId());
+      });
+
+      // Check URL parameters or hash
+      if (window.location.hash === '#applications' || window.location.hash === '#online-applications') {
+        const tabBtn = document.getElementById('tabBtnApplications');
+        switchMainViewTab('applications', tabBtn);
+      }
+    });
+
+    // Auto-open modal if URL has hash #add-student or #register
+    if (window.location.hash === '#add-student' || window.location.hash === '#register') {
+      setTimeout(() => {
+        initOrRegenerateStudentId();
+        openModal('addStudentModal');
+      }, 300);
+    }
+  </script>
+</body>
+</html>

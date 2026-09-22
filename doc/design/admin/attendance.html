@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Attendance & Class Registers - KIMS High School Admin</title>
+  <meta name="description" content="KIMS High School Institutional Management System - Daily Class Attendance Monitoring (Classes 0-1 to 10), Teacher Attribution & In-System Notification Panel">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+  
+  <style>
+    /* 4-State Attendance Radio Buttons */
+    .att-btn-present:checked + label {
+      background-color: #059669;
+      color: #ffffff;
+      border-color: #059669;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
+    }
+    .att-btn-absent:checked + label {
+      background-color: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+      box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
+    }
+    .att-btn-late:checked + label {
+      background-color: #d97706;
+      color: #ffffff;
+      border-color: #d97706;
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.35);
+    }
+    .att-btn-leave:checked + label {
+      background-color: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link active">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="attendanceGlobalSearch" oninput="handleAttendanceSearch(this.value)" placeholder="Search by class, class teacher, or status...">
+          </div>
+        </div>
+
+        <div class="header-right flex items-center gap-2.5">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- In-System Alerts Trigger Bell Button -->
+          <div class="relative">
+            <button type="button" onclick="toggleAlertsDrawer()" class="header-action-btn relative" title="View In-System Alerts Panel" id="headerAlertsBellBtn">
+              <i class="fa-solid fa-bell text-slate-600 dark:text-slate-300"></i>
+              <span class="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white rounded-full text-[10px] font-black flex items-center justify-center shadow-xs" id="headerAlertBadgeCount">5</span>
+            </button>
+          </div>
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Portal</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Principal / Admin</div>
+                <div class="profile-role">Attendance Controller</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-school mr-1"></i>High School (Classes 0-1 to 10)</span>
+              <span class="text-xs font-semibold text-slate-400">Admin-Only Oversight Register</span>
+            </div>
+            <h1>Daily Attendance & Class Registers</h1>
+            <p>Admin oversight across all 12 classes: breakdown of Present, Absent, Late, and Leave marked by Class Teachers, with in-system portal alerts.</p>
+          </div>
+
+          <div class="page-actions flex flex-wrap items-center gap-2">
+            <!-- Date Filter Picker -->
+            <div class="flex items-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-1 shadow-xs">
+              <button type="button" onclick="setAttendanceDateRelative(-1)" class="px-2 py-1 text-slate-500 hover:text-emerald-600 text-xs font-bold" title="Previous Day">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <input type="date" id="selectedDateInput" onchange="handleDateChange(this.value)" class="bg-transparent border-0 text-xs font-bold text-slate-800 dark:text-white px-2 py-1 focus:outline-none">
+              <button type="button" onclick="setAttendanceDateRelative(1)" class="px-2 py-1 text-slate-500 hover:text-emerald-600 text-xs font-bold" title="Next Day">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <button type="button" onclick="toggleAlertsDrawer()" class="btn-kims btn-primary text-xs">
+              <i class="fa-solid fa-bell"></i>
+              <span>System Alerts & Activities</span>
+              <span class="badge bg-white/20 text-white ml-1 font-black text-[10px]" id="headerActionAlertBadge">5</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards (School-wide Daily Aggregation) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-6">
+          <div class="admin-card p-3.5 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-bold uppercase tracking-wider">
+              <span>Enrolled</span>
+              <i class="fa-solid fa-users text-slate-400"></i>
+            </div>
+            <div class="text-2xl font-black text-slate-900 dark:text-white mt-2" id="kpiEnrolled">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Across 12 Classes</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-emerald-500">
+            <div class="flex items-center justify-between text-xs text-emerald-600 font-bold uppercase tracking-wider">
+              <span>Present</span>
+              <i class="fa-solid fa-circle-check text-emerald-500"></i>
+            </div>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-2" id="kpiPresent">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5" id="kpiAttendanceRate">0% Rate</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-rose-500">
+            <div class="flex items-center justify-between text-xs text-rose-600 font-bold uppercase tracking-wider">
+              <span>Absent</span>
+              <i class="fa-solid fa-circle-xmark text-rose-500"></i>
+            </div>
+            <div class="text-2xl font-black text-rose-600 dark:text-rose-400 mt-2" id="kpiAbsent">0</div>
+            <div class="text-[10px] text-rose-500 font-medium mt-0.5" id="kpiAbsentPct">0% Unexcused</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500">
+            <div class="flex items-center justify-between text-xs text-amber-600 font-bold uppercase tracking-wider">
+              <span>Late Arrival</span>
+              <i class="fa-solid fa-clock text-amber-500"></i>
+            </div>
+            <div class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-2" id="kpiLate">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Morning Delay</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-blue-500">
+            <div class="flex items-center justify-between text-xs text-blue-600 font-bold uppercase tracking-wider">
+              <span>On Leave</span>
+              <i class="fa-solid fa-file-signature text-blue-500"></i>
+            </div>
+            <div class="text-2xl font-black text-blue-600 dark:text-blue-400 mt-2" id="kpiLeave">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Approved Slips</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-purple-500">
+            <div class="flex items-center justify-between text-xs text-purple-600 font-bold uppercase tracking-wider">
+              <span>Registers</span>
+              <i class="fa-solid fa-clipboard-check text-purple-500"></i>
+            </div>
+            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 mt-2" id="kpiRegistersMarked">11/12</div>
+            <div class="text-[10px] text-emerald-600 font-bold mt-0.5" id="kpiRegistersPending">1 Class Pending</div>
+          </div>
+        </div>
+
+        <!-- Class-by-Class Attendance Directory Card -->
+        <div class="admin-card">
+
+          <!-- Table Header Controls & Wings -->
+          <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 space-y-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <div class="card-title flex items-center gap-2">
+                  <span>Class-by-Class Attendance Register</span>
+                  <span class="badge badge-neutral text-xs" id="dateBadgeLabel">07 Sep 2026</span>
+                </div>
+                <div class="card-subtitle text-xs text-slate-400">Class In-charge Form Master submission status and attendance breakdown</div>
+              </div>
+
+              <!-- Wing Filter Tabs -->
+              <div class="flex flex-wrap items-center gap-1.5" id="wingFilterTabs">
+                <button type="button" onclick="filterByWing('all', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs">
+                  All Classes (12)
+                </button>
+                <button type="button" onclick="filterByWing('Early Childhood', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Early (0-1 & Prep)
+                </button>
+                <button type="button" onclick="filterByWing('Primary', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Primary (1 to 5)
+                </button>
+                <button type="button" onclick="filterByWing('Middle', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Middle (6 to 8)
+                </button>
+                <button type="button" onclick="filterByWing('Secondary', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Matric (9 & 10)
+                </button>
+                <button type="button" onclick="filterByWing('Pending', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300 hover:bg-rose-100 transition">
+                  <i class="fa-solid fa-triangle-exclamation mr-1 text-[10px]"></i>Pending Submissions
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Class Overview Table -->
+          <div class="table-responsive">
+            <table class="admin-table" id="classesAttendanceTable">
+              <thead>
+                <tr>
+                  <th style="min-width: 170px;">Class & Wing</th>
+                  <th style="min-width: 80px;">Enrolled</th>
+                  <th style="min-width: 150px;">Present</th>
+                  <th style="min-width: 90px;">Absent</th>
+                  <th style="min-width: 80px;">Late</th>
+                  <th style="min-width: 90px;">On Leave</th>
+                  <th style="min-width: 210px;">Marked By Class Teacher</th>
+                  <th style="min-width: 120px;">Status</th>
+                  <th class="text-right" style="min-width: 140px;">Class Register</th>
+                </tr>
+              </thead>
+              <tbody id="classSummaryTableBody">
+                <!-- Populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Academics</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CLASS STUDENT ROSTER REGISTER (READ-ONLY MONITORING VIEW)          -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="classRosterModal">
+    <div class="modal-container !max-w-4xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success text-xs font-bold" id="rosterModalClassBadge">Class 10 (SSC-II)</span>
+            <span class="badge bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700">
+              <i class="fa-solid fa-lock text-[9px] text-amber-500 mr-1"></i>Read-Only View
+            </span>
+            <span class="text-xs font-semibold text-slate-400" id="rosterModalDateLabel">07 Sep 2026</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="rosterModalTitle">Class 10 Daily Attendance Register (Read-Only)</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Form Master Attribution Banner -->
+      <div class="px-6 pt-3 pb-0">
+        <div class="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-sm shadow-xs" id="rosterTeacherAvatar">
+              TM
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span id="rosterTeacherName">Dr. Tariq Mehmood</span>
+                <span class="text-[10px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full">Form Master (Class In-charge)</span>
+              </div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                <i class="fa-solid fa-clock text-[10px] mr-1"></i>Marked at <span id="rosterMarkedTime" class="font-bold text-slate-700 dark:text-slate-300">08:12 AM</span>
+                <span class="mx-1.5">•</span>
+                <span id="rosterSubmissionStatusBadge" class="text-emerald-700 dark:text-emerald-300 font-bold">Verified Submission</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="broadcastClassAbsenteesAlert()" class="btn-kims bg-rose-600 hover:bg-rose-700 text-white text-xs py-1.5 px-3 shadow-xs">
+              <i class="fa-solid fa-bell"></i>
+              <span>Post In-System Absence Alerts</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Summary Pill Counters inside Modal -->
+      <div class="px-6 pt-3 grid grid-cols-4 gap-2 text-center text-xs font-bold">
+        <div class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+          Enrolled: <span id="modalEnrolledCount">0</span>
+        </div>
+        <div class="p-2 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
+          Present: <span id="modalPresentCount">0</span>
+        </div>
+        <div class="p-2 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300">
+          Absent: <span id="modalAbsentCount">0</span>
+        </div>
+        <div class="p-2 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">
+          Leave: <span id="modalLeaveCount">0</span> | Late: <span id="modalLateCount">0</span>
+        </div>
+      </div>
+
+      <!-- Modal Body (Students List Table) -->
+      <div class="modal-body max-h-[55vh] overflow-y-auto px-6 py-3">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+              <th class="py-2">Roll & Student</th>
+              <th class="py-2">Father & Alert Log</th>
+              <th class="py-2 text-center" style="min-width: 130px;">Attendance Status</th>
+              <th class="py-2">Time In</th>
+              <th class="py-2">Remarks / Leave Reason</th>
+            </tr>
+          </thead>
+          <tbody id="modalRosterTableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+            <!-- Rendered via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+          <div class="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 text-amber-600 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-lock text-xs"></i>
+          </div>
+          <span><strong>Admin Access Policy:</strong> Read-only monitoring view. Student attendance is marked and modified exclusively by designated Form Masters via the Teacher Panel.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="btn-kims btn-primary" data-modal-close>Close Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: IN-SYSTEM NOTIFICATIONS & ALERTS PANEL (OPENS ON BUTTON CLICK)    -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="systemAlertsDrawerModal">
+    <div class="modal-container !max-w-2xl">
+      <div class="modal-header">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-400 flex items-center justify-center text-base font-bold shadow-xs">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+              <span>In-System Alerts & Activities Log</span>
+              <span class="badge bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 text-[10px] font-bold" id="drawerAlertCount">5 Active</span>
+            </h3>
+            <p class="text-xs text-slate-400">Notices published to Student & Parent portal panels</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body max-h-[65vh] overflow-y-auto space-y-3 p-4">
+        <!-- Filter Tabs & Quick Action inside Modal -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex flex-wrap items-center gap-1.5" id="alertCategoryFilterTabs">
+            <button type="button" onclick="filterAlerts('all', this)" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-600 text-white shadow-xs">
+              All
+            </button>
+            <button type="button" onclick="filterAlerts('Absence Alert', this)" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+              Absence
+            </button>
+            <button type="button" onclick="filterAlerts('Late Notice', this)" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+              Late
+            </button>
+            <button type="button" onclick="filterAlerts('Leave Slip Notice', this)" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+              Leave
+            </button>
+            <button type="button" onclick="filterAlerts('Staff Register Alert', this)" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+              Staff
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="broadcastInSystemAlerts()" class="btn-kims btn-secondary !py-1 !px-2.5 text-[11px]">
+              <i class="fa-solid fa-bullhorn text-rose-600 text-[10px]"></i>
+              <span>Broadcast Notice</span>
+            </button>
+            <button type="button" onclick="clearAllSystemAlerts()" class="text-[11px] font-bold text-slate-500 hover:text-rose-600 transition">
+              Clear All
+            </button>
+          </div>
+        </div>
+
+        <div id="drawerAlertsListContainer" class="space-y-2.5">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <span class="text-[11px] text-slate-400"><i class="fa-solid fa-desktop text-emerald-600 mr-1"></i>Notices display on student & parent portal panels.</span>
+        <button type="button" class="btn-kims btn-primary" data-modal-close>Close Panel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // HIGH SCHOOL ATTENDANCE DATA SYSTEM (CLASSES 0-1 TO 10)
+    // =========================================================================
+
+    // High School 12-tier Classes Configuration
+    const HIGH_SCHOOL_CLASSES = [
+      { id: "CLS-0-1", name: "Class 0-1 (Nursery / Playgroup)", wing: "Early Childhood", enrolled: 28, teacher: "Ms. Ayesha Siddiqa", time: "08:05 AM" },
+      { id: "CLS-PREP", name: "Class Prep / KG", wing: "Early Childhood", enrolled: 30, teacher: "Ms. Ayesha Siddiqa", time: "08:10 AM" },
+      { id: "CLS-1", name: "Class 1", wing: "Primary", enrolled: 32, teacher: "Ustadh Bilal Ahmad", time: "08:08 AM" },
+      { id: "CLS-2", name: "Class 2", wing: "Primary", enrolled: 34, teacher: "Ustadh Bilal Ahmad", time: "08:12 AM" },
+      { id: "CLS-3", name: "Class 3", wing: "Primary", enrolled: 35, teacher: "Qari Abdul Basit", time: "08:07 AM" },
+      { id: "CLS-4", name: "Class 4", wing: "Primary", enrolled: 36, teacher: "Qari Abdul Basit", time: "08:15 AM" },
+      { id: "CLS-5", name: "Class 5", wing: "Primary", enrolled: 38, teacher: "Mrs. Farzana Khattak", time: "08:09 AM" },
+      { id: "CLS-6", name: "Class 6", wing: "Middle", enrolled: 40, teacher: "Engr. Shah Faisal", time: "08:14 AM" },
+      { id: "CLS-7", name: "Class 7", wing: "Middle", enrolled: 40, teacher: "Engr. Shah Faisal", time: "08:11 AM" },
+      { id: "CLS-8", name: "Class 8", wing: "Middle", enrolled: 42, teacher: "Dr. Tariq Mehmood", time: "08:10 AM" },
+      { id: "CLS-9", name: "Class 9 (SSC-I Matric)", wing: "Secondary", enrolled: 44, teacher: "Mrs. Farzana Khattak", time: "08:16 AM" },
+      { id: "CLS-10", name: "Class 10 (SSC-II Matric)", wing: "Secondary", enrolled: 45, teacher: "Dr. Tariq Mehmood", time: "08:12 AM" }
+    ];
+
+    // Seeded In-System Alerts Log (Static UI Panel Design)
+    const SEED_IN_SYSTEM_ALERTS = [
+      {
+        id: "ALT-20260907-001",
+        type: "Absence Alert",
+        severity: "high", // high, warning, info, admin
+        class: "Class 10 (SSC-II Matric)",
+        student: "Farhan Ali Khattak (10-03)",
+        message: "Marked Absent in morning roll-call. In-system alert posted to Parent & Student Portal panels.",
+        time: "08:14 AM Today",
+        read: false
+      },
+      {
+        id: "ALT-20260907-002",
+        type: "Absence Alert",
+        severity: "high",
+        class: "Class 10 (SSC-II Matric)",
+        student: "Danish Mehmood (10-10)",
+        message: "Uninformed absence flagged during roll call by Form Master Dr. Tariq Mehmood.",
+        time: "08:14 AM Today",
+        read: false
+      },
+      {
+        id: "ALT-20260907-003",
+        type: "Late Notice",
+        severity: "warning",
+        class: "Class 10 (SSC-II Matric)",
+        student: "Shahzaib Noor (10-05)",
+        message: "Arrived at 08:20 AM (35 mins delay due to transport). Late pass recorded.",
+        time: "08:21 AM Today",
+        read: false
+      },
+      {
+        id: "ALT-20260907-004",
+        type: "Staff Register Alert",
+        severity: "admin",
+        class: "Class 4",
+        student: "Form Master: Qari Abdul Basit",
+        message: "Morning attendance register has not been submitted yet. Alert dispatched to staff room terminal.",
+        time: "08:30 AM Today",
+        read: false
+      },
+      {
+        id: "ALT-20260907-005",
+        type: "Leave Slip Notice",
+        severity: "info",
+        class: "Class 9 (SSC-I Matric)",
+        student: "Zeeshan Murad (09-03)",
+        message: "One-day casual leave approved by Principal. Status updated in student portal.",
+        time: "Yesterday, 02:30 PM",
+        read: true
+      }
+    ];
+
+    // Sample Student Roster Templates per Class
+    const STUDENT_ROSTERS_SEED = {
+      "CLS-10": [
+        { id: "STD-2026-001", roll: "10-01", name: "Muhammad Huzaifa Khan", father: "Tariq Jamil Khan", status: "Present", timeIn: "07:45 AM", remarks: "On time with full uniform", alertStatus: "Normal" },
+        { id: "STD-2026-002", roll: "10-02", name: "Ayesha Bibi", father: "Abdul Qayyum", status: "Present", timeIn: "07:50 AM", remarks: "Class Monitor", alertStatus: "Normal" },
+        { id: "STD-2026-003", roll: "10-03", name: "Farhan Ali Khattak", father: "Sher Alam Khattak", status: "Absent", timeIn: "—", remarks: "Unexcused absence - System alert generated", alertStatus: "Alert Sent" },
+        { id: "STD-2026-004", roll: "10-04", name: "Khadija Rehman", father: "Rehman Ullah", status: "Present", timeIn: "07:55 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-005", roll: "10-05", name: "Shahzaib Noor", father: "Noor Muhammad", status: "Late", timeIn: "08:20 AM", remarks: "Delayed due to school bus puncture", alertStatus: "Notice Sent" },
+        { id: "STD-2026-006", roll: "10-06", name: "Hamza Tariq", father: "Tariq Mehmood", status: "Leave", timeIn: "—", remarks: "Medical fever leave slip approved", alertStatus: "Leave Noted" },
+        { id: "STD-2026-007", roll: "10-07", name: "Zainab Fatima", father: "Sajjad Ahmad", status: "Present", timeIn: "07:40 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-008", roll: "10-08", name: "Usman Ghani", father: "Fazal Ghani", status: "Present", timeIn: "07:48 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-009", roll: "10-09", name: "Bilal Ahmad", father: "Muhammad Younas", status: "Present", timeIn: "07:52 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-010", roll: "10-10", name: "Danish Mehmood", father: "Mehmood Khan", status: "Absent", timeIn: "—", remarks: "Uninformed absence - Alert posted", alertStatus: "Alert Sent" }
+      ],
+      "CLS-9": [
+        { id: "STD-2026-011", roll: "09-01", name: "Hassan Raza", father: "Raza Ullah", status: "Present", timeIn: "07:42 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-012", roll: "09-02", name: "Fatima Noor", father: "Noor ul Huda", status: "Present", timeIn: "07:49 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-013", roll: "09-03", name: "Zeeshan Murad", father: "Murad Ali", status: "Leave", timeIn: "—", remarks: "Family wedding casual leave approved", alertStatus: "Leave Noted" },
+        { id: "STD-2026-014", roll: "09-04", name: "Sanaullah Khattak", father: "Ghulam Khattak", status: "Absent", timeIn: "—", remarks: "Absence notice in panel", alertStatus: "Alert Sent" },
+        { id: "STD-2026-015", roll: "09-05", name: "Madiha Aslam", father: "Muhammad Aslam", status: "Present", timeIn: "07:54 AM", remarks: "", alertStatus: "Normal" }
+      ],
+      "CLS-0-1": [
+        { id: "STD-2026-021", roll: "NUR-01", name: "Baby Zimal Fatima", father: "Kashif Ali", status: "Present", timeIn: "08:00 AM", remarks: "Dropped by mother", alertStatus: "Normal" },
+        { id: "STD-2026-022", roll: "NUR-02", name: "Ayan Khan", father: "Shahzeb Khan", status: "Present", timeIn: "08:02 AM", remarks: "", alertStatus: "Normal" },
+        { id: "STD-2026-023", roll: "NUR-03", name: "Ibrahim Bilal", father: "Bilal Tariq", status: "Leave", timeIn: "—", remarks: "Vaccination day leave", alertStatus: "Leave Noted" },
+        { id: "STD-2026-024", roll: "NUR-04", name: "Hareem Shah", father: "Waqas Shah", status: "Present", timeIn: "08:05 AM", remarks: "", alertStatus: "Normal" }
+      ]
+    };
+
+    // State Variables
+    let attendanceData = [];
+    let systemAlerts = [];
+    let currentDate = "2026-09-07";
+    let currentWingFilter = "all";
+    let currentAlertFilter = "all";
+    let currentSearchTerm = "";
+    let activeClassModalId = null;
+
+    // =========================================================================
+    // INITIALIZATION & LOCALSTORAGE
+    // =========================================================================
+    function initAttendanceSystem() {
+      const dateInput = document.getElementById('selectedDateInput');
+      if (dateInput) dateInput.value = currentDate;
+      updateDateLabel();
+
+      // Load attendance data
+      const stored = localStorage.getItem('kims_attendance_data');
+      if (stored) {
+        try {
+          attendanceData = JSON.parse(stored);
+        } catch(e) {
+          generateSeedAttendance();
+        }
+      } else {
+        generateSeedAttendance();
+      }
+
+      // Load system alerts
+      const storedAlerts = localStorage.getItem('kims_system_alerts');
+      if (storedAlerts) {
+        try {
+          systemAlerts = JSON.parse(storedAlerts);
+        } catch(e) {
+          systemAlerts = [...SEED_IN_SYSTEM_ALERTS];
+        }
+      } else {
+        systemAlerts = [...SEED_IN_SYSTEM_ALERTS];
+        saveSystemAlerts();
+      }
+
+      renderAttendanceDashboard();
+      renderInSystemAlertsPanel();
+      renderDrawerAlertsList();
+    }
+
+    function generateSeedAttendance() {
+      attendanceData = HIGH_SCHOOL_CLASSES.map((cls, idx) => {
+        let roster = STUDENT_ROSTERS_SEED[cls.id];
+        if (!roster) {
+          roster = [
+            { id: `${cls.id}-S1`, roll: `${cls.id.replace('CLS-','')}-01`, name: `Student Alpha (${cls.name})`, father: "Akram Khan", status: "Present", timeIn: "07:50 AM", remarks: "", alertStatus: "Normal" },
+            { id: `${cls.id}-S2`, roll: `${cls.id.replace('CLS-','')}-02`, name: `Student Beta (${cls.name})`, father: "Naveed Ahmad", status: "Present", timeIn: "07:52 AM", remarks: "", alertStatus: "Normal" },
+            { id: `${cls.id}-S3`, roll: `${cls.id.replace('CLS-','')}-03`, name: `Student Gamma (${cls.name})`, father: "Junaid Iqbal", status: idx === 6 ? "Absent" : "Present", timeIn: idx === 6 ? "—" : "07:55 AM", remarks: idx === 6 ? "Unexcused" : "", alertStatus: idx === 6 ? "Alert Sent" : "Normal" },
+            { id: `${cls.id}-S4`, roll: `${cls.id.replace('CLS-','')}-04`, name: `Student Delta (${cls.name})`, father: "Saeed Anwar", status: idx === 4 ? "Late" : "Present", timeIn: idx === 4 ? "08:25 AM" : "07:45 AM", remarks: "", alertStatus: "Normal" },
+            { id: `${cls.id}-S5`, roll: `${cls.id.replace('CLS-','')}-05`, name: `Student Epsilon (${cls.name})`, father: "Kamran Shah", status: idx === 2 ? "Leave" : "Present", timeIn: idx === 2 ? "—" : "07:48 AM", remarks: idx === 2 ? "Sick leave" : "", alertStatus: "Leave Noted" }
+          ];
+        }
+
+        const isPending = (cls.id === 'CLS-4');
+        const presentCount = isPending ? 0 : roster.filter(s => s.status === 'Present').length + (cls.enrolled - roster.length - (isPending ? 0 : 2));
+        const absentCount = isPending ? 0 : roster.filter(s => s.status === 'Absent').length + 1;
+        const lateCount = isPending ? 0 : roster.filter(s => s.status === 'Late').length;
+        const leaveCount = isPending ? 0 : roster.filter(s => s.status === 'Leave').length + (idx % 3 === 0 ? 1 : 0);
+
+        return {
+          classId: cls.id,
+          className: cls.name,
+          wing: cls.wing,
+          enrolled: cls.enrolled,
+          present: Math.max(0, presentCount),
+          absent: Math.max(0, absentCount),
+          late: Math.max(0, lateCount),
+          leave: Math.max(0, leaveCount),
+          teacherName: cls.teacher,
+          markedTime: isPending ? "Pending" : cls.time,
+          status: isPending ? "Pending Submission" : "Marked & Submitted",
+          roster: roster
+        };
+      });
+
+      saveAttendanceData();
+    }
+
+    function saveAttendanceData() {
+      localStorage.setItem('kims_attendance_data', JSON.stringify(attendanceData));
+      updateGlobalCounters();
+    }
+
+    function saveSystemAlerts() {
+      localStorage.setItem('kims_system_alerts', JSON.stringify(systemAlerts));
+      updateAlertBadges();
+    }
+
+    function updateAlertBadges() {
+      const activeCount = systemAlerts.filter(a => !a.read).length;
+      const headerBadge = document.getElementById('headerAlertBadgeCount');
+      const actionBadge = document.getElementById('headerActionAlertBadge');
+      const drawerCount = document.getElementById('drawerAlertCount');
+
+      if (headerBadge) {
+        headerBadge.innerText = activeCount;
+        headerBadge.style.display = activeCount > 0 ? 'flex' : 'none';
+      }
+      if (actionBadge) {
+        actionBadge.innerText = activeCount;
+      }
+      if (drawerCount) {
+        drawerCount.innerText = `${activeCount} Active`;
+      }
+    }
+
+    // =========================================================================
+    // IN-SYSTEM ALERTS & NOTIFICATIONS DRAWER (OPENS ON BUTTON CLICK)
+    // =========================================================================
+    function renderDrawerAlertsList() {
+      const container = document.getElementById('drawerAlertsListContainer');
+      if (!container) return;
+
+      container.innerHTML = '';
+      const filtered = systemAlerts.filter(alert => {
+        if (currentAlertFilter === 'all') return true;
+        return alert.type === currentAlertFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-10 text-slate-400">
+            <i class="fa-solid fa-circle-check text-emerald-500 text-2xl mb-2"></i>
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-300">No active alerts in this category</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">All attendance notices have been acknowledged.</div>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(alert => {
+        let badgeClass = 'badge bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300';
+        let icon = 'fa-circle-exclamation text-rose-600';
+        let borderLeft = 'border-l-rose-500';
+
+        if (alert.severity === 'warning') {
+          badgeClass = 'badge bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300';
+          icon = 'fa-clock text-amber-600';
+          borderLeft = 'border-l-amber-500';
+        } else if (alert.severity === 'info') {
+          badgeClass = 'badge bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300';
+          icon = 'fa-file-lines text-blue-600';
+          borderLeft = 'border-l-blue-500';
+        } else if (alert.severity === 'admin') {
+          badgeClass = 'badge bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300';
+          icon = 'fa-triangle-exclamation text-purple-600';
+          borderLeft = 'border-l-purple-500';
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/90 border-l-4 ${borderLeft} shadow-2xs flex items-start justify-between gap-3`;
+        div.innerHTML = `
+          <div class="space-y-1 flex-1">
+            <div class="flex items-center gap-2">
+              <span class="${badgeClass} text-[9px] font-extrabold uppercase tracking-wider">
+                <i class="fa-solid ${icon} mr-1 text-[8px]"></i>${escapeHtml(alert.type)}
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">${escapeHtml(alert.time)}</span>
+            </div>
+            <div class="font-bold text-slate-900 dark:text-white text-xs">
+              ${escapeHtml(alert.class)}
+              ${alert.student ? `• <span class="text-emerald-700 dark:text-emerald-400">${escapeHtml(alert.student)}</span>` : ''}
+            </div>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug">
+              ${escapeHtml(alert.message)}
+            </p>
+          </div>
+          <button type="button" onclick="dismissAlert('${alert.id}')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-rose-600 text-xs transition" title="Dismiss Notice">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function filterAlerts(category, btn) {
+      currentAlertFilter = category;
+      const tabs = document.querySelectorAll('#alertCategoryFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-600 text-white shadow-xs';
+      renderDrawerAlertsList();
+    }
+
+    function toggleAlertsDrawer() {
+      renderDrawerAlertsList();
+      openModal('systemAlertsDrawerModal');
+    }
+
+    function dismissAlert(alertId) {
+      systemAlerts = systemAlerts.filter(a => a.id !== alertId);
+      saveSystemAlerts();
+      renderDrawerAlertsList();
+      showToast('Alert Dismissed', 'In-system notice acknowledged.', 'info');
+    }
+
+    function clearAllSystemAlerts() {
+      systemAlerts = [];
+      saveSystemAlerts();
+      renderDrawerAlertsList();
+      closeModal('systemAlertsDrawerModal');
+      showToast('All Cleared', 'All in-system notices marked as acknowledged.', 'success');
+    }
+
+    // =========================================================================
+    // IN-SYSTEM ALERT TRIGGER ACTIONS (NOT WHATSAPP)
+    // =========================================================================
+    function broadcastInSystemAlerts() {
+      let totalAbsents = 0;
+      attendanceData.forEach(c => totalAbsents += c.absent);
+
+      const newAlert = {
+        id: `ALT-${Date.now()}`,
+        type: "Absence Alert",
+        severity: "high",
+        class: "School-Wide Broadcast",
+        student: `${totalAbsents} Absent Scholars`,
+        message: `High School attendance finalized. Daily absence notice posted to all ${totalAbsents} parent & student portal panels.`,
+        time: "Just Now",
+        read: false
+      };
+
+      systemAlerts.unshift(newAlert);
+      saveSystemAlerts();
+      renderInSystemAlertsPanel();
+      renderDrawerAlertsList();
+      showToast('In-System Alert Posted', `Absence notifications published to Parent & Student Portal panels for ${totalAbsents} absentees.`, 'success');
+    }
+
+    function triggerClassInSystemAlert(classId) {
+      const cls = attendanceData.find(c => c.classId === classId);
+      if (!cls) return;
+
+      const newAlert = {
+        id: `ALT-${Date.now()}`,
+        type: "Absence Alert",
+        severity: "high",
+        class: cls.className,
+        student: `${cls.absent} Absentee(s)`,
+        message: `Form Master ${cls.teacherName} recorded ${cls.absent} absent student(s). Daily notice dispatched to linked portal panels.`,
+        time: "Just Now",
+        read: false
+      };
+
+      systemAlerts.unshift(newAlert);
+      saveSystemAlerts();
+      renderInSystemAlertsPanel();
+      renderDrawerAlertsList();
+      showToast('Alert Dispatched', `In-system absence notice published for ${cls.className}.`, 'success');
+    }
+
+    function broadcastClassAbsenteesAlert() {
+      const cls = attendanceData.find(c => c.classId === activeClassModalId);
+      if (!cls) return;
+
+      const absentees = cls.roster.filter(s => s.status === 'Absent');
+      if (absentees.length === 0) {
+        showToast('No Absentees', 'There are no absent students in this class today!', 'info');
+        return;
+      }
+
+      absentees.forEach(std => {
+        std.alertStatus = "Alert Sent";
+        systemAlerts.unshift({
+          id: `ALT-${Date.now()}-${std.id}`,
+          type: "Absence Alert",
+          severity: "high",
+          class: cls.className,
+          student: `${std.name} (${std.roll})`,
+          message: `Student marked Absent today. Daily notice posted to parent & student portal.`,
+          time: "Just Now",
+          read: false
+        });
+      });
+
+      saveSystemAlerts();
+      renderInSystemAlertsPanel();
+      renderDrawerAlertsList();
+      renderModalRosterTable(cls);
+      showToast('In-System Alerts Sent', `Portal notifications posted for ${absentees.length} absentee(s) in ${cls.className}.`, 'success');
+    }
+
+    // =========================================================================
+    // UPDATE EXECUTIVE SUMMARY KPIS
+    // =========================================================================
+    function updateGlobalCounters() {
+      let totalEnrolled = 0;
+      let totalPresent = 0;
+      let totalAbsent = 0;
+      let totalLate = 0;
+      let totalLeave = 0;
+      let markedClasses = 0;
+
+      attendanceData.forEach(c => {
+        totalEnrolled += c.enrolled;
+        totalPresent += c.present;
+        totalAbsent += c.absent;
+        totalLate += c.late;
+        totalLeave += c.leave;
+        if (c.status === "Marked & Submitted") markedClasses++;
+      });
+
+      const rate = totalEnrolled > 0 ? ((totalPresent + totalLate) / totalEnrolled * 100).toFixed(1) : 0;
+      const absentPct = totalEnrolled > 0 ? (totalAbsent / totalEnrolled * 100).toFixed(1) : 0;
+      const pendingClasses = attendanceData.length - markedClasses;
+
+      document.getElementById('kpiEnrolled').innerText = `${totalEnrolled}`;
+      document.getElementById('kpiPresent').innerText = `${totalPresent}`;
+      document.getElementById('kpiAttendanceRate').innerText = `${rate}% School Rate`;
+      document.getElementById('kpiAbsent').innerText = `${totalAbsent}`;
+      document.getElementById('kpiAbsentPct').innerText = `${absentPct}% Absentees`;
+      document.getElementById('kpiLate').innerText = `${totalLate}`;
+      document.getElementById('kpiLeave').innerText = `${totalLeave}`;
+      document.getElementById('kpiRegistersMarked').innerText = `${markedClasses}/${attendanceData.length}`;
+      document.getElementById('kpiRegistersPending').innerText = pendingClasses === 0 ? "All Classes Marked" : `${pendingClasses} Class Pending`;
+      document.getElementById('kpiRegistersPending').className = pendingClasses === 0 ? "text-[10px] text-emerald-600 font-bold mt-0.5" : "text-[10px] text-rose-500 font-bold mt-0.5";
+    }
+
+    // =========================================================================
+    // RENDER CLASS-BY-CLASS SUMMARY TABLE
+    // =========================================================================
+    function renderAttendanceDashboard() {
+      const tbody = document.getElementById('classSummaryTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentSearchTerm.toLowerCase().trim();
+
+      const filtered = attendanceData.filter(cls => {
+        if (currentWingFilter === 'Pending' && cls.status !== 'Pending Submission') return false;
+        if (currentWingFilter !== 'all' && currentWingFilter !== 'Pending' && !cls.wing.includes(currentWingFilter)) return false;
+
+        if (!term) return true;
+        return (
+          cls.className.toLowerCase().includes(term) ||
+          cls.teacherName.toLowerCase().includes(term) ||
+          cls.wing.toLowerCase().includes(term) ||
+          cls.status.toLowerCase().includes(term)
+        );
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No classes match your filter</div>
+              <div class="text-xs text-slate-400 mt-1">Try selecting another wing pill or clearing your search.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(cls => {
+        const isPending = cls.status === 'Pending Submission';
+        const rate = cls.enrolled > 0 ? (((cls.present + cls.late) / cls.enrolled) * 100).toFixed(0) : 0;
+        const teacherInitials = cls.teacherName.split(' ').map(n => n[0]).filter(Boolean).slice(-2).join('').toUpperCase();
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td>
+            <div class="font-bold text-slate-900 dark:text-white text-xs">${escapeHtml(cls.className)}</div>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-[10px] text-slate-400">${escapeHtml(cls.wing)} Wing</span>
+              <span class="text-slate-300 dark:text-slate-700">•</span>
+              <span class="text-[10px] font-mono text-emerald-600">${escapeHtml(cls.classId)}</span>
+            </div>
+          </td>
+
+          <td>
+            <span class="font-black text-xs text-slate-800 dark:text-white">${cls.enrolled}</span>
+            <span class="text-[10px] text-slate-400 block">Scholars</span>
+          </td>
+
+          <td>
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-extrabold text-xs text-emerald-600 dark:text-emerald-400">${cls.present}</span>
+              <span class="text-[10px] font-bold text-slate-400">${rate}%</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: ${rate}%;"></div>
+            </div>
+          </td>
+
+          <td>
+            ${cls.absent > 0 
+              ? `<span class="badge bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 font-bold text-xs"><i class="fa-solid fa-circle-xmark text-[9px] mr-1"></i>${cls.absent}</span>` 
+              : `<span class="text-xs text-slate-300 dark:text-slate-600 font-semibold">0</span>`}
+          </td>
+
+          <td>
+            ${cls.late > 0 
+              ? `<span class="badge bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 font-bold text-xs">${cls.late}</span>` 
+              : `<span class="text-xs text-slate-300 dark:text-slate-600 font-semibold">0</span>`}
+          </td>
+
+          <td>
+            ${cls.leave > 0 
+              ? `<span class="badge bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 font-bold text-xs"><i class="fa-solid fa-file-lines text-[9px] mr-1"></i>${cls.leave}</span>` 
+              : `<span class="text-xs text-slate-300 dark:text-slate-600 font-semibold">0</span>`}
+          </td>
+
+          <td>
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-black flex items-center justify-center text-[10px] shrink-0">
+                ${teacherInitials}
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-800 dark:text-white">${escapeHtml(cls.teacherName)}</div>
+                <div class="text-[10px] text-slate-400 flex items-center gap-1">
+                  <span>Form Master</span>
+                  <span>•</span>
+                  <span class="font-mono text-slate-600 dark:text-slate-300 font-semibold">${escapeHtml(cls.markedTime)}</span>
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            ${isPending 
+              ? `<span class="badge bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 font-bold text-[10px]"><i class="fa-solid fa-clock text-[8px] mr-1"></i>Pending</span>` 
+              : `<span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-check text-[8px] mr-1"></i>Marked</span>`}
+          </td>
+
+          <td class="text-right">
+            <div class="inline-flex items-center gap-1.5">
+              <button type="button" onclick="openClassRosterModal('${escapeHtml(cls.classId)}')" class="btn-kims btn-secondary !py-1 !px-2.5 text-xs" title="View Official Class Attendance Register">
+                <i class="fa-solid fa-eye text-emerald-600 mr-1"></i>
+                <span>View Register</span>
+              </button>
+              ${cls.absent > 0 ? `
+                <button type="button" onclick="triggerClassInSystemAlert('${escapeHtml(cls.classId)}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950 dark:text-rose-300 transition" title="Post In-System Absence Alert">
+                  <i class="fa-solid fa-bell text-xs"></i>
+                </button>
+              ` : ''}
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // MODAL: OPEN CLASS STUDENT ROSTER (READ-ONLY ADMIN VIEW)
+    // =========================================================================
+    function openClassRosterModal(classId) {
+      const cls = attendanceData.find(c => c.classId === classId);
+      if (!cls) return;
+
+      activeClassModalId = classId;
+
+      document.getElementById('rosterModalClassBadge').innerText = cls.className;
+      document.getElementById('rosterModalDateLabel').innerText = currentDate;
+      document.getElementById('rosterModalTitle').innerText = `${cls.className} - Daily Attendance Register (Read-Only)`;
+
+      document.getElementById('rosterTeacherName').innerText = cls.teacherName;
+      document.getElementById('rosterTeacherAvatar').innerText = cls.teacherName.split(' ').map(n => n[0]).filter(Boolean).slice(-2).join('').toUpperCase();
+      document.getElementById('rosterMarkedTime').innerText = cls.markedTime;
+
+      const statusBadge = document.getElementById('rosterSubmissionStatusBadge');
+      if (cls.status === 'Pending Submission') {
+        statusBadge.className = 'text-rose-600 font-bold';
+        statusBadge.innerText = 'Pending Submission by Form Master';
+      } else {
+        statusBadge.className = 'text-emerald-700 dark:text-emerald-300 font-bold';
+        statusBadge.innerText = 'Official Submitted Register';
+      }
+
+      renderModalRosterTable(cls);
+      updateModalSummaryCounters(cls);
+      openModal('classRosterModal');
+    }
+
+    function renderModalRosterTable(cls) {
+      const tbody = document.getElementById('modalRosterTableBody');
+      tbody.innerHTML = '';
+
+      cls.roster.forEach((std, idx) => {
+        // In-System Alert Status Badge
+        let alertBadge = '<span class="text-[10px] text-slate-400 font-medium"><i class="fa-solid fa-check text-[8px] mr-1 text-emerald-600"></i>Normal</span>';
+        if (std.status === 'Absent') {
+          alertBadge = '<span class="badge bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 text-[9px] font-bold"><i class="fa-solid fa-bell mr-1 text-[8px]"></i>Portal Alert</span>';
+        } else if (std.status === 'Late') {
+          alertBadge = '<span class="badge bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 text-[9px] font-bold"><i class="fa-solid fa-clock mr-1 text-[8px]"></i>Late Notice</span>';
+        } else if (std.status === 'Leave') {
+          alertBadge = '<span class="badge bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 text-[9px] font-bold"><i class="fa-solid fa-file-lines text-[9px] mr-1"></i>Leave Slip</span>';
+        }
+
+        // Read-only Attendance Status Badge
+        let statusBadgeHtml = '';
+        if (std.status === 'Present') {
+          statusBadgeHtml = `<span class="badge badge-success font-bold text-xs"><i class="fa-solid fa-check mr-1 text-[9px]"></i>Present</span>`;
+        } else if (std.status === 'Absent') {
+          statusBadgeHtml = `<span class="badge bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 font-bold text-xs"><i class="fa-solid fa-xmark mr-1 text-[9px]"></i>Absent</span>`;
+        } else if (std.status === 'Late') {
+          statusBadgeHtml = `<span class="badge bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-bold text-xs"><i class="fa-solid fa-clock mr-1 text-[9px]"></i>Late</span>`;
+        } else if (std.status === 'Leave') {
+          statusBadgeHtml = `<span class="badge bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 font-bold text-xs"><i class="fa-solid fa-file-lines mr-1 text-[9px]"></i>On Leave</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 dark:hover:bg-slate-800/40';
+        tr.innerHTML = `
+          <td class="py-2.5">
+            <div class="font-bold text-slate-800 dark:text-white text-xs">${escapeHtml(std.name)}</div>
+            <div class="text-[10px] font-mono text-slate-400">Roll: ${escapeHtml(std.roll)} • ${escapeHtml(std.id)}</div>
+          </td>
+
+          <td class="py-2.5">
+            <div class="font-medium text-slate-700 dark:text-slate-300 text-xs">${escapeHtml(std.father)}</div>
+            <div class="mt-0.5">${alertBadge}</div>
+          </td>
+
+          <td class="py-2.5 text-center">
+            ${statusBadgeHtml}
+          </td>
+
+          <td class="py-2.5">
+            <span class="font-mono text-xs font-semibold ${std.status === 'Late' ? 'text-amber-600' : 'text-slate-700 dark:text-slate-300'}">
+              ${escapeHtml(std.timeIn || '—')}
+            </span>
+          </td>
+
+          <td class="py-2.5">
+            <span class="text-xs ${std.remarks ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400 italic'}">
+              ${escapeHtml(std.remarks || 'No remarks')}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateModalSummaryCounters(cls) {
+      const p = cls.roster.filter(s => s.status === 'Present').length;
+      const a = cls.roster.filter(s => s.status === 'Absent').length;
+      const l = cls.roster.filter(s => s.status === 'Late').length;
+      const lv = cls.roster.filter(s => s.status === 'Leave').length;
+
+      document.getElementById('modalEnrolledCount').innerText = cls.enrolled;
+      document.getElementById('modalPresentCount').innerText = p + (cls.enrolled - cls.roster.length);
+      document.getElementById('modalAbsentCount').innerText = a;
+      document.getElementById('modalLateCount').innerText = l;
+      document.getElementById('modalLeaveCount').innerText = lv;
+    }
+
+    // =========================================================================
+    // FILTERS, SEARCH & DATE SELECTOR
+    // =========================================================================
+    function filterByWing(wing, btn) {
+      currentWingFilter = wing;
+      const tabs = document.querySelectorAll('#wingFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs';
+      renderAttendanceDashboard();
+    }
+
+    function handleAttendanceSearch(val) {
+      currentSearchTerm = val;
+      renderAttendanceDashboard();
+    }
+
+    function handleDateChange(dateVal) {
+      currentDate = dateVal;
+      updateDateLabel();
+      showToast('Date Changed', `Viewing attendance register for ${dateVal}`, 'info');
+      renderAttendanceDashboard();
+    }
+
+    function setAttendanceDateRelative(offsetDays) {
+      const d = new Date(currentDate);
+      d.setDate(d.getDate() + offsetDays);
+      currentDate = d.toISOString().split('T')[0];
+      const dateInput = document.getElementById('selectedDateInput');
+      if (dateInput) dateInput.value = currentDate;
+      updateDateLabel();
+      renderAttendanceDashboard();
+    }
+
+    function updateDateLabel() {
+      const dateEl = document.getElementById('dateBadgeLabel');
+      if (dateEl) {
+        try {
+          const d = new Date(currentDate);
+          const formatted = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+          dateEl.innerText = formatted;
+        } catch(e) {
+          dateEl.innerText = currentDate;
+        }
+      }
+    }
+
+    // Initialize System
+    document.addEventListener('DOMContentLoaded', () => {
+      initAttendanceSystem();
+    });
+  </script>
+</body>
+</html>

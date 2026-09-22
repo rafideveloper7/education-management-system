@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kohat Institute of Modern Sciences (KIMS) School</title>
+    <meta name="description" content="Contact Kohat Institute of Modern Sciences (KIMS) School (Nursery to 10th). Campus location on Dhoda Road Kohat, phone numbers, admissions desk, and campus tour bookings.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .contact-hero-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.96) 0%, rgba(6, 78, 59, 0.89) 50%, rgba(2, 44, 34, 0.98) 100%), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-4xl tracking-tight leading-none">KIMS</h1>
+                    <!-- <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p> -->
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200/60"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-emerald-800 font-bold"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Cinematic Hero Header: Contact & Campus Desk -->
+    <section class="contact-hero-bg text-white py-16 lg:py-24 px-4 sm:px-8 relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                <i class="fa-solid fa-headset text-amber-400"></i>
+                <span>WE'RE HERE TO ASSIST YOU</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white max-w-4xl mx-auto">
+                Connect with <span class="gold-shimmer">KIMS School</span> Kohat
+            </h1>
+
+            <p class="text-base sm:text-lg text-emerald-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+                Have questions regarding Nursery to 10th admissions, fee concessions, curriculum, or school transportation? Our dedicated admissions desk and administration are ready to assist you.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4">
+                <a href="tel:+923330299920" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-sm">
+                    <i class="fa-solid fa-phone"></i> Call: +92 333 0299920
+                </a>
+                <a href="https://wa.me/923330299920" target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp Us
+                </a>
+                <a href="#inquiry-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold px-6 py-3.5 rounded-xl backdrop-blur-md transition text-sm">
+                    <i class="fa-solid fa-envelope text-amber-400"></i> Send Message
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Quick Contact Cards Grid (4 Columns) -->
+    <section class="py-12 px-4 sm:px-8 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-16 relative z-20">
+            
+            <!-- Card 1: Campus Address -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-emerald-500 transition group flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-kimsEmerald flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900">Campus Location</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Dhoda Road, Dheri Banda, Kohat, Khyber Pakhtunkhwa (KPK), Pakistan.
+                    </p>
+                </div>
+                <a href="#campus-map" class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-kimsEmerald hover:underline">
+                    View on Map <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Card 2: Phone & WhatsApp -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-emerald-500 transition group flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900">Phone & WhatsApp</h3>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p><strong>Mobile / WhatsApp:</strong> +92 333 0299920</p>
+                        <p><strong>Landline:</strong> +92 922 511000</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/923330299920" target="_blank" class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-green-600 hover:underline">
+                    Chat on WhatsApp <i class="fa-brands fa-whatsapp text-sm"></i>
+                </a>
+            </div>
+
+            <!-- Card 3: Email Inquiries -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-emerald-500 transition group flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900">Email Desks</h3>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p><strong>Admissions:</strong> admissions@kims.edu.pk</p>
+                        <p><strong>General:</strong> info@kims.edu.pk</p>
+                    </div>
+                </div>
+                <a href="mailto:admissions@kims.edu.pk" class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:underline">
+                    Write Email <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Card 4: Office Timings -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-emerald-500 transition group flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900">Office Hours</h3>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p><strong>Mon - Thu, Sat:</strong> 08:00 AM - 02:30 PM</p>
+                        <p><strong>Friday:</strong> 08:00 AM - 12:30 PM</p>
+                        <p class="text-red-500 font-medium">Sunday: Closed</p>
+                    </div>
+                </div>
+                <span class="mt-4 text-[11px] font-semibold text-emerald-700">Open for In-Person Visits</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Main Contact Section: Interactive Form + Campus Visit Booking -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-50 border-b border-slate-200" id="inquiry-form">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Left: Contact & Admissions Inquiry Form -->
+            <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 space-y-6">
+                
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Fast Response</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Send Us an Inquiry</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-1">Our administrative desk usually responds within 24 business hours.</p>
+                </div>
+
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="contact-name" class="block text-xs font-bold text-slate-700 mb-1.5">Parent / Guardian Name *</label>
+                            <input type="text" id="contact-name" required placeholder="e.g. Tariq Mehmood" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                        </div>
+                        <div>
+                            <label for="contact-phone" class="block text-xs font-bold text-slate-700 mb-1.5">WhatsApp / Phone Number *</label>
+                            <input type="tel" id="contact-phone" required placeholder="0333 1234567" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="contact-email" class="block text-xs font-bold text-slate-700 mb-1.5">Email Address</label>
+                            <input type="email" id="contact-email" placeholder="example@mail.com" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                        </div>
+                        <div>
+                            <label for="contact-wing" class="block text-xs font-bold text-slate-700 mb-1.5">Grade / Class of Interest *</label>
+                            <select id="contact-wing" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition font-medium">
+                                <option value="">Select Grade</option>
+                                <option value="Early Childhood (Playgroup, Nursery, Prep)">Early Childhood (Nursery & Prep)</option>
+                                <option value="Primary Wing (Class 1st to 5th)">Primary Wing (Class 1st to 5th)</option>
+                                <option value="Middle Wing (Class 6th to 8th)">Middle Wing (Class 6th to 8th)</option>
+                                <option value="Matriculation Science (Class 9th & 10th)">Matriculation Science (Class 9th & 10th)</option>
+                                <option value="General Information / Other">General Information / Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="contact-type" class="block text-xs font-bold text-slate-700 mb-1.5">Purpose of Inquiry *</label>
+                        <select id="contact-type" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition font-medium">
+                            <option value="New Admission 2024-25">New Admission Session 2024-25</option>
+                            <option value="Fee & Scholarship Inquiry">Fee Structure & Scholarship Concessions</option>
+                            <option value="Campus Visit Appointment">Book a Campus Tour & Classroom Visit</option>
+                            <option value="Parent-Teacher Interaction">Parent-Teacher Progress Meeting</option>
+                            <option value="School Transportation Routes">Van / Bus Transport Routes</option>
+                            <option value="Employment / Career at KIMS">Teaching / Employment Opportunities</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="contact-message" class="block text-xs font-bold text-slate-700 mb-1.5">Your Message / Questions *</label>
+                        <textarea id="contact-message" rows="4" required placeholder="Write your question or request here..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-sm py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        Send Message to KIMS Desk <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Right: Campus Visit Scheduler & Administrative Contacts -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <!-- Campus Tour Card -->
+                <div class="bg-gradient-to-br from-kimsDark to-kimsEmerald text-white rounded-3xl p-8 shadow-xl relative overflow-hidden space-y-5">
+                    <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="space-y-2">
+                        <span class="inline-block bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-md">Visit Our Campus</span>
+                        <h3 class="text-2xl font-extrabold text-white">Experience KIMS First-Hand</h3>
+                        <p class="text-xs text-emerald-100/90 leading-relaxed">
+                            Parents are warmly invited to visit our science laboratories, smart classrooms, and library. Book a 20-minute guided walk with our academic coordinator.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex items-center gap-2 text-emerald-200">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i>
+                            <span>Tour science labs, computer suites & playgrounds</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-emerald-200">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i>
+                            <span>Meet with wing heads and class teachers</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-emerald-200">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i>
+                            <span>Receive printed syllabus & fee concessions breakdown</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="tel:+923330299920" class="w-full inline-flex justify-center items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs py-3 rounded-xl shadow transition">
+                            <i class="fa-solid fa-calendar-check"></i> Book Campus Tour via Call
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Key Department Contacts -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-4">
+                    <h4 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-2">Direct Department Assistance</h4>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="flex items-start justify-between pb-2 border-b border-slate-100">
+                            <div>
+                                <h5 class="font-bold text-slate-800">Admissions & New Enrollments</h5>
+                                <p class="text-slate-500 text-[11px]">Direct guidance for Nursery to 10th Class</p>
+                            </div>
+                            <span class="font-bold text-emerald-700">+92 333 0299920</span>
+                        </div>
+
+                        <div class="flex items-start justify-between pb-2 border-b border-slate-100">
+                            <div>
+                                <h5 class="font-bold text-slate-800">Accounts & Fee Section</h5>
+                                <p class="text-slate-500 text-[11px]">Fee challans, concessions, installments</p>
+                            </div>
+                            <span class="font-bold text-emerald-700">Ext: 104</span>
+                        </div>
+
+                        <div class="flex items-start justify-between pb-2 border-b border-slate-100">
+                            <div>
+                                <h5 class="font-bold text-slate-800">BISE Kohat Examination Wing</h5>
+                                <p class="text-slate-500 text-[11px]">9th & 10th registration, roll number slips</p>
+                            </div>
+                            <span class="font-bold text-emerald-700">Ext: 108</span>
+                        </div>
+
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h5 class="font-bold text-slate-800">School Van Transport</h5>
+                                <p class="text-slate-500 text-[11px]">Kohat city, KDA, and surrounding routes</p>
+                            </div>
+                            <span class="font-bold text-emerald-700">+92 333 0299920</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. Google Map & Landmark Directions Section -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200" id="campus-map">
+        <div class="max-w-7xl mx-auto space-y-10">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Interactive Map</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">How to Reach KIMS School</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Conveniently situated on Dhoda Road, Dheri Banda, Kohat with broad road access and ample parking.</p>
+            </div>
+
+            <!-- Map & Directions Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Google Maps Embed -->
+                <div class="lg:col-span-8 rounded-3xl overflow-hidden shadow-xl border-4 border-slate-100 h-96 relative">
+                    <iframe 
+                        title="KIMS School Location Map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106364.55743015486!2d71.37077678586326!3d33.58226027003058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d8f076b6beff7f%3A0x6b4f74d0a9437171!2sKohat%2C%20Khyber%20Pakhtunkhwa%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-lg border border-slate-200 text-xs">
+                        <strong class="text-slate-900 block">KIMS School Campus</strong>
+                        <span class="text-slate-500">Dhoda Road, Dheri Banda, Kohat</span>
+                    </div>
+                </div>
+
+                <!-- Landmarks & Route Guide -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-kimsEmerald font-bold flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-road"></i>
+                            </span>
+                            <h4 class="text-xs font-bold text-slate-900">From Kohat City Center</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 pl-10 leading-relaxed">
+                            Take Bannu Road toward Dhoda Road junction; KIMS campus is situated just 7 minutes drive from the main bypass chowk.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-bus"></i>
+                            </span>
+                            <h4 class="text-xs font-bold text-slate-900">From KDA Kohat</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 pl-10 leading-relaxed">
+                            Direct transit via Rawalpindi Road connecting Dhoda bypass. School van pick-and-drop serves all sectors of KDA.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-800 font-bold flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </span>
+                            <h4 class="text-xs font-bold text-slate-900">Visitor Parking</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 pl-10 leading-relaxed">
+                            Dedicated secure parking space available inside the school gates for parents during admission and PTM hours.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Frequently Asked Questions (FAQ) Accordion -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto space-y-10">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Help & Answers</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Quick answers to the questions most commonly asked by prospective parents.</p>
+            </div>
+
+            <div class="space-y-4" id="faq-accordion">
+                
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-slate-900 hover:text-kimsEmerald transition" aria-expanded="false">
+                        <span>Which classes does KIMS School offer?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        KIMS provides comprehensive schooling from <strong>Early Childhood Education (Playgroup, Nursery, Prep)</strong> up to <strong>10th Class (Matriculation - SSC)</strong> with Science streams in both Biology and Computer Science tracks. We do not have 11th and 12th college classes.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-slate-900 hover:text-kimsEmerald transition" aria-expanded="false">
+                        <span>How can I apply for fee concessions or merit scholarships?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Students scoring 85%+ in their previous school examinations qualify for up to 75% fee waivers, and 90%+ scorers receive 100% free tuition. In addition, sibling concessions (20% off) and orphan/need-based discounts are available upon submitting relevant documents. You can check our interactive calculator on the <a href="admissions.html" class="text-kimsEmerald font-bold underline">Admissions Page</a>.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-slate-900 hover:text-kimsEmerald transition" aria-expanded="false">
+                        <span>Is safe pick-and-drop transportation available for students?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Yes, KIMS operates school vans covering Kohat City, KDA Phase 1 & 2, Bannu Road, Rawalpindi Road, and nearby rural union councils with verified, experienced drivers and staff escorts.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-slate-900 hover:text-kimsEmerald transition" aria-expanded="false">
+                        <span>What is the admission procedure for Nursery and Prep?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        For Early Childhood (Playgroup, Nursery, Prep), admission is granted through an informal, friendly interaction with the child and parents. No formal written test is required. Simply submit the online admission form or visit our campus desk with the child's NADRA B-Form.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 8. Message Submission Confirmation Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 text-center space-y-4 transform scale-95 transition-transform duration-300" id="contact-modal-card">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-black text-slate-900">Message Received!</h3>
+                <p class="text-xs text-slate-500 mt-1">Thank you for reaching out to Kohat Institute of Modern Sciences (KIMS).</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left text-xs space-y-1.5">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Inquiry Ticket:</span>
+                    <span class="font-extrabold text-kimsEmerald" id="ticket-id">KIMS-INQ-4819</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Contact Person:</span>
+                    <span class="font-bold text-slate-800" id="modal-person">Tariq Khan</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Inquiry Topic:</span>
+                    <span class="font-bold text-slate-800" id="modal-topic">Admission Query</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Our admissions coordinator will contact you via WhatsApp / Phone call within 24 hours.
+            </p>
+
+            <button onclick="closeContactModal()" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                Done & Return
+            </button>
+
+        </div>
+    </div>
+
+    <!-- 9. Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC) with science laboratories and verified character building.
+                </p>
+                <div class="flex items-center gap-3 text-slate-400 text-sm">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/923330299920" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Public Directory -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Public Directory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Institute</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition">Academic Programs</a></li>
+                    <li><a href="faculty.html" class="hover:text-emerald-400 transition">Faculty & Departments</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold"><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Hall of Fame / Toppers</a></li>
+                    <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions 2024-25</a></li>
+                </ul>
+            </div>
+
+            <!-- Portals & Resources -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Portals & Resources</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                    <li><a href="notices.html" class="hover:text-emerald-400 transition">Notices & Circulars</a></li>
+                    <li><a href="gallery.html" class="hover:text-emerald-400 transition">Campus Gallery</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition text-emerald-400 font-bold">Contact Us & Map</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition font-bold text-white"><i class="fa-solid fa-right-to-bracket text-emerald-400 mr-1"></i> Portal Login (All Roles)</a></li>
+                    <li><a href="register.html" class="hover:text-emerald-400 transition">Register Public Account</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Registration -->
+            <div class="space-y-2 text-xs">
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p><i class="fa-solid fa-envelope text-emerald-400 mr-1.5"></i> info@kimskohat.edu.pk</p>
+                <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript: FAQ Accordion, Form Handling & Modals -->
+    <script>
+        // 1. FAQ Accordion Toggle
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                const isOpen = !content.classList.contains('hidden');
+
+                // Close all others
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-toggle i').forEach(i => i.classList.remove('rotate-180'));
+
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                    toggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // 2. Contact Form Submission Handling
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const topic = document.getElementById('contact-type').value;
+            const ticket = 'KIMS-INQ-' + Math.floor(1000 + Math.random() * 9000);
+
+            document.getElementById('modal-person').textContent = name;
+            document.getElementById('modal-topic').textContent = topic;
+            document.getElementById('ticket-id').textContent = ticket;
+
+            const modal = document.getElementById('contact-modal');
+            const card = document.getElementById('contact-modal-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            const card = document.getElementById('contact-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                document.getElementById('contact-form').reset();
+            }, 250);
+        }
+
+        // 3. Mobile Navigation Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            } else {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            }
+        });
+    </script>
+</body>
+
+</html>

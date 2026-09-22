@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examinations & Date Sheets Controller - KIMS High School Admin</title>
+  <meta name="description" content="KIMS High School Institutional Management System - High School Examination Sessions, Papers Timetables (Date Sheets), Class Section Schedulers, and Invigilation Duty Rosters (Classes 0-1 to 10)">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    /* Date Sheet Printable Styling */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printDateSheetArea, #printDateSheetArea * {
+        visibility: visible;
+      }
+      #printDateSheetArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link active">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="examSearchInput" oninput="handleExamSearch(this.value)" placeholder="Search exam sessions, date sheets, subjects, sections...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-xs font-bold">
+                <i class="fa-solid fa-school mr-1"></i>Pakistani High School (Classes 0-1 to 10)
+              </span>
+              <span class="badge badge-neutral text-xs font-mono">Module 11A</span>
+            </div>
+            <h1>Examinations & Date Sheets Controller</h1>
+            <p>Administer examination sessions, generate class-section date sheets, and manage invigilator duty rosters.</p>
+          </div>
+          <div class="page-actions flex-wrap gap-2">
+            <button type="button" onclick="openCreateClassSectionDateSheetModal()" class="btn-kims bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-xs">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Create Class & Section Date Sheet</span>
+            </button>
+            <button type="button" onclick="openCreateExamModal()" class="btn-kims btn-primary text-xs">
+              <i class="fa-solid fa-plus"></i>
+              <span>New Exam Session</span>
+            </button>
+            <a href="results.html" class="btn-kims btn-secondary text-xs">
+              <i class="fa-solid fa-award text-amber-500"></i>
+              <span>Results & Gazette</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Metric Ribbon (4 Key KPIs) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div class="admin-card p-4 border-l-4 border-l-emerald-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Exam Sessions</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiActiveExams">3 Sessions</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5">Academic Year 2026-2027</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-blue-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Total Papers</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiTotalPapers">48 Papers</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5">Across Scheduled Date Sheets</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-file-signature"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-purple-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Class Sections</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiCandidates">24 Sections</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5">Sections A, B, C & D Schedulers</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-amber-500 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Halls & Capacity</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiHalls">8 Venues</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5">450 Desk Seating Capacity</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-landmark"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Examination Sessions Catalog Table Card -->
+        <div class="admin-card">
+          
+          <!-- Card Header & Term Filters -->
+          <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 space-y-3">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+              <div>
+                <div class="card-title flex items-center gap-2">
+                  <span>High School Examination Sessions Catalog</span>
+                  <span class="badge badge-neutral text-xs" id="examsCountBadge">3 Terms</span>
+                </div>
+                <div class="card-subtitle text-xs text-slate-400">Manage term schedules, class section date sheets, passing standards, and hall invigilation</div>
+              </div>
+
+              <!-- Term Filter Tabs -->
+              <div class="flex flex-wrap items-center gap-1.5" id="termFilterTabs">
+                <button type="button" onclick="filterExamsByTerm('all', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs">
+                  All Sessions
+                </button>
+                <button type="button" onclick="filterExamsByTerm('Final Annual Examination', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Annual Exams
+                </button>
+                <button type="button" onclick="filterExamsByTerm('Mid-Term Examination', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Mid-Terms
+                </button>
+                <button type="button" onclick="filterExamsByTerm('Send-Up / Pre-Board Examination', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Matric Send-Up (9-10)
+                </button>
+                <button type="button" onclick="filterExamsByTerm('First Term Examination', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Term Exams
+                </button>
+                <button type="button" onclick="filterExamsByTerm('Monthly Assessment Test Series', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  Monthly Tests
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exams Table -->
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="min-width: 220px;">Exam Session & Term</th>
+                  <th style="min-width: 170px;">Start & End Dates</th>
+                  <th style="min-width: 160px;">Applicable Classes</th>
+                  <th style="min-width: 130px;">Date Sheet Papers</th>
+                  <th style="min-width: 160px;">Passing Standard & Controller</th>
+                  <th style="min-width: 130px;">Status</th>
+                  <th class="text-right" style="min-width: 220px;">Admin Actions</th>
+                </tr>
+              </thead>
+              <tbody id="examsTableBody">
+                <!-- Populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Academics</span>
+      </a>
+      <a href="exams.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Exams</span>
+      </a>
+      <a href="results.html" class="bottom-nav-item">
+        <i class="fa-solid fa-award"></i>
+        <span>Results</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: CREATE / EDIT EXAMINATION SESSION MODAL                         -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="examFormModal">
+    <div class="modal-container !max-w-3xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success text-xs font-bold" id="examModalTypeBadge">Pakistani High School</span>
+            <span class="text-xs text-slate-400">Academic Year 2026-2027</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="examModalTitle">Create New Examination Session</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="examForm" onsubmit="handleExamFormSubmit(event)" class="modal-body space-y-4 max-h-[75vh] overflow-y-auto p-5">
+        <input type="hidden" id="examFormEditId">
+
+        <!-- Basic Exam Info -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="form-label" for="examTitleInput">Exam Session Title <span class="text-rose-500">*</span></label>
+            <input type="text" id="examTitleInput" class="form-control text-xs" required placeholder="e.g. Annual Final Examination 2026-2027">
+          </div>
+          <div>
+            <label class="form-label" for="examTermSelect">Exam Term / Type <span class="text-rose-500">*</span></label>
+            <select id="examTermSelect" class="form-control text-xs" required>
+              <option value="Final Annual Examination">Final Annual Examination (Promotion Exam)</option>
+              <option value="Mid-Term Examination">Mid-Term Examination (Half-Yearly)</option>
+              <option value="Send-Up / Pre-Board Examination">Send-Up / Pre-Board Examination (Matric 9-10)</option>
+              <option value="First Term Examination">First Term Examination (Quarterly)</option>
+              <option value="Second Term Examination">Second Term Examination</option>
+              <option value="Monthly Assessment Test Series">Monthly Assessment Test Series</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Academic Session, Dates & Passing Criteria -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="form-label" for="academicSessionSelect">Academic Session <span class="text-rose-500">*</span></label>
+            <select id="academicSessionSelect" class="form-control text-xs" required>
+              <option value="2026-2027" selected>2026-2027</option>
+              <option value="2025-2026">2025-2026</option>
+              <option value="2027-2028">2027-2028</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="examStartDateInput">Start Date <span class="text-rose-500">*</span></label>
+            <input type="date" id="examStartDateInput" class="form-control text-xs" required>
+          </div>
+          <div>
+            <label class="form-label" for="examEndDateInput">End Date <span class="text-rose-500">*</span></label>
+            <input type="date" id="examEndDateInput" class="form-control text-xs" required>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="form-label" for="passingPercentageInput">Passing Threshold (%) <span class="text-rose-500">*</span></label>
+            <div class="relative">
+              <input type="number" id="passingPercentageInput" min="20" max="100" value="33" class="form-control text-xs font-bold" required>
+              <span class="absolute right-3 top-2 text-xs text-slate-400 font-bold">% Pass</span>
+            </div>
+            <div class="text-[10px] text-slate-400 mt-1">Pakistani Board / BISE Standard: 33%</div>
+          </div>
+          <div>
+            <label class="form-label" for="examStatusSelect">Exam Status <span class="text-rose-500">*</span></label>
+            <select id="examStatusSelect" class="form-control text-xs" required>
+              <option value="Scheduled / Announced">Scheduled / Announced</option>
+              <option value="Ongoing / In Progress">Ongoing / In Progress</option>
+              <option value="Draft / Planning">Draft / Planning</option>
+              <option value="Completed / Evaluation">Completed / Under Evaluation</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="examControllerInput">Examination Controller <span class="text-rose-500">*</span></label>
+            <input type="text" id="examControllerInput" class="form-control text-xs" required value="Prof. Muhammad Tariq" placeholder="e.g. Prof. Tariq Mehmood">
+          </div>
+        </div>
+
+        <!-- Applicable Classes (Checkboxes with quick toggles) -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="form-label !mb-0">Applicable Classes (Classes 0-1 to 10) <span class="text-rose-500">*</span></label>
+            <div class="flex items-center gap-2 text-[11px]">
+              <button type="button" onclick="selectAllClasses(true)" class="text-emerald-700 dark:text-emerald-400 font-bold hover:underline">All (12)</button>
+              <span class="text-slate-300">|</span>
+              <button type="button" onclick="selectWingClasses('Primary')" class="text-slate-600 dark:text-slate-300 hover:underline">Primary (1-5)</button>
+              <span class="text-slate-300">|</span>
+              <button type="button" onclick="selectWingClasses('Middle')" class="text-slate-600 dark:text-slate-300 hover:underline">Middle (6-8)</button>
+              <span class="text-slate-300">|</span>
+              <button type="button" onclick="selectWingClasses('Matric')" class="text-slate-600 dark:text-slate-300 hover:underline">Matric (9-10)</button>
+              <span class="text-slate-300">|</span>
+              <button type="button" onclick="selectAllClasses(false)" class="text-rose-600 hover:underline">Clear</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/60 text-xs" id="classCheckboxContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Examination Halls & Venues -->
+        <div>
+          <label class="form-label" for="examHallsInput">Examination Halls & Venues</label>
+          <input type="text" id="examHallsInput" class="form-control text-xs" value="Main Auditorium Hall-A, Senior Wing Hall-B, Room 101-105" placeholder="e.g. Main Hall, Room 101, Science Labs">
+        </div>
+
+        <!-- Conduct Rules & Instructions -->
+        <div>
+          <label class="form-label" for="examInstructionsInput">Conduct Rules & Examination Guidelines</label>
+          <textarea id="examInstructionsInput" rows="3" class="form-control text-xs" placeholder="Rules for students, assembly timing, roll number slips mandatory, banned items..."></textarea>
+        </div>
+
+        <div class="modal-footer !px-0 !pb-0 pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span id="examSubmitBtnText">Save Examination Session</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: OFFICIAL PAKISTANI HIGH SCHOOL DATE SHEET (TIMETABLE)           -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="dateSheetModal">
+    <div class="modal-container !max-w-5xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success text-xs font-bold" id="dsExamTermBadge">Annual Examination</span>
+            <span class="badge bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold font-mono" id="dsAcademicSessionBadge">Session 2026-2027</span>
+            <span class="text-xs text-slate-400 font-semibold" id="dsDurationLabel">15 Oct - 29 Oct 2026</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="dsModalTitle">Official Papers Timetable & Date Sheet</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Action Toolbar inside Date Sheet Modal -->
+      <div class="px-6 pt-3 pb-0">
+        <div class="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-base font-bold shadow-xs">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span>Controller: <span id="dsControllerName">Prof. Muhammad Tariq</span></span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300 font-bold px-2 py-0.5 rounded-full" id="dsPaperCountPill">0 Papers</span>
+              </div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                <i class="fa-solid fa-clock text-[10px] mr-1"></i>Official Morning Shift: 08:30 AM – 11:30 AM • 33% BISE Passing Threshold
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="openCreateClassSectionDateSheetModal(activeDateSheetExamId)" class="btn-kims bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold !py-1.5 !px-3 text-xs shadow-xs">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Create Section Date Sheet</span>
+            </button>
+            <button type="button" onclick="printOfficialDateSheet()" class="btn-kims btn-secondary !py-1.5 !px-3 text-xs">
+              <i class="fa-solid fa-print"></i>
+              <span>Print Date Sheet</span>
+            </button>
+            <button type="button" onclick="openAddPaperModal()" class="btn-kims btn-primary !py-1.5 !px-3 text-xs">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add Single Paper</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter by Class & Section inside Date Sheet -->
+      <div class="px-6 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-slate-500">Filter By Class:</span>
+          <select id="dsClassFilterSelect" onchange="renderDateSheetPapersTable()" class="form-control text-xs !py-1 !px-2.5 !w-auto">
+            <option value="all">All Scheduled Classes</option>
+            <!-- Filled dynamically -->
+          </select>
+
+          <span class="text-xs font-bold text-slate-500 ml-1">Section:</span>
+          <select id="dsSectionFilterSelect" onchange="renderDateSheetPapersTable()" class="form-control text-xs !py-1 !px-2.5 !w-auto font-semibold">
+            <option value="all">All Sections</option>
+            <option value="Section A">Section A</option>
+            <option value="Section B">Section B</option>
+            <option value="Section C">Section C</option>
+            <option value="Section D">Section D</option>
+          </select>
+        </div>
+
+        <div class="text-xs text-slate-400 font-medium" id="dsShowingCountLabel">
+          Showing 0 papers
+        </div>
+      </div>
+
+      <!-- Date Sheet Table -->
+      <div class="modal-body max-h-[58vh] overflow-y-auto px-6 py-3" id="printDateSheetArea">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+              <th class="py-2.5" style="min-width: 140px;">Date & Day</th>
+              <th class="py-2.5" style="min-width: 130px;">Shift & Timing</th>
+              <th class="py-2.5" style="min-width: 130px;">Class & Section</th>
+              <th class="py-2.5" style="min-width: 170px;">Subject & Type</th>
+              <th class="py-2.5" style="min-width: 110px;">Marks Structure</th>
+              <th class="py-2.5" style="min-width: 140px;">Hall & Invigilator</th>
+              <th class="py-2.5 text-right" style="min-width: 90px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="dsPapersTableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+            <!-- Rendered by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <div class="text-xs text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-info text-emerald-600"></i>
+          <span>Official date sheet is distributed to parents and teachers. Roll number slips link to this timetable.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="btn-kims btn-primary" data-modal-close>Close Date Sheet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: DEDICATED CLASS & SECTION DATE SHEET GENERATOR / BUILDER        -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="classSectionDateSheetModal">
+    <div class="modal-container !max-w-4xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-gold text-xs font-bold">Class Section Scheduler</span>
+            <span class="text-xs text-slate-400">High School Date Sheet Generator</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1">Create Class & Section Date Sheet</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="classSectionDateSheetForm" onsubmit="handleClassSectionDateSheetSubmit(event)" class="modal-body space-y-4 max-h-[75vh] overflow-y-auto p-5">
+        
+        <!-- Section Configuration Header -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="form-label" for="csdsExamSelect">Select Exam Session <span class="text-rose-500">*</span></label>
+              <select id="csdsExamSelect" onchange="syncCsdsExamDates(this.value)" class="form-control text-xs font-semibold" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="csdsClassSelect">Target Class <span class="text-rose-500">*</span></label>
+              <select id="csdsClassSelect" onchange="populateClassTemplateSubjects()" class="form-control text-xs font-bold text-slate-800 dark:text-white" required>
+                <!-- Classes 0-1 to 10 -->
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="csdsSectionSelect">Target Section <span class="text-rose-500">*</span></label>
+              <select id="csdsSectionSelect" class="form-control text-xs font-bold text-emerald-700 dark:text-emerald-400" required>
+                <option value="Section A">Section A (Science Group)</option>
+                <option value="Section B">Section B (General / Arts Group)</option>
+                <option value="Section C">Section C</option>
+                <option value="Section D">Section D</option>
+                <option value="All Sections">All Sections (Combined)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-1">
+            <div>
+              <label class="form-label" for="csdsStartDateInput">Date Sheet Starts <span class="text-rose-500">*</span></label>
+              <input type="date" id="csdsStartDateInput" onchange="recalculateMatrixDates()" class="form-control text-xs" required>
+            </div>
+            <div>
+              <label class="form-label" for="csdsShiftSelect">Daily Shift / Timing</label>
+              <select id="csdsShiftSelect" onchange="updateAllRowsShift(this.value)" class="form-control text-xs">
+                <option value="Morning (08:30 AM - 11:30 AM)">Morning (08:30 AM - 11:30 AM)</option>
+                <option value="Early Shift (08:00 AM - 10:30 AM)">Early Shift (08:00 AM - 10:30 AM)</option>
+                <option value="Afternoon (01:30 PM - 04:30 PM)">Afternoon (01:30 PM - 04:30 PM)</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="csdsDefaultHallInput">Examination Hall / Room</label>
+              <input type="text" id="csdsDefaultHallInput" oninput="updateAllRowsHall(this.value)" class="form-control text-xs" value="Hall-A (Senior Wing)">
+            </div>
+            <div>
+              <label class="form-label" for="csdsGapDaysSelect">Gap Between Papers</label>
+              <select id="csdsGapDaysSelect" onchange="recalculateMatrixDates()" class="form-control text-xs font-semibold">
+                <option value="1">1 Day Study Gap</option>
+                <option value="2">2 Days Study Gap</option>
+                <option value="0">Consecutive Days (No Gap)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Papers Matrix Table -->
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <div>
+              <h4 class="font-bold text-xs text-slate-800 dark:text-white flex items-center gap-1.5">
+                <span>Scheduled Papers for this Class Section</span>
+                <span class="badge bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-[10px] font-bold" id="csdsBadgeCount">8 Papers</span>
+              </h4>
+              <p class="text-[11px] text-slate-400">Add, adjust, or remove subjects for this specific section</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="populateClassTemplateSubjects()" class="btn-kims btn-secondary !py-1 !px-2.5 text-[11px]">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i>
+                <span>Auto-Load Curriculum</span>
+              </button>
+              <button type="button" onclick="addBlankRowToCsdsMatrix()" class="btn-kims btn-primary !py-1 !px-2.5 text-[11px]">
+                <i class="fa-solid fa-plus mr-1"></i>
+                <span>Add Paper Row</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-x-auto shadow-xs max-h-[38vh]">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-[10px] uppercase sticky top-0 z-10">
+                <tr>
+                  <th class="py-2 px-3" style="width: 140px;">Paper Date</th>
+                  <th class="py-2 px-2" style="width: 170px;">Subject Name</th>
+                  <th class="py-2 px-2" style="width: 110px;">Paper Type</th>
+                  <th class="py-2 px-2" style="width: 110px;">Marks (Total/Pass)</th>
+                  <th class="py-2 px-2" style="width: 130px;">Room / Hall</th>
+                  <th class="py-2 px-2">Duty Invigilator</th>
+                  <th class="py-2 px-2 text-center" style="width: 40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="csdsMatrixTableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+                <!-- Populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal-footer !px-0 !pb-0 pt-3 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+          <div class="text-[11px] text-slate-400">
+            <i class="fa-solid fa-layer-group text-emerald-600 mr-1"></i>
+            <span id="csdsPaperCountLabel">8 papers ready to be saved</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+            <button type="submit" class="btn-kims btn-primary">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Save & Publish Section Date Sheet</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 4: ADD / EDIT SINGLE PAPER TO TIMETABLE MODAL                      -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="paperFormModal">
+    <div class="modal-container !max-w-2xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-info text-xs font-bold" id="paperModalExamBadge">Paper Timetable Entry</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="paperModalTitle">Add Single Paper to Date Sheet</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="paperForm" onsubmit="handlePaperFormSubmit(event)" class="modal-body space-y-3.5 max-h-[75vh] overflow-y-auto p-5">
+        <input type="hidden" id="paperFormEditId">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="form-label" for="paperDateInput">Paper Date <span class="text-rose-500">*</span></label>
+            <input type="date" id="paperDateInput" onchange="autoCalculatePaperDay(this.value)" class="form-control text-xs" required>
+          </div>
+          <div>
+            <label class="form-label" for="paperDayInput">Day of Week</label>
+            <input type="text" id="paperDayInput" readonly class="form-control text-xs bg-slate-50 dark:bg-slate-800" placeholder="Auto-calculated (e.g. Monday)">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="form-label" for="paperShiftSelect">Shift & Timing <span class="text-rose-500">*</span></label>
+            <select id="paperShiftSelect" class="form-control text-xs" required>
+              <option value="Morning (08:30 AM - 11:30 AM)">Morning (08:30 AM - 11:30 AM)</option>
+              <option value="Early Shift (08:00 AM - 10:30 AM)">Early Shift (08:00 AM - 10:30 AM)</option>
+              <option value="Afternoon (01:30 PM - 04:30 PM)">Afternoon (01:30 PM - 04:30 PM)</option>
+              <option value="Custom Timing">Custom Timing</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="paperClassSelect">Target Class <span class="text-rose-500">*</span></label>
+            <select id="paperClassSelect" class="form-control text-xs" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="paperSectionSelect">Target Section <span class="text-rose-500">*</span></label>
+            <select id="paperSectionSelect" class="form-control text-xs font-bold text-emerald-700 dark:text-emerald-400" required>
+              <option value="Section A">Section A</option>
+              <option value="Section B">Section B</option>
+              <option value="Section C">Section C</option>
+              <option value="Section D">Section D</option>
+              <option value="All Sections">All Sections (Combined)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="form-label" for="paperSubjectInput">Subject Name <span class="text-rose-500">*</span></label>
+            <select id="paperSubjectInput" class="form-control text-xs" required>
+              <option value="Mathematics">Mathematics (Compulsory / Science)</option>
+              <option value="English Compulsory">English Compulsory</option>
+              <option value="Urdu Compulsory">Urdu Compulsory</option>
+              <option value="Physics">Physics (Theory & Practical)</option>
+              <option value="Chemistry">Chemistry (Theory & Practical)</option>
+              <option value="Biology">Biology (Theory & Practical)</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Pakistan Studies">Pakistan Studies (Mutala-e-Pakistan)</option>
+              <option value="Islamiat Compulsory">Islamiat Compulsory / Ethics</option>
+              <option value="General Science">General Science</option>
+              <option value="Social Studies">Social Studies (Muashrati Uloom)</option>
+              <option value="Drawing / Art">Drawing / Art</option>
+              <option value="Nazra Quran">Nazra Quran / Tarjuma</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="paperTypeSelect">Paper Type <span class="text-rose-500">*</span></label>
+            <select id="paperTypeSelect" class="form-control text-xs" required>
+              <option value="Theory / Written">Theory / Written (Main Paper)</option>
+              <option value="Objective / MCQs">Objective / MCQs</option>
+              <option value="Practical / Lab">Practical / Lab Examination</option>
+              <option value="Oral / Viva Voce">Oral / Viva Voce / Nazra</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="form-label" for="paperTotalMarksInput">Total Marks <span class="text-rose-500">*</span></label>
+            <input type="number" id="paperTotalMarksInput" oninput="autoCalculatePassingMarks(this.value)" min="10" max="200" value="75" class="form-control text-xs font-bold" required>
+          </div>
+          <div>
+            <label class="form-label" for="paperPassMarksInput">Passing Marks (33%) <span class="text-rose-500">*</span></label>
+            <input type="number" id="paperPassMarksInput" min="1" max="100" value="25" class="form-control text-xs font-bold text-emerald-600" required>
+          </div>
+          <div>
+            <label class="form-label" for="paperHallInput">Examination Hall / Room <span class="text-rose-500">*</span></label>
+            <input type="text" id="paperHallInput" class="form-control text-xs" required value="Hall-A (Senior Wing)" placeholder="e.g. Hall-A, Room 102">
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label" for="paperInvigilatorInput">Assigned Duty Invigilator(s)</label>
+          <input type="text" id="paperInvigilatorInput" class="form-control text-xs" value="Dr. Tariq Mehmood, Sir Naeem Khattak" placeholder="Teacher name(s) responsible for room superintendence">
+        </div>
+
+        <div>
+          <label class="form-label" for="paperSyllabusInput">Syllabus Scope</label>
+          <input type="text" id="paperSyllabusInput" class="form-control text-xs" value="Complete Course / Chapters 1 to 12" placeholder="e.g. Full Syllabus or Chapters 1 to 7">
+        </div>
+
+        <div class="modal-footer !px-0 !pb-0 pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span id="paperSubmitBtnText">Add Paper to Date Sheet</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 5: DELETE CONFIRMATION MODAL                                       -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="deleteExamModal">
+    <div class="modal-container !max-w-md">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Delete Examination Session</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body p-4 text-xs text-slate-600 dark:text-slate-300">
+        <p>Are you sure you want to delete <strong id="deleteExamTitle" class="text-slate-900 dark:text-white">this exam</strong>?</p>
+        <p class="mt-2 text-rose-600 dark:text-rose-400 font-semibold">This action will remove all class and section date sheets associated with this session.</p>
+      </div>
+      <div class="modal-footer flex items-center justify-end gap-2 p-3">
+        <button type="button" class="btn-kims btn-secondary text-xs" data-modal-close>Cancel</button>
+        <button type="button" onclick="confirmDeleteExam()" class="btn-kims bg-rose-600 hover:bg-rose-700 text-white text-xs">
+          <i class="fa-solid fa-trash-can"></i>
+          <span>Delete Exam Session</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <!-- Javascript Logic -->
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // PAKISTANI HIGH SCHOOL CLASSES MASTER LIST
+    // =========================================================================
+    const HIGH_SCHOOL_CLASSES_LIST = [
+      { id: "CLS-0-1", name: "Class 0-1 (Nursery / Playgroup)", wing: "Early" },
+      { id: "CLS-PREP", name: "Class Prep / KG", wing: "Early" },
+      { id: "CLS-1", name: "Class 1", wing: "Primary" },
+      { id: "CLS-2", name: "Class 2", wing: "Primary" },
+      { id: "CLS-3", name: "Class 3", wing: "Primary" },
+      { id: "CLS-4", name: "Class 4", wing: "Primary" },
+      { id: "CLS-5", name: "Class 5", wing: "Primary" },
+      { id: "CLS-6", name: "Class 6", wing: "Middle" },
+      { id: "CLS-7", name: "Class 7", wing: "Middle" },
+      { id: "CLS-8", name: "Class 8", wing: "Middle" },
+      { id: "CLS-9", name: "Class 9 (SSC-I Matric)", wing: "Matric" },
+      { id: "CLS-10", name: "Class 10 (SSC-II Matric)", wing: "Matric" }
+    ];
+
+    // Standard high school curriculum presets for instant date sheet generation
+    const CLASS_SUBJECT_TEMPLATES = {
+      "Matric": [
+        { subject: "English Compulsory", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Mathematics", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Physics", paperType: "Theory / Written", total: 60, pass: 20 },
+        { subject: "Chemistry", paperType: "Theory / Written", total: 60, pass: 20 },
+        { subject: "Biology", paperType: "Theory / Written", total: 60, pass: 20 },
+        { subject: "Urdu Compulsory", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Islamiat Compulsory", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Pakistan Studies", paperType: "Theory / Written", total: 50, pass: 17 }
+      ],
+      "Middle": [
+        { subject: "English", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Mathematics", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "General Science", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Urdu", paperType: "Theory / Written", total: 75, pass: 25 },
+        { subject: "Social Studies", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Islamiat / Nazra", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Computer Education", paperType: "Theory / Written", total: 50, pass: 17 }
+      ],
+      "Primary": [
+        { subject: "English", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Urdu", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Mathematics", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "General Science", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Social Studies", paperType: "Theory / Written", total: 50, pass: 17 },
+        { subject: "Islamiat", paperType: "Theory / Written", total: 50, pass: 17 }
+      ],
+      "Early": [
+        { subject: "English Alphabet & Oral", paperType: "Oral / Viva Voce", total: 50, pass: 17 },
+        { subject: "Urdu Huruf & Nazm", paperType: "Oral / Viva Voce", total: 50, pass: 17 },
+        { subject: "Basic Math Counting", paperType: "Oral / Viva Voce", total: 50, pass: 17 },
+        { subject: "General Knowledge & Art", paperType: "Oral / Viva Voce", total: 50, pass: 17 }
+      ]
+    };
+
+    // =========================================================================
+    // SEED EXAMINATION SESSIONS DATA (PAKISTANI HIGH SCHOOL)
+    // =========================================================================
+    const SEED_EXAMS_DATA = [
+      {
+        id: "EXAM-2026-ANNUAL",
+        title: "Annual Final Examination 2026-2027",
+        term: "Final Annual Examination",
+        academicSession: "2026-2027",
+        startDate: "2026-10-15",
+        endDate: "2026-10-29",
+        classes: ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9 (SSC-I Matric)", "Class 10 (SSC-II Matric)"],
+        passingPercentage: 33,
+        status: "Scheduled / Announced",
+        controller: "Prof. Muhammad Tariq",
+        halls: "Main Auditorium Hall-A, Senior Wing Hall-B, Rooms 101-105",
+        instructions: "1. Roll Number Slips are mandatory. 2. Morning Shift begins at 08:30 AM sharp. 3. Mobile phones and electronic gadgets are strictly banned in the examination hall.",
+        papers: [
+          {
+            id: "PPR-ANN-10-ENG",
+            date: "2026-10-15",
+            day: "Thursday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "English Compulsory",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-A (Senior Wing)",
+            invigilators: "Dr. Tariq Mehmood, Sir Naeem Khattak",
+            syllabus: "Complete Course (Textbook Units 1-13 + Grammar Composition)"
+          },
+          {
+            id: "PPR-ANN-10-MATH",
+            date: "2026-10-17",
+            day: "Saturday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Mathematics",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-A (Senior Wing)",
+            invigilators: "Prof. Tariq Mehmood, Qari Abdul Basit",
+            syllabus: "Chapters 1 to 13 (Algebra, Geometry, Trigonometry, Statistics)"
+          },
+          {
+            id: "PPR-ANN-10-PHY",
+            date: "2026-10-20",
+            day: "Tuesday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Physics",
+            paperType: "Theory / Written",
+            totalMarks: 60,
+            passMarks: 20,
+            hall: "Hall-A (Senior Wing)",
+            invigilators: "Sir Naeem Khattak, Madam Farzana",
+            syllabus: "Chapters 10 to 18 (General Waves, Sound, Optics, Electromagnetism)"
+          },
+          {
+            id: "PPR-ANN-10-BIO",
+            date: "2026-10-22",
+            day: "Thursday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Biology",
+            paperType: "Theory / Written",
+            totalMarks: 60,
+            passMarks: 20,
+            hall: "Hall-A (Senior Wing)",
+            invigilators: "Madam Farzana, Dr. Tariq Mehmood",
+            syllabus: "Chapters 10 to 18 (Gaseous Exchange, Homeostasis, Genetics)"
+          },
+          {
+            id: "PPR-ANN-10-CS",
+            date: "2026-10-22",
+            day: "Thursday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section B",
+            subject: "Computer Science",
+            paperType: "Theory / Written",
+            totalMarks: 50,
+            passMarks: 17,
+            hall: "Computer Lab 1",
+            invigilators: "Sir Imran Nazir",
+            syllabus: "C Language Programming, Loops, HTML & Logic Gates"
+          },
+          {
+            id: "PPR-ANN-09-MATH",
+            date: "2026-10-16",
+            day: "Friday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 9 (SSC-I Matric)",
+            targetSection: "All Sections",
+            subject: "Mathematics",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-B (Junior Block)",
+            invigilators: "Madam Saima Noor, Sir Bilal",
+            syllabus: "Chapters 1 to 9 (Matrices, Real Numbers, Logarithms)"
+          },
+          {
+            id: "PPR-ANN-09-ENG",
+            date: "2026-10-19",
+            day: "Monday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 9 (SSC-I Matric)",
+            targetSection: "All Sections",
+            subject: "English Compulsory",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-B (Junior Block)",
+            invigilators: "Sir Naeem Khattak",
+            syllabus: "Units 1 to 12"
+          }
+        ]
+      },
+      {
+        id: "EXAM-2026-SENDUP-10",
+        title: "Matric Pre-Board Send-Up Exam 2026",
+        term: "Send-Up / Pre-Board Examination",
+        academicSession: "2026-2027",
+        startDate: "2026-11-10",
+        endDate: "2026-11-22",
+        classes: ["Class 9 (SSC-I Matric)", "Class 10 (SSC-II Matric)"],
+        passingPercentage: 40,
+        status: "Scheduled / Announced",
+        controller: "Dr. Tariq Mehmood",
+        halls: "Main Examination Hall-A & Hall-B",
+        instructions: "Pre-board criteria is mandatory for BISE Peshawar / Federal Board roll number admission verification. Minimum 40% threshold required for send-up clearance.",
+        papers: [
+          {
+            id: "PPR-SND-10-MATH",
+            date: "2026-11-10",
+            day: "Tuesday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Mathematics",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 30,
+            hall: "Hall-A",
+            invigilators: "Dr. Tariq Mehmood",
+            syllabus: "100% Board Model Paper Pattern"
+          },
+          {
+            id: "PPR-SND-10-PHY",
+            date: "2026-11-12",
+            day: "Thursday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Physics",
+            paperType: "Theory / Written",
+            totalMarks: 60,
+            passMarks: 24,
+            hall: "Hall-A",
+            invigilators: "Sir Naeem Khattak",
+            syllabus: "Full Book BISE Pattern"
+          }
+        ]
+      },
+      {
+        id: "EXAM-2026-MID",
+        title: "Mid-Term Examination 2026",
+        term: "Mid-Term Examination",
+        academicSession: "2026-2027",
+        startDate: "2026-08-10",
+        endDate: "2026-08-22",
+        classes: ["Class 0-1 (Nursery / Playgroup)", "Class Prep / KG", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9 (SSC-I Matric)", "Class 10 (SSC-II Matric)"],
+        passingPercentage: 33,
+        status: "Completed / Evaluation",
+        controller: "Prof. Muhammad Tariq",
+        halls: "All School Wings (Halls A-D & Junior Classrooms)",
+        instructions: "First half syllabus evaluation. Marksheets forwarded to Examination Branch for tabulation.",
+        papers: [
+          {
+            id: "PPR-MID-10-ENG",
+            date: "2026-08-10",
+            day: "Monday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "English Compulsory",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-A",
+            invigilators: "Dr. Tariq Mehmood",
+            syllabus: "First 6 Units + Grammar"
+          },
+          {
+            id: "PPR-MID-10-MATH",
+            date: "2026-08-12",
+            day: "Wednesday",
+            shift: "Morning (08:30 AM - 11:30 AM)",
+            targetClass: "Class 10 (SSC-II Matric)",
+            targetSection: "Section A",
+            subject: "Mathematics",
+            paperType: "Theory / Written",
+            totalMarks: 75,
+            passMarks: 25,
+            hall: "Hall-A",
+            invigilators: "Sir Naeem Khattak",
+            syllabus: "Chapters 1 to 6"
+          }
+        ]
+      }
+    ];
+
+    // State Variables
+    let examsData = [];
+    let currentTermFilter = "all";
+    let currentSearchTerm = "";
+    let activeDateSheetExamId = null;
+    let examToDeleteId = null;
+
+    // =========================================================================
+    // INITIALIZATION & LOCALSTORAGE
+    // =========================================================================
+    function initExamsSystem() {
+      const stored = localStorage.getItem('kims_exams_data');
+      if (stored) {
+        try {
+          examsData = JSON.parse(stored);
+        } catch(e) {
+          examsData = [...SEED_EXAMS_DATA];
+          saveExamsData();
+        }
+      } else {
+        examsData = [...SEED_EXAMS_DATA];
+        saveExamsData();
+      }
+
+      renderClassCheckboxes();
+      renderPaperClassOptions();
+      renderExamsDashboard();
+      updateGlobalCounters();
+    }
+
+    function saveExamsData() {
+      localStorage.setItem('kims_exams_data', JSON.stringify(examsData));
+      updateGlobalCounters();
+    }
+
+    // =========================================================================
+    // COUNTERS & KPIS
+    // =========================================================================
+    function updateGlobalCounters() {
+      let totalPapers = 0;
+
+      examsData.forEach(ex => {
+        totalPapers += (ex.papers ? ex.papers.length : 0);
+      });
+
+      document.getElementById('kpiActiveExams').innerText = `${examsData.length} Sessions`;
+      document.getElementById('kpiTotalPapers').innerText = `${totalPapers} Papers`;
+      document.getElementById('kpiCandidates').innerText = `24 Sections`;
+      document.getElementById('kpiHalls').innerText = `8 Venues`;
+      document.getElementById('examsCountBadge').innerText = `${examsData.length} Sessions`;
+    }
+
+    // =========================================================================
+    // RENDER EXAMINATIONS CATALOG TABLE
+    // =========================================================================
+    function renderExamsDashboard() {
+      const tbody = document.getElementById('examsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentSearchTerm.toLowerCase().trim();
+
+      const filtered = examsData.filter(ex => {
+        if (currentTermFilter !== 'all' && ex.term !== currentTermFilter) return false;
+        if (!term) return true;
+
+        const classesStr = ex.classes ? ex.classes.join(' ').toLowerCase() : '';
+        return (
+          ex.title.toLowerCase().includes(term) ||
+          ex.term.toLowerCase().includes(term) ||
+          ex.academicSession.toLowerCase().includes(term) ||
+          ex.controller.toLowerCase().includes(term) ||
+          classesStr.includes(term)
+        );
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-calendar-xmark"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No examination sessions match your query</div>
+              <div class="text-xs text-slate-400 mt-1">Try another term filter or click "New Exam Session".</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(ex => {
+        const paperCount = ex.papers ? ex.papers.length : 0;
+        
+        // Status Badge Styling
+        let statusBadge = `<span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-calendar-check text-[8px] mr-1"></i>${escapeHtml(ex.status)}</span>`;
+        if (ex.status === 'Ongoing / In Progress') {
+          statusBadge = `<span class="badge bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-[10px] font-bold"><i class="fa-solid fa-spinner fa-spin text-[8px] mr-1"></i>Ongoing</span>`;
+        } else if (ex.status === 'Draft / Planning') {
+          statusBadge = `<span class="badge badge-neutral text-[10px] font-bold"><i class="fa-solid fa-pencil text-[8px] mr-1"></i>Draft</span>`;
+        } else if (ex.status === 'Completed / Evaluation') {
+          statusBadge = `<span class="badge bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 text-[10px] font-bold"><i class="fa-solid fa-check-double text-[8px] mr-1"></i>Completed</span>`;
+        }
+
+        // Classes representation
+        let classesSummary = 'All High School Classes';
+        if (ex.classes && ex.classes.length === 12) {
+          classesSummary = `<span class="font-bold text-slate-800 dark:text-slate-200">Classes 0-1 to 10</span> <span class="text-[10px] text-slate-400">(All 12 Grades)</span>`;
+        } else if (ex.classes && ex.classes.length > 0) {
+          classesSummary = `<span class="font-bold text-slate-800 dark:text-slate-200">${escapeHtml(ex.classes[0])}</span> ${ex.classes.length > 1 ? `<span class="badge badge-neutral text-[10px]">+${ex.classes.length - 1} more</span>` : ''}`;
+        }
+
+        // Calculate days span
+        let durationText = '';
+        try {
+          const d1 = new Date(ex.startDate);
+          const d2 = new Date(ex.endDate);
+          const diffTime = Math.abs(d2 - d1);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+          durationText = `${diffDays} Days Span`;
+        } catch(e) {
+          durationText = 'Multi-day';
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td>
+            <div class="font-bold text-slate-900 dark:text-white text-xs">${escapeHtml(ex.title)}</div>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">${escapeHtml(ex.term)}</span>
+              <span class="text-slate-300 dark:text-slate-700">•</span>
+              <span class="text-[10px] font-mono text-slate-500">${escapeHtml(ex.academicSession)}</span>
+            </div>
+          </td>
+
+          <td>
+            <div class="font-mono text-xs font-semibold text-slate-800 dark:text-slate-200">
+              ${escapeHtml(formatPrettyDate(ex.startDate))} <span class="text-slate-400">to</span> ${escapeHtml(formatPrettyDate(ex.endDate))}
+            </div>
+            <div class="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
+              <i class="fa-solid fa-clock text-[8px]"></i>
+              <span>${durationText}</span>
+            </div>
+          </td>
+
+          <td>
+            <div class="text-xs">${classesSummary}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">${ex.classes ? ex.classes.length : 0} Grade Levels Enrolled</div>
+          </td>
+
+          <td>
+            <div class="flex items-center gap-2">
+              <span class="font-black text-xs text-blue-700 dark:text-blue-400">${paperCount} Papers</span>
+            </div>
+            <div class="text-[10px] text-slate-400 mt-0.5">Timetable Arranged</div>
+          </td>
+
+          <td>
+            <div class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
+              <span class="badge bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-[10px] font-bold">${ex.passingPercentage}% Pass</span>
+            </div>
+            <div class="text-[10px] text-slate-400 mt-0.5 truncate max-w-[150px]" title="${escapeHtml(ex.controller)}">
+              In-Charge: ${escapeHtml(ex.controller)}
+            </div>
+          </td>
+
+          <td>
+            ${statusBadge}
+          </td>
+
+          <td class="text-right">
+            <div class="inline-flex items-center gap-1">
+              <button type="button" onclick="openCreateClassSectionDateSheetModal('${escapeHtml(ex.id)}')" class="btn-kims bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 !py-1 !px-2 text-xs" title="Create Class Section Date Sheet">
+                <i class="fa-solid fa-calendar-plus text-amber-600"></i>
+                <span class="hidden sm:inline ml-0.5">Section DS</span>
+              </button>
+              <button type="button" onclick="openDateSheetModal('${escapeHtml(ex.id)}')" class="btn-kims btn-secondary !py-1 !px-2 text-xs" title="View & Manage Full Date Sheet">
+                <i class="fa-solid fa-calendar-days text-emerald-600"></i>
+                <span class="hidden sm:inline ml-0.5">View DS (${paperCount})</span>
+              </button>
+              <button type="button" onclick="openEditExamModal('${escapeHtml(ex.id)}')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit Session Details">
+                <i class="fa-solid fa-pen-to-square text-xs"></i>
+              </button>
+              <button type="button" onclick="promptDeleteExam('${escapeHtml(ex.id)}')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 transition" title="Delete Exam">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // MODAL 1: CREATE / EDIT EXAMINATION SESSION
+    // =========================================================================
+    function openCreateExamModal() {
+      document.getElementById('examForm').reset();
+      document.getElementById('examFormEditId').value = '';
+      document.getElementById('examModalTitle').innerText = 'Create New Examination Session';
+      document.getElementById('examSubmitBtnText').innerText = 'Save Examination Session';
+      document.getElementById('examModalTypeBadge').innerText = 'New Session';
+
+      // Default dates
+      const today = new Date().toISOString().split('T')[0];
+      const future = new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0];
+      document.getElementById('examStartDateInput').value = today;
+      document.getElementById('examEndDateInput').value = future;
+      document.getElementById('passingPercentageInput').value = 33;
+      document.getElementById('examStatusSelect').value = 'Scheduled / Announced';
+      document.getElementById('examInstructionsInput').value = '1. Official Roll Number Slips are mandatory for hall entry.\n2. Morning shift assembly begins at 08:00 AM; paper timing is 08:30 AM to 11:30 AM.\n3. Mobile phones, smartwatches, and unauthorized notes are strictly banned.';
+
+      selectAllClasses(true);
+      openModal('examFormModal');
+    }
+
+    function openEditExamModal(examId) {
+      const ex = examsData.find(e => e.id === examId);
+      if (!ex) return;
+
+      document.getElementById('examFormEditId').value = ex.id;
+      document.getElementById('examModalTitle').innerText = 'Edit Examination Session';
+      document.getElementById('examSubmitBtnText').innerText = 'Update Examination Session';
+      document.getElementById('examModalTypeBadge').innerText = ex.id;
+
+      document.getElementById('examTitleInput').value = ex.title;
+      document.getElementById('examTermSelect').value = ex.term;
+      document.getElementById('academicSessionSelect').value = ex.academicSession;
+      document.getElementById('examStartDateInput').value = ex.startDate;
+      document.getElementById('examEndDateInput').value = ex.endDate;
+      document.getElementById('passingPercentageInput').value = ex.passingPercentage || 33;
+      document.getElementById('examStatusSelect').value = ex.status;
+      document.getElementById('examControllerInput').value = ex.controller;
+      document.getElementById('examHallsInput').value = ex.halls || '';
+      document.getElementById('examInstructionsInput').value = ex.instructions || '';
+
+      // Check selected classes
+      const checkboxes = document.querySelectorAll('.exam-class-checkbox');
+      checkboxes.forEach(cb => {
+        cb.checked = ex.classes.includes(cb.value);
+      });
+
+      openModal('examFormModal');
+    }
+
+    function handleExamFormSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('examFormEditId').value;
+      const title = document.getElementById('examTitleInput').value.trim();
+      const term = document.getElementById('examTermSelect').value;
+      const academicSession = document.getElementById('academicSessionSelect').value;
+      const startDate = document.getElementById('examStartDateInput').value;
+      const endDate = document.getElementById('examEndDateInput').value;
+      const passingPercentage = parseInt(document.getElementById('passingPercentageInput').value) || 33;
+      const status = document.getElementById('examStatusSelect').value;
+      const controller = document.getElementById('examControllerInput').value.trim();
+      const halls = document.getElementById('examHallsInput').value.trim();
+      const instructions = document.getElementById('examInstructionsInput').value.trim();
+
+      // Gather checked classes
+      const selectedClasses = [];
+      document.querySelectorAll('.exam-class-checkbox:checked').forEach(cb => {
+        selectedClasses.push(cb.value);
+      });
+
+      if (selectedClasses.length === 0) {
+        showToast('Validation Error', 'Please select at least one applicable class for this exam.', 'warning');
+        return;
+      }
+
+      if (new Date(endDate) < new Date(startDate)) {
+        showToast('Validation Error', 'Exam end date cannot be earlier than start date.', 'warning');
+        return;
+      }
+
+      if (editId) {
+        // Update existing
+        const idx = examsData.findIndex(e => e.id === editId);
+        if (idx !== -1) {
+          examsData[idx].title = title;
+          examsData[idx].term = term;
+          examsData[idx].academicSession = academicSession;
+          examsData[idx].startDate = startDate;
+          examsData[idx].endDate = endDate;
+          examsData[idx].passingPercentage = passingPercentage;
+          examsData[idx].status = status;
+          examsData[idx].controller = controller;
+          examsData[idx].halls = halls;
+          examsData[idx].instructions = instructions;
+          examsData[idx].classes = selectedClasses;
+
+          saveExamsData();
+          renderExamsDashboard();
+          closeModal('examFormModal');
+          showToast('Exam Updated', `Session "${title}" updated successfully.`, 'success');
+        }
+      } else {
+        // Create new
+        const newExam = {
+          id: `EXAM-${academicSession.split('-')[0]}-${Date.now().toString().slice(-4)}`,
+          title: title,
+          term: term,
+          academicSession: academicSession,
+          startDate: startDate,
+          endDate: endDate,
+          classes: selectedClasses,
+          passingPercentage: passingPercentage,
+          status: status,
+          controller: controller,
+          halls: halls,
+          instructions: instructions,
+          papers: []
+        };
+
+        examsData.unshift(newExam);
+        saveExamsData();
+        renderExamsDashboard();
+        closeModal('examFormModal');
+        showToast('Exam Session Created', `New examination "${title}" announced. You can now generate class & section date sheets.`, 'success');
+      }
+    }
+
+    // =========================================================================
+    // CLASS CHECKBOXES HELPER
+    // =========================================================================
+    function renderClassCheckboxes() {
+      const container = document.getElementById('classCheckboxContainer');
+      if (!container) return;
+
+      container.innerHTML = '';
+      HIGH_SCHOOL_CLASSES_LIST.forEach(cls => {
+        const div = document.createElement('label');
+        div.className = 'flex items-center gap-2 cursor-pointer select-none p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700/50';
+        div.innerHTML = `
+          <input type="checkbox" value="${escapeHtml(cls.name)}" data-wing="${cls.wing}" class="exam-class-checkbox w-3.5 h-3.5 rounded text-emerald-600 focus:ring-emerald-500">
+          <span class="text-xs text-slate-700 dark:text-slate-300 font-medium truncate">${escapeHtml(cls.name)}</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function selectAllClasses(checkState) {
+      document.querySelectorAll('.exam-class-checkbox').forEach(cb => {
+        cb.checked = checkState;
+      });
+    }
+
+    function selectWingClasses(wing) {
+      document.querySelectorAll('.exam-class-checkbox').forEach(cb => {
+        if (wing === 'Primary') {
+          cb.checked = cb.getAttribute('data-wing') === 'Primary';
+        } else if (wing === 'Middle') {
+          cb.checked = cb.getAttribute('data-wing') === 'Middle';
+        } else if (wing === 'Matric') {
+          cb.checked = cb.getAttribute('data-wing') === 'Matric';
+        }
+      });
+    }
+
+    // =========================================================================
+    // MODAL 2: OFFICIAL DATE SHEET (TIMETABLE) CONTROLLER
+    // =========================================================================
+    function openDateSheetModal(examId) {
+      const ex = examsData.find(e => e.id === examId);
+      if (!ex) return;
+
+      activeDateSheetExamId = examId;
+
+      document.getElementById('dsModalTitle').innerText = `${ex.title} — Official Date Sheet`;
+      document.getElementById('dsExamTermBadge').innerText = ex.term;
+      document.getElementById('dsAcademicSessionBadge').innerText = `Session ${ex.academicSession}`;
+      document.getElementById('dsDurationLabel').innerText = `${formatPrettyDate(ex.startDate)} – ${formatPrettyDate(ex.endDate)}`;
+      document.getElementById('dsControllerName').innerText = ex.controller;
+
+      // Populate Class Filter Options inside Date Sheet
+      const classSelect = document.getElementById('dsClassFilterSelect');
+      classSelect.innerHTML = '<option value="all">All Scheduled Classes</option>';
+      ex.classes.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.innerText = c;
+        classSelect.appendChild(opt);
+      });
+
+      document.getElementById('dsSectionFilterSelect').value = 'all';
+
+      renderDateSheetPapersTable();
+      openModal('dateSheetModal');
+    }
+
+    function renderDateSheetPapersTable() {
+      const ex = examsData.find(e => e.id === activeDateSheetExamId);
+      if (!ex) return;
+
+      const tbody = document.getElementById('dsPapersTableBody');
+      const filterClass = document.getElementById('dsClassFilterSelect').value;
+      const filterSection = document.getElementById('dsSectionFilterSelect').value;
+      const paperCountPill = document.getElementById('dsPaperCountPill');
+      const showingCountLabel = document.getElementById('dsShowingCountLabel');
+
+      tbody.innerHTML = '';
+
+      if (!ex.papers) ex.papers = [];
+
+      // Sort papers chronologically
+      const sortedPapers = [...ex.papers].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const filteredPapers = sortedPapers.filter(p => {
+        if (filterClass !== 'all' && p.targetClass !== filterClass) return false;
+        if (filterSection !== 'all' && p.targetSection && p.targetSection !== 'All Sections' && p.targetSection !== filterSection) return false;
+        return true;
+      });
+
+      paperCountPill.innerText = `${ex.papers.length} Papers Total`;
+      showingCountLabel.innerText = `Showing ${filteredPapers.length} of ${ex.papers.length} scheduled papers`;
+
+      if (filteredPapers.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-10 text-slate-400">
+              <i class="fa-solid fa-calendar-day text-2xl text-slate-300 dark:text-slate-600 mb-2"></i>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No papers scheduled for this class and section</div>
+              <div class="text-[11px] text-slate-400 mt-1">Click "Create Section Date Sheet" above to auto-generate papers.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filteredPapers.forEach(paper => {
+        let paperBadge = 'badge badge-info';
+        if (paper.paperType.includes('Practical')) paperBadge = 'badge bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300 font-bold';
+        if (paper.paperType.includes('Objective')) paperBadge = 'badge bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 font-bold';
+
+        let sectionBadge = `<span class="badge bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[9px] font-bold block mt-0.5">${escapeHtml(paper.targetSection || 'All Sections')}</span>`;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/70 dark:hover:bg-slate-800/40';
+        tr.innerHTML = `
+          <td class="py-2.5">
+            <div class="font-bold text-slate-900 dark:text-white text-xs">${escapeHtml(formatPrettyDate(paper.date))}</div>
+            <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">${escapeHtml(paper.day || 'Day')}</div>
+          </td>
+
+          <td class="py-2.5">
+            <div class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">${escapeHtml(paper.shift)}</div>
+          </td>
+
+          <td class="py-2.5">
+            <span class="badge badge-neutral text-xs font-bold">${escapeHtml(paper.targetClass)}</span>
+            ${sectionBadge}
+          </td>
+
+          <td class="py-2.5">
+            <div class="font-bold text-slate-800 dark:text-white text-xs">${escapeHtml(paper.subject)}</div>
+            <div class="mt-0.5">
+              <span class="${paperBadge} text-[9px]">${escapeHtml(paper.paperType)}</span>
+            </div>
+          </td>
+
+          <td class="py-2.5">
+            <div class="font-bold text-xs text-slate-800 dark:text-white">Max: ${paper.totalMarks}</div>
+            <div class="text-[10px] text-emerald-600 font-semibold">Pass: ${paper.passMarks}</div>
+          </td>
+
+          <td class="py-2.5">
+            <div class="font-medium text-slate-700 dark:text-slate-300 text-xs">${escapeHtml(paper.hall)}</div>
+            <div class="text-[10px] text-slate-400 truncate max-w-[140px]" title="${escapeHtml(paper.invigilators || 'None')}">
+              <i class="fa-solid fa-user-tie text-[9px] mr-1"></i>${escapeHtml(paper.invigilators || 'Unassigned')}
+            </div>
+          </td>
+
+          <td class="py-2.5 text-right">
+            <div class="inline-flex items-center gap-1">
+              <button type="button" onclick="openEditPaperModal('${escapeHtml(paper.id)}')" class="p-1 rounded text-slate-500 hover:text-emerald-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Edit Paper">
+                <i class="fa-solid fa-pen text-xs"></i>
+              </button>
+              <button type="button" onclick="deletePaperFromDateSheet('${escapeHtml(paper.id)}')" class="p-1 rounded text-slate-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/60 transition" title="Delete Paper">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // MODAL 3: CLASS & SECTION DATE SHEET GENERATOR (RAPID MATRIX BUILDER)
+    // =========================================================================
+    function openCreateClassSectionDateSheetModal(preferredExamId) {
+      // Populate Exams dropdown
+      const examSelect = document.getElementById('csdsExamSelect');
+      examSelect.innerHTML = '';
+      examsData.forEach(ex => {
+        const opt = document.createElement('option');
+        opt.value = ex.id;
+        opt.innerText = `${ex.title} (${ex.academicSession})`;
+        examSelect.appendChild(opt);
+      });
+
+      if (preferredExamId) {
+        examSelect.value = preferredExamId;
+      } else if (examsData.length > 0) {
+        examSelect.value = examsData[0].id;
+      }
+
+      // Populate Class choices
+      const classSelect = document.getElementById('csdsClassSelect');
+      classSelect.innerHTML = '';
+      HIGH_SCHOOL_CLASSES_LIST.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.name;
+        opt.innerText = c.name;
+        classSelect.appendChild(opt);
+      });
+      classSelect.value = "Class 10 (SSC-II Matric)";
+
+      document.getElementById('csdsSectionSelect').value = "Section A";
+      document.getElementById('csdsDefaultHallInput').value = "Hall-A (Senior Wing)";
+      document.getElementById('csdsShiftSelect').value = "Morning (08:30 AM - 11:30 AM)";
+      document.getElementById('csdsGapDaysSelect').value = "1";
+
+      syncCsdsExamDates(examSelect.value);
+      populateClassTemplateSubjects();
+
+      openModal('classSectionDateSheetModal');
+    }
+
+    function syncCsdsExamDates(examId) {
+      const ex = examsData.find(e => e.id === examId);
+      if (ex) {
+        document.getElementById('csdsStartDateInput').value = ex.startDate;
+        recalculateMatrixDates();
+      }
+    }
+
+    function getWingCategory(className) {
+      if (className.includes("Class 9") || className.includes("Class 10")) return "Matric";
+      if (className.includes("Class 6") || className.includes("Class 7") || className.includes("Class 8")) return "Middle";
+      if (className.includes("Class 1") || className.includes("Class 2") || className.includes("Class 3") || className.includes("Class 4") || className.includes("Class 5")) return "Primary";
+      return "Early";
+    }
+
+    function populateClassTemplateSubjects() {
+      const className = document.getElementById('csdsClassSelect').value;
+      const wing = getWingCategory(className);
+      const template = CLASS_SUBJECT_TEMPLATES[wing] || CLASS_SUBJECT_TEMPLATES["Matric"];
+      const startDateStr = document.getElementById('csdsStartDateInput').value;
+      const gapDays = parseInt(document.getElementById('csdsGapDaysSelect').value) || 1;
+      const defaultHall = document.getElementById('csdsDefaultHallInput').value.trim() || 'Hall-A';
+
+      const tbody = document.getElementById('csdsMatrixTableBody');
+      tbody.innerHTML = '';
+
+      let currentDate = new Date(startDateStr || Date.now());
+
+      template.forEach((item, idx) => {
+        // Skip Sunday
+        if (currentDate.getDay() === 0) {
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        const dateFormatted = currentDate.toISOString().split('T')[0];
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayName = dayNames[currentDate.getDay()];
+
+        const tr = document.createElement('tr');
+        tr.className = 'csds-matrix-row hover:bg-slate-50 dark:hover:bg-slate-800/60';
+        tr.innerHTML = `
+          <td class="py-2 px-2">
+            <input type="date" value="${dateFormatted}" onchange="recomputeRowDay(this)" class="csds-row-date form-control text-[11px] !py-1 !px-1.5 font-mono" required>
+            <span class="csds-row-day text-[10px] text-emerald-600 font-bold block mt-0.5">${dayName}</span>
+          </td>
+          <td class="py-2 px-2">
+            <input type="text" value="${escapeHtml(item.subject)}" class="csds-row-subject form-control text-[11px] !py-1 !px-1.5 font-bold" required>
+          </td>
+          <td class="py-2 px-2">
+            <select class="csds-row-type form-control text-[11px] !py-1 !px-1">
+              <option value="Theory / Written" ${item.paperType.includes('Theory') ? 'selected' : ''}>Theory</option>
+              <option value="Objective / MCQs">MCQs</option>
+              <option value="Practical / Lab" ${item.paperType.includes('Practical') ? 'selected' : ''}>Practical</option>
+              <option value="Oral / Viva Voce" ${item.paperType.includes('Oral') ? 'selected' : ''}>Oral</option>
+            </select>
+          </td>
+          <td class="py-2 px-2">
+            <div class="flex items-center gap-1">
+              <input type="number" value="${item.total}" oninput="autoUpdateRowPass(this)" class="csds-row-total form-control text-[11px] !py-1 !px-1 w-14 font-bold text-center" title="Total Marks">
+              <span class="text-slate-400">/</span>
+              <input type="number" value="${item.pass}" class="csds-row-pass form-control text-[11px] !py-1 !px-1 w-12 text-emerald-600 font-bold text-center" title="Pass Marks">
+            </div>
+          </td>
+          <td class="py-2 px-2">
+            <input type="text" value="${escapeHtml(defaultHall)}" class="csds-row-hall form-control text-[11px] !py-1 !px-1.5" placeholder="Hall/Room">
+          </td>
+          <td class="py-2 px-2">
+            <input type="text" value="Dr. Tariq Mehmood" class="csds-row-invigilator form-control text-[11px] !py-1 !px-1.5" placeholder="Invigilator(s)">
+          </td>
+          <td class="py-2 px-2 text-center">
+            <button type="button" onclick="removeCsdsMatrixRow(this)" class="text-slate-400 hover:text-rose-600 transition p-1" title="Remove Paper">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+
+        // Advance date with gap
+        currentDate.setDate(currentDate.getDate() + 1 + gapDays);
+      });
+
+      updateCsdsCounters();
+    }
+
+    function addBlankRowToCsdsMatrix() {
+      const tbody = document.getElementById('csdsMatrixTableBody');
+      const defaultHall = document.getElementById('csdsDefaultHallInput').value.trim() || 'Hall-A';
+      const today = new Date().toISOString().split('T')[0];
+
+      const tr = document.createElement('tr');
+      tr.className = 'csds-matrix-row hover:bg-slate-50 dark:hover:bg-slate-800/60';
+      tr.innerHTML = `
+        <td class="py-2 px-2">
+          <input type="date" value="${today}" onchange="recomputeRowDay(this)" class="csds-row-date form-control text-[11px] !py-1 !px-1.5 font-mono" required>
+          <span class="csds-row-day text-[10px] text-emerald-600 font-bold block mt-0.5">Day</span>
+        </td>
+        <td class="py-2 px-2">
+          <input type="text" value="New Subject" class="csds-row-subject form-control text-[11px] !py-1 !px-1.5 font-bold" required>
+        </td>
+        <td class="py-2 px-2">
+          <select class="csds-row-type form-control text-[11px] !py-1 !px-1">
+            <option value="Theory / Written" selected>Theory</option>
+            <option value="Objective / MCQs">MCQs</option>
+            <option value="Practical / Lab">Practical</option>
+            <option value="Oral / Viva Voce">Oral</option>
+          </select>
+        </td>
+        <td class="py-2 px-2">
+          <div class="flex items-center gap-1">
+            <input type="number" value="75" oninput="autoUpdateRowPass(this)" class="csds-row-total form-control text-[11px] !py-1 !px-1 w-14 font-bold text-center" title="Total Marks">
+            <span class="text-slate-400">/</span>
+            <input type="number" value="25" class="csds-row-pass form-control text-[11px] !py-1 !px-1 w-12 text-emerald-600 font-bold text-center" title="Pass Marks">
+          </div>
+        </td>
+        <td class="py-2 px-2">
+          <input type="text" value="${escapeHtml(defaultHall)}" class="csds-row-hall form-control text-[11px] !py-1 !px-1.5" placeholder="Hall/Room">
+        </td>
+        <td class="py-2 px-2">
+          <input type="text" value="Assigned Teacher" class="csds-row-invigilator form-control text-[11px] !py-1 !px-1.5" placeholder="Invigilator(s)">
+        </td>
+        <td class="py-2 px-2 text-center">
+          <button type="button" onclick="removeCsdsMatrixRow(this)" class="text-slate-400 hover:text-rose-600 transition p-1" title="Remove Paper">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+
+      const dateInput = tr.querySelector('.csds-row-date');
+      recomputeRowDay(dateInput);
+      updateCsdsCounters();
+    }
+
+    function removeCsdsMatrixRow(btn) {
+      const tr = btn.closest('tr');
+      if (tr) tr.remove();
+      updateCsdsCounters();
+    }
+
+    function recomputeRowDay(dateInput) {
+      const tr = dateInput.closest('tr');
+      const daySpan = tr.querySelector('.csds-row-day');
+      if (dateInput.value) {
+        try {
+          const d = new Date(dateInput.value);
+          const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          daySpan.innerText = dayNames[d.getDay()];
+        } catch(e) {}
+      }
+    }
+
+    function autoUpdateRowPass(totalInput) {
+      const tr = totalInput.closest('tr');
+      const passInput = tr.querySelector('.csds-row-pass');
+      const total = parseInt(totalInput.value) || 0;
+      passInput.value = Math.round(total * 0.33);
+    }
+
+    function recalculateMatrixDates() {
+      const startDateStr = document.getElementById('csdsStartDateInput').value;
+      const gapDays = parseInt(document.getElementById('csdsGapDaysSelect').value) || 1;
+      const rows = document.querySelectorAll('.csds-matrix-row');
+
+      if (!startDateStr || rows.length === 0) return;
+
+      let currentDate = new Date(startDateStr);
+
+      rows.forEach(tr => {
+        if (currentDate.getDay() === 0) {
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        const dateInput = tr.querySelector('.csds-row-date');
+        const daySpan = tr.querySelector('.csds-row-day');
+        dateInput.value = currentDate.toISOString().split('T')[0];
+
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        daySpan.innerText = dayNames[currentDate.getDay()];
+
+        currentDate.setDate(currentDate.getDate() + 1 + gapDays);
+      });
+    }
+
+    function updateAllRowsShift(val) {
+      // Shift applied to all papers
+    }
+
+    function updateAllRowsHall(val) {
+      document.querySelectorAll('.csds-row-hall').forEach(inp => {
+        inp.value = val;
+      });
+    }
+
+    function updateCsdsCounters() {
+      const count = document.querySelectorAll('.csds-matrix-row').length;
+      document.getElementById('csdsBadgeCount').innerText = `${count} Papers`;
+      document.getElementById('csdsPaperCountLabel').innerText = `${count} papers ready to be scheduled`;
+    }
+
+    function handleClassSectionDateSheetSubmit(e) {
+      e.preventDefault();
+      const examId = document.getElementById('csdsExamSelect').value;
+      const targetClass = document.getElementById('csdsClassSelect').value;
+      const targetSection = document.getElementById('csdsSectionSelect').value;
+      const shift = document.getElementById('csdsShiftSelect').value;
+
+      const ex = examsData.find(item => item.id === examId);
+      if (!ex) {
+        showToast('Error', 'Selected examination session not found.', 'error');
+        return;
+      }
+
+      const rows = document.querySelectorAll('.csds-matrix-row');
+      if (rows.length === 0) {
+        showToast('Validation Error', 'Please schedule at least one paper row in the date sheet.', 'warning');
+        return;
+      }
+
+      if (!ex.papers) ex.papers = [];
+
+      let addedCount = 0;
+      rows.forEach(tr => {
+        const pDate = tr.querySelector('.csds-row-date').value;
+        const pDay = tr.querySelector('.csds-row-day').innerText;
+        const pSubject = tr.querySelector('.csds-row-subject').value.trim();
+        const pType = tr.querySelector('.csds-row-type').value;
+        const pTotal = parseInt(tr.querySelector('.csds-row-total').value) || 75;
+        const pPass = parseInt(tr.querySelector('.csds-row-pass').value) || 25;
+        const pHall = tr.querySelector('.csds-row-hall').value.trim() || 'Hall-A';
+        const pInvigilator = tr.querySelector('.csds-row-invigilator').value.trim() || 'Dr. Tariq Mehmood';
+
+        if (pSubject) {
+          ex.papers.push({
+            id: `PPR-${Date.now().toString().slice(-6)}-${addedCount}`,
+            date: pDate,
+            day: pDay,
+            shift: shift,
+            targetClass: targetClass,
+            targetSection: targetSection,
+            subject: pSubject,
+            paperType: pType,
+            totalMarks: pTotal,
+            passMarks: pPass,
+            hall: pHall,
+            invigilators: pInvigilator,
+            syllabus: "Curriculum Term Scope"
+          });
+          addedCount++;
+        }
+      });
+
+      // Ensure class is included in ex.classes
+      if (!ex.classes.includes(targetClass)) {
+        ex.classes.push(targetClass);
+      }
+
+      saveExamsData();
+      renderExamsDashboard();
+      closeModal('classSectionDateSheetModal');
+
+      showToast('Date Sheet Generated', `Successfully scheduled ${addedCount} papers for ${targetClass} (${targetSection}) in ${ex.title}!`, 'success');
+
+      // If date sheet modal is active, refresh it
+      if (activeDateSheetExamId === examId) {
+        renderDateSheetPapersTable();
+      }
+    }
+
+    // =========================================================================
+    // MODAL 4: ADD / EDIT SINGLE PAPER
+    // =========================================================================
+    function renderPaperClassOptions() {
+      const select = document.getElementById('paperClassSelect');
+      if (!select) return;
+
+      select.innerHTML = '';
+      HIGH_SCHOOL_CLASSES_LIST.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.name;
+        opt.innerText = c.name;
+        select.appendChild(opt);
+      });
+    }
+
+    function openAddPaperModal() {
+      const ex = examsData.find(e => e.id === activeDateSheetExamId);
+      if (!ex) return;
+
+      document.getElementById('paperForm').reset();
+      document.getElementById('paperFormEditId').value = '';
+      document.getElementById('paperModalTitle').innerText = `Add Single Paper to Date Sheet`;
+      document.getElementById('paperModalExamBadge').innerText = ex.title;
+      document.getElementById('paperSubmitBtnText').innerText = 'Add Paper to Date Sheet';
+
+      // Set default date between start and end date
+      document.getElementById('paperDateInput').value = ex.startDate;
+      autoCalculatePaperDay(ex.startDate);
+
+      document.getElementById('paperTotalMarksInput').value = 75;
+      document.getElementById('paperPassMarksInput').value = 25;
+      document.getElementById('paperHallInput').value = 'Hall-A (Senior Wing)';
+      document.getElementById('paperInvigilatorInput').value = 'Dr. Tariq Mehmood';
+      document.getElementById('paperSectionSelect').value = 'Section A';
+
+      // Populate class choices based on this exam's applicable classes
+      const classSelect = document.getElementById('paperClassSelect');
+      classSelect.innerHTML = '';
+      ex.classes.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.innerText = c;
+        classSelect.appendChild(opt);
+      });
+
+      openModal('paperFormModal');
+    }
+
+    function openEditPaperModal(paperId) {
+      const ex = examsData.find(e => e.id === activeDateSheetExamId);
+      if (!ex) return;
+
+      const paper = ex.papers.find(p => p.id === paperId);
+      if (!paper) return;
+
+      document.getElementById('paperFormEditId').value = paper.id;
+      document.getElementById('paperModalTitle').innerText = `Edit Paper: ${paper.subject}`;
+      document.getElementById('paperModalExamBadge').innerText = ex.title;
+      document.getElementById('paperSubmitBtnText').innerText = 'Update Paper';
+
+      document.getElementById('paperDateInput').value = paper.date;
+      autoCalculatePaperDay(paper.date);
+      document.getElementById('paperShiftSelect').value = paper.shift;
+
+      // Populate class choices and set selected
+      const classSelect = document.getElementById('paperClassSelect');
+      classSelect.innerHTML = '';
+      ex.classes.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.innerText = c;
+        classSelect.appendChild(opt);
+      });
+      classSelect.value = paper.targetClass;
+
+      document.getElementById('paperSectionSelect').value = paper.targetSection || 'All Sections';
+      document.getElementById('paperSubjectInput').value = paper.subject;
+      document.getElementById('paperTypeSelect').value = paper.paperType;
+      document.getElementById('paperTotalMarksInput').value = paper.totalMarks;
+      document.getElementById('paperPassMarksInput').value = paper.passMarks;
+      document.getElementById('paperHallInput').value = paper.hall;
+      document.getElementById('paperInvigilatorInput').value = paper.invigilators || '';
+      document.getElementById('paperSyllabusInput').value = paper.syllabus || '';
+
+      openModal('paperFormModal');
+    }
+
+    function handlePaperFormSubmit(e) {
+      e.preventDefault();
+      const ex = examsData.find(e => e.id === activeDateSheetExamId);
+      if (!ex) return;
+
+      const editId = document.getElementById('paperFormEditId').value;
+      const paperDate = document.getElementById('paperDateInput').value;
+      const paperDay = document.getElementById('paperDayInput').value;
+      const paperShift = document.getElementById('paperShiftSelect').value;
+      const paperClass = document.getElementById('paperClassSelect').value;
+      const paperSection = document.getElementById('paperSectionSelect').value;
+      const paperSubject = document.getElementById('paperSubjectInput').value;
+      const paperType = document.getElementById('paperTypeSelect').value;
+      const totalMarks = parseInt(document.getElementById('paperTotalMarksInput').value) || 75;
+      const passMarks = parseInt(document.getElementById('paperPassMarksInput').value) || 25;
+      const hall = document.getElementById('paperHallInput').value.trim();
+      const invigilators = document.getElementById('paperInvigilatorInput').value.trim();
+      const syllabus = document.getElementById('paperSyllabusInput').value.trim();
+
+      if (editId) {
+        // Update
+        const pIndex = ex.papers.findIndex(p => p.id === editId);
+        if (pIndex !== -1) {
+          ex.papers[pIndex] = {
+            id: editId,
+            date: paperDate,
+            day: paperDay,
+            shift: paperShift,
+            targetClass: paperClass,
+            targetSection: paperSection,
+            subject: paperSubject,
+            paperType: paperType,
+            totalMarks: totalMarks,
+            passMarks: passMarks,
+            hall: hall,
+            invigilators: invigilators,
+            syllabus: syllabus
+          };
+          saveExamsData();
+          renderDateSheetPapersTable();
+          renderExamsDashboard();
+          closeModal('paperFormModal');
+          showToast('Paper Updated', `${paperSubject} (${paperSection}) updated in date sheet.`, 'success');
+        }
+      } else {
+        // New Paper
+        const newPaper = {
+          id: `PPR-${Date.now().toString().slice(-6)}`,
+          date: paperDate,
+          day: paperDay,
+          shift: paperShift,
+          targetClass: paperClass,
+          targetSection: paperSection,
+          subject: paperSubject,
+          paperType: paperType,
+          totalMarks: totalMarks,
+          passMarks: passMarks,
+          hall: hall,
+          invigilators: invigilators,
+          syllabus: syllabus
+        };
+
+        if (!ex.papers) ex.papers = [];
+        ex.papers.push(newPaper);
+
+        saveExamsData();
+        renderDateSheetPapersTable();
+        renderExamsDashboard();
+        closeModal('paperFormModal');
+        showToast('Paper Scheduled', `${paperSubject} for ${paperClass} (${paperSection}) added to date sheet.`, 'success');
+      }
+    }
+
+    function deletePaperFromDateSheet(paperId) {
+      const ex = examsData.find(e => e.id === activeDateSheetExamId);
+      if (!ex || !ex.papers) return;
+
+      const p = ex.papers.find(item => item.id === paperId);
+      ex.papers = ex.papers.filter(item => item.id !== paperId);
+
+      saveExamsData();
+      renderDateSheetPapersTable();
+      renderExamsDashboard();
+      showToast('Paper Removed', `Removed paper ${p ? p.subject : ''} from date sheet.`, 'info');
+    }
+
+    // =========================================================================
+    // DELETE EXAM LOGIC
+    // =========================================================================
+    function promptDeleteExam(examId) {
+      const ex = examsData.find(e => e.id === examId);
+      if (!ex) return;
+
+      examToDeleteId = examId;
+      document.getElementById('deleteExamTitle').innerText = `"${ex.title}" (${ex.academicSession})`;
+      openModal('deleteExamModal');
+    }
+
+    function confirmDeleteExam() {
+      if (!examToDeleteId) return;
+
+      const ex = examsData.find(e => e.id === examToDeleteId);
+      examsData = examsData.filter(e => e.id !== examToDeleteId);
+
+      saveExamsData();
+      renderExamsDashboard();
+      closeModal('deleteExamModal');
+      showToast('Exam Deleted', `Examination session "${ex ? ex.title : ''}" and its date sheets removed.`, 'success');
+      examToDeleteId = null;
+    }
+
+    // =========================================================================
+    // SEARCH & FILTERING
+    // =========================================================================
+    function filterExamsByTerm(term, btn) {
+      currentTermFilter = term;
+      const tabs = document.querySelectorAll('#termFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs';
+      renderExamsDashboard();
+    }
+
+    function handleExamSearch(val) {
+      currentSearchTerm = val;
+      renderExamsDashboard();
+    }
+
+    // =========================================================================
+    // DATE & DAY HELPERS
+    // =========================================================================
+    function autoCalculatePaperDay(dateStr) {
+      if (!dateStr) return;
+      try {
+        const d = new Date(dateStr);
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        document.getElementById('paperDayInput').value = dayNames[d.getDay()];
+      } catch(e) {}
+    }
+
+    function autoCalculatePassingMarks(totalVal) {
+      const total = parseInt(totalVal) || 0;
+      const pass = Math.round(total * 0.33);
+      document.getElementById('paperPassMarksInput').value = pass;
+    }
+
+    function formatPrettyDate(dateStr) {
+      if (!dateStr) return '—';
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      } catch(e) {
+        return dateStr;
+      }
+    }
+
+    function printOfficialDateSheet() {
+      window.print();
+    }
+
+    // Initialize System
+    document.addEventListener('DOMContentLoaded', () => {
+      initExamsSystem();
+    });
+  </script>
+</body>
+</html>

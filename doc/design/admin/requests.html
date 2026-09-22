@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications, Notices & Desk Management - KIMS Admin Portal</title>
+  <meta name="description" content="Unified two-way communication desk for Pakistani High Schools: receive applications from teachers, students, parents, and public; generate rich-text circulars and notices.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    /* Rich Text Editor Styling */
+    .editor-toolbar button {
+      padding: 0.35rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 0.5rem;
+      color: #475569;
+      background: #f1f5f9;
+      transition: all 0.15s ease;
+    }
+    .dark .editor-toolbar button {
+      color: #cbd5e1;
+      background: #1e293b;
+    }
+    .editor-toolbar button:hover {
+      background: #e2e8f0;
+      color: #047857;
+    }
+    .dark .editor-toolbar button:hover {
+      background: #334155;
+      color: #34d399;
+    }
+    .editor-content-area {
+      min-height: 220px;
+      outline: none;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .editor-content-area:focus {
+      border-color: #10b981;
+    }
+    .editor-content-area ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    .editor-content-area ol {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    .editor-content-area h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0.6rem 0 0.3rem 0;
+      color: #064e3b;
+    }
+    .dark .editor-content-area h2 {
+      color: #34d399;
+    }
+    .editor-content-area h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0.4rem 0 0.2rem 0;
+    }
+    .editor-content-area p {
+      margin-bottom: 0.5rem;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #letterheadPrintContainer, #letterheadPrintContainer * {
+        visibility: visible;
+      }
+      #letterheadPrintContainer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: white !important;
+        color: black !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+            <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link active">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="deskGlobalSearch" onkeyup="handleGlobalSearch(this.value)" placeholder="Search ticket #, sender, roll, subject...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-envelope-open-text mr-1"></i>Institutional Communication Desk</span>
+              <span class="text-xs font-semibold text-slate-400">High School Central Registry</span>
+            </div>
+            <h1>Applications, Notices & Desk Management</h1>
+            <p>Two-way communication hub: review applications from teachers, students, parents & public; generate official rich-text notices and circulars.</p>
+          </div>
+          <div class="page-actions flex flex-wrap gap-2">
+            <button type="button" onclick="showToast('Exporting Dossier', 'Downloading applications archive (CSV)...', 'info')" class="btn-kims btn-secondary">
+              <i class="fa-solid fa-file-csv mr-1"></i>
+              <span>Export Log</span>
+            </button>
+            <button type="button" onclick="openComposeModal()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-feather-pointed mr-1"></i>
+              <span>Generate Notice / Application</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 border-l-4 border-l-amber-500">
+            <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold uppercase">Pending Incoming</span>
+            <div class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-1" id="kpiPendingCount">5</div>
+            <span class="text-[11px] text-slate-400" id="kpiPendingSub">Awaiting admin review</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 border-l-4 border-l-emerald-500">
+            <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold uppercase">Approved / Resolved</span>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1" id="kpiResolvedCount">38</div>
+            <span class="text-[11px] text-slate-400">Actioned this month</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 border-l-4 border-l-blue-500">
+            <span class="text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase">Notices Dispatched</span>
+            <div class="text-2xl font-black text-blue-600 dark:text-blue-400 mt-1" id="kpiSentCount">24</div>
+            <span class="text-[11px] text-slate-400">To Teachers, Parents & Students</span>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 border-l-4 border-l-purple-500">
+            <span class="text-xs text-purple-600 dark:text-purple-400 font-semibold uppercase">Public Inquiries</span>
+            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 mt-1" id="kpiPublicCount">4</div>
+            <span class="text-[11px] text-slate-400">Job apps & visitor requests</span>
+          </div>
+        </div>
+
+        <!-- Main Unified Card with View Switcher Tabs -->
+        <div class="admin-card mb-6">
+          
+          <!-- View Switcher Tabs -->
+          <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50 dark:bg-slate-800/20">
+            <div class="flex items-center gap-2">
+              <button type="button" id="tabBtnIncoming" onclick="switchDeskTab('incoming', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2">
+                <i class="fa-solid fa-inbox"></i>
+                <span>📥 Received Applications (<span id="countIncomingBadge">0</span>)</span>
+              </button>
+              <button type="button" id="tabBtnOutgoing" onclick="switchDeskTab('outgoing', this)" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>📤 Sent Notices & Circulars (<span id="countOutgoingBadge">0</span>)</span>
+              </button>
+            </div>
+            <div class="text-xs text-slate-400 font-medium" id="tabSubtitleDesk">
+              Reviewing formal requests submitted to the school administration
+            </div>
+          </div>
+
+          <!-- TAB 1: INCOMING APPLICATIONS DESK -->
+          <div id="viewIncomingContainer">
+            
+            <!-- Controls & Filters Bar -->
+            <div class="p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800">
+              
+              <!-- Sender Role Filter Pills -->
+              <div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0" id="incomingRoleFilterTabs">
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm shrink-0" onclick="filterIncomingByRole('all', this)">
+                  All Senders (<span id="pillRoleAll">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterIncomingByRole('teacher', this)">
+                  <i class="fa-solid fa-chalkboard-user mr-1 text-blue-500"></i>Teachers (<span id="pillRoleTeacher">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterIncomingByRole('student', this)">
+                  <i class="fa-solid fa-graduation-cap mr-1 text-emerald-500"></i>Students (<span id="pillRoleStudent">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterIncomingByRole('parent', this)">
+                  <i class="fa-solid fa-people-roof mr-1 text-amber-500"></i>Parents (<span id="pillRoleParent">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterIncomingByRole('public', this)">
+                  <i class="fa-solid fa-globe mr-1 text-purple-500"></i>Public / Inquiries (<span id="pillRolePublic">0</span>)
+                </button>
+              </div>
+
+              <!-- Status & Live Search -->
+              <div class="flex items-center gap-2.5 w-full lg:w-auto">
+                <select id="incomingStatusSelect" onchange="filterIncomingByStatus(this.value)" class="px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white font-medium focus:outline-none focus:border-emerald-500">
+                  <option value="all">All Statuses</option>
+                  <option value="Pending">Pending / Under Review</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Need Info">Need Information</option>
+                  <option value="Rejected">Closed / Rejected</option>
+                </select>
+
+                <div class="relative flex-1 sm:w-64">
+                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input 
+                    type="text" 
+                    id="incomingLiveSearchInput"
+                    onkeyup="handleIncomingSearch(this.value)"
+                    placeholder="Search sender, ticket #, subject..."
+                    class="w-full pl-8 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Incoming Applications Table -->
+            <div class="table-responsive">
+              <table class="admin-table" id="incomingTable">
+                <thead>
+                  <tr>
+                    <th>Ticket # & Date</th>
+                    <th>Sender Profile</th>
+                    <th>Role</th>
+                    <th>Category</th>
+                    <th>Subject & Application Abstract</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th class="text-right" style="min-width: 130px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="incomingTableBody">
+                  <!-- Dynamically rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Incoming Table Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+              <div>
+                Showing <span class="font-bold text-slate-700 dark:text-slate-300" id="incomingDisplayCount">0</span> of <span class="font-bold text-slate-700 dark:text-slate-300" id="incomingTotalCount">0</span> received applications
+              </div>
+              <div class="text-slate-400">
+                <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>Click eye icon on any ticket to view full formal letter and attach official response.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 2: OUTGOING NOTICES & BROADCAST DESK -->
+          <div id="viewOutgoingContainer" class="hidden">
+            
+            <!-- Controls & Filters Bar -->
+            <div class="p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800">
+              
+              <!-- Audience Filter Pills -->
+              <div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0" id="outgoingAudienceFilterTabs">
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm shrink-0" onclick="filterOutgoingByAudience('all', this)">
+                  All Dispatched (<span id="pillOutAll">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterOutgoingByAudience('teachers', this)">
+                  <i class="fa-solid fa-chalkboard-user mr-1 text-blue-500"></i>To Teachers (<span id="pillOutTeachers">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterOutgoingByAudience('parents', this)">
+                  <i class="fa-solid fa-people-roof mr-1 text-amber-500"></i>To Parents (<span id="pillOutParents">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterOutgoingByAudience('students', this)">
+                  <i class="fa-solid fa-graduation-cap mr-1 text-emerald-500"></i>To Students (<span id="pillOutStudents">0</span>)
+                </button>
+                <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0" onclick="filterOutgoingByAudience('school_wide', this)">
+                  <i class="fa-solid fa-bullhorn mr-1 text-purple-500"></i>School-Wide (<span id="pillOutSchool">0</span>)
+                </button>
+              </div>
+
+              <!-- Search -->
+              <div class="relative w-full sm:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input 
+                  type="text" 
+                  id="outgoingLiveSearchInput"
+                  onkeyup="handleOutgoingSearch(this.value)"
+                  placeholder="Search ref #, notice title, scope..."
+                  class="w-full pl-8 pr-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+            </div>
+
+            <!-- Outgoing Notices Table -->
+            <div class="table-responsive">
+              <table class="admin-table" id="outgoingTable">
+                <thead>
+                  <tr>
+                    <th>Ref # & Date</th>
+                    <th>Target Audience</th>
+                    <th>Notice Category</th>
+                    <th>Subject & Headline</th>
+                    <th>Channels</th>
+                    <th>Dispatched By</th>
+                    <th class="text-right" style="min-width: 140px;">Letterhead & Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="outgoingTableBody">
+                  <!-- Dynamically rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Outgoing Table Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+              <div>
+                Showing <span class="font-bold text-slate-700 dark:text-slate-300" id="outgoingDisplayCount">0</span> of <span class="font-bold text-slate-700 dark:text-slate-300" id="outgoingTotalCount">0</span> dispatched official notices
+              </div>
+              <button type="button" onclick="openComposeModal()" class="btn-kims btn-secondary !py-1.5 text-xs text-emerald-600 font-bold">
+                <i class="fa-solid fa-plus mr-1"></i> Compose New Circular
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="requests.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <span>Requests</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: COMPOSE & GENERATE APPLICATION / NOTICE (STEP-BY-STEP WIZARD)      -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="composeApplicationModal">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white flex items-center justify-center text-base shadow-sm">
+            <i class="fa-solid fa-feather-pointed"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white">Notice & Application Generator</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Generate official institutional notices, circulars, or administrative orders in easy steps</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="composeNoticeForm" onsubmit="return handleDispatchNotice(event)">
+        <div class="modal-body space-y-4 max-h-[76vh] overflow-y-auto pr-1 text-xs">
+          
+          <!-- Step 1: Target Audience & Category -->
+          <div class="bg-slate-50 dark:bg-slate-800/40 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
+                <span>Select Target Audience & Notice Type</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono" id="autoGeneratedRefNo">REF: KIMS/ADM/2026/089</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Target Recipient -->
+              <div>
+                <label class="form-label font-bold text-slate-700 dark:text-slate-300" for="noticeTargetAudience">
+                  Target Recipients *
+                </label>
+                <select id="noticeTargetAudience" class="form-control font-semibold" required onchange="handleTargetAudienceChange(this.value)">
+                  <option value="teachers">👨‍🏫 All Teachers & Faculty</option>
+                  <option value="parents">👨‍👩‍👧 All Parents</option>
+                  <option value="students">🎓 All Students</option>
+                  <option value="class_9_10">📘 Class 9 & 10 (Matric Scholars)</option>
+                  <option value="primary">🎒 Primary Classes (1 to 5)</option>
+                  <option value="school_wide" selected>🏛️ Entire School (All Stakeholders)</option>
+                  <option value="public">🌐 General Public / Notice Board</option>
+                </select>
+              </div>
+
+              <!-- Notice Category -->
+              <div>
+                <label class="form-label font-bold text-slate-700 dark:text-slate-300" for="noticeCategory">
+                  Notice / Document Category *
+                </label>
+                <select id="noticeCategory" class="form-control font-semibold" required>
+                  <option value="General Announcement">📢 General Announcement</option>
+                  <option value="Fee Reminder Notice">💰 Fee Reminder Notice</option>
+                  <option value="Exam Schedule & Datesheet">📝 Exam Schedule & Datesheet</option>
+                  <option value="Parent-Teacher Meeting">🤝 Parent-Teacher Meeting (PTM)</option>
+                  <option value="Vacation Notification">❄️ Vacation / Holiday Notification</option>
+                  <option value="Staff Meeting & Circular">📋 Staff Circular & Duty Roster</option>
+                  <option value="Administrative Order">⚖️ Administrative Order / Show-Cause</option>
+                  <option value="Character Certificate">📜 Character / Bonafide Certificate</option>
+                </select>
+              </div>
+
+              <!-- Priority Level -->
+              <div>
+                <label class="form-label font-bold text-slate-700 dark:text-slate-300" for="noticePriority">
+                  Urgency / Priority *
+                </label>
+                <select id="noticePriority" class="form-control font-semibold">
+                  <option value="Normal">Normal Notice</option>
+                  <option value="High Priority">⚠️ High Priority / Important</option>
+                  <option value="Urgent">🚨 Urgent Action Required</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: 1-Click High School Template Selector -->
+          <div class="bg-gradient-to-r from-emerald-50/60 to-blue-50/40 dark:from-emerald-950/30 dark:to-slate-800/40 p-3.5 rounded-2xl border border-emerald-500/20 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">2</span>
+                <span>Load 1-Click High School Template (Optional)</span>
+              </span>
+              <span class="text-[10px] text-emerald-600 font-semibold">Instant pre-filled official text</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
+              <button type="button" onclick="loadTemplate('fee_reminder')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-700 dark:text-slate-300 font-semibold hover:text-emerald-600 transition shrink-0">
+                💰 Fee Reminder
+              </button>
+              <button type="button" onclick="loadTemplate('ptm_call')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-700 dark:text-slate-300 font-semibold hover:text-emerald-600 transition shrink-0">
+                🤝 PTM Call Notice
+              </button>
+              <button type="button" onclick="loadTemplate('exam_datesheet')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-700 dark:text-slate-300 font-semibold hover:text-emerald-600 transition shrink-0">
+                📝 Board Exam Schedule
+              </button>
+              <button type="button" onclick="loadTemplate('vacation_notice')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-700 dark:text-slate-300 font-semibold hover:text-emerald-600 transition shrink-0">
+                ❄️ Vacation Notification
+              </button>
+              <button type="button" onclick="loadTemplate('staff_meeting')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-700 dark:text-slate-300 font-semibold hover:text-emerald-600 transition shrink-0">
+                📋 Staff Meeting
+              </button>
+              <button type="button" onclick="loadTemplate('blank')" class="px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-rose-500 text-slate-500 hover:text-rose-500 transition shrink-0">
+                📄 Blank
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Rich Text Editor & Content Area -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">3</span>
+                <span>Subject & Rich Document Content</span>
+              </span>
+
+              <!-- Letterhead Toggle -->
+              <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input type="checkbox" id="toggleLetterheadSwitch" checked onchange="handleLetterheadToggle(this.checked)" class="rounded text-emerald-600 accent-emerald-600">
+                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Include Official Letterhead & Stamp</span>
+              </label>
+            </div>
+
+            <!-- Subject Input -->
+            <div class="relative">
+              <i class="fa-solid fa-heading absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input 
+                type="text" 
+                id="noticeSubject" 
+                class="form-control pl-9 font-bold text-slate-900 dark:text-white" 
+                required 
+                placeholder="Enter formal notice subject (e.g. Circular regarding Parent-Teacher Meeting on 12th Sept 2026)"
+              >
+            </div>
+
+            <!-- Rich Text Editor Container -->
+            <div class="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-xs bg-white dark:bg-slate-900">
+              
+              <!-- Editor Formatting Toolbar -->
+              <div class="editor-toolbar p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 flex flex-wrap items-center gap-1.5">
+                <button type="button" onclick="formatDoc('bold')" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button type="button" onclick="formatDoc('italic')" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button type="button" onclick="formatDoc('underline')" title="Underline (Ctrl+U)"><u>U</u></button>
+                <span class="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></span>
+                <button type="button" onclick="formatDoc('formatBlock', '<h2>')" title="Heading 2">H2</button>
+                <button type="button" onclick="formatDoc('formatBlock', '<h3>')" title="Heading 3">H3</button>
+                <button type="button" onclick="formatDoc('formatBlock', '<p>')" title="Paragraph">P</button>
+                <span class="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></span>
+                <button type="button" onclick="formatDoc('insertUnorderedList')" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" onclick="formatDoc('insertOrderedList')" title="Numbered List"><i class="fa-solid fa-list-ol"></i></button>
+                <span class="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></span>
+                <button type="button" onclick="formatDoc('justifyLeft')" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+                <button type="button" onclick="formatDoc('justifyCenter')" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+                <button type="button" onclick="formatDoc('justifyRight')" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+                <span class="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></span>
+                <button type="button" onclick="insertCurrentDate()" title="Insert Date" class="!px-2 font-mono text-[11px]"><i class="fa-regular fa-calendar mr-1"></i>Date</button>
+                <button type="button" onclick="formatDoc('removeFormat')" title="Clear Formatting" class="!text-rose-500"><i class="fa-solid fa-eraser"></i></button>
+              </div>
+
+              <!-- Visual Document Sheet (Letterhead Preview) -->
+              <div class="p-6 bg-white dark:bg-slate-900 min-h-[300px]" id="visualDocumentSheet">
+                
+                <!-- Official Letterhead Header (Toggleable) -->
+                <div id="letterheadHeaderBox" class="border-b-2 border-emerald-800 pb-3 mb-4 text-center">
+                  <div class="flex items-center justify-center gap-3 mb-1">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                      <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                      <h2 class="text-base font-black text-emerald-900 dark:text-emerald-300 uppercase tracking-wide !m-0">Kohat Institute of Modern Sciences (KIMS)</h2>
+                      <p class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold !m-0">Secondary & Higher Secondary Education Campus &bull; Affiliated with BISE Kohat</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-800 font-mono">
+                    <span id="previewRefNo">Ref: KIMS/ADM/2026/089</span>
+                    <span>Date: <span id="previewDateDisplay">07 Sep 2026</span></span>
+                    <span>Office of the Principal</span>
+                  </div>
+                </div>
+
+                <!-- Editable Content Area -->
+                <div 
+                  id="noticeRichEditor" 
+                  class="editor-content-area text-slate-800 dark:text-slate-200 p-2 focus:ring-0 focus:outline-none" 
+                  contenteditable="true"
+                >
+                  <p>Respected Parents / Teachers,</p>
+                  <p>This is to formally notify you regarding the upcoming administrative and academic schedule. Please review the instructions stated below and ensure compliance.</p>
+                  <p>All concerned students and staff are advised to acknowledge this circular.</p>
+                </div>
+
+                <!-- Official Signature & Stamp Box (Toggleable) -->
+                <div id="letterheadFooterBox" class="mt-8 pt-4 border-t border-dashed border-slate-200 dark:border-slate-800 flex justify-between items-end">
+                  <div class="text-[10px] text-slate-400">
+                    <div>Electronic Copy Dispatched via KIMS Portal</div>
+                    <div class="font-mono">Verification Code: #KIMS-VER-2026</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="w-20 h-10 border border-dashed border-emerald-400 rounded-lg flex items-center justify-center text-[9px] font-bold text-emerald-700 dark:text-emerald-300 uppercase rotate-[-6deg] mb-1 ml-auto opacity-70">
+                      [OFFICIAL STAMP]
+                    </div>
+                    <div class="font-bold text-xs text-slate-900 dark:text-white">Principal / Administrator</div>
+                    <div class="text-[10px] text-slate-400">KIMS High School, Kohat</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Step 4: Dispatch Channels -->
+          <div class="bg-slate-50 dark:bg-slate-800/40 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-2">
+            <span class="font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">4</span>
+              <span>Select Broadcast Delivery Channels</span>
+            </span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 cursor-pointer">
+                <input type="checkbox" id="chanPortal" checked class="accent-emerald-600">
+                <div>
+                  <div class="font-bold text-slate-800 dark:text-white text-xs">In-App Notice Board</div>
+                  <div class="text-[10px] text-slate-400">Published on Admin & Parent portals</div>
+                </div>
+              </label>
+              <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 cursor-pointer">
+                <input type="checkbox" id="chanWhatsApp" checked class="accent-emerald-600">
+                <div>
+                  <div class="font-bold text-slate-800 dark:text-white text-xs flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp Alert
+                  </div>
+                  <div class="text-[10px] text-slate-400">Generate broadcast dispatch link</div>
+                </div>
+              </label>
+              <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 cursor-pointer">
+                <input type="checkbox" id="chanPrint" checked class="accent-emerald-600">
+                <div>
+                  <div class="font-bold text-slate-800 dark:text-white text-xs">Physical Notice Board</div>
+                  <div class="text-[10px] text-slate-400">Printable official letter format</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-between">
+          <button type="button" class="btn-kims btn-secondary !py-2" data-modal-close>Cancel</button>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="previewPrintableLetter()" class="btn-kims btn-secondary !py-2 text-emerald-700 dark:text-emerald-400">
+              <i class="fa-solid fa-print"></i>
+              <span>Print Preview</span>
+            </button>
+            <button type="submit" class="btn-kims btn-primary !py-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Dispatch Application / Notice</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: VIEW INCOMING APPLICATION DOSSIER & ACTION WORKFLOW                -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="viewIncomingModal">
+    <div class="modal-container" style="max-width: 680px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div id="modalSenderAvatar" class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+            TK
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-slate-800 dark:text-white" id="modalSenderName">Applicant Name</h3>
+              <span id="modalSenderRoleBadge" class="badge badge-neutral text-[10px]">Teacher</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Ticket: <span class="font-mono font-bold text-emerald-600" id="modalTicketNo">REQ-2026-031</span> &bull; Filed: <span id="modalFiledDate">02 Sep 2026</span>
+            </p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[72vh] overflow-y-auto pr-1 text-xs">
+        
+        <!-- Category & Urgency Ribbon -->
+        <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+          <div>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Category:</span>
+            <strong class="text-slate-800 dark:text-white font-bold text-sm" id="modalCategoryText">Medical Leave (3 Days)</strong>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="modalPriorityBadge" class="badge badge-warning text-[10px]">Normal</span>
+            <span id="modalStatusBadge" class="badge badge-info text-[10px]">Under Review</span>
+          </div>
+        </div>
+
+        <!-- Sender Details Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1.5">
+            <div class="text-[10px] font-bold text-slate-400 uppercase">Sender Information</div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Full Name:</span>
+              <strong class="text-slate-800 dark:text-white" id="modalDetailSender">Tariq Mehmood</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Class / Designation:</span>
+              <strong class="text-slate-800 dark:text-white font-mono" id="modalDetailSubText">Senior Physics Lecturer</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">ID / Roll No:</span>
+              <strong class="text-emerald-600 font-mono" id="modalDetailId">FAC-2026-018</strong>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1.5">
+            <div class="text-[10px] font-bold text-slate-400 uppercase">Contact & Channel</div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">WhatsApp Phone:</span>
+              <a href="#" id="modalSenderWaLink" target="_blank" class="font-mono font-bold text-emerald-600 hover:underline flex items-center gap-1">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span id="modalDetailPhone">0333-9182341</span>
+              </a>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Submission Mode:</span>
+              <span class="text-slate-700 dark:text-slate-300 font-medium">Digital Form &bull; Web Desk</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Formal Application Letter Text -->
+        <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
+          <div class="font-bold text-slate-800 dark:text-white text-xs border-b border-slate-100 dark:border-slate-800 pb-2 flex items-center gap-2">
+            <i class="fa-solid fa-scroll text-emerald-600"></i>
+            <span id="modalApplicationSubject">Application Subject</span>
+          </div>
+          <div class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed space-y-2 pt-1 whitespace-pre-line" id="modalApplicationBody">
+            Respected Principal,
+            I respectfully request leave for three days due to severe fever. Medical prescription is attached.
+          </div>
+        </div>
+
+        <!-- Admin Remarks & Decision Box -->
+        <div class="p-3.5 bg-amber-50/50 dark:bg-slate-800/60 rounded-xl border border-amber-200 dark:border-amber-800/40 space-y-2">
+          <label class="form-label !mb-0 font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between" for="modalAdminRemarkInput">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-stamp text-amber-600"></i>
+              <span>Official Admin Order & Remarks</span>
+            </span>
+            <span class="text-[10px] text-slate-400 font-normal">Will be recorded in log & sent to applicant</span>
+          </label>
+          <textarea 
+            id="modalAdminRemarkInput" 
+            rows="2" 
+            class="form-control text-xs resize-none" 
+            placeholder="e.g. Sanctioned with full pay. Charge handed over to Sir Bilal for Classes 9 & 10."
+          ></textarea>
+        </div>
+
+      </div>
+
+      <div class="modal-footer justify-between">
+        <button type="button" class="btn-kims btn-secondary !py-1.5 text-xs" data-modal-close>Close</button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="actionIncomingRequest('Need Info')" class="btn-kims btn-secondary !py-1.5 text-xs text-blue-600 hover:bg-blue-50">
+            <i class="fa-solid fa-question"></i>
+            <span>Need Info</span>
+          </button>
+          <button type="button" onclick="actionIncomingRequest('Rejected')" class="btn-kims btn-secondary !py-1.5 text-xs text-rose-600 hover:bg-rose-50">
+            <i class="fa-solid fa-ban"></i>
+            <span>Reject</span>
+          </button>
+          <button type="button" onclick="actionIncomingRequest('Approved')" class="btn-kims btn-primary !py-1.5 text-xs">
+            <i class="fa-solid fa-check"></i>
+            <span>Approve & Record</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: OFFICIAL LETTERHEAD PREVIEW & PRINT                                -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="viewNoticeLetterheadModal">
+    <div class="modal-container" style="max-width: 760px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-print text-emerald-600"></i>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white">Official Letterhead Document</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body p-6 bg-slate-100 dark:bg-slate-950 overflow-y-auto max-h-[75vh]">
+        <div id="letterheadPrintContainer" class="bg-white text-slate-900 p-8 rounded-2xl shadow-md border border-slate-200 max-w-2xl mx-auto font-sans">
+          <!-- Letterhead Top -->
+          <div class="border-b-2 border-emerald-800 pb-3 text-center mb-5">
+            <div class="flex items-center justify-center gap-3 mb-1">
+              <div class="w-11 h-11 rounded-xl bg-emerald-800 text-white flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="text-left">
+                <h1 class="text-lg font-black text-emerald-900 uppercase tracking-tight m-0">Kohat Institute of Modern Sciences (KIMS)</h1>
+                <p class="text-[11px] text-slate-600 font-semibold m-0">Senior Secondary & High School &bull; Affiliated with BISE Kohat</p>
+              </div>
+            </div>
+            <div class="flex justify-between text-[11px] text-slate-600 pt-3 border-t border-slate-200 font-mono">
+              <span id="printRefNo">Ref: KIMS/ADM/2026/089</span>
+              <span id="printDate">Date: 07 Sep 2026</span>
+              <span>Office of the Principal</span>
+            </div>
+          </div>
+
+          <!-- Letterhead Title -->
+          <div class="text-center my-4">
+            <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-900 border border-emerald-300 rounded text-xs font-bold uppercase tracking-wider" id="printCategoryBadge">
+              Official Circular
+            </span>
+            <h2 class="text-base font-bold text-slate-900 mt-2" id="printSubject">Subject Line</h2>
+          </div>
+
+          <!-- Target Recipient Salutation -->
+          <div class="text-xs font-semibold text-slate-700 mb-3" id="printSalutation">
+            To: All Concerned Stakeholders
+          </div>
+
+          <!-- Letter Body -->
+          <div class="text-xs text-slate-800 leading-relaxed space-y-3 mb-8" id="printLetterBody">
+            Letter body content...
+          </div>
+
+          <!-- Bottom Signature Block -->
+          <div class="border-t border-slate-300 pt-6 flex justify-between items-end">
+            <div class="text-[10px] text-slate-500">
+              <div>Dispatched via KIMS Administrative System</div>
+              <div>Kohat Cantt, Khyber Pakhtunkhwa, Pakistan</div>
+            </div>
+            <div class="text-right">
+              <div class="w-20 h-10 border border-dashed border-emerald-500 rounded flex items-center justify-center text-[9px] font-bold text-emerald-800 uppercase rotate-[-6deg] mb-1 ml-auto">
+                [KIMS SEAL]
+              </div>
+              <div class="font-bold text-xs text-slate-900">Dr. M. Tariq Afridi</div>
+              <div class="text-[10px] text-slate-600">Principal / Executive Head</div>
+              <div class="text-[9px] text-slate-400">KIMS High School</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-between">
+        <button type="button" class="btn-kims btn-secondary !py-1.5 text-xs" data-modal-close>Close</button>
+        <button type="button" onclick="window.print()" class="btn-kims btn-primary !py-1.5 text-xs">
+          <i class="fa-solid fa-print"></i>
+          <span>Print Official Document</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // SEED DATA: INCOMING APPLICATIONS & SENT NOTICES
+    // =========================================================================
+
+    const DEFAULT_INCOMING = [
+      {
+        id: "REQ-2026-031",
+        date: "06 Sep 2026",
+        senderName: "Sir Tariq Mehmood",
+        senderRole: "teacher",
+        senderId: "FAC-2026-018",
+        subText: "Senior Physics Lecturer",
+        phone: "0333-9182341",
+        category: "Leave Application",
+        subject: "Casual Leave Application for 2 Days (Sister's Wedding)",
+        body: `Respected Principal,\n\nI respectfully request two days casual leave from 10th Sep to 11th Sep 2026 on account of my sister's wedding ceremony in Peshawar.\n\nI have arranged proxy classes with Sir Bilal (Chemistry) for Class 9 and Class 10 so academic continuity will not be disturbed.\n\nKindly sanction my leave.`,
+        priority: "Normal",
+        status: "Pending",
+        adminRemark: ""
+      },
+      {
+        id: "REQ-2026-032",
+        date: "05 Sep 2026",
+        senderName: "Muhammad Huzaifa Khan",
+        senderRole: "student",
+        senderId: "KIMS-2026-04851",
+        subText: "Class 8 - Roll #14",
+        phone: "0300-5872149",
+        category: "Medical Leave",
+        subject: "Medical Leave Application due to Typhoid Fever",
+        body: `To The Principal,\nKohat Institute of Modern Sciences,\n\nSir, with due respect it is stated that I am suffering from high typhoid fever since yesterday. The doctor at CMH Kohat has strictly advised complete bed rest for 4 days.\n\nKindly grant me medical leave from 06 Sep to 09 Sep 2026. Medical prescription and lab report are attached.\n\nThank you.\nYour obedient student,\nMuhammad Huzaifa Khan`,
+        priority: "High Priority",
+        status: "Pending",
+        adminRemark: ""
+      },
+      {
+        id: "REQ-2026-033",
+        date: "05 Sep 2026",
+        senderName: "Tariq Mehmood Afridi (Father)",
+        senderRole: "parent",
+        senderId: "PAR-2026-092",
+        subText: "Father of Huzaifa & Zunaira",
+        phone: "0333-9182341",
+        category: "Transport Request",
+        subject: "Request for School Bus Route 3 Stop Adjustment",
+        body: `Respected Administration,\n\nWe have recently shifted our residence from Sector 2 KDA to Mohallah Umarzai near City Gate. My children currently travel on Bus #3.\n\nI kindly request the transport supervisor to adjust their morning and afternoon pickup stop to the City Gate junction.\n\nLooking forward to your favorable cooperation.\nTariq Mehmood Afridi`,
+        priority: "Normal",
+        status: "Under Review",
+        adminRemark: "Referred to Transport in-charge Sir Naeem for seat verification."
+      },
+      {
+        id: "REQ-2026-034",
+        date: "04 Sep 2026",
+        senderName: "Ms. Naila Jabeen",
+        senderRole: "teacher",
+        senderId: "FAC-2026-025",
+        subText: "Senior Mathematics Teacher",
+        phone: "0345-9110488",
+        category: "Advance Requisition",
+        subject: "Advance Salary Requisition for Family Medical Emergency",
+        body: `Respected Principal Sahib,\n\nDue to an unexpected medical emergency involving my mother's hospitalization in Peshawar, I respectfully request an advance salary of PKR 30,000 against my September 2026 salary.\n\nThe amount may be adjusted in two equal monthly deductions from my upcoming payouts.\n\nYour kind approval will be of immense support in this urgent hour.`,
+        priority: "Urgent",
+        status: "Approved",
+        adminRemark: "Sanctioned by Executive Principal. Accounts office issued bearer cheque #48120."
+      },
+      {
+        id: "REQ-2026-035",
+        date: "03 Sep 2026",
+        senderName: "Fatima Zahra",
+        senderRole: "student",
+        senderId: "KIMS-2026-04852",
+        subText: "Class 0-1 / Primary Foundation",
+        phone: "0312-7654321",
+        category: "Certificate Request",
+        subject: "Application for Character & Bonafide Certificate",
+        body: `Respected Sir,\n\nI am currently applying for admission in Cadet College prep wing. For the application portfolio, an official Bonafide and Character Certificate from KIMS is required.\n\nKindly issue the certificate at your earliest convenience.\n\nYours faithfully,\nFatima Zahra`,
+        priority: "Normal",
+        status: "Approved",
+        adminRemark: "Certificate issued ref # KIMS/CER/2026/104."
+      },
+      {
+        id: "REQ-2026-036",
+        date: "02 Sep 2026",
+        senderName: "Asad Ullah Khan, M.Sc English",
+        senderRole: "public",
+        senderId: "PUB-2026-012",
+        subText: "External Job Candidate",
+        phone: "0314-5591280",
+        category: "Job Application",
+        subject: "Application for Secondary English Teacher Position",
+        body: `To The Management,\nKohat Institute of Modern Sciences,\n\nSubject: Job Application for English Teacher (Matric Section)\n\nRespected Sir/Madam,\nWith reference to your hiring announcement on KIMS official portal, I am applying for the post of English Lecturer / High School Teacher. I hold an M.Sc in English Literature with 4 years teaching experience in BISE-affiliated institutions.\n\nMy CV, degrees, and references are attached for your review. I look forward to an interview demonstration.\n\nSincerely,\nAsad Ullah Khan`,
+        priority: "Normal",
+        status: "Pending",
+        adminRemark: ""
+      },
+      {
+        id: "REQ-2026-037",
+        date: "01 Sep 2026",
+        senderName: "Imran Qureshi (Father)",
+        senderRole: "parent",
+        senderId: "PAR-2026-044",
+        subText: "Father of Hania Imran (Class 6)",
+        phone: "0345-6671822",
+        category: "Fee Concession",
+        subject: "Request for Tuition Fee Installment Plan",
+        body: `Respected Principal,\n\nDue to temporary business slowdown, I am currently unable to pay the combined term fee of PKR 12,000 in a single lump sum.\n\nI respectfully request permission to deposit the dues in two monthly installments of PKR 6,000 each for September and October 2026.\n\nHoping for your kind consideration.`,
+        priority: "Normal",
+        status: "Approved",
+        adminRemark: "Approved by Accounts Head. Two challans issued payable by 15th Sept and 15th Oct."
+      },
+      {
+        id: "REQ-2026-038",
+        date: "31 Aug 2026",
+        senderName: "Engr. Bilal Bangash",
+        senderRole: "public",
+        senderId: "PUB-2026-015",
+        subText: "Kohat Youth Sports Club",
+        phone: "0321-9988231",
+        category: "Public Inquiry",
+        subject: "Inquiry Regarding Weekend School Cricket Ground Rental",
+        body: `Dear School Administration,\n\nKohat Youth Club is organizing an inter-mohallah peace cricket tournament. We wish to inquire about the terms, security clearance, and rental availability of KIMS Sports Ground for Sunday 20th September.\n\nWe assure strict adherence to school discipline and turf care.\n\nRegards,\nEngr. Bilal Bangash`,
+        priority: "Normal",
+        status: "Need Info",
+        adminRemark: "Requested list of participating teams and police NOC."
+      }
+    ];
+
+    const DEFAULT_OUTBOX = [
+      {
+        refNo: "KIMS/CIR/2026/088",
+        date: "07 Sep 2026",
+        audience: "parents",
+        audienceDisplay: "👨‍👩‍👧 All Parents",
+        category: "Parent-Teacher Meeting",
+        priority: "High Priority",
+        subject: "Schedule for 1st Term Parent-Teacher Meeting (PTM) & Progress Reviews",
+        excerpt: "Mandatory meeting on Saturday 12th Sept from 9:00 AM to 1:00 PM to discuss first term academic performance and attendance.",
+        channels: ["In-App Portal", "WhatsApp Alert"],
+        sender: "Dr. M. Tariq Afridi (Principal)",
+        fullBodyHtml: `<p><strong>Respected Parents / Guardians,</strong></p><p>Assalam-o-Alaikum,</p><p>We cordially invite you to attend the <strong>1st Term Parent-Teacher Meeting (PTM)</strong> scheduled for <strong>Saturday, 12th September 2026</strong> from <strong>9:00 AM to 1:00 PM</strong> at the school main campus.</p><h2>Meeting Objectives:</h2><ul><li>One-on-one discussion with class teachers and subject instructors.</li><li>Review of monthly diagnostic tests, homework diaries, and class discipline.</li><li>Guidance for Matriculation (Class 9 & 10) Board exam preparation.</li></ul><p>Your presence is vital for the academic success of your child. Please bring the student homework diary.</p>`
+      },
+      {
+        refNo: "KIMS/NOT/2026/087",
+        date: "05 Sep 2026",
+        audience: "class_9_10",
+        audienceDisplay: "📘 Class 9 & 10 (Matric Scholars)",
+        category: "Exam Schedule & Datesheet",
+        priority: "Urgent",
+        subject: "BISE Board Registration & 1st Term Examination Date Sheet Released",
+        excerpt: "Official notification detailing Board registration deadlines, NADRA B-Form verification, and term exam timetable starting 22nd Sept.",
+        channels: ["In-App Portal", "Notice Board", "WhatsApp Alert"],
+        sender: "Controller of Examinations",
+        fullBodyHtml: `<p><strong>All Scholars of Class 9 (SSC-I) and Class 10 (SSC-II),</strong></p><p>This is to notify all Matriculation students that the <strong>1st Term Mid-Session Examinations</strong> will commence on <strong>Tuesday, 22nd September 2026</strong> as per the released schedule.</p><h2>Important Instructions:</h2><ol><li>Attendance threshold of 75% is strictly mandatory to sit for exams.</li><li>Students must clear all outstanding tuition fees by 15th September.</li><li>NADRA B-Form photocopies must be submitted to the examination cell for BISE board enrollment.</li></ol><p>Detailed date sheet has been pinned to the classroom boards and portal.</p>`
+      },
+      {
+        refNo: "KIMS/ADM/2026/086",
+        date: "03 Sep 2026",
+        audience: "teachers",
+        audienceDisplay: "👨‍🏫 All Teachers & Faculty",
+        category: "Staff Meeting & Circular",
+        priority: "Normal",
+        subject: "General Faculty Meeting & Monthly Syllabus Coverage Audit",
+        excerpt: "Staff meeting called in the conference hall on Monday at 2:00 PM to review lesson plans and teacher training modules.",
+        channels: ["In-App Portal", "Staff WhatsApp"],
+        sender: "Vice Principal Academics",
+        fullBodyHtml: `<p><strong>Dear Esteemed Faculty Members,</strong></p><p>A general faculty meeting is scheduled for <strong>Monday, 8th September at 2:00 PM</strong> in the Staff Conference Hall.</p><h2>Agenda Items:</h2><ul><li>Evaluation of syllabus completion across Class 0-1 through Class 10.</li><li>Integration of modern science laboratory experiments for senior batches.</li><li>Implementation of homework tracking protocols in parent portals.</li></ul><p>Attendance is compulsory for all permanent and visiting staff.</p>`
+      },
+      {
+        refNo: "KIMS/FEE/2026/085",
+        date: "01 Sep 2026",
+        audience: "parents",
+        audienceDisplay: "👨‍👩‍👧 All Parents",
+        category: "Fee Reminder Notice",
+        priority: "Normal",
+        subject: "Monthly Tuition Fee Reminder for September 2026 (Due Date: 10th Sept)",
+        excerpt: "Parents are requested to deposit monthly tuition fees before the 10th of September at designated bank branches or school cash counter.",
+        channels: ["In-App Portal", "WhatsApp Alert"],
+        sender: "Accounts & Finance Office",
+        fullBodyHtml: `<p><strong>Respected Parents / Guardians,</strong></p><p>This is a gentle reminder that school tuition and transport fees for the month of <strong>September 2026</strong> are payable by <strong>10th September 2026</strong>.</p><p>Payment can be deposited directly at the school accounts counter (8:00 AM to 2:00 PM) or via National Bank / Allied Bank fee challan vouchers.</p><p>Please note that late fee fine of PKR 20/day applies after the due date.</p>`
+      },
+      {
+        refNo: "KIMS/HOL/2026/084",
+        date: "28 Aug 2026",
+        audience: "school_wide",
+        audienceDisplay: "🏛️ Entire School (All Stakeholders)",
+        category: "Vacation Notification",
+        priority: "Normal",
+        subject: "12th Rabi-ul-Awwal (Eid Milad-un-Nabi) Public Holiday Notification",
+        excerpt: "School will remain closed on the auspicious occasion of 12th Rabi-ul-Awwal. Classes will resume as normal on the following working day.",
+        channels: ["In-App Portal", "Notice Board"],
+        sender: "Office of the Principal",
+        fullBodyHtml: `<p><strong>Notification:</strong></p><p>The school will observe a public holiday on the auspicious occasion of <strong>12th Rabi-ul-Awwal (Eid Milad-un-Nabi ﷺ)</strong> as notified by the Government of Khyber Pakhtunkhwa.</p><p>The institution will reopen on the following working day as per regular morning timetable.</p>`
+      }
+    ];
+
+    // State Variables
+    let incomingData = [];
+    let outgoingData = [];
+    let currentIncomingRoleFilter = 'all';
+    let currentIncomingStatusFilter = 'all';
+    let currentIncomingSearch = '';
+    let currentOutgoingAudienceFilter = 'all';
+    let currentOutgoingSearch = '';
+    let selectedIncomingItem = null;
+    let selectedPrintNotice = null;
+
+    // Load Data
+    function loadDeskData() {
+      const storedIn = localStorage.getItem('kims_applications_inbox');
+      if (storedIn) {
+        try { incomingData = JSON.parse(storedIn); } catch (e) { incomingData = [...DEFAULT_INCOMING]; }
+      } else {
+        incomingData = [...DEFAULT_INCOMING];
+        saveIncomingData();
+      }
+
+      const storedOut = localStorage.getItem('kims_applications_outbox');
+      if (storedOut) {
+        try { outgoingData = JSON.parse(storedOut); } catch (e) { outgoingData = [...DEFAULT_OUTBOX]; }
+      } else {
+        outgoingData = [...DEFAULT_OUTBOX];
+        saveOutgoingData();
+      }
+    }
+
+    function saveIncomingData() {
+      localStorage.setItem('kims_applications_inbox', JSON.stringify(incomingData));
+      updateDeskKPIs();
+    }
+
+    function saveOutgoingData() {
+      localStorage.setItem('kims_applications_outbox', JSON.stringify(outgoingData));
+      updateDeskKPIs();
+    }
+
+    function updateDeskKPIs() {
+      const pendingCount = incomingData.filter(i => i.status === 'Pending' || i.status === 'Under Review').length;
+      const resolvedCount = incomingData.filter(i => i.status === 'Approved').length;
+      const sentCount = outgoingData.length;
+      const publicCount = incomingData.filter(i => i.senderRole === 'public').length;
+
+      const kpiPendingEl = document.getElementById('kpiPendingCount');
+      const kpiResolvedEl = document.getElementById('kpiResolvedCount');
+      const kpiSentEl = document.getElementById('kpiSentCount');
+      const kpiPublicEl = document.getElementById('kpiPublicCount');
+      const badgeIncoming = document.getElementById('countIncomingBadge');
+      const badgeOutgoing = document.getElementById('countOutgoingBadge');
+      const sidebarBadge = document.getElementById('sidebarBadgePending');
+
+      if (kpiPendingEl) kpiPendingEl.innerText = pendingCount;
+      if (kpiResolvedEl) kpiResolvedEl.innerText = 38 + resolvedCount;
+      if (kpiSentEl) kpiSentEl.innerText = sentCount;
+      if (kpiPublicEl) kpiPublicEl.innerText = publicCount;
+      if (badgeIncoming) badgeIncoming.innerText = incomingData.length;
+      if (badgeOutgoing) badgeOutgoing.innerText = outgoingData.length;
+      if (sidebarBadge) sidebarBadge.innerText = `${pendingCount} New`;
+
+      // Update incoming role pill counts
+      const pillAll = document.getElementById('pillRoleAll');
+      const pillTeacher = document.getElementById('pillRoleTeacher');
+      const pillStudent = document.getElementById('pillRoleStudent');
+      const pillParent = document.getElementById('pillRoleParent');
+      const pillPublic = document.getElementById('pillRolePublic');
+
+      if (pillAll) pillAll.innerText = incomingData.length;
+      if (pillTeacher) pillTeacher.innerText = incomingData.filter(i => i.senderRole === 'teacher').length;
+      if (pillStudent) pillStudent.innerText = incomingData.filter(i => i.senderRole === 'student').length;
+      if (pillParent) pillParent.innerText = incomingData.filter(i => i.senderRole === 'parent').length;
+      if (pillPublic) pillPublic.innerText = incomingData.filter(i => i.senderRole === 'public').length;
+
+      // Update outgoing audience pill counts
+      const pOutAll = document.getElementById('pillOutAll');
+      const pOutTeachers = document.getElementById('pillOutTeachers');
+      const pOutParents = document.getElementById('pillOutParents');
+      const pOutStudents = document.getElementById('pillOutStudents');
+      const pOutSchool = document.getElementById('pillOutSchool');
+
+      if (pOutAll) pOutAll.innerText = outgoingData.length;
+      if (pOutTeachers) pOutTeachers.innerText = outgoingData.filter(o => o.audience === 'teachers').length;
+      if (pOutParents) pOutParents.innerText = outgoingData.filter(o => o.audience === 'parents').length;
+      if (pOutStudents) pOutStudents.innerText = outgoingData.filter(o => o.audience === 'students' || o.audience === 'class_9_10' || o.audience === 'primary').length;
+      if (pOutSchool) pOutSchool.innerText = outgoingData.filter(o => o.audience === 'school_wide' || o.audience === 'public').length;
+    }
+
+    // =========================================================================
+    // VIEW SWITCHER TABS (INCOMING VS OUTGOING)
+    // =========================================================================
+
+    function switchDeskTab(tab, btn) {
+      const tabIn = document.getElementById('tabBtnIncoming');
+      const tabOut = document.getElementById('tabBtnOutgoing');
+      const viewIn = document.getElementById('viewIncomingContainer');
+      const viewOut = document.getElementById('viewOutgoingContainer');
+      const sub = document.getElementById('tabSubtitleDesk');
+
+      if (tab === 'incoming') {
+        if (tabIn) tabIn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        if (tabOut) tabOut.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        if (viewIn) viewIn.classList.remove('hidden');
+        if (viewOut) viewOut.classList.add('hidden');
+        if (sub) sub.innerText = 'Reviewing formal requests submitted to the school administration';
+        renderIncomingTable();
+      } else {
+        if (tabOut) tabOut.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-xs flex items-center gap-2';
+        if (tabIn) tabIn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center gap-2';
+        if (viewIn) viewIn.classList.add('hidden');
+        if (viewOut) viewOut.classList.remove('hidden');
+        if (sub) sub.innerText = 'Administrative notices, circulars and letters dispatched to teachers, parents, and students';
+        renderOutgoingTable();
+      }
+    }
+
+    // =========================================================================
+    // TAB 1: INCOMING APPLICATIONS TABLE RENDERING
+    // =========================================================================
+
+    function renderIncomingTable() {
+      const tbody = document.getElementById('incomingTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentIncomingSearch.toLowerCase().trim();
+
+      const filtered = incomingData.filter(item => {
+        const matchesRole = currentIncomingRoleFilter === 'all' || item.senderRole === currentIncomingRoleFilter;
+        if (!matchesRole) return false;
+
+        const matchesStatus = currentIncomingStatusFilter === 'all' || 
+          (currentIncomingStatusFilter === 'Pending' && (item.status === 'Pending' || item.status === 'Under Review')) ||
+          item.status === currentIncomingStatusFilter;
+        if (!matchesStatus) return false;
+
+        if (!term) return true;
+        return (
+          item.senderName.toLowerCase().includes(term) ||
+          item.id.toLowerCase().includes(term) ||
+          item.subject.toLowerCase().includes(term) ||
+          item.category.toLowerCase().includes(term) ||
+          (item.senderId && item.senderId.toLowerCase().includes(term)) ||
+          (item.phone && item.phone.includes(term))
+        );
+      });
+
+      const displayEl = document.getElementById('incomingDisplayCount');
+      const totalEl = document.getElementById('incomingTotalCount');
+      if (displayEl) displayEl.innerText = filtered.length;
+      if (totalEl) totalEl.innerText = incomingData.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-12 text-slate-400">
+              <div class="flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-2">
+                  <i class="fa-solid fa-inbox text-xl text-slate-400"></i>
+                </div>
+                <p class="font-bold text-slate-600 dark:text-slate-300 text-sm">No applications found</p>
+                <p class="text-xs text-slate-400 mt-1">No incoming applications match the selected sender role or search query.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        // Role Badge & Colors
+        let roleBadge = '';
+        let roleBg = 'bg-emerald-700';
+        if (item.senderRole === 'teacher') {
+          roleBadge = '<span class="badge badge-info text-[10px]"><i class="fa-solid fa-chalkboard-user mr-1"></i>Teacher</span>';
+          roleBg = 'bg-blue-600';
+        } else if (item.senderRole === 'student') {
+          roleBadge = '<span class="badge badge-success text-[10px]"><i class="fa-solid fa-graduation-cap mr-1"></i>Student</span>';
+          roleBg = 'bg-emerald-600';
+        } else if (item.senderRole === 'parent') {
+          roleBadge = '<span class="badge badge-warning text-[10px]"><i class="fa-solid fa-people-roof mr-1"></i>Parent</span>';
+          roleBg = 'bg-amber-600';
+        } else {
+          roleBadge = '<span class="badge badge-secondary text-[10px]"><i class="fa-solid fa-globe mr-1"></i>Public</span>';
+          roleBg = 'bg-purple-600';
+        }
+
+        // Status Badge
+        let statusBadge = '';
+        if (item.status === 'Pending') {
+          statusBadge = '<span class="badge badge-warning text-[10px]"><i class="fa-solid fa-clock mr-1"></i>Pending</span>';
+        } else if (item.status === 'Under Review') {
+          statusBadge = '<span class="badge badge-info text-[10px]"><i class="fa-solid fa-spinner fa-spin mr-1"></i>Under Review</span>';
+        } else if (item.status === 'Approved') {
+          statusBadge = '<span class="badge badge-success text-[10px]"><i class="fa-solid fa-circle-check mr-1"></i>Approved</span>';
+        } else if (item.status === 'Need Info') {
+          statusBadge = '<span class="badge badge-info text-[10px]"><i class="fa-solid fa-circle-question mr-1"></i>Need Info</span>';
+        } else {
+          statusBadge = '<span class="badge badge-danger text-[10px]"><i class="fa-solid fa-ban mr-1"></i>Rejected</span>';
+        }
+
+        // Priority Badge
+        let prioBadge = '<span class="text-[10px] font-semibold text-slate-500">Normal</span>';
+        if (item.priority === 'Urgent') {
+          prioBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300">Urgent</span>';
+        } else if (item.priority === 'High Priority') {
+          prioBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300">High</span>';
+        }
+
+        const initials = item.senderName.split(' ').map(n => n[0]).slice(0, 2).join('');
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
+        tr.innerHTML = `
+          <td>
+            <div class="font-mono font-bold text-xs text-slate-800 dark:text-white">${item.id}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">${item.date}</div>
+          </td>
+          <td>
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg ${roleBg} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
+                ${initials}
+              </div>
+              <div>
+                <div class="font-bold text-xs text-slate-800 dark:text-white">${item.senderName}</div>
+                <div class="text-[10px] text-slate-400">${item.subText} &bull; <span class="font-mono">${item.senderId}</span></div>
+              </div>
+            </div>
+          </td>
+          <td>${roleBadge}</td>
+          <td>
+            <span class="font-semibold text-xs text-slate-700 dark:text-slate-300">${item.category}</span>
+          </td>
+          <td>
+            <div class="font-semibold text-xs text-slate-800 dark:text-white line-clamp-1">${item.subject}</div>
+            <div class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${item.body.substring(0, 70)}...</div>
+          </td>
+          <td>${prioBadge}</td>
+          <td>${statusBadge}</td>
+          <td class="text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <button type="button" onclick="viewIncomingDossier('${item.id}')" class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs transition" title="View Application Details & Act">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+              ${item.status !== 'Approved' ? `
+                <button type="button" onclick="quickApprove('${item.id}')" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950 text-emerald-600 transition" title="Quick Approve">
+                  <i class="fa-solid fa-check text-xs"></i>
+                </button>
+              ` : ''}
+              <a href="https://wa.me/${item.phone.replace(/[^0-9]/g, '')}" target="_blank" class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-600 text-xs transition" title="WhatsApp Sender">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterIncomingByRole(role, btn) {
+      currentIncomingRoleFilter = role;
+      if (btn) {
+        const parent = btn.parentElement;
+        if (parent) {
+          parent.querySelectorAll('button').forEach(b => {
+            b.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0';
+          });
+          btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm shrink-0';
+        }
+      }
+      renderIncomingTable();
+    }
+
+    function filterIncomingByStatus(status) {
+      currentIncomingStatusFilter = status;
+      renderIncomingTable();
+    }
+
+    function handleIncomingSearch(val) {
+      currentIncomingSearch = val;
+      renderIncomingTable();
+    }
+
+    function handleGlobalSearch(val) {
+      currentIncomingSearch = val;
+      currentOutgoingSearch = val;
+      renderIncomingTable();
+      renderOutgoingTable();
+    }
+
+    // =========================================================================
+    // INCOMING APPLICATION DOSSIER VIEW & ACTION
+    // =========================================================================
+
+    function viewIncomingDossier(id) {
+      const item = incomingData.find(i => i.id === id);
+      if (!item) return;
+      selectedIncomingItem = item;
+
+      document.getElementById('modalTicketNo').innerText = item.id;
+      document.getElementById('modalFiledDate').innerText = item.date;
+      document.getElementById('modalSenderName').innerText = item.senderName;
+      document.getElementById('modalCategoryText').innerText = item.category;
+      document.getElementById('modalDetailSender').innerText = item.senderName;
+      document.getElementById('modalDetailSubText').innerText = item.subText;
+      document.getElementById('modalDetailId').innerText = item.senderId;
+      document.getElementById('modalDetailPhone').innerText = item.phone;
+      document.getElementById('modalSenderWaLink').href = `https://wa.me/${item.phone.replace(/[^0-9]/g, '')}`;
+      document.getElementById('modalApplicationSubject').innerText = item.subject;
+      document.getElementById('modalApplicationBody').innerText = item.body;
+      document.getElementById('modalAdminRemarkInput').value = item.adminRemark || '';
+
+      const avatar = document.getElementById('modalSenderAvatar');
+      if (avatar) avatar.innerText = item.senderName.split(' ').map(n => n[0]).slice(0, 2).join('');
+
+      const roleBadge = document.getElementById('modalSenderRoleBadge');
+      if (roleBadge) {
+        roleBadge.innerText = item.senderRole.toUpperCase();
+        roleBadge.className = item.senderRole === 'teacher' ? 'badge badge-info text-[10px]' : (item.senderRole === 'student' ? 'badge badge-success text-[10px]' : 'badge badge-warning text-[10px]');
+      }
+
+      const prioBadge = document.getElementById('modalPriorityBadge');
+      if (prioBadge) {
+        prioBadge.innerText = item.priority;
+        prioBadge.className = item.priority === 'Urgent' ? 'badge badge-danger text-[10px]' : 'badge badge-warning text-[10px]';
+      }
+
+      const statusBadge = document.getElementById('modalStatusBadge');
+      if (statusBadge) {
+        statusBadge.innerText = item.status;
+        statusBadge.className = item.status === 'Approved' ? 'badge badge-success text-[10px]' : 'badge badge-info text-[10px]';
+      }
+
+      openModal('viewIncomingModal');
+    }
+
+    function actionIncomingRequest(newState) {
+      if (!selectedIncomingItem) return;
+      const remark = document.getElementById('modalAdminRemarkInput').value.trim();
+
+      selectedIncomingItem.status = newState;
+      if (remark) selectedIncomingItem.adminRemark = remark;
+
+      saveIncomingData();
+      renderIncomingTable();
+      closeModal('viewIncomingModal');
+      showToast('Workflow Updated', `Ticket ${selectedIncomingItem.id} marked as ${newState}.`, 'success');
+    }
+
+    function quickApprove(id) {
+      const item = incomingData.find(i => i.id === id);
+      if (!item) return;
+      item.status = 'Approved';
+      if (!item.adminRemark) item.adminRemark = 'Approved by Principal via Quick Action.';
+      saveIncomingData();
+      renderIncomingTable();
+      showToast('Application Approved', `Ticket ${id} has been formally sanctioned.`, 'success');
+    }
+
+    // =========================================================================
+    // TAB 2: OUTGOING NOTICES TABLE RENDERING
+    // =========================================================================
+
+    function renderOutgoingTable() {
+      const tbody = document.getElementById('outgoingTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentOutgoingSearch.toLowerCase().trim();
+
+      const filtered = outgoingData.filter(notice => {
+        const matchesAudience = currentOutgoingAudienceFilter === 'all' || 
+          (currentOutgoingAudienceFilter === 'teachers' && notice.audience === 'teachers') ||
+          (currentOutgoingAudienceFilter === 'parents' && notice.audience === 'parents') ||
+          (currentOutgoingAudienceFilter === 'students' && (notice.audience === 'students' || notice.audience === 'class_9_10' || notice.audience === 'primary')) ||
+          (currentOutgoingAudienceFilter === 'school_wide' && (notice.audience === 'school_wide' || notice.audience === 'public'));
+        if (!matchesAudience) return false;
+
+        if (!term) return true;
+        return (
+          notice.refNo.toLowerCase().includes(term) ||
+          notice.subject.toLowerCase().includes(term) ||
+          notice.category.toLowerCase().includes(term) ||
+          notice.audienceDisplay.toLowerCase().includes(term)
+        );
+      });
+
+      const displayEl = document.getElementById('outgoingDisplayCount');
+      const totalEl = document.getElementById('outgoingTotalCount');
+      if (displayEl) displayEl.innerText = filtered.length;
+      if (totalEl) totalEl.innerText = outgoingData.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-12 text-slate-400">
+              <div class="flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-2">
+                  <i class="fa-solid fa-paper-plane text-xl text-slate-400"></i>
+                </div>
+                <p class="font-bold text-slate-600 dark:text-slate-300 text-sm">No notices found</p>
+                <p class="text-xs text-slate-400 mt-1">No dispatched notices match your filter or search query.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(notice => {
+        const channelsMarkup = notice.channels.map(c => {
+          if (c.includes('WhatsApp')) return `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>`;
+          if (c.includes('Board')) return `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-600 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full"><i class="fa-solid fa-clipboard"></i> Notice Board</span>`;
+          return `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded-full"><i class="fa-solid fa-bell"></i> Portal</span>`;
+        }).join(' ');
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition';
+        tr.innerHTML = `
+          <td>
+            <div class="font-mono font-bold text-xs text-slate-800 dark:text-white">${notice.refNo}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">${notice.date}</div>
+          </td>
+          <td>
+            <span class="font-bold text-xs text-slate-800 dark:text-white">${notice.audienceDisplay}</span>
+          </td>
+          <td>
+            <span class="badge badge-info text-[10px]">${notice.category}</span>
+          </td>
+          <td>
+            <div class="font-semibold text-xs text-slate-900 dark:text-white line-clamp-1">${notice.subject}</div>
+            <div class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${notice.excerpt || ''}</div>
+          </td>
+          <td>
+            <div class="flex flex-wrap gap-1">${channelsMarkup}</div>
+          </td>
+          <td>
+            <span class="text-xs text-slate-600 dark:text-slate-300 font-medium">${notice.sender}</span>
+          </td>
+          <td class="text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <button type="button" onclick="viewNoticeLetterhead('${notice.refNo}')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold transition flex items-center gap-1">
+                <i class="fa-solid fa-print text-emerald-600"></i>
+                <span>Print / View</span>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterOutgoingByAudience(aud, btn) {
+      currentOutgoingAudienceFilter = aud;
+      if (btn) {
+        const parent = btn.parentElement;
+        if (parent) {
+          parent.querySelectorAll('button').forEach(b => {
+            b.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0';
+          });
+          btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-sm shrink-0';
+        }
+      }
+      renderOutgoingTable();
+    }
+
+    function handleOutgoingSearch(val) {
+      currentOutgoingSearch = val;
+      renderOutgoingTable();
+    }
+
+    // =========================================================================
+    // STEP-BY-STEP GENERATOR: 1-CLICK TEMPLATES & RICH TEXT EDITOR
+    // =========================================================================
+
+    let noticeSerialCounter = 90;
+    function generateNoticeRef() {
+      const year = new Date().getFullYear();
+      const num = String(noticeSerialCounter++).padStart(3, '0');
+      return `KIMS/ADM/${year}/${num}`;
+    }
+
+    function openComposeModal() {
+      const ref = generateNoticeRef();
+      const refBox = document.getElementById('autoGeneratedRefNo');
+      const previewRef = document.getElementById('previewRefNo');
+      if (refBox) refBox.innerText = `REF: ${ref}`;
+      if (previewRef) previewRef.innerText = `Ref: ${ref}`;
+
+      const dateEl = document.getElementById('previewDateDisplay');
+      if (dateEl) dateEl.innerText = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+      openModal('composeApplicationModal');
+    }
+
+    function handleTargetAudienceChange(val) {
+      const catSelect = document.getElementById('noticeCategory');
+      if (!catSelect) return;
+
+      if (val === 'parents') {
+        catSelect.value = 'Parent-Teacher Meeting';
+      } else if (val === 'teachers') {
+        catSelect.value = 'Staff Meeting & Circular';
+      } else if (val === 'class_9_10' || val === 'students') {
+        catSelect.value = 'Exam Schedule & Datesheet';
+      } else {
+        catSelect.value = 'General Announcement';
+      }
+    }
+
+    function handleLetterheadToggle(checked) {
+      const headerBox = document.getElementById('letterheadHeaderBox');
+      const footerBox = document.getElementById('letterheadFooterBox');
+      if (headerBox) headerBox.style.display = checked ? 'block' : 'none';
+      if (footerBox) footerBox.style.display = checked ? 'flex' : 'none';
+    }
+
+    function formatDoc(command, value = null) {
+      document.execCommand(command, false, value);
+      const editor = document.getElementById('noticeRichEditor');
+      if (editor) editor.focus();
+    }
+
+    function insertCurrentDate() {
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      document.execCommand('insertText', false, today);
+    }
+
+    // Pre-filled High School Templates
+    const TEMPLATES = {
+      fee_reminder: {
+        subject: "Monthly Tuition Fee Reminder for Current Academic Session",
+        category: "Fee Reminder Notice",
+        audience: "parents",
+        html: `<p><strong>Respected Parents / Guardians,</strong></p><p>Assalam-o-Alaikum,</p><p>This is to remind all valued parents that the monthly tuition fees for the current session are due by the <strong>10th of this month</strong>.</p><h2>Fee Payment Guidelines:</h2><ul><li>Dues can be deposited at the main school cash counter during working hours (8:00 AM to 2:00 PM).</li><li>Bank challans are payable at any Allied Bank or National Bank branch across Kohat.</li><li>Students with cleared dues will receive stamped examination roll number slips on schedule.</li></ul><p>We appreciate your continuous support and timely cooperation.</p>`
+      },
+      ptm_call: {
+        subject: "Formal Call: Parent-Teacher Academic Review Meeting (PTM)",
+        category: "Parent-Teacher Meeting",
+        audience: "parents",
+        html: `<p><strong>Dear Parents and Guardians,</strong></p><p>We cordially invite you to the <strong>Term Progress Review Parent-Teacher Meeting</strong> scheduled for this <strong>Saturday from 9:00 AM to 1:00 PM</strong>.</p><h2>Schedule & Agenda:</h2><ol><li>Discussion on student attendance and punctuality records.</li><li>Class test marks analysis and subject teacher recommendations.</li><li>Special briefing for Matriculation (Class 9 & 10) BISE Board preparations.</li></ol><p>Parents are requested to bring their ward's school diary for teacher endorsements.</p>`
+      },
+      exam_datesheet: {
+        subject: "Notification: First Term Mid-Session Examinations & Board Date Sheet",
+        category: "Exam Schedule & Datesheet",
+        audience: "class_9_10",
+        html: `<p><strong>Notice to all High School Scholars (Class 9 & 10):</strong></p><p>The First Term Mid-Session Examinations will commence from <strong>Tuesday, 22nd September 2026</strong> as per the institutional calendar.</p><h2>General Instructions:</h2><ul><li>Morning papers will begin promptly at <strong>8:30 AM</strong>. Late arrival beyond 15 minutes will not be permitted.</li><li>School uniform and official Student ID Cards are compulsory.</li><li>Mobile phones and smartwatches are strictly forbidden in examination halls.</li></ul><p>Best wishes for your preparation and exams.</p>`
+      },
+      vacation_notice: {
+        subject: "Official Notification: Winter / Summer Vacation Institutional Closure",
+        category: "Vacation Notification",
+        audience: "school_wide",
+        html: `<p><strong>To All Faculty, Parents and Students,</strong></p><p>In accordance with the directive issued by the Elementary & Secondary Education Department, Khyber Pakhtunkhwa, the school will remain closed for seasonal vacations from <strong>Monday, 22nd December</strong> to <strong>Sunday, 4th January</strong>.</p><p>Holiday homework packages and winter reading projects have been handed over to all scholars. Regular classes will resume on <strong>Monday, 5th January 2027</strong> at regular morning timings.</p>`
+      },
+      staff_meeting: {
+        subject: "Circular: Mandatory Staff Meeting & Examination Invigilation Roster",
+        category: "Staff Meeting & Circular",
+        audience: "teachers",
+        html: `<p><strong>Respected Teachers and Faculty Members,</strong></p><p>A general faculty meeting is called on <strong>Friday at 1:30 PM</strong> in the Main Conference Room.</p><h2>Agenda:</h2><ul><li>Finalization of examination papers and question bank moderation.</li><li>Distribution of invigilation duties for Classes 6 through 10.</li><li>Review of teacher attendance records and digital lecture logbooks.</li></ul><p>All teaching and laboratory staff are requested to ensure punctual attendance.</p>`
+      },
+      blank: {
+        subject: "",
+        category: "General Announcement",
+        audience: "school_wide",
+        html: `<p>Enter notice content here...</p>`
+      }
+    };
+
+    function loadTemplate(key) {
+      const tpl = TEMPLATES[key];
+      if (!tpl) return;
+
+      const subInput = document.getElementById('noticeSubject');
+      const catSelect = document.getElementById('noticeCategory');
+      const audSelect = document.getElementById('noticeTargetAudience');
+      const editor = document.getElementById('noticeRichEditor');
+
+      if (subInput) subInput.value = tpl.subject;
+      if (catSelect) catSelect.value = tpl.category;
+      if (audSelect) audSelect.value = tpl.audience;
+      if (editor) editor.innerHTML = tpl.html;
+
+      showToast('Template Loaded', `Applied "${tpl.category}" template. You can now edit and format.`, 'info');
+    }
+
+    function handleDispatchNotice(event) {
+      event.preventDefault();
+      const subject = document.getElementById('noticeSubject').value.trim();
+      const category = document.getElementById('noticeCategory').value;
+      const audience = document.getElementById('noticeTargetAudience').value;
+      const priority = document.getElementById('noticePriority').value;
+      const editor = document.getElementById('noticeRichEditor');
+      const bodyHtml = editor ? editor.innerHTML : '';
+
+      if (!subject) {
+        showToast('Subject Required', 'Please enter a formal subject for the notice.', 'error');
+        document.getElementById('noticeSubject').focus();
+        return false;
+      }
+
+      const audDisplayMap = {
+        teachers: "👨‍🏫 All Teachers & Faculty",
+        parents: "👨‍👩‍👧 All Parents",
+        students: "🎓 All Students",
+        class_9_10: "📘 Class 9 & 10 (Matric Scholars)",
+        primary: "🎒 Primary Classes (1 to 5)",
+        school_wide: "🏛️ Entire School (All Stakeholders)",
+        public: "🌐 General Public / Notice Board"
+      };
+
+      const channels = [];
+      if (document.getElementById('chanPortal')?.checked) channels.push("In-App Portal");
+      if (document.getElementById('chanWhatsApp')?.checked) channels.push("WhatsApp Alert");
+      if (document.getElementById('chanPrint')?.checked) channels.push("Notice Board");
+
+      const plainText = editor.innerText.replace(/\s+/g, ' ').trim();
+      const excerpt = plainText.length > 90 ? plainText.substring(0, 90) + '...' : plainText;
+
+      const newRef = generateNoticeRef();
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+      const newNotice = {
+        refNo: newRef,
+        date: today,
+        audience,
+        audienceDisplay: audDisplayMap[audience] || "School Stakeholders",
+        category,
+        priority,
+        subject,
+        excerpt,
+        channels: channels.length ? channels : ["In-App Portal"],
+        sender: "Dr. M. Tariq Afridi (Principal)",
+        fullBodyHtml: bodyHtml
+      };
+
+      outgoingData.unshift(newNotice);
+      saveOutgoingData();
+      renderOutgoingTable();
+      closeModal('composeApplicationModal');
+
+      // Switch to Outgoing view to show new item
+      switchDeskTab('outgoing', document.getElementById('tabBtnOutgoing'));
+      showToast('Notice Dispatched!', `Circular ${newRef} has been published and broadcasted.`, 'success');
+      return false;
+    }
+
+    // =========================================================================
+    // LETTERHEAD PRINT & PREVIEW
+    // =========================================================================
+
+    function previewPrintableLetter() {
+      const subject = document.getElementById('noticeSubject').value.trim() || "Institutional Notice";
+      const category = document.getElementById('noticeCategory').value;
+      const editor = document.getElementById('noticeRichEditor');
+      const bodyHtml = editor ? editor.innerHTML : '<p>No content provided.</p>';
+      const ref = document.getElementById('previewRefNo').innerText.replace('Ref: ', '');
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+      document.getElementById('printRefNo').innerText = `Ref: ${ref}`;
+      document.getElementById('printDate').innerText = `Date: ${today}`;
+      document.getElementById('printCategoryBadge').innerText = category;
+      document.getElementById('printSubject').innerText = subject;
+      document.getElementById('printLetterBody').innerHTML = bodyHtml;
+
+      openModal('viewNoticeLetterheadModal');
+    }
+
+    function viewNoticeLetterhead(refNo) {
+      const notice = outgoingData.find(n => n.refNo === refNo);
+      if (!notice) return;
+      selectedPrintNotice = notice;
+
+      document.getElementById('printRefNo').innerText = `Ref: ${notice.refNo}`;
+      document.getElementById('printDate').innerText = `Date: ${notice.date}`;
+      document.getElementById('printCategoryBadge').innerText = notice.category;
+      document.getElementById('printSubject').innerText = notice.subject;
+      document.getElementById('printSalutation').innerText = `To: ${notice.audienceDisplay}`;
+      document.getElementById('printLetterBody').innerHTML = notice.fullBodyHtml;
+
+      openModal('viewNoticeLetterheadModal');
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDeskData();
+      renderIncomingTable();
+      renderOutgoingTable();
+      updateDeskKPIs();
+
+      // Check URL Hash for deep linking
+      if (window.location.hash === '#outgoing' || window.location.hash === '#notices') {
+        switchDeskTab('outgoing', document.getElementById('tabBtnOutgoing'));
+      } else if (window.location.hash === '#compose' || window.location.hash === '#new') {
+        setTimeout(() => openComposeModal(), 300);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kohat Institute of Modern Sciences (KIMS) - Kohat</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-cinematic-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.95) 0%, rgba(35, 53, 47, 0.88) 60%, rgba(2, 44, 34, 0.98) 100%), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFXNlueWK3kXMOIWpDFQ1A2bdzUWILdAZl2qIRH378-A&s');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Bottom blur gradient mask overlay */
+        .hero-cinematic-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(2, 44, 34, 1) 0%, rgba(2, 44, 34, 0) 100%);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            pointer-events: none;
+        }
+
+        /* Hexagon Circle Orbit Layout */
+        .hex-circle-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+            .hex-circle-container {
+                margin: 0 0 0 auto;
+            }
+        }
+
+        /* Ambient rotating orbit rings */
+        .hex-orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .orbit-outer {
+            width: 480px;
+            height: 480px;
+            border: 1.5px dashed rgba(52, 211, 153, 0.25);
+            animation: spinSlow 60s linear infinite;
+        }
+
+        .orbit-inner {
+            width: 340px;
+            height: 340px;
+            border: 1px solid rgba(16, 185, 129, 0.18);
+            animation: spinReverse 45s linear infinite;
+        }
+
+        .orbit-core-glow {
+            width: 260px;
+            height: 260px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(6, 78, 59, 0) 70%);
+            filter: blur(25px);
+            pointer-events: none;
+        }
+
+        @keyframes spinSlow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            from { transform: translate(-50%, -50%) rotate(360deg); }
+            to { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+
+        /* Center Hub */
+        .hex-center-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 112px;
+            z-index: 15;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .hex-center-hub:hover {
+            transform: translate(-50%, -50%) scale(1.06);
+        }
+
+        .hex-center-frame {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background: linear-gradient(135deg, #10b981 0%, #047857 50%, #064e3b 100%);
+            padding: 2.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hex-center-content {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background: radial-gradient(circle at center, #064e3b 0%, #022c22 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 6px;
+            text-align: center;
+        }
+
+        /* Circular Orbit Hexagon Cells */
+        .hex-cell {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 156px;
+            height: 135px;
+            margin-left: -78px;
+            margin-top: -67.5px;
+            filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .hex-cell:hover {
+            z-index: 25;
+            filter: drop-shadow(0 16px 30px rgba(16, 185, 129, 0.45));
+        }
+
+        /* Hexagonal Frame with Glowing Border */
+        .hex-frame {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.85) 0%, rgba(5, 150, 105, 0.35) 50%, rgba(6, 78, 59, 0.9) 100%);
+            padding: 2.5px;
+            transition: background 0.3s ease;
+        }
+
+        .hex-cell:hover .hex-frame {
+            background: linear-gradient(135deg, rgba(110, 231, 183, 1) 0%, rgba(16, 185, 129, 0.8) 50%, rgba(5, 150, 105, 1) 100%);
+        }
+
+        .hex-content {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background: #022c22;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hex-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hex-cell:hover .hex-content img {
+            transform: scale(1.14);
+        }
+
+        .hex-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(2, 44, 34, 0.88) 0%, rgba(2, 44, 34, 0.2) 60%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .hex-cell:hover .hex-overlay {
+            background: linear-gradient(to top, rgba(2, 44, 34, 0.96) 0%, rgba(2, 44, 34, 0.35) 60%, transparent 100%);
+        }
+
+        .hex-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: #a7f3d0;
+            letter-spacing: 0.04em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .hex-cell:hover .hex-tag {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* 6 Hexagons Positioned in a Mathematical Circle (Radius R = 156px) */
+        /* Hex 1: Top (12 o'clock, 90°) */
+        .hex-pos-1 { transform: translate(0px, -156px); }
+        .hex-pos-1:hover { transform: translate(0px, -156px) scale(1.1); }
+
+        /* Hex 2: Top-Right (2 o'clock, 30°) */
+        .hex-pos-2 { transform: translate(135px, -78px); }
+        .hex-pos-2:hover { transform: translate(135px, -78px) scale(1.1); }
+
+        /* Hex 3: Bottom-Right (4 o'clock, 330°) */
+        .hex-pos-3 { transform: translate(135px, 78px); }
+        .hex-pos-3:hover { transform: translate(135px, 78px) scale(1.1); }
+
+        /* Hex 4: Bottom (6 o'clock, 270°) */
+        .hex-pos-4 { transform: translate(0px, 156px); }
+        .hex-pos-4:hover { transform: translate(0px, 156px) scale(1.1); }
+
+        /* Hex 5: Bottom-Left (8 o'clock, 210°) */
+        .hex-pos-5 { transform: translate(-135px, 78px); }
+        .hex-pos-5:hover { transform: translate(-135px, 78px) scale(1.1); }
+
+        /* Hex 6: Top-Left (10 o'clock, 150°) */
+        .hex-pos-6 { transform: translate(-135px, -78px); }
+        .hex-pos-6:hover { transform: translate(-135px, -78px) scale(1.1); }
+
+        /* Responsive scaling */
+        @media (max-width: 1200px) and (min-width: 1024px) {
+            .hex-circle-container {
+                transform: scale(0.92);
+                transform-origin: center center;
+            }
+        }
+
+        @media (max-width: 1023px) and (min-width: 641px) {
+            .hex-circle-container {
+                transform: scale(0.85);
+                transform-origin: center center;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hex-circle-container {
+                transform: scale(0.72);
+                transform-origin: center center;
+                margin: 0.5rem auto -2rem auto;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hex-circle-container {
+                transform: scale(0.62);
+                transform-origin: center center;
+                margin: -0.5rem auto -4rem auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation with Hamburger Menu -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-4xl tracking-tight leading-none">KIMS</h1>
+                    <!-- <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p> -->
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200/60"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-emerald-800 font-bold"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CMS-Ready Dynamic Wrapper -->
+    <main id="cms-hero-root" data-cms-configurable="true">
+
+        <!-- 3. Cinematic Hero Section with Morning Assembly Background & Bottom Blur Transition -->
+        <section id="home" class="hero-cinematic-bg text-white py-16 lg:py-24 px-4 sm:px-8 relative overflow-hidden">
+            <!-- Decorative backdrop glow -->
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+
+                <!-- Left Content Focus -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span data-cms-field="badge">SHAPING THE FUTURE OF EDUCATION</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white" data-cms-field="title">
+                        A Smarter Way to Learn, Teach & Grow
+                    </h2>
+
+                    <p class="text-base sm:text-lg text-emerald-100/90 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed" data-cms-field="description">
+                        A modern educational platform connecting students, parents, teachers and administrators through one seamless digital experience.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-2">
+                        <a href="admissions.html" data-cms-field="primaryCTA" class="w-full sm:w-auto inline-flex justify-center items-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3.5 rounded-xl shadow-xl shadow-emerald-950/30 transition transform hover:-translate-y-0.5 text-base">
+                            Apply for Admission <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="programs.html" data-cms-field="secondaryCTA" class="w-full sm:w-auto inline-flex justify-center items-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold px-8 py-3.5 rounded-xl backdrop-blur-md transition text-base">
+                            Explore Our Programs
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Content Focus: Circular Hexagon Orbit Layout with Center Hub -->
+                <div class="lg:col-span-6 flex justify-center lg:justify-end items-center w-full">
+                    <div class="hex-circle-container">
+
+                        <!-- Ambient Circular Background Orbit Rings & Core Glow -->
+                        <div class="hex-orbit-ring orbit-outer"></div>
+                        <div class="hex-orbit-ring orbit-inner"></div>
+                        <div class="absolute top-1/2 left-1/2 orbit-core-glow rounded-full"></div>
+
+                        <!-- Centerpiece Hub: KIMS Institutional Crest & Core -->
+                        <div class="hex-center-hub" title="Kohat Institute of Modern Sciences">
+                            <div class="hex-center-frame">
+                                <div class="hex-center-content">
+                                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="KIMS Logo" class="w-9 h-9 rounded-lg shadow border border-emerald-400/40 object-cover mb-1">
+                                    <span class="font-extrabold text-[12px] text-white tracking-widest leading-none">KIMS</span>
+                                    <span class="text-[9px] uppercase font-semibold tracking-wider text-emerald-300 mt-0.5">KOHAT</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6 Hexagons Arranged in a Symmetrical Circle Orbit -->
+
+                        <!-- Hex 1: Top (12 o'clock / 90°) - Research Library -->
+                        <div class="hex-cell hex-pos-1" title="Research & Digital Library">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80" alt="Library">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">Library</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hex 2: Top-Right (2 o'clock / 30°) - Science Laboratories -->
+                        <div class="hex-cell hex-pos-2" title="State-of-the-Art Science Labs">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80" alt="Science Lab">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">Science Labs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hex 3: Bottom-Right (4 o'clock / 330°) - IT & Computing -->
+                        <div class="hex-cell hex-pos-3" title="Advanced Computing & IT Facilities">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRudrJsVnWEHopW6BcbZPKl2Qfrn6Twb-sdAmSPDvT60Q&s=10" alt="IT Lab">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">IT & CS Lab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hex 4: Bottom (6 o'clock / 270°) - Modern Campus -->
+                        <div class="hex-cell hex-pos-4" title="Spacious Campus & Modern Infrastructure">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="Campus">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">Campus</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hex 5: Bottom-Left (8 o'clock / 210°) - Student Life & Societies -->
+                        <div class="hex-cell hex-pos-5" title="Vibrant Student Community & Activities">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Student Excellence">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">Student Life</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hex 6: Top-Left (10 o'clock / 150°) - Academic Excellence -->
+                        <div class="hex-cell hex-pos-6" title="Degree Programs & Academic Excellence">
+                            <div class="hex-frame">
+                                <div class="hex-content">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAYuPLeRrnuo8GwGIMynXigj91rSmZztjtxXW5XLsfrGEhlFMOtelbNyQr&s=10" alt="Graduation">
+                                    <div class="hex-overlay">
+                                        <span class="hex-tag">Excellence</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Corner Micro-Badges -->
+                        <div class="absolute -top-3 -left-2 z-20 hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md text-slate-800 px-3.5 py-1.5 rounded-full shadow-lg border border-emerald-200/60 text-xs font-bold pointer-events-none">
+                            <i class="fa-solid fa-award text-amber-500 text-sm"></i> Top Ranked • Kohat
+                        </div>
+                        <div class="absolute -bottom-3 -right-2 z-20 hidden sm:flex items-center gap-2 bg-emerald-950/90 backdrop-blur-md text-emerald-200 px-3.5 py-1.5 rounded-full shadow-lg border border-emerald-500/40 text-xs font-medium pointer-events-none">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 text-xs"></i> BISE & PSRA Recognized
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Institutional Statistics & Benchmarks Strip -->
+        <section id="metrics" class="bg-white border-b border-slate-200 shadow-sm relative z-20 py-8 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center justify-center mb-6">
+                    <span class="inline-flex items-center gap-2 bg-emerald-50 text-kimsEmerald text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-emerald-200/80 shadow-xs">
+                        <i class="fa-solid fa-chart-pie text-emerald-600"></i> Institutional Overview & Verified Benchmarks
+                    </span>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+
+                    <!-- Stat Item 1 -->
+                    <div class="flex items-center gap-4 pt-4 md:pt-0 pl-0 md:pl-6 first:pl-0">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-2xl font-bold shadow-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">10+</h3>
+                            <p class="text-xs sm:text-sm font-medium text-slate-500">Programs Offered</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Item 2 -->
+                    <div class="flex items-center gap-4 pt-4 md:pt-0 pl-0 md:pl-6">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-2xl font-bold shadow-sm">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">50+</h3>
+                            <p class="text-xs sm:text-sm font-medium text-slate-500">Qualified Teachers</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Item 3 -->
+                    <div class="flex items-center gap-4 pt-4 md:pt-0 pl-0 md:pl-6">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-2xl font-bold shadow-sm">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">500+</h3>
+                            <p class="text-xs sm:text-sm font-medium text-slate-500">Enrolled Students</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Item 4 -->
+                    <div class="flex items-center gap-4 pt-4 md:pt-0 pl-0 md:pl-6">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-2xl font-bold shadow-sm">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">95%</h3>
+                            <p class="text-xs sm:text-sm font-medium text-slate-500">Success / Pass Rate</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- ========================================================================= -->
+        <!-- SECTION 1: ABOUT US SHOWCASE (Institutional Vision & 20-Year Legacy)       -->
+        <!-- ========================================================================= -->
+        <section id="about" class="py-24 px-4 sm:px-8 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
+            <!-- Ambient Background Effects -->
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 -right-32 w-96 h-96 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <!-- Section 01 Overarching Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-school text-emerald-600"></i> Section 01 • Institutional Heritage & Vision
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Two Decades of Nurturing <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Future Leaders</span>
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed">
+                        Since 2004, KIMS School Kohat has set benchmark academic standards—blending rigorous English-medium science curricula, proven board distinctions, and grounded moral Tarbiyah.
+                    </p>
+                </div>
+
+                <!-- Bento Grid Row 1: Visual Legacy Hero Card (5 cols) + Principal Leadership Card (7 cols) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-10">
+                    
+                    <!-- Card A: Visual Campus Anchor with Floating Glass Accents (5 cols) -->
+                    <div class="lg:col-span-5 relative rounded-[2rem] overflow-hidden shadow-2xl group min-h-[420px] lg:min-h-[460px] flex flex-col justify-between p-7 sm:p-8 bg-slate-900 border border-slate-800">
+                        <!-- High Quality Educational Photographic Backdrop -->
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80" alt="Students in Classroom" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-kimsDark/80 via-transparent to-transparent"></div>
+
+                        <!-- Top Floating Glass Badges -->
+                        <div class="relative z-10 flex flex-wrap items-center justify-between gap-2">
+                            <span class="inline-flex items-center gap-1.5 bg-emerald-500/90 text-white text-xs font-bold px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-lg border border-emerald-400/40">
+                                <i class="fa-solid fa-crown text-amber-300"></i> Est. 2004 • 20+ Years
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 bg-slate-900/80 text-emerald-300 text-[11px] font-semibold px-3 py-1.5 rounded-full backdrop-blur-md border border-emerald-500/30">
+                                <i class="fa-solid fa-certificate text-emerald-400"></i> KP-PSRA Certified
+                            </span>
+                        </div>
+
+                        <!-- Bottom Content Overlay with Metric Cards -->
+                        <div class="relative z-10 space-y-4 pt-24">
+                            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 text-white shadow-xl">
+                                <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+                                    <div>
+                                        <span class="text-2xl sm:text-3xl font-black text-white">10,000+</span>
+                                        <p class="text-[11px] uppercase tracking-wider text-emerald-300 font-bold">Graduated Alumni</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-2xl sm:text-3xl font-black text-amber-400">100%</span>
+                                        <p class="text-[11px] uppercase tracking-wider text-slate-300 font-bold">Board Matric Pass</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-200 leading-relaxed">
+                                    Our alumni now serve as certified medical doctors, chartered engineers, software developers, and commissioned military officers worldwide.
+                                </p>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs text-slate-300 px-1">
+                                <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Kohat</span>
+                                <span><i class="fa-solid fa-award text-amber-400 mr-1.5"></i> BISE Kohat Affiliation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card B: Principal's Executive Statement & School Philosophy (7 cols) -->
+                    <div class="lg:col-span-7 bg-white rounded-[2rem] border border-slate-200/90 p-8 sm:p-10 shadow-xl shadow-slate-100 flex flex-col justify-between relative overflow-hidden">
+                        <!-- Decorative Watermark Quotation -->
+                        <div class="absolute -right-6 -top-6 text-slate-100 text-9xl font-serif pointer-events-none select-none">“</div>
+                        
+                        <div class="relative z-10 space-y-6">
+                            <div class="flex flex-wrap items-center justify-between gap-4">
+                                <div class="inline-flex items-center gap-2 bg-emerald-50 text-kimsEmerald text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200/70">
+                                    <i class="fa-solid fa-user-tie text-emerald-600"></i> Executive Leadership Address
+                                </div>
+                                <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">
+                                    Official Vision Statement
+                                </span>
+                            </div>
+
+                            <blockquote class="text-lg sm:text-xl font-medium text-slate-800 leading-snug italic relative">
+                                "Our motto <span class="font-bold text-kimsEmerald not-italic font-serif">‘Come to Read, Go to Lead’</span> is not a passive inscription on a campus wall. It is our daily moral contract with every parent—to sculpt fearless thinkers, compassionate leaders, and top academic achievers."
+                            </blockquote>
+
+                            <!-- 3 Value Strengths Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+                                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-kimsEmerald flex items-center justify-center font-bold text-sm mb-2">
+                                        <i class="fa-solid fa-brain"></i>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-xs sm:text-sm">Inquiry-Led STEM</h4>
+                                    <p class="text-[11px] text-slate-500 mt-1 leading-normal">Hands-on lab experiments replacing rote learning from grade 1.</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm mb-2">
+                                        <i class="fa-solid fa-star-and-crescent"></i>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-xs sm:text-sm">Ethical Tarbiyah</h4>
+                                    <p class="text-[11px] text-slate-500 mt-1 leading-normal">Daily Nazra Quran, Tajweed, and character molding programs.</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm mb-2">
+                                        <i class="fa-solid fa-medal"></i>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-xs sm:text-sm">Board Supremacy</h4>
+                                    <p class="text-[11px] text-slate-500 mt-1 leading-normal">Continuous BISE Kohat board position holders & 95%+ marks.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Principal Profile & Action Footer -->
+                        <div class="relative z-10 pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-kimsEmerald to-teal-800 text-white flex items-center justify-center text-xl font-bold shadow-md ring-4 ring-emerald-50">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">Engr. Muhammad Tariq</h4>
+                                        <span class="bg-emerald-100 text-kimsEmerald text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                            <i class="fa-solid fa-check"></i> Principal
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-slate-500">B.Sc Engineering • M.Ed • Founder & Institutional Head</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <a href="about.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                                    Full History <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                                <a href="faculty.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-4 py-2.5 rounded-xl transition">
+                                    Our Faculty
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bento Grid Row 2: 4 Modern Interactive Facility / Pillar Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- Pillar 1: Modern Science Labs -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-400/80 transition duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-xl font-bold group-hover:scale-110 group-hover:bg-kimsEmerald group-hover:text-white transition duration-300 shadow-xs">
+                                    <i class="fa-solid fa-flask-vial"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">STEM Labs</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-kimsEmerald transition">Modern Science Labs</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Certified Physics, Chemistry, and Biology laboratories equipped with modern apparatus for hands-on student experimentation.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                            <span>Equipment: Digital & Analog</span>
+                            <span class="text-kimsEmerald font-bold group-hover:translate-x-1 transition"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2: Computer & IT Lab -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-xs">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">Digital IT</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-blue-600 transition">Smart Computer & IT Lab</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                High-speed internet, dedicated workstations, keyboard proficiency, and modern computer science coding curriculum from Grade 3.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                            <span>1:1 Machine Ratio</span>
+                            <span class="text-blue-600 font-bold group-hover:translate-x-1 transition"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3: Tarbiyah & Moral Ethos -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition duration-300 shadow-xs">
+                                    <i class="fa-solid fa-book-quran"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">Islamic Ethos</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-amber-600 transition">Tarbiyah & Character</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Daily Nazra Quran classes with authentic Tajweed rules, Hadith recitation, ethical personality grooming, and annual Seerat contests.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                            <span>Daily Morning Assembly</span>
+                            <span class="text-amber-600 font-bold group-hover:translate-x-1 transition"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4: Safe Transport Fleet -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-purple-400/80 transition duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition duration-300 shadow-xs">
+                                    <i class="fa-solid fa-van-shuttle"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">Safe Commute</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2 group-hover:text-purple-600 transition">Safe City-Wide Fleet</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Supervised pick-and-drop vans with verified drivers and GPS coverage serving KDA, Kohat Cantt, and surrounding sectors safely.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                            <span>All Major Kohat Sectors</span>
+                            <span class="text-purple-600 font-bold group-hover:translate-x-1 transition"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 2: ACADEMIC PROGRAMS SHOWCASE (Nursery to 10th Class)              -->
+        <!-- ========================================================================= -->
+        <section id="programs" class="py-20 px-4 sm:px-8 bg-white border-b border-slate-200 scroll-mt-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 text-kimsEmerald text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 mb-3">
+                        <i class="fa-solid fa-graduation-cap text-emerald-600"></i> Section 02 • Academic Programs & Wings
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Structured Pathways: <span class="text-kimsEmerald">Playgroup to Matric</span>
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-3">
+                        Explore our age-appropriate syllabus, dedicated STEM science laboratories, and balanced holistic character curriculum across all 4 academic wings.
+                    </p>
+                </div>
+
+                <!-- 4 Academic Wing Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Wing 1: ECE -->
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-lg hover:border-emerald-400 transition transform hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md">Age 3 - 5 Yrs</span>
+                                <i class="fa-solid fa-shapes text-amber-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Early Childhood (ECE)</h3>
+                            <p class="text-xs text-emerald-700 font-semibold mb-3">Playgroup • Nursery • Prep</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Montessori-inspired activity rooms, phonics, color identification, gross motor skills, and polite social etiquette.
+                            </p>
+                            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-200 pt-3">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Activity-based learning</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Nazra Quran & basic Duas</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Safe soft-play area</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="programs.html" class="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition">
+                                Wing Details <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Wing 2: Primary -->
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-lg hover:border-emerald-400 transition transform hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2.5 py-1 rounded-md">Age 5 - 10 Yrs</span>
+                                <i class="fa-solid fa-feather text-blue-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Primary Wing</h3>
+                            <p class="text-xs text-emerald-700 font-semibold mb-3">Class 1st to Class 5th</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Strong foundation in English reading, Urdu fluency, basic Mathematics, General Science, and computer basics.
+                            </p>
+                            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-200 pt-3">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Oxford curriculum alignment</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Weekly spelling bees & quizzes</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Primary Science experiments</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="programs.html" class="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition">
+                                Wing Details <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Wing 3: Middle -->
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-lg hover:border-emerald-400 transition transform hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold bg-purple-100 text-purple-800 px-2.5 py-1 rounded-md">Age 10 - 13 Yrs</span>
+                                <i class="fa-solid fa-brain text-purple-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Middle Wing</h3>
+                            <p class="text-xs text-emerald-700 font-semibold mb-3">Class 6th to Class 8th</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Rigorous preparation bridging primary education toward board standards. Analytical thinking and scientific inquiry.
+                            </p>
+                            <div class="space-y-1.5 text-xs text-slate-600 border-t border-slate-200 pt-3">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Pre-Matric concept building</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> IT practicals & basic coding</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Inter-house debate contests</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="programs.html" class="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition">
+                                Wing Details <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Wing 4: Matriculation -->
+                    <div class="bg-gradient-to-b from-emerald-900 to-kimsDark rounded-2xl border border-emerald-600 p-6 flex flex-col justify-between text-white shadow-xl relative overflow-hidden transform hover:-translate-y-1 transition">
+                        <div class="absolute top-0 right-0 bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-3 py-1 rounded-bl-xl shadow-md">
+                            Flagship
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold bg-emerald-800 text-emerald-200 px-2.5 py-1 rounded-md">BISE Kohat SSC</span>
+                                <i class="fa-solid fa-atom text-emerald-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Matric Science</h3>
+                            <p class="text-xs text-emerald-300 font-semibold mb-3">Class 9th & 10th (Bio / CS)</p>
+                            <p class="text-xs text-emerald-100/80 leading-relaxed mb-4">
+                                Specialized coaching by experienced board paper specialists. Intensive mock test series, past paper solutions, and full lab practicals.
+                            </p>
+                            <div class="space-y-1.5 text-xs text-emerald-200/90 border-t border-emerald-800 pt-3">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Biology & Computer Science tracks</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Weekly Sunday grand test sessions</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Top Position track record</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="programs.html" class="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold text-slate-900 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 transition shadow-md">
+                                Matric Curriculum <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="programs.html" class="inline-flex items-center gap-2 text-sm font-semibold text-kimsEmerald hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-6 py-3 rounded-xl transition border border-emerald-200">
+                        View Full Academic Syllabi & Grade Comparison <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 03: ACADEMIC METHODOLOGY & CURRICULUM (academics.html Showcase)    -->
+        <!-- ========================================================================= -->
+        <section id="academics" class="py-20 px-3.5 sm:px-8 bg-slate-50 border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-book-open-reader text-emerald-600"></i> Section 03 • Academic Methodology & Curriculum
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Inquiry-Driven Pedagogy & <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Board Exam Rigor</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-2.5 max-w-2xl mx-auto leading-relaxed">
+                        How KIMS bridges concept mastery, practical laboratory experimentation, and structured continuous evaluation from Nursery to Matric.
+                    </p>
+                </div>
+
+                <!-- 4 Pillars of Academic Rigor Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+                    
+                    <!-- Card 1: Dual-Stream Syllabus -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-400/80 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-lg font-bold shadow-xs">
+                                    <i class="fa-solid fa-book-atlas"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">Curriculum</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Dual-Stream Syllabus</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Harmonized National Curriculum of Pakistan enriched with Oxford English readers, science kits, and mathematics inquiry.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                            <span>National + Oxford</span>
+                            <span class="text-kimsEmerald font-bold"><i class="fa-solid fa-check"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Continuous Diagnostic Evaluation -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold shadow-xs">
+                                    <i class="fa-solid fa-chart-pie"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">Assessment</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Diagnostic Evaluation</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Monthly unit assessments, term examinations, and BISE model tests with detailed computerized DMC scorecards for parents.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                            <span>Monthly DMCs</span>
+                            <span class="text-blue-600 font-bold"><i class="fa-solid fa-check"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Experiential Lab Rotations -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg font-bold shadow-xs">
+                                    <i class="fa-solid fa-flask-vial"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">Practical STEM</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Experiential Science Labs</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Weekly hands-on laboratory rotations in Physics, Chemistry, and Biology to develop genuine scientific observation.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                            <span>100% Practical Exposure</span>
+                            <span class="text-amber-600 font-bold"><i class="fa-solid fa-check"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Digital Homework Diary -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-purple-400/80 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg font-bold shadow-xs">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">Parent Sync</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Cloud Homework Diary</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Daily teacher diaries uploaded directly to the parent portal with syllabus coverage, test schedules, and homework tasks.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                            <span>Real-Time Sync</span>
+                            <span class="text-purple-600 font-bold"><i class="fa-solid fa-check"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Banner Action -->
+                <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-kimsEmerald rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Academic Excellence Framework</span>
+                        <h4 class="text-lg sm:text-xl font-extrabold text-white">Review Grade-by-Grade Subjects, Syllabi & Exam Rules</h4>
+                        <p class="text-xs text-emerald-100/80">From Montessori early learning milestones to BISE SSC matric practical weightage.</p>
+                    </div>
+                    <a href="academics.html" class="w-full sm:w-auto text-center bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5 whitespace-nowrap">
+                        <i class="fa-solid fa-book mr-1.5 text-kimsEmerald"></i> Explore Academics Page
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 04: DISTINGUISHED FACULTY & MENTORS (faculty.html Showcase)        -->
+        <!-- ========================================================================= -->
+        <section id="faculty" class="py-20 px-3.5 sm:px-8 bg-white border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-chalkboard-user text-emerald-600"></i> Section 04 • Distinguished Faculty & Mentors
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Mentored by Post-Graduate Scholars & <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Master Educators</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-2.5 max-w-2xl mx-auto leading-relaxed">
+                        85+ certified educators with a balanced 15:1 student-to-teacher ratio, fostering intellectual inquiry and high-moral character.
+                    </p>
+                </div>
+
+                <!-- 4 Faculty Spotlight Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                    
+                    <!-- Faculty 1: Principal -->
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:border-emerald-400 hover:shadow-xl transition duration-300 text-center flex flex-col justify-between group">
+                        <div>
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Prof. Muhammad Tariq Khan" class="w-full h-full rounded-full object-cover border-2 border-emerald-500 shadow-md group-hover:scale-105 transition">
+                                <span class="absolute bottom-0 right-0 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">Head</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base">Prof. Muhammad Tariq</h3>
+                            <p class="text-xs text-kimsEmerald font-semibold mt-0.5">Principal & Academic Director</p>
+                            <p class="text-[11px] text-slate-500 mt-1">M.Phil Education • M.Sc Applied Physics</p>
+                            <div class="mt-3 inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                24+ Years Leadership
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mt-3 pt-3 border-t border-slate-200/80">
+                            "Nurturing intellect, character, and visionary thinking in every child."
+                        </p>
+                    </div>
+
+                    <!-- Faculty 2: Science Head -->
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:border-emerald-400 hover:shadow-xl transition duration-300 text-center flex flex-col justify-between group">
+                        <div>
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Dr. Farhana Yasmeen" class="w-full h-full rounded-full object-cover border-2 border-emerald-500 shadow-md group-hover:scale-105 transition">
+                                <span class="absolute bottom-0 right-0 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">Ph.D</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base">Dr. Farhana Yasmeen</h3>
+                            <p class="text-xs text-kimsEmerald font-semibold mt-0.5">Head of Science Department</p>
+                            <p class="text-[11px] text-slate-500 mt-1">Ph.D Biology • M.Sc Botany</p>
+                            <div class="mt-3 inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                16+ Years Experience
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mt-3 pt-3 border-t border-slate-200/80">
+                            "Guiding students through active experiments to decode biological marvels."
+                        </p>
+                    </div>
+
+                    <!-- Faculty 3: IT & Math Head -->
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:border-emerald-400 hover:shadow-xl transition duration-300 text-center flex flex-col justify-between group">
+                        <div>
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Engr. Asif Mehmood" class="w-full h-full rounded-full object-cover border-2 border-emerald-500 shadow-md group-hover:scale-105 transition">
+                                <span class="absolute bottom-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">Tech</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base">Engr. Asif Mehmood</h3>
+                            <p class="text-xs text-blue-700 font-semibold mt-0.5">Head of IT & Mathematics</p>
+                            <p class="text-[11px] text-slate-500 mt-1">M.S Computer Science • B.Sc Math</p>
+                            <div class="mt-3 inline-block bg-blue-100 text-blue-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                12+ Years Tech Lead
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mt-3 pt-3 border-t border-slate-200/80">
+                            "Instilling algorithmic thinking and analytical problem solving early."
+                        </p>
+                    </div>
+
+                    <!-- Faculty 4: Tarbiyah Head -->
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:border-emerald-400 hover:shadow-xl transition duration-300 text-center flex flex-col justify-between group">
+                        <div>
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Qari Abdul Rehman" class="w-full h-full rounded-full object-cover border-2 border-emerald-500 shadow-md group-hover:scale-105 transition">
+                                <span class="absolute bottom-0 right-0 bg-amber-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">Qari</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base">Qari Abdul Rehman</h3>
+                            <p class="text-xs text-amber-700 font-semibold mt-0.5">Head of Tarbiyah & Nazra</p>
+                            <p class="text-[11px] text-slate-500 mt-1">M.A Islamic Studies • Tajweed Specialist</p>
+                            <div class="mt-3 inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                18+ Years Tajweed
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 italic mt-3 pt-3 border-t border-slate-200/80">
+                            "Cultivating heartfelt reverence, humility, and moral integrity daily."
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+                    <a href="faculty.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-users mr-1"></i> View Complete Faculty & Department Roster (85+ Teachers)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 05: TOPPERS & HALL OF FAME SHOWCASE (toppers.html Showcase)       -->
+        <!-- ========================================================================= -->
+        <section id="toppers" class="py-20 px-3.5 sm:px-8 bg-gradient-to-b from-amber-50/40 via-white to-slate-50 border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
+            <!-- Subtle Ambient Light Orbs -->
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-amber-200/20 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-200/20 rounded-full filter blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 bg-amber-100/90 text-amber-800 text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-amber-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-trophy text-amber-600"></i> Section 05 • Hall of Fame & Board Toppers
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Our Stars in <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-700 to-yellow-600 font-serif">BISE Kohat Board</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">
+                        Celebrating our highest-achieving matriculation scholars who attained district positions, 95%+ marks, and consecutive A-One grades.
+                    </p>
+                </div>
+
+                <!-- 3 Top Stars Podium Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    
+                    <!-- 2nd Position: Ayesha Siddiqa -->
+                    <div class="bg-white border border-slate-200/90 hover:border-emerald-400 rounded-2xl p-6 text-center shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-black text-sm flex items-center justify-center mx-auto mb-3 border border-slate-200 shadow-xs">
+                            2nd
+                        </div>
+                        <div class="relative w-24 h-24 mx-auto mb-4">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80" alt="Ayesha Siddiqa" class="w-full h-full rounded-full object-cover border-2 border-slate-200 shadow-sm">
+                            <span class="absolute bottom-0 right-0 bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-300 shadow-xs">97.6%</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Ayesha Siddiqa</h3>
+                        <p class="text-xs text-kimsEmerald font-semibold mb-2">Class 10th • Bio Group</p>
+                        <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/80 mb-4">
+                            <span class="text-2xl font-black text-amber-600">1074</span>
+                            <span class="text-xs text-slate-500">/ 1100 Marks</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">"Daily conceptual study at KIMS and dedicated test sessions made this achievement possible."</p>
+                    </div>
+
+                    <!-- 1st Position: Muhammad Huzaifa (Highlighted Champion) -->
+                    <div class="bg-gradient-to-b from-amber-50/90 via-white to-amber-50/40 border-2 border-amber-400 rounded-3xl p-7 text-center shadow-xl relative transform lg:-translate-y-3">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow flex items-center gap-1.5">
+                            <i class="fa-solid fa-crown text-slate-950"></i> 1st Position Record
+                        </div>
+                        <div class="relative w-28 h-28 mx-auto mt-2 mb-4">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" alt="Muhammad Huzaifa" class="w-full h-full rounded-full object-cover border-4 border-amber-400 shadow-lg">
+                            <span class="absolute bottom-0 right-0 bg-amber-500 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-full shadow">98.4%</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900">Muhammad Huzaifa</h3>
+                        <p class="text-xs text-amber-700 font-bold mb-3">BISE Kohat Top Scorer • Bio Group</p>
+                        <div class="bg-amber-100/70 rounded-xl p-3.5 border border-amber-300/90 mb-4">
+                            <span class="text-3xl font-black text-amber-700">1082</span>
+                            <span class="text-xs text-amber-900 font-bold">/ 1100 Marks</span>
+                            <div class="text-[11px] text-emerald-800 font-semibold mt-1">Roll No: 184920 • SSC Annual 2024</div>
+                        </div>
+                        <p class="text-xs text-slate-700 italic mb-4">"The continuous mentoring of our science teachers in Physics and Chemistry made all the difference."</p>
+                        <span class="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full border border-amber-300">Awarded 100% Scholarship + Gold Medal</span>
+                    </div>
+
+                    <!-- 3rd Position: Hamza Tariq -->
+                    <div class="bg-white border border-slate-200/90 hover:border-emerald-400 rounded-2xl p-6 text-center shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-black text-sm flex items-center justify-center mx-auto mb-3 border border-slate-200 shadow-xs">
+                            3rd
+                        </div>
+                        <div class="relative w-24 h-24 mx-auto mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Hamza Tariq" class="w-full h-full rounded-full object-cover border-2 border-slate-200 shadow-sm">
+                            <span class="absolute bottom-0 right-0 bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-300 shadow-xs">97.1%</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Hamza Tariq</h3>
+                        <p class="text-xs text-kimsEmerald font-semibold mb-2">Class 10th • Computer Group</p>
+                        <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/80 mb-4">
+                            <span class="text-2xl font-black text-amber-600">1068</span>
+                            <span class="text-xs text-slate-500">/ 1100 Marks</span>
+                        </div>
+                        <p class="text-xs text-slate-600 italic">"The IT lab facilities and programming sessions gave me the edge to score highest in Computer Science."</p>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="toppers.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-xs sm:text-sm px-8 py-3.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-trophy"></i> View Complete Hall of Fame & Marksheets (50+ Stars)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 06: ADMISSIONS 2024-25 & INTERACTIVE CONCESSION CALCULATOR          -->
+        <!-- ========================================================================= -->
+        <section id="admissions" class="py-20 px-3.5 sm:px-8 bg-slate-50 border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section 06 Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-file-pen text-emerald-700"></i> Section 06 • Admissions & Scholarship Desk
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Apply for Admission • <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Session 2024-25</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                        Complete your online application, review merit & sibling scholarship concessions, and follow our transparent 3-step enrollment process.
+                    </p>
+                </div>
+                
+                <!-- Admissions Banner Header -->
+                <div class="bg-gradient-to-r from-kimsDark via-emerald-950 to-kimsEmerald rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-white shadow-xl relative overflow-hidden mb-12">
+                    <div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    <div class="relative z-10 max-w-3xl">
+                        <span class="inline-flex items-center gap-2 bg-amber-500 text-slate-950 text-[11px] sm:text-xs font-black uppercase tracking-wider px-3 py-1 rounded-md mb-4 shadow">
+                            <i class="fa-solid fa-fire"></i> Now Enrolling • Session 2024 - 2025
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3 break-words">
+                            Start Your Child's Journey of Excellence at KIMS School
+                        </h2>
+                        <p class="text-emerald-100 text-xs sm:text-base leading-relaxed mb-6">
+                            Limited seats are available in Nursery, Prep, Primary (1st–5th), Middle (6th–8th), and Matric Science (9th–10th). Generous merit and sibling fee concessions available.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                            <a href="admissions.html" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-file-pen"></i> Complete Online Admission Form
+                            </a>
+                            <a href="admissions.html#fees" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-5 sm:px-6 py-3 rounded-xl backdrop-blur-sm transition">
+                                View Official Fee Structure
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Column: 3-Step Process & Quick Scholarship Estimator -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left: 3-Step Admission Process (5 cols) -->
+                    <div class="lg:col-span-5 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-sm space-y-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 border-b border-slate-100 pb-3">Simple 3-Step Enrollment</h3>
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-kimsEmerald font-black flex items-center justify-center text-sm flex-shrink-0">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Online Registration or Campus Visit</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        Fill out the simple admission inquiry form online or visit our admissions office on Dhoda Road.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-kimsEmerald font-black flex items-center justify-center text-sm flex-shrink-0">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Diagnostic Test & Counseling</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        Basic aptitude test in English, Math & Science to evaluate appropriate grade placement and baseline skills.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-kimsEmerald font-black flex items-center justify-center text-sm flex-shrink-0">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Document Verification & Fee Challan</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        Submit B-Form copy, father CNIC & recent photos. Pay bank fee challan to finalize admission.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50/70 border border-emerald-100 rounded-xl">
+                            <span class="text-xs font-bold text-emerald-900 block mb-1">Required Documents Checklist:</span>
+                            <p class="text-[11px] text-emerald-800 leading-relaxed">
+                                • Child's B-Form / Birth Certificate<br>
+                                • Father/Guardian CNIC Copy<br>
+                                • 4 Passport-size photographs<br>
+                                • Previous School Leaving Certificate (SLC)
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Live Scholarship Estimator (7 cols) -->
+                    <div class="lg:col-span-7 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-sm space-y-5">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold text-slate-900">Merit & Sibling Fee Calculator</h3>
+                                <p class="text-xs text-slate-500">Estimate your child's monthly tuition concession instantly.</p>
+                            </div>
+                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                                Live Estimator
+                            </span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Select Academic Level -->
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Applying for Grade / Wing:</label>
+                                <select id="calc-grade" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" onchange="calculateFee()">
+                                    <option value="2500">Early Childhood (Nursery, Prep) — Rs. 2,500/mo</option>
+                                    <option value="3000">Primary Wing (Class 1st to 5th) — Rs. 3,000/mo</option>
+                                    <option value="3500" selected>Middle Wing (Class 6th to 8th) — Rs. 3,500/mo</option>
+                                    <option value="4200">Matric Science (Class 9th & 10th) — Rs. 4,200/mo</option>
+                                </select>
+                            </div>
+
+                            <!-- Previous Percentage Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <label class="text-xs font-semibold text-slate-700">Previous Exam Marks Percentage:</label>
+                                    <span class="text-sm font-extrabold text-kimsEmerald" id="calc-percent-val">85%</span>
+                                </div>
+                                <input type="range" id="calc-percent" min="50" max="100" value="85" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kimsEmerald" oninput="calculateFee()">
+                                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                                    <span>50% (Standard)</span>
+                                    <span>70% (10% Off)</span>
+                                    <span>80% (25% Off)</span>
+                                    <span>90%+ (50% Off)</span>
+                                    <span>95%+ (100% Free)</span>
+                                </div>
+                            </div>
+
+                            <!-- Calculator Output Card -->
+                            <div class="bg-gradient-to-br from-emerald-50 to-slate-50 border border-emerald-200 p-5 rounded-xl flex items-center justify-between mt-4">
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800 block">Eligible Concession</span>
+                                    <span id="calc-result-status" class="text-lg font-black text-emerald-700">50% Half Free-Ship</span>
+                                    <p id="calc-result-note" class="text-[11px] text-slate-500 mt-0.5">High achiever merit concession applied to tuition fee.</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[11px] text-slate-500 block line-through" id="calc-base-fee">Rs. 3,500 / mo</span>
+                                    <span class="text-2xl font-black text-kimsEmerald" id="calc-final-fee">Rs. 1,750</span>
+                                    <span class="text-[10px] text-slate-500 block">per month</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <a href="admissions.html" class="text-xs font-bold text-kimsEmerald hover:underline">
+                                    View Sibling & Kinship Concessions <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                                </a>
+                                <a href="admissions.html" class="w-full sm:w-auto text-center bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow">
+                                    Claim Scholarship in Admission
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 07: OFFICIAL NOTICES & CIRCULARS (notices.html Showcase)          -->
+        <!-- ========================================================================= -->
+        <section id="notices" class="py-20 px-3.5 sm:px-8 bg-white border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <i class="fa-solid fa-bullhorn text-emerald-600"></i> Section 07 • Official Notices & Circulars
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                            Live Institutional <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Notice Board</span>
+                        </h2>
+                        <p class="text-slate-600 text-xs sm:text-base mt-2">
+                            Real-time updates on BISE board registration, examination date sheets, fee circulars, and official holiday schedules.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="notices.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-kimsEmerald hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-5 py-2.5 rounded-xl border border-emerald-200 transition">
+                            Full Notice Archive <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Urgent Pinned Alert Banner -->
+                <div class="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white rounded-2xl p-4 sm:p-5 shadow-lg border border-amber-400/40 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3.5 text-left">
+                        <div class="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-lg flex-shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="bg-white text-amber-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">URGENT ANNOUNCEMENT</span>
+                                <span class="text-[11px] text-amber-100 font-mono">Ref: KIMS/EXM/2024/114</span>
+                            </div>
+                            <h4 class="font-bold text-sm sm:text-base mt-0.5 text-white">
+                                BISE Kohat SSC Matriculation Registration 2024-25 Deadline (Sep 15)
+                            </h4>
+                        </div>
+                    </div>
+                    <a href="notices.html" class="w-full sm:w-auto text-center bg-white text-amber-900 hover:bg-amber-50 font-bold text-xs px-5 py-2 rounded-xl shadow transition whitespace-nowrap">
+                        View Circular Details
+                    </a>
+                </div>
+
+                <!-- 3 Live Notice Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Notice Card 1 -->
+                    <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/90 hover:border-emerald-400 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">Exams & Datesheet</span>
+                                <span class="text-[11px] text-slate-400 font-mono">Aug 28, 2024</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-2 hover:text-kimsEmerald transition">
+                                BISE Kohat SSC Annual Exam Date Sheet & Roll Number Slips Released
+                            </h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Matric students can download their roll number slips and review designated exam center allocations.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/70 flex items-center justify-between text-xs font-semibold text-kimsEmerald">
+                            <span>Ref: KIMS/EXM/2024/114</span>
+                            <a href="notices.html" class="hover:underline flex items-center gap-1">Read <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Notice Card 2 -->
+                    <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/90 hover:border-emerald-400 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">Admissions</span>
+                                <span class="text-[11px] text-slate-400 font-mono">Aug 20, 2024</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-2 hover:text-kimsEmerald transition">
+                                Session 2024-25 Entrance Test Schedule for Middle & Secondary Wings
+                            </h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Written diagnostic entrance assessments for Class 6th to 9th will be conducted at Campus Main Hall.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/70 flex items-center justify-between text-xs font-semibold text-kimsEmerald">
+                            <span>Ref: KIMS/ADM/2024/092</span>
+                            <a href="notices.html" class="hover:underline flex items-center gap-1">Read <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Notice Card 3 -->
+                    <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/90 hover:border-emerald-400 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">Campus Events</span>
+                                <span class="text-[11px] text-slate-400 font-mono">Aug 10, 2024</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-2 hover:text-kimsEmerald transition">
+                                Independence Day Celebrations & Student National Speech Competition
+                            </h3>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Flag hoisting ceremony, national anthem recitation, and inter-house declamation contest schedules.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/70 flex items-center justify-between text-xs font-semibold text-kimsEmerald">
+                            <span>Ref: KIMS/GEN/2024/088</span>
+                            <a href="notices.html" class="hover:underline flex items-center gap-1">Read <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 08: CAMPUS LIFE & CO-CURRICULAR EVENTS SHOWCASE (events.html)      -->
+        <!-- ========================================================================= -->
+        <section id="events" class="py-20 px-3.5 sm:px-8 bg-slate-50 border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-emerald-50 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                            <i class="fa-solid fa-calendar-days text-emerald-600"></i> Section 08 • Campus Life & School Events
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            Events & Campus Co-Curriculars
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base mt-2">
+                            Fostering leadership, science innovation, sportsmanship, and cultural awareness through regular campus activities.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="events.html" class="inline-flex items-center gap-2 text-sm font-semibold text-kimsEmerald hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-5 py-2.5 rounded-xl border border-emerald-200 transition">
+                            Full Events Calendar <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3 Event Showcase Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Event 1: Science Expo -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=600&q=80" alt="Science Fair" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-kimsEmerald text-white text-[11px] font-bold px-3 py-1 rounded-md shadow">Annual Event</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2 font-medium">
+                                <i class="fa-solid fa-calendar text-emerald-600"></i> Oct 24 • Campus Main Hall
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-kimsEmerald transition">
+                                Annual Science & Robotics Expo 2024
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Over 40 interactive models presented by students covering renewable energy, hydraulic cranes, coding games, and biology setups.
+                            </p>
+                            <a href="events.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700">
+                                View Gallery & Details <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: Sports Gala -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80" alt="Sports Gala" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-amber-600 text-white text-[11px] font-bold px-3 py-1 rounded-md shadow">Athletics</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2 font-medium">
+                                <i class="fa-solid fa-calendar text-amber-600"></i> Nov 15 • Kohat Sports Complex
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-kimsEmerald transition">
+                                Inter-House Athletics & Cricket Gala
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Four school houses competing in 100m sprint, relay race, cricket tournament, badminton, and tug-of-war championship.
+                            </p>
+                            <a href="events.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700">
+                                View Gallery & Details <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Event 3: Qirat & Naat -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=600&q=80" alt="Qirat Contest" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-blue-700 text-white text-[11px] font-bold px-3 py-1 rounded-md shadow">Tarbiyah</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2 font-medium">
+                                <i class="fa-solid fa-calendar text-blue-600"></i> Dec 05 • KIMS Auditorium
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-kimsEmerald transition">
+                                Husn-e-Qirat & Seerat-un-Nabi Contest
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Celebrating sacred recitation with correct Tajweed rules, Urdu speech competition on Seerat-un-Nabi, and trophy awards.
+                            </p>
+                            <a href="events.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-kimsEmerald hover:text-emerald-700">
+                                View Gallery & Details <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 09: CAMPUS INFRASTRUCTURE & GALLERY (gallery.html Showcase)       -->
+        <!-- ========================================================================= -->
+        <section id="gallery" class="py-20 px-3.5 sm:px-8 bg-white border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                            <i class="fa-solid fa-camera-retro text-emerald-600"></i> Section 09 • Campus Infrastructure & Gallery
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                            A Visual Journey Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">KIMS Campus</span>
+                        </h2>
+                        <p class="text-slate-600 text-xs sm:text-base mt-2">
+                            Take a tour of our high-tech laboratories, modern classrooms, athletic sports grounds, and vibrant student moments.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="gallery.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-kimsEmerald hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-5 py-2.5 rounded-xl border border-emerald-200 transition">
+                            Explore Full Gallery (100+ Photos) <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4 Gallery Photographic Tiles -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                    
+                    <!-- Tile 1: Chemistry Lab -->
+                    <div class="group relative h-64 sm:h-72 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 cursor-pointer bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" alt="Chemistry Laboratory" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent"></div>
+                        <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">STEM Labs</span>
+                        <div class="absolute bottom-0 left-0 p-4 sm:p-5 text-white w-full">
+                            <h3 class="text-base font-bold group-hover:text-emerald-300 transition">Modern Chemistry Lab</h3>
+                            <p class="text-[11px] text-slate-300 mt-1 line-clamp-2">SSC board practical setups with individual burners and glass apparatus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tile 2: IT Center -->
+                    <div class="group relative h-64 sm:h-72 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 cursor-pointer bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Digital IT Center" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent"></div>
+                        <span class="absolute top-3 right-3 bg-blue-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">Digital Lab</span>
+                        <div class="absolute bottom-0 left-0 p-4 sm:p-5 text-white w-full">
+                            <h3 class="text-base font-bold group-hover:text-blue-300 transition">Smart Computing Center</h3>
+                            <p class="text-[11px] text-slate-300 mt-1 line-clamp-2">High-speed workstations with coding software and digital syllabus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tile 3: Sports Gala -->
+                    <div class="group relative h-64 sm:h-72 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 cursor-pointer bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80" alt="Sports & Athletics Gala" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent"></div>
+                        <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">Athletics</span>
+                        <div class="absolute bottom-0 left-0 p-4 sm:p-5 text-white w-full">
+                            <h3 class="text-base font-bold group-hover:text-amber-300 transition">Annual Sports Gala</h3>
+                            <p class="text-[11px] text-slate-300 mt-1 line-clamp-2">Cricket, football, badminton, and track races on campus sports grounds.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tile 4: Prize Distribution Ceremony -->
+                    <div class="group relative h-64 sm:h-72 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 cursor-pointer bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=600&q=80" alt="Prize Distribution" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent"></div>
+                        <span class="absolute top-3 right-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">Ceremonies</span>
+                        <div class="absolute bottom-0 left-0 p-4 sm:p-5 text-white w-full">
+                            <h3 class="text-base font-bold group-hover:text-purple-300 transition">Annual Prize Ceremony</h3>
+                            <p class="text-[11px] text-slate-300 mt-1 line-clamp-2">Honoring board toppers, position holders, and outstanding faculty mentors.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+                    <a href="gallery.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-images mr-1"></i> View Photo & Video Gallery by Category (Labs, Sports, Events)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 10: DIGITAL CAMPUS PORTAL SHOWCASE (login.html Showcase)          -->
+        <!-- ========================================================================= -->
+        <section id="portal" class="py-20 px-3.5 sm:px-8 bg-gradient-to-b from-slate-50 via-white to-emerald-50/30 border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
+            <!-- Subtle Ambient Light Orbs -->
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-100/40 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-teal-100/30 rounded-full filter blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <!-- Section 10 Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100/90 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-laptop-code text-emerald-600"></i> Section 10 • Unified Digital Portals (5 Roles)
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Smart Digital Campus for <span class="text-transparent bg-clip-text bg-gradient-to-r from-kimsEmerald via-emerald-700 to-teal-800">Entire School Community</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                        Integrated role-based access for Students, Parents, Faculty, School Administration, and Public Applicants.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Left Info (7 cols) -->
+                        <div class="lg:col-span-7 space-y-5">
+                            <div class="inline-flex items-center gap-2 bg-emerald-50 text-kimsEmerald text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-emerald-200">
+                                <i class="fa-solid fa-shield-halved text-emerald-600"></i> Cloud Portal Features
+                            </div>
+                            <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                                Complete School Insight in the Hands of <span class="text-kimsEmerald">Parents & Students</span>
+                            </h3>
+                            <p class="text-slate-600 text-xs sm:text-base leading-relaxed">
+                                Our integrated cloud portal allows parents to monitor daily attendance, examine monthly DMC report cards, pay fee challans, and view teacher diaries from anywhere.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+                                <div class="bg-slate-50 hover:bg-emerald-50/50 p-4 rounded-xl border border-slate-200/80 transition duration-200">
+                                    <i class="fa-solid fa-fingerprint text-kimsEmerald text-lg mb-1.5 block"></i>
+                                    <h4 class="font-bold text-slate-900 text-xs">Biometric Attendance</h4>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Instant SMS on student entry & exit</p>
+                                </div>
+                                <div class="bg-slate-50 hover:bg-emerald-50/50 p-4 rounded-xl border border-slate-200/80 transition duration-200">
+                                    <i class="fa-solid fa-file-invoice text-amber-600 text-lg mb-1.5 block"></i>
+                                    <h4 class="font-bold text-slate-900 text-xs">Fee & Challan Desk</h4>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Download slip or pay via mobile</p>
+                                </div>
+                                <div class="bg-slate-50 hover:bg-emerald-50/50 p-4 rounded-xl border border-slate-200/80 transition duration-200">
+                                    <i class="fa-solid fa-chart-pie text-blue-600 text-lg mb-1.5 block"></i>
+                                    <h4 class="font-bold text-slate-900 text-xs">Online DMC & Results</h4>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">BISE mock tests & term papers</p>
+                                </div>
+                                <div class="bg-slate-50 hover:bg-emerald-50/50 p-4 rounded-xl border border-slate-200/80 transition duration-200">
+                                    <i class="fa-solid fa-book text-purple-600 text-lg mb-1.5 block"></i>
+                                    <h4 class="font-bold text-slate-900 text-xs">Digital Homework Diary</h4>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Daily syllabus and teacher notes</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
+                                <a href="login.html" class="inline-flex items-center justify-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-right-to-bracket"></i> Open Portal Login
+                                </a>
+                                <span class="text-xs text-slate-500">Dedicated portals for Student, Parent, Teacher & Admin</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Live Preview Card (5 cols) -->
+                        <div class="lg:col-span-5 bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-sm">
+                            <div class="flex items-center justify-between border-b border-slate-200/80 pb-3 mb-4">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                    <span class="text-xs font-mono text-slate-500 ml-1">portal.kims.edu.pk</span>
+                                </div>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-mono font-bold">Live Demo</span>
+                            </div>
+
+                            <!-- Mock Student Profile Card -->
+                            <div class="space-y-3.5">
+                                <div class="flex items-center gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-bold text-sm shadow-xs">
+                                        MH
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Muhammad Huzaifa</h4>
+                                        <p class="text-xs text-slate-500">Class 10th (Bio) • Roll # 1042</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3 text-xs">
+                                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                                        <span class="text-slate-500 text-[11px] block">Attendance</span>
+                                        <span class="text-emerald-700 font-extrabold text-base">96.5%</span>
+                                        <span class="text-[10px] text-emerald-600 font-medium block">Status: Present Today</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                                        <span class="text-slate-500 text-[11px] block">Fee Clearance</span>
+                                        <span class="text-amber-700 font-extrabold text-base">Cleared</span>
+                                        <span class="text-[10px] text-slate-500 block">Challan # KIMS-8491</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
+                                    <span class="text-slate-500 text-[11px] block mb-1">Recent Term Evaluation</span>
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-bold text-slate-900 text-xs">Pre-Board Exam SSC</span>
+                                        <span class="text-amber-700 font-extrabold text-xs">98.4% (Grade A+)</span>
+                                    </div>
+                                </div>
+
+                                <a href="login.html" class="w-full text-center block bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2.5 rounded-xl border border-slate-300 transition">
+                                    Try Quick Login with Demo Credentials <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- SECTION 11: CONTACT & CAMPUS LOCATION SHOWCASE (contact.html Showcase)    -->
+        <!-- ========================================================================= -->
+        <section id="contact" class="py-20 px-3.5 sm:px-8 bg-slate-50 border-b border-slate-200/80 scroll-mt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 bg-emerald-100 text-kimsEmerald text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-xs mb-3">
+                        <i class="fa-solid fa-map-location-dot text-emerald-600"></i> Section 11 • Campus Visit & Direct Contact Desk
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight break-words">
+                        Visit Our Campus on <span class="text-kimsEmerald">Dhoda Road, Kohat</span>
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-base mt-2">
+                        Easily accessible from KDA, Kohat Cantt, and Rawalpindi Road with direct helpline and WhatsApp inquiry support.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left: Contact Details & Action Cards (5 cols) -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <!-- Card 1: Address -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-kimsEmerald flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm">Campus Address</h3>
+                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                    Dhoda Road, Dheri Banda, Kohat, Khyber Pakhtunkhwa, Pakistan
+                                </p>
+                                <span class="text-[11px] text-emerald-700 font-semibold block mt-1">Landmark: Near Dheri Banda Chowk</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Phone & WhatsApp -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                <i class="fa-brands fa-whatsapp text-2xl text-emerald-600"></i>
+                            </div>
+                            <div class="w-full">
+                                <h3 class="font-bold text-slate-900 text-sm">Direct Phone & WhatsApp</h3>
+                                <p class="text-xs text-slate-600 mt-0.5">Admissions & Parent Inquiry Helpline</p>
+                                <div class="flex items-center gap-3 mt-2.5">
+                                    <a href="tel:+923330299920" class="text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg border border-slate-200 transition">
+                                        <i class="fa-solid fa-phone mr-1"></i> +92 333 0299920
+                                    </a>
+                                    <a href="https://wa.me/923330299920" target="_blank" class="text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg transition shadow-sm">
+                                        WhatsApp Chat
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Office Timings -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm">School Office Timings</h3>
+                                <p class="text-xs text-slate-600 mt-1">Monday – Saturday: <strong>08:00 AM – 02:00 PM</strong></p>
+                                <p class="text-xs text-slate-500">Friday: 08:00 AM – 12:30 PM (Sunday Closed)</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="contact.html" class="w-full inline-flex items-center justify-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-sm font-semibold py-3.5 rounded-xl shadow-md transition">
+                                Open Full Inquiry Form & Department Extensions <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Embedded Google Map & Routing Card (7 cols) -->
+                    <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="p-4 bg-slate-900 text-white flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-location-crosshairs text-emerald-400"></i>
+                                <span class="text-xs font-bold">Campus Interactive Map • Dhoda Road Kohat</span>
+                            </div>
+                            <span class="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded font-mono">Dheri Banda</span>
+                        </div>
+                        <div class="w-full h-80 bg-slate-100">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13264.718042457813!2d71.4326!3d33.5857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d8ec6888888889%3A0x123456789!2sDhoda%20Rd%2C%20Kohat%2C%20Khyber%20Pakhtunkhwa%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                                class="w-full h-full border-0" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+                            <span><i class="fa-solid fa-bus text-kimsEmerald mr-1.5"></i> Safe pick-and-drop vans cover KDA, City, and Cantt.</span>
+                            <a href="contact.html" class="font-bold text-kimsEmerald hover:underline">Directions & Route Guide</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- JAVASCRIPT LOGIC FOR HOMEPAGE INTERACTION & SCHOLARSHIP ESTIMATOR          -->
+        <!-- ========================================================================= -->
+        <script>
+            function calculateHomeConcession() {
+                const baseFee = parseFloat(document.getElementById('calc-grade-home').value) || 3500;
+                const percent = parseInt(document.getElementById('calc-percent-slider').value) || 85;
+                
+                document.getElementById('calc-percent-val').textContent = percent + '%';
+                document.getElementById('calc-base-fee').textContent = 'Rs. ' + baseFee.toLocaleString() + ' / mo';
+
+                let discount = 0;
+                let status = 'Standard Fee';
+                let note = 'Regular monthly tuition fee.';
+
+                if (percent >= 90) {
+                    discount = 1.0;
+                    status = '100% Free-Ship (Gold Medalist)';
+                    note = 'Zero tuition fee awarded for 90%+ board position holders.';
+                } else if (percent >= 85) {
+                    discount = 0.50;
+                    status = '50% Half Free-Ship';
+                    note = 'Merit concession for distinction achievers.';
+                } else if (percent >= 80) {
+                    discount = 0.25;
+                    status = '25% Merit Concession';
+                    note = 'Appreciation discount for 80%+ achievers.';
+                } else if (percent >= 70) {
+                    discount = 0.10;
+                    status = '10% Incentive Concession';
+                    note = 'Encouragement discount on prompt enrollment.';
+                }
+
+                const finalFee = Math.round(baseFee * (1 - discount));
+                document.getElementById('calc-result-status').textContent = status;
+                document.getElementById('calc-result-note').textContent = note;
+                document.getElementById('calc-final-fee').textContent = 'Rs. ' + finalFee.toLocaleString();
+            }
+
+            // Mobile menu toggle
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+
+            if (hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        hamburgerIcon.classList.remove('fa-xmark');
+                        hamburgerIcon.classList.add('fa-bars');
+                    } else {
+                        hamburgerIcon.classList.remove('fa-bars');
+                        hamburgerIcon.classList.add('fa-xmark');
+                    }
+                });
+            }
+        </script>
+        <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC) with science laboratories and verified character building.
+                    </p>
+                    <div class="flex items-center gap-3 text-slate-400 text-sm">
+                        <a href="https://facebook.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/923330299920" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Public Directory -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Public Directory</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-emerald-400 transition">About Institute</a></li>
+                        <li><a href="programs.html" class="hover:text-emerald-400 transition">Academic Programs</a></li>
+                        <li><a href="academics.html" class="hover:text-emerald-400 transition">Academics & Methodology</a></li>
+                        <li><a href="faculty.html" class="hover:text-emerald-400 transition">Faculty & Departments</a></li>
+                        <li><a href="toppers.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold"><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Hall of Fame / Toppers</a></li>
+                        <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions 2024-25</a></li>
+                    </ul>
+                </div>
+
+                <!-- Portals & Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Portals & Resources</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                        <li><a href="notices.html" class="hover:text-emerald-400 transition">Notices & Circulars</a></li>
+                        <li><a href="gallery.html" class="hover:text-emerald-400 transition">Campus Gallery</a></li>
+                        <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us & Map</a></li>
+                        <li><a href="login.html" class="hover:text-emerald-400 transition font-bold text-white"><i class="fa-solid fa-right-to-bracket text-emerald-400 mr-1"></i> Portal Login (All Roles)</a></li>
+                        <li><a href="register.html" class="hover:text-emerald-400 transition">Register Public Account</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Registration -->
+                <div class="space-y-2 text-xs">
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                    <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                    <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                    <p><i class="fa-solid fa-envelope text-emerald-400 mr-1.5"></i> info@kimskohat.edu.pk</p>
+                    <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+                &copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

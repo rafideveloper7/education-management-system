@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Fee Management & Profiles | KIMS High School Kohat</title>
+  <meta name="description" content="High school student fee directory, paid vs remaining balances, student profile dossiers, fee updates, and direct cash payments.">
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            },
+            amber: {
+              50: '#fffbeb',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Core Admin Styles -->
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    .student-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printableReceiptArea, #printableReceiptArea * {
+        visibility: visible;
+      }
+      #printableReceiptArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link active">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn" aria-label="Open sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="headerFeeSearch" oninput="handleSearchInput(this.value)" placeholder="Search student name, roll number, father name, admission #...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Portal</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Accounts Office</div>
+                <div class="profile-role">Fee Cashier</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-[11px] font-bold"><i class="fa-solid fa-school mr-1"></i>High School (Classes 0-1 to 10)</span>
+              <span class="text-xs font-semibold text-slate-400">Cash Counter Student Directory</span>
+            </div>
+            <h1>Student Fee Directory & Profiles</h1>
+            <p>List of all school students categorized by Paid and Remaining balances, complete student profiles with fee ledgers, and direct cash fee updates.</p>
+          </div>
+          <div class="page-actions flex flex-wrap gap-2">
+            <button type="button" onclick="openStudentFeeUpdateModal()" class="btn-kims btn-primary">
+              <i class="fa-solid fa-plus mr-1"></i>
+              <span>Record Fee Payment</span>
+            </button>
+            <button type="button" onclick="openAddFineModal()" class="btn-kims bg-rose-600 hover:bg-rose-700 text-white shadow-xs">
+              <i class="fa-solid fa-gavel mr-1"></i>
+              <span>Add Direct Fine</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards (High School Financial Overview) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-6">
+          
+          <div class="admin-card p-3.5 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-bold uppercase tracking-wider">
+              <span>Total Students</span>
+              <i class="fa-solid fa-users text-slate-400"></i>
+            </div>
+            <div class="text-2xl font-black text-slate-900 dark:text-white mt-2" id="kpiTotalStudents">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Classes 0-1 to 10</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-emerald-500">
+            <div class="flex items-center justify-between text-xs text-emerald-600 font-bold uppercase tracking-wider">
+              <span>Paid Students</span>
+              <i class="fa-solid fa-circle-check text-emerald-500"></i>
+            </div>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-2" id="kpiPaidStudents">0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5" id="kpiPaidRate">0% Cleared</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-rose-500">
+            <div class="flex items-center justify-between text-xs text-rose-600 font-bold uppercase tracking-wider">
+              <span>Remaining / Due</span>
+              <i class="fa-solid fa-triangle-exclamation text-rose-500"></i>
+            </div>
+            <div class="text-2xl font-black text-rose-600 dark:text-rose-400 mt-2" id="kpiRemainingStudents">0</div>
+            <div class="text-[10px] text-rose-600 font-bold mt-0.5" id="kpiDueStudentsLabel">Has Arrears</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-brand-500">
+            <div class="flex items-center justify-between text-xs text-brand-700 dark:text-brand-400 font-bold uppercase tracking-wider">
+              <span>Cash Collected</span>
+              <i class="fa-solid fa-hand-holding-dollar text-brand-600"></i>
+            </div>
+            <div class="text-2xl font-black text-brand-700 dark:text-brand-300 mt-2" id="kpiCashCollected">PKR 0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Physical Counter Cash</div>
+          </div>
+
+          <div class="admin-card p-3.5 flex flex-col justify-between border-l-4 border-l-amber-500 col-span-2 sm:col-span-1">
+            <div class="flex items-center justify-between text-xs text-amber-600 font-bold uppercase tracking-wider">
+              <span>Outstanding Dues</span>
+              <i class="fa-solid fa-clock text-amber-500"></i>
+            </div>
+            <div class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-2" id="kpiTotalDueAmount">PKR 0</div>
+            <div class="text-[10px] text-slate-400 font-medium mt-0.5">Pending Recovery</div>
+          </div>
+
+        </div>
+
+        <!-- Student Fee Directory Card -->
+        <div class="admin-card">
+          
+          <!-- Filter Header with Categories: All, Paid, Remaining -->
+          <div class="p-4 border-b border-slate-100 dark:border-slate-800 space-y-3">
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <div class="card-title flex items-center gap-2">
+                  <span>Student Fee Directory</span>
+                  <span class="badge badge-neutral text-xs" id="displayStudentCount">0 Students</span>
+                </div>
+                <div class="card-subtitle text-xs text-slate-400">View individual student profiles, monitor Paid vs Remaining balances, and update fee records</div>
+              </div>
+
+              <!-- Category Filter Pills: All, Paid, Remaining -->
+              <div class="flex flex-wrap items-center gap-1.5" id="feeCategoryPills">
+                <button type="button" onclick="setCategoryFilter('all', this)" class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-600 text-white shadow-xs">
+                  All Students (<span id="catAllCount">0</span>)
+                </button>
+                <button type="button" onclick="setCategoryFilter('Paid', this)" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  <i class="fa-solid fa-circle-check text-emerald-500 mr-1 text-[11px]"></i>Paid (<span id="catPaidCount">0</span>)
+                </button>
+                <button type="button" onclick="setCategoryFilter('Remaining', this)" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                  <i class="fa-solid fa-triangle-exclamation text-rose-500 mr-1 text-[11px]"></i>Remaining Balance (<span id="catRemainingCount">0</span>)
+                </button>
+              </div>
+            </div>
+
+            <!-- Filter Controls Grid: Class & Live Search -->
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-1">
+              
+              <!-- Class Filter -->
+              <div class="sm:col-span-5 md:col-span-4">
+                <div class="relative">
+                  <i class="fa-solid fa-graduation-cap absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <select id="feeClassFilter" onchange="handleFiltersChange()" class="form-control pl-8 text-xs font-bold bg-slate-50 dark:bg-slate-800">
+                    <option value="all">All High School Classes (0-1 to 10)</option>
+                    <option value="Class 10 (SSC-II Matric)">Class 10 (SSC-II Matric)</option>
+                    <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 7">Class 7</option>
+                    <option value="Class 6">Class 6</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 4">Class 4</option>
+                    <option value="Class 3">Class 3</option>
+                    <option value="Class 2">Class 2</option>
+                    <option value="Class 1">Class 1</option>
+                    <option value="Class Prep / KG">Class Prep / KG</option>
+                    <option value="Class 0-1 (Nursery / Playgroup)">Class 0-1 (Nursery / Playgroup)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Live Search -->
+              <div class="sm:col-span-7 md:col-span-8">
+                <div class="relative">
+                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  <input 
+                    type="text" 
+                    id="feeLiveSearch" 
+                    oninput="handleSearchInput(this.value)" 
+                    placeholder="Search student name, roll #, father name, admission number..." 
+                    class="form-control pl-8 text-xs bg-slate-50 dark:bg-slate-800"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Main Students Table with Paid / Remaining Status -->
+          <div class="table-responsive">
+            <table class="admin-table text-xs" id="studentFeeTable">
+              <thead>
+                <tr>
+                  <th style="min-width: 230px;">Student & Roll #</th>
+                  <th style="min-width: 140px;">Class & Section</th>
+                  <th style="min-width: 110px;">Total Invoiced</th>
+                  <th style="min-width: 110px;">Cash Paid</th>
+                  <th style="min-width: 130px;">Remaining Balance</th>
+                  <th style="min-width: 100px;">Fee Category</th>
+                  <th style="min-width: 110px;">Last Payment</th>
+                  <th class="text-right" style="min-width: 150px;">Student Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentFeeTableBody">
+                <!-- Populated dynamically via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Academics</span>
+      </a>
+      <a href="fees.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-coins"></i>
+        <span>Fees</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: VIEW STUDENT PROFILE & COMPLETE FEE LEDGER                       -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="studentProfileFeeModal">
+    <div class="modal-container !max-w-3xl">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300 flex items-center justify-center text-sm shadow-xs font-bold">
+            <i class="fa-solid fa-user-graduate"></i>
+          </span>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 dark:text-white" id="modalProfileStudentName">Student Profile</h3>
+            <p class="text-xs text-slate-400 mt-0.5" id="modalProfileStudentMeta">Roll #: 1001 • Class 10 (A)</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body space-y-4 max-h-[80vh] overflow-y-auto pr-1">
+
+        <!-- Student Profile Dossier Banner -->
+        <div class="p-4 bg-gradient-to-r from-slate-50 to-emerald-50/40 dark:from-slate-800/80 dark:to-emerald-950/20 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-3.5">
+              <div class="w-14 h-14 rounded-2xl bg-brand-600 text-white text-xl font-extrabold flex items-center justify-center shadow-md shadow-brand-500/20 shrink-0" id="modalProfileAvatar">
+                H
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base font-extrabold text-slate-900 dark:text-white" id="modalProfileFullName">Muhammad Huzaifa Khan</h4>
+                  <span class="badge badge-success text-[10px] font-bold" id="modalProfileStatusBadge">Paid</span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex flex-wrap gap-x-3 gap-y-1">
+                  <span><i class="fa-solid fa-id-card text-slate-400 mr-1"></i><strong id="modalProfileAdmNo">KIMS-2024-ADM-042</strong></span>
+                  <span><i class="fa-solid fa-graduation-cap text-slate-400 mr-1"></i><strong id="modalProfileClass">Class 10 - Section A</strong></span>
+                  <span><i class="fa-solid fa-user text-slate-400 mr-1"></i>S/O: <strong id="modalProfileFather">Tariq Mehmood</strong></span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex flex-wrap gap-x-3 gap-y-1">
+                  <span><i class="fa-solid fa-phone text-slate-400 mr-1"></i><span id="modalProfilePhone">+92 333 9123456</span></span>
+                  <span><i class="fa-solid fa-tag text-slate-400 mr-1"></i>Concession: <span class="font-semibold text-brand-700 dark:text-brand-400" id="modalProfileConcession">Standard Full Payer</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Direct Update Action Button -->
+            <button type="button" id="btnProfileQuickUpdate" onclick="handleProfileQuickUpdateClick()" class="btn-kims btn-primary shrink-0 text-xs shadow-sm">
+              <i class="fa-solid fa-plus-circle mr-1"></i>
+              <span>Update Fee for this Student</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- 4 Financial Summary Mini-Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">Total Invoiced</span>
+            <div class="text-base font-black text-slate-900 dark:text-white mt-1" id="modalProfileTotalInvoiced">PKR 0</div>
+          </div>
+          <div class="p-3 bg-emerald-50/60 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800">
+            <span class="text-[10px] text-emerald-600 font-bold uppercase block">Total Paid in Cash</span>
+            <div class="text-base font-black text-emerald-600 dark:text-emerald-400 mt-1" id="modalProfileTotalPaid">PKR 0</div>
+          </div>
+          <div class="p-3 bg-rose-50/60 dark:bg-rose-950/30 rounded-xl border border-rose-200 dark:border-rose-800">
+            <span class="text-[10px] text-rose-600 font-bold uppercase block">Remaining Balance</span>
+            <div class="text-base font-black text-rose-600 dark:text-rose-400 mt-1" id="modalProfileRemainingDue">PKR 0</div>
+          </div>
+          <div class="p-3 bg-amber-50/60 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800">
+            <span class="text-[10px] text-amber-600 font-bold uppercase block">Direct Fines</span>
+            <div class="text-base font-black text-amber-600 dark:text-amber-400 mt-1" id="modalProfileTotalFines">PKR 0</div>
+          </div>
+        </div>
+
+        <!-- Student Fee Updates & History Ledger -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              <i class="fa-solid fa-clock-rotate-left text-brand-600"></i>
+              <span>Fee Updates & Transaction History</span>
+            </h4>
+            <span class="text-[11px] text-slate-400 font-medium" id="modalProfileLedgerCount">0 updates logged</span>
+          </div>
+
+          <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+            <table class="admin-table text-xs w-full">
+              <thead>
+                <tr>
+                  <th>Receipt #</th>
+                  <th>Fee Head & Purpose</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Paid</th>
+                  <th>Due</th>
+                  <th>Status</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="modalProfileLedgerBody">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <button type="button" class="btn-kims btn-secondary" data-modal-close>Close</button>
+        <button type="button" onclick="printStudentCompleteLedger()" class="btn-kims btn-outline text-xs">
+          <i class="fa-solid fa-print mr-1"></i>
+          <span>Print Statement</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: FORM WITH EACH PROFILE FOR FEE UPDATES                           -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="studentFeeUpdateModal">
+    <div class="modal-container !max-w-xl">
+      <div class="modal-header">
+        <div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-coins"></i>
+            </span>
+            <span>Fee Update Form</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Record direct physical cash payment or fee update for student</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="studentFeeUpdateForm" onsubmit="return handleSaveFeeUpdate(event)">
+        
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+
+          <!-- Target Student Selector or Profile Lock Banner -->
+          <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div class="form-group mb-0">
+              <label class="form-label text-xs">Target Student Profile *</label>
+              <select id="formUpdateStudentSelect" onchange="handleUpdateStudentChange(this.value)" class="form-control text-xs font-bold" required>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="flex items-center justify-between mt-2 pt-2 border-t border-slate-200 dark:border-slate-700 text-xs">
+              <span class="text-slate-500">Current Outstanding Balance:</span>
+              <span class="font-extrabold text-rose-600 dark:text-rose-400 text-sm" id="formUpdateCurrentDueText">PKR 0</span>
+            </div>
+          </div>
+
+          <!-- Fee Head & Update Action -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="form-group">
+              <label class="form-label text-xs">Fee Category / Head *</label>
+              <select id="formUpdateFeeType" onchange="handleUpdateFeeTypeChange(this.value)" class="form-control text-xs font-semibold" required>
+                <option value="Monthly Tuition Fee">Monthly Tuition Fee</option>
+                <option value="Admission Fee">Admission Fee Package</option>
+                <option value="Examination Fee">Examination Fee</option>
+                <option value="Direct Fine">Direct Fine / Penalty</option>
+                <option value="Outstanding Arrears">Clear Previous Arrears</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Month / Billing Purpose *</label>
+              <input type="text" id="formUpdatePurpose" class="form-control text-xs font-semibold" value="September 2026" placeholder="e.g. September 2026 Tuition" required>
+            </div>
+          </div>
+
+          <!-- Financial Figures: Total Fee, Cash Paid, Remaining Balance -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="form-group">
+              <label class="form-label text-xs">Total Fee (PKR) *</label>
+              <input type="number" id="formUpdateAmount" oninput="calculateUpdateBalance()" class="form-control text-xs font-bold" value="5500" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Cash Paid (PKR) *</label>
+              <input type="number" id="formUpdatePaid" oninput="calculateUpdateBalance()" class="form-control text-xs font-bold text-emerald-600" value="5500" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Remaining Balance</label>
+              <input type="number" id="formUpdateRemaining" class="form-control text-xs font-bold text-rose-600 bg-slate-50 dark:bg-slate-800" value="0" readonly>
+            </div>
+          </div>
+
+          <!-- Payment Date & Receiving Cashier -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="form-group">
+              <label class="form-label text-xs">Payment Date *</label>
+              <input type="date" id="formUpdateDate" class="form-control text-xs font-semibold" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Receiving Cashier / Desk *</label>
+              <input type="text" id="formUpdateCashier" class="form-control text-xs" value="Accounts Desk (Muhammad Arshad)" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label text-xs">Remarks / Officer Notes</label>
+            <input type="text" id="formUpdateNotes" class="form-control text-xs" placeholder="e.g. Received full monthly tuition in direct counter cash">
+          </div>
+
+        </div>
+
+        <div class="modal-footer flex items-center justify-between">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-check mr-1"></i>
+            <span>Save Fee Update</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: ADD DIRECT FINE FORM                                            -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="addDirectFineModal">
+    <div class="modal-container !max-w-xl">
+      <div class="modal-header bg-gradient-to-r from-rose-50 to-amber-50 dark:from-rose-950/40 dark:to-amber-950/20">
+        <div>
+          <h3 class="text-base font-bold text-rose-700 dark:text-rose-400 flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-900/60 dark:text-rose-300 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-gavel"></i>
+            </span>
+            <span>Add Direct Student Fine</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Impose fine for late payment, uniform violation, absence, or discipline</p>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addFineForm" onsubmit="return handleCreateDirectFine(event)">
+        <div class="modal-body space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+
+          <div class="form-group">
+            <label class="form-label text-xs">Target Student Profile *</label>
+            <select id="formFineStudentSelect" class="form-control text-xs font-bold" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label text-xs">Fine Reason / Category *</label>
+            <select id="formFineReasonSelect" onchange="handleFinePresetChange(this.value)" class="form-control text-xs font-semibold" required>
+              <option value="Late Fee Surcharge (After 10th of Month)" data-amount="300">Late Fee Surcharge (After 10th of Month) - Rs. 300</option>
+              <option value="Uniform & Grooming Violation" data-amount="200">Uniform & Grooming Violation (No tie/proper shoes) - Rs. 200</option>
+              <option value="Consecutive Uninformed Absence" data-amount="250">Consecutive Uninformed Absence Without Leave - Rs. 250</option>
+              <option value="Classroom Discipline & Misconduct" data-amount="500">Classroom Discipline & Misconduct - Rs. 500</option>
+              <option value="Library Book Loss or Damage" data-amount="300">Library Book Loss or Damage - Rs. 300</option>
+              <option value="Lab Apparatus Breakage" data-amount="1000">Lab Apparatus Breakage - Rs. 1,000</option>
+              <option value="Custom Fine" data-amount="200">Other Violation</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="form-group">
+              <label class="form-label text-xs">Fine Amount (PKR) *</label>
+              <input type="number" id="formFineAmount" class="form-control text-xs font-black text-rose-600" value="300" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Payment Settlement *</label>
+              <select id="formFinePaidStatus" class="form-control text-xs font-semibold" required>
+                <option value="Unpaid">Unpaid (Add to Student Due Balance)</option>
+                <option value="Paid">Paid in Cash at Counter Right Now</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="form-group">
+              <label class="form-label text-xs">Date of Fine *</label>
+              <input type="date" id="formFineDate" class="form-control text-xs font-semibold" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-xs">Authorized By *</label>
+              <input type="text" id="formFineOfficer" class="form-control text-xs" value="Discipline Master / Vice Principal" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label text-xs">Violation Incident Details</label>
+            <input type="text" id="formFineNotes" class="form-control text-xs" placeholder="e.g. Late fee paid on 15th September">
+          </div>
+
+        </div>
+
+        <div class="modal-footer flex items-center justify-between">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-xs">
+            <i class="fa-solid fa-gavel mr-1"></i>
+            <span>Add Direct Fine</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 4: VIEW FEE RECORD & OFFICIAL CASH RECEIPT (READ)                   -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="viewFeeRecordModal">
+    <div class="modal-container !max-w-xl">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <span class="badge badge-success text-xs font-bold" id="viewFeeBadge">Paid in Cash</span>
+          <span class="font-mono font-bold text-xs text-slate-500" id="viewReceiptNo">RCP-2026-0000</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body max-h-[75vh] overflow-y-auto">
+        
+        <!-- Printable Receipt Box -->
+        <div id="printableReceiptArea" class="p-6 bg-white text-slate-900 border-2 border-slate-300 rounded-2xl space-y-4 font-sans text-xs">
+          
+          <div class="text-center border-b-2 border-emerald-800 pb-3">
+            <div class="text-[11px] uppercase tracking-widest text-emerald-800 font-black">Kadam Institute of Modern Sciences</div>
+            <h2 class="text-xl font-black text-slate-900 tracking-tight">KIMS HIGH SCHOOL KOHAT</h2>
+            <div class="text-[10px] text-slate-500 font-semibold">Government Registered High School (Classes 0-1 to 10)</div>
+            <div class="inline-block mt-2 px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold text-[11px] border border-emerald-300">
+              OFFICIAL CASH FEE RECEIPT
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs border-b border-slate-200 pb-2">
+            <div>
+              <span class="text-slate-500 block text-[10px]">Receipt #:</span>
+              <strong class="font-mono text-sm text-emerald-800" id="printReceiptNo">RCP-2026-0000</strong>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-500 block text-[10px]">Date:</span>
+              <strong id="printDate">07 Sep 2026</strong>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <div>
+              <span class="text-slate-500 block text-[10px]">Student:</span>
+              <strong class="text-xs text-slate-900" id="printStudent">Student Name</strong>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px]">Roll No:</span>
+              <strong class="text-xs text-slate-900" id="printRoll">1001</strong>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px]">Class & Sec:</span>
+              <strong class="text-xs text-slate-900" id="printClass">Class 10 - A</strong>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px]">Father Name:</span>
+              <strong class="text-xs text-slate-900" id="printFather">Father Name</strong>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px]">Payment Mode:</span>
+              <strong class="text-xs text-emerald-700 font-extrabold">💵 Cash at Counter</strong>
+            </div>
+            <div>
+              <span class="text-slate-500 block text-[10px]">Status:</span>
+              <strong class="text-xs text-emerald-700 font-extrabold" id="printStatus">Paid</strong>
+            </div>
+          </div>
+
+          <table class="w-full text-xs border-collapse border border-slate-200 mt-2">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700">
+                <th class="border border-slate-200 p-2 text-left">Fee Head / Description</th>
+                <th class="border border-slate-200 p-2 text-center">Period / Reason</th>
+                <th class="border border-slate-200 p-2 text-right">Amount (PKR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-slate-200 p-2 font-bold" id="printHead">Monthly Tuition Fee</td>
+                <td class="border border-slate-200 p-2 text-center" id="printPurpose">September 2026</td>
+                <td class="border border-slate-200 p-2 text-right font-black" id="printAmount">Rs. 5,500</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="bg-emerald-50 text-emerald-950 font-black">
+                <td colspan="2" class="border border-slate-200 p-2 text-right">TOTAL CASH RECEIVED:</td>
+                <td class="border border-slate-200 p-2 text-right text-sm" id="printPaid">PKR 5,500</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="border border-slate-200 p-2 text-right font-semibold text-slate-500">Remaining Balance:</td>
+                <td class="border border-slate-200 p-2 text-right font-bold text-rose-600" id="printDue">PKR 0</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="flex items-center justify-between pt-2">
+            <div>
+              <span class="text-[10px] text-slate-500 block">Amount in Words:</span>
+              <span class="font-bold text-slate-800 italic" id="printWords">Rupees Five Thousand Five Hundred Only</span>
+            </div>
+            <div class="border-2 border-dashed border-emerald-600 rounded-xl p-2 text-center shrink-0">
+              <span class="text-[10px] font-black text-emerald-700 block">PAID IN CASH</span>
+              <span class="text-[8px] text-slate-400 block">KIMS Accounts Desk</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-8 pt-8 border-t border-slate-200 text-center text-xs">
+            <div>
+              <div class="border-t border-slate-400 pt-1 font-bold text-slate-700" id="printCashier">Accounts Clerk</div>
+              <span class="text-[10px] text-slate-400">Cashier Signature</span>
+            </div>
+            <div>
+              <div class="border-t border-slate-400 pt-1 font-bold text-slate-700">Principal / Headmaster</div>
+              <span class="text-[10px] text-slate-400">KIMS High School Kohat</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer flex items-center justify-between">
+        <button type="button" class="btn-kims btn-secondary" data-modal-close>Close</button>
+        <button type="button" onclick="window.print()" class="btn-kims btn-primary">
+          <i class="fa-solid fa-print mr-1"></i>
+          <span>Print Receipt</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // HIGH SCHOOL STUDENT PROFILES & FEE LEDGER ENGINE (DIRECT CASH)
+    // =========================================================================
+
+    // Standard high school monthly tuition rates
+    const HIGH_SCHOOL_TUITION = {
+      'Class 0-1 (Nursery / Playgroup)': 3500,
+      'Class Prep / KG': 3500,
+      'Class 1': 3500,
+      'Class 2': 3500,
+      'Class 3': 3500,
+      'Class 4': 3500,
+      'Class 5': 3500,
+      'Class 6': 4500,
+      'Class 7': 4500,
+      'Class 8': 4500,
+      'Class 9 (SSC-I Matric)': 5500,
+      'Class 10 (SSC-II Matric)': 5500
+    };
+
+    // Realistic High School Student Profiles (Classes 0-1 to 10)
+    const HIGH_SCHOOL_STUDENTS = [
+      { 
+        id: "S1001", 
+        name: "Muhammad Huzaifa Khan", 
+        rollNo: "1001", 
+        admissionNo: "KIMS-2024-ADM-042",
+        class: "Class 10 (SSC-II Matric)", 
+        section: "Section A", 
+        father: "Tariq Mehmood",
+        phone: "+92 333 9123456",
+        address: "Jungle Khel, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S1002", 
+        name: "Ayesha Fatima", 
+        rollNo: "1002", 
+        admissionNo: "KIMS-2024-ADM-048",
+        class: "Class 10 (SSC-II Matric)", 
+        section: "Section A", 
+        father: "Muhammad Irfan",
+        phone: "+92 300 5928123",
+        address: "KDA Sector 4, Kohat",
+        concession: "Merit Scholarship (25%)"
+      },
+      { 
+        id: "S1003", 
+        name: "Muhammad Zayan", 
+        rollNo: "1003", 
+        admissionNo: "KIMS-2024-ADM-051",
+        class: "Class 10 (SSC-II Matric)", 
+        section: "Section B", 
+        father: "Zahid Qureshi",
+        phone: "+92 345 8891024",
+        address: "Pindi Road, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0901", 
+        name: "Maryam Bibi", 
+        rollNo: "901", 
+        admissionNo: "KIMS-2023-ADM-112",
+        class: "Class 9 (SSC-I Matric)", 
+        section: "Section A", 
+        father: "Abdul Waheed",
+        phone: "+92 312 9012345",
+        address: "Bannu Road, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0902", 
+        name: "Hamza Ali", 
+        rollNo: "902", 
+        admissionNo: "KIMS-2023-ADM-118",
+        class: "Class 9 (SSC-I Matric)", 
+        section: "Section B", 
+        father: "Ali Asghar",
+        phone: "+92 334 7781290",
+        address: "College Town, Kohat",
+        concession: "Staff Child Concession"
+      },
+      { 
+        id: "S0801", 
+        name: "Fatima Noor", 
+        rollNo: "801", 
+        admissionNo: "KIMS-2022-ADM-201",
+        class: "Class 8", 
+        section: "Section A", 
+        father: "Noor Muhammad",
+        phone: "+92 301 4456789",
+        address: "Mohallah Garhi, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0802", 
+        name: "Bilal Khan Khattak", 
+        rollNo: "802", 
+        admissionNo: "KIMS-2022-ADM-209",
+        class: "Class 8", 
+        section: "Section B", 
+        father: "Sher Zaman",
+        phone: "+92 321 8890123",
+        address: "Shahpur, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0701", 
+        name: "Zainab Rehman", 
+        rollNo: "701", 
+        admissionNo: "KIMS-2021-ADM-310",
+        class: "Class 7", 
+        section: "Section A", 
+        father: "Fazal-ur-Rehman",
+        phone: "+92 333 4455667",
+        address: "KDA Sector 2, Kohat",
+        concession: "Orphan Welfare (100%)"
+      },
+      { 
+        id: "S0601", 
+        name: "Usman Tariq", 
+        rollNo: "601", 
+        admissionNo: "KIMS-2020-ADM-415",
+        class: "Class 6", 
+        section: "Section A", 
+        father: "Tariq Jamil",
+        phone: "+92 300 9988776",
+        address: "Bazar-e-Mustafa, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0501", 
+        name: "Saad Mehmood", 
+        rollNo: "501", 
+        admissionNo: "KIMS-2019-ADM-520",
+        class: "Class 5", 
+        section: "Section A", 
+        father: "Mehmood Ul Hassan",
+        phone: "+92 345 1122334",
+        address: "Cantt Area, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0401", 
+        name: "Hassan Raza", 
+        rollNo: "401", 
+        admissionNo: "KIMS-2018-ADM-605",
+        class: "Class 4", 
+        section: "Section A", 
+        father: "Raza Ali",
+        phone: "+92 313 5566778",
+        address: "Mohallah Sayyedan, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "S0301", 
+        name: "Amina Bibi", 
+        rollNo: "301", 
+        admissionNo: "KIMS-2017-ADM-714",
+        class: "Class 3", 
+        section: "Section A", 
+        father: "Farooq Ahmad",
+        phone: "+92 322 9988112",
+        address: "Officers Colony, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "SKG01", 
+        name: "Anas Khattak", 
+        rollNo: "KG-01", 
+        admissionNo: "KIMS-2026-ADM-801",
+        class: "Class Prep / KG", 
+        section: "Section A", 
+        father: "Kamran Khattak",
+        phone: "+92 331 4433221",
+        address: "Babri Banda, Kohat",
+        concession: "Standard Full Payer"
+      },
+      { 
+        id: "SNUR1", 
+        name: "Dua Zahra", 
+        rollNo: "NUR-01", 
+        admissionNo: "KIMS-2026-ADM-850",
+        class: "Class 0-1 (Nursery / Playgroup)", 
+        section: "Section A", 
+        father: "Syed Ali Raza",
+        phone: "+92 302 7766554",
+        address: "Jerma, Kohat",
+        concession: "Standard Full Payer"
+      }
+    ];
+
+    // Seed Data: Individual Student Fee Update & Transaction History
+    const SEED_FEE_RECORDS = [
+      {
+        id: "REC-2026-001",
+        receiptNo: "RCP-2026-0901",
+        studentId: "S1001",
+        studentName: "Muhammad Huzaifa Khan",
+        rollNo: "1001",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        father: "Tariq Mehmood",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 5500,
+        paid: 5500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-05",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Paid in full counter cash"
+      },
+      {
+        id: "REC-2026-002",
+        receiptNo: "RCP-2026-0902",
+        studentId: "S1002",
+        studentName: "Ayesha Fatima",
+        rollNo: "1002",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        father: "Muhammad Irfan",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 5500,
+        paid: 5500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-04",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Monthly tuition paid"
+      },
+      {
+        id: "REC-2026-003",
+        receiptNo: "RCP-2026-0903",
+        studentId: "S1003",
+        studentName: "Muhammad Zayan",
+        rollNo: "1003",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section B",
+        father: "Zahid Qureshi",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 5500,
+        paid: 2000,
+        due: 3500,
+        status: "Partial",
+        date: "2026-09-06",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Partial payment paid, remainder promised on 15th"
+      },
+      {
+        id: "REC-2026-004",
+        receiptNo: "RCP-2026-0904",
+        studentId: "S1001",
+        studentName: "Muhammad Huzaifa Khan",
+        rollNo: "1001",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        father: "Tariq Mehmood",
+        feeType: "Examination Fee",
+        purpose: "SSC-II Send-Up Board Exam",
+        amount: 2500,
+        paid: 2500,
+        due: 0,
+        status: "Paid",
+        date: "2026-08-20",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Send-Up Exam clearance"
+      },
+      {
+        id: "REC-2026-005",
+        receiptNo: "RCP-2026-0905",
+        studentId: "S0901",
+        studentName: "Maryam Bibi",
+        rollNo: "901",
+        class: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        father: "Abdul Waheed",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 5500,
+        paid: 5500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-03",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Full payment received"
+      },
+      {
+        id: "REC-2026-006",
+        receiptNo: "RCP-2026-0906",
+        studentId: "S0902",
+        studentName: "Hamza Ali",
+        rollNo: "902",
+        class: "Class 9 (SSC-I Matric)",
+        section: "Section B",
+        father: "Ali Asghar",
+        feeType: "Direct Fine",
+        purpose: "Late Fee Surcharge (August)",
+        amount: 300,
+        paid: 300,
+        due: 0,
+        status: "Paid",
+        date: "2026-08-25",
+        cashier: "Discipline Master",
+        notes: "Late fee paid at cash counter"
+      },
+      {
+        id: "REC-2026-007",
+        receiptNo: "RCP-2026-0907",
+        studentId: "S0801",
+        studentName: "Fatima Noor",
+        rollNo: "801",
+        class: "Class 8",
+        section: "Section A",
+        father: "Noor Muhammad",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 4500,
+        paid: 4500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-02",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Full fee paid"
+      },
+      {
+        id: "REC-2026-008",
+        receiptNo: "RCP-2026-0908",
+        studentId: "S0802",
+        studentName: "Bilal Khan Khattak",
+        rollNo: "802",
+        class: "Class 8",
+        section: "Section B",
+        father: "Sher Zaman",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 4500,
+        paid: 0,
+        due: 4500,
+        status: "Unpaid",
+        date: "2026-09-01",
+        cashier: "Accounts Desk",
+        notes: "Fee bill issued, awaiting cash"
+      },
+      {
+        id: "REC-2026-009",
+        receiptNo: "RCP-2026-0909",
+        studentId: "S0802",
+        studentName: "Bilal Khan Khattak",
+        rollNo: "802",
+        class: "Class 8",
+        section: "Section B",
+        father: "Sher Zaman",
+        feeType: "Direct Fine",
+        purpose: "Uniform & Grooming Violation",
+        amount: 200,
+        paid: 0,
+        due: 200,
+        status: "Unpaid",
+        date: "2026-09-04",
+        cashier: "Discipline Committee",
+        notes: "Missing school shoes & badge"
+      },
+      {
+        id: "REC-2026-010",
+        receiptNo: "RCP-2026-0910",
+        studentId: "SKG01",
+        studentName: "Anas Khattak",
+        rollNo: "KG-01",
+        class: "Class Prep / KG",
+        section: "Section A",
+        father: "Kamran Khattak",
+        feeType: "Admission Fee",
+        purpose: "Session 2026 KG Admission Package",
+        amount: 8000,
+        paid: 8000,
+        due: 0,
+        status: "Paid",
+        date: "2026-04-10",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "One-time admission paid in full"
+      },
+      {
+        id: "REC-2026-011",
+        receiptNo: "RCP-2026-0911",
+        studentId: "SNUR1",
+        studentName: "Dua Zahra",
+        rollNo: "NUR-01",
+        class: "Class 0-1 (Nursery / Playgroup)",
+        section: "Section A",
+        father: "Syed Ali Raza",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 3500,
+        paid: 3500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-05",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Nursery monthly tuition"
+      },
+      {
+        id: "REC-2026-012",
+        receiptNo: "RCP-2026-0912",
+        studentId: "S0601",
+        studentName: "Usman Tariq",
+        rollNo: "601",
+        class: "Class 6",
+        section: "Section A",
+        father: "Tariq Jamil",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 4500,
+        paid: 4500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-02",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Full payment"
+      },
+      {
+        id: "REC-2026-013",
+        receiptNo: "RCP-2026-0913",
+        studentId: "S0501",
+        studentName: "Saad Mehmood",
+        rollNo: "501",
+        class: "Class 5",
+        section: "Section A",
+        father: "Mehmood Ul Hassan",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 3500,
+        paid: 3500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-03",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Full payment received"
+      },
+      {
+        id: "REC-2026-014",
+        receiptNo: "RCP-2026-0914",
+        studentId: "S0401",
+        studentName: "Hassan Raza",
+        rollNo: "401",
+        class: "Class 4",
+        section: "Section A",
+        father: "Raza Ali",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 3500,
+        paid: 1500,
+        due: 2000,
+        status: "Partial",
+        date: "2026-09-06",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Partial payment"
+      },
+      {
+        id: "REC-2026-015",
+        receiptNo: "RCP-2026-0915",
+        studentId: "S0301",
+        studentName: "Amina Bibi",
+        rollNo: "301",
+        class: "Class 3",
+        section: "Section A",
+        father: "Farooq Ahmad",
+        feeType: "Monthly Tuition Fee",
+        purpose: "September 2026",
+        amount: 3500,
+        paid: 3500,
+        due: 0,
+        status: "Paid",
+        date: "2026-09-01",
+        cashier: "Muhammad Arshad (Accounts)",
+        notes: "Paid in full"
+      }
+    ];
+
+    let feeRecords = [];
+    let currentCategoryFilter = 'all'; // 'all', 'Paid', 'Remaining'
+    let currentClassFilter = 'all';
+    let currentSearchTerm = '';
+    let serialReceiptCounter = 925;
+    let activeProfileStudentId = null;
+
+    // Load & Save
+    function loadFeeRecords() {
+      const stored = localStorage.getItem('kims_school_fee_records');
+      if (stored) {
+        try {
+          feeRecords = JSON.parse(stored);
+        } catch(e) {
+          feeRecords = [...SEED_FEE_RECORDS];
+        }
+      } else {
+        feeRecords = [...SEED_FEE_RECORDS];
+        saveFeeRecords();
+      }
+    }
+
+    function saveFeeRecords() {
+      localStorage.setItem('kims_school_fee_records', JSON.stringify(feeRecords));
+      updateStats();
+    }
+
+    // Compute Financial Metrics for a Single Student
+    function getStudentFeeSummary(studentId) {
+      const records = feeRecords.filter(r => r.studentId === studentId);
+      const totalInvoiced = records.reduce((sum, r) => sum + (r.amount || 0), 0);
+      const totalPaid = records.reduce((sum, r) => sum + (r.paid || 0), 0);
+      const remainingDue = Math.max(0, totalInvoiced - totalPaid);
+      const totalFines = records.filter(r => r.feeType === 'Direct Fine').reduce((sum, r) => sum + (r.amount || 0), 0);
+
+      // Latest record
+      let lastDate = '-';
+      let latestRecord = null;
+      if (records.length > 0) {
+        const sorted = [...records].sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+        latestRecord = sorted[0];
+        lastDate = latestRecord.date || '-';
+      }
+
+      // Status Category
+      const statusCategory = (remainingDue === 0 && totalInvoiced > 0) ? 'Paid' : 'Remaining';
+
+      return {
+        records,
+        totalInvoiced,
+        totalPaid,
+        remainingDue,
+        totalFines,
+        lastDate,
+        latestRecord,
+        statusCategory
+      };
+    }
+
+    // Update Top High School Financial Overview Stats
+    function updateStats() {
+      let totalSchoolStudents = HIGH_SCHOOL_STUDENTS.length;
+      let totalCashCollected = 0;
+      let totalDueAmount = 0;
+      let paidStudentsCount = 0;
+      let remainingStudentsCount = 0;
+
+      HIGH_SCHOOL_STUDENTS.forEach(student => {
+        const summary = getStudentFeeSummary(student.id);
+        totalCashCollected += summary.totalPaid;
+        totalDueAmount += summary.remainingDue;
+
+        if (summary.statusCategory === 'Paid') {
+          paidStudentsCount++;
+        } else {
+          remainingStudentsCount++;
+        }
+      });
+
+      const paidPct = totalSchoolStudents > 0 ? Math.round((paidStudentsCount / totalSchoolStudents) * 100) : 0;
+
+      // Update KPI Elements
+      const kpiTotalEl = document.getElementById('kpiTotalStudents');
+      const kpiPaidEl = document.getElementById('kpiPaidStudents');
+      const kpiPaidRateEl = document.getElementById('kpiPaidRate');
+      const kpiRemEl = document.getElementById('kpiRemainingStudents');
+      const kpiCashEl = document.getElementById('kpiCashCollected');
+      const kpiDueEl = document.getElementById('kpiTotalDueAmount');
+
+      if (kpiTotalEl) kpiTotalEl.innerText = totalSchoolStudents;
+      if (kpiPaidEl) kpiPaidEl.innerText = `${paidStudentsCount} Students`;
+      if (kpiPaidRateEl) kpiPaidRateEl.innerText = `${paidPct}% Cleared in Full`;
+      if (kpiRemEl) kpiRemEl.innerText = `${remainingStudentsCount} Students`;
+      if (kpiCashEl) kpiCashEl.innerText = `PKR ${totalCashCollected.toLocaleString()}`;
+      if (kpiDueEl) kpiDueEl.innerText = `PKR ${totalDueAmount.toLocaleString()}`;
+
+      // Update Category Pills
+      const catAllEl = document.getElementById('catAllCount');
+      const catPaidEl = document.getElementById('catPaidCount');
+      const catRemEl = document.getElementById('catRemainingCount');
+
+      if (catAllEl) catAllEl.innerText = totalSchoolStudents;
+      if (catPaidEl) catPaidEl.innerText = paidStudentsCount;
+      if (catRemEl) catRemEl.innerText = remainingStudentsCount;
+    }
+
+    // =========================================================================
+    // RENDER MAIN STUDENT DIRECTORY TABLE
+    // =========================================================================
+    function renderStudentFeeTable() {
+      const tbody = document.getElementById('studentFeeTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentSearchTerm.toLowerCase().trim();
+
+      const filtered = HIGH_SCHOOL_STUDENTS.filter(student => {
+        // Class Filter
+        if (currentClassFilter !== 'all' && student.class !== currentClassFilter) return false;
+
+        // Student summary
+        const summary = getStudentFeeSummary(student.id);
+
+        // Category Filter: Paid vs Remaining
+        if (currentCategoryFilter === 'Paid' && summary.statusCategory !== 'Paid') return false;
+        if (currentCategoryFilter === 'Remaining' && summary.statusCategory !== 'Remaining') return false;
+
+        // Search Term Filter
+        if (!term) return true;
+        const nameMatch = (student.name || '').toLowerCase().includes(term);
+        const rollMatch = (student.rollNo || '').toLowerCase().includes(term);
+        const fatherMatch = (student.father || '').toLowerCase().includes(term);
+        const admMatch = (student.admissionNo || '').toLowerCase().includes(term);
+
+        return nameMatch || rollMatch || fatherMatch || admMatch;
+      });
+
+      const countBadge = document.getElementById('displayStudentCount');
+      if (countBadge) countBadge.innerText = `${filtered.length} Students`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-10 text-slate-400">
+              <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-2 text-base">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300 text-xs">No students found</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Try adjusting your category filter, class selector, or search term.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(student => {
+        const summary = getStudentFeeSummary(student.id);
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition duration-150 cursor-pointer';
+
+        // Category Badge
+        let statusBadge = '';
+        if (summary.statusCategory === 'Paid') {
+          statusBadge = `<span class="badge badge-success text-[10px] font-bold"><i class="fa-solid fa-circle-check text-[9px] mr-1"></i>Paid</span>`;
+        } else {
+          statusBadge = `<span class="badge badge-danger text-[10px] font-bold"><i class="fa-solid fa-triangle-exclamation text-[9px] mr-1"></i>Remaining</span>`;
+        }
+
+        // Remaining Balance display
+        let balanceDisplay = '';
+        if (summary.remainingDue === 0) {
+          balanceDisplay = `<span class="font-extrabold text-emerald-600 dark:text-emerald-400">Rs. 0 <span class="text-[10px] font-normal text-slate-400">(Nil)</span></span>`;
+        } else {
+          balanceDisplay = `<span class="font-extrabold text-rose-600 dark:text-rose-400">Rs. ${summary.remainingDue.toLocaleString()} <span class="text-[10px] font-semibold text-rose-500">Due</span></span>`;
+        }
+
+        tr.innerHTML = `
+          <td>
+            <div class="flex items-center gap-2.5">
+              <div class="student-avatar bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300">
+                ${escapeHtml(student.name.charAt(0))}
+              </div>
+              <div>
+                <div class="font-bold text-slate-900 dark:text-white text-xs hover:text-brand-600 transition" onclick="openStudentProfile('${escapeHtml(student.id)}')">
+                  ${escapeHtml(student.name)}
+                </div>
+                <div class="text-[10px] text-slate-400 font-mono">
+                  Roll: <strong class="text-slate-600 dark:text-slate-300">${escapeHtml(student.rollNo)}</strong> • S/O: ${escapeHtml(student.father)}
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="badge badge-neutral text-[10px] font-bold">
+              ${escapeHtml(student.class)} (${escapeHtml(student.section)})
+            </span>
+          </td>
+          <td><span class="font-bold text-slate-900 dark:text-white">Rs. ${summary.totalInvoiced.toLocaleString()}</span></td>
+          <td><span class="font-extrabold text-emerald-600 dark:text-emerald-400">Rs. ${summary.totalPaid.toLocaleString()}</span></td>
+          <td>${balanceDisplay}</td>
+          <td>${statusBadge}</td>
+          <td><span class="text-[11px] text-slate-500 font-medium">${escapeHtml(summary.lastDate)}</span></td>
+          <td class="text-right">
+            <div class="inline-flex items-center gap-1">
+              <button type="button" onclick="openStudentProfile('${escapeHtml(student.id)}')" class="px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-brand-50 hover:text-brand-700 dark:bg-slate-800 dark:text-slate-300 text-xs font-semibold transition" title="View Profile & Fee Ledger">
+                <i class="fa-solid fa-user text-[11px] mr-1"></i>Profile
+              </button>
+              <button type="button" onclick="openFeeUpdateForStudent('${escapeHtml(student.id)}')" class="px-2 py-1 rounded bg-brand-600 text-white hover:bg-brand-700 text-xs font-bold shadow-xs transition" title="Update Fee / Cash Payment">
+                <i class="fa-solid fa-coins text-[10px] mr-1"></i>Update
+              </button>
+              <button type="button" onclick="printLatestStudentReceipt('${escapeHtml(student.id)}')" class="p-1.5 rounded bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 text-xs transition" title="Print Cash Receipt">
+                <i class="fa-solid fa-print text-[11px]"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Filter Handlers
+    function setCategoryFilter(category, btn) {
+      currentCategoryFilter = category;
+      const pills = document.querySelectorAll('#feeCategoryPills button');
+      pills.forEach(p => {
+        p.className = 'px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) btn.className = 'px-3 py-1 rounded-full text-xs font-semibold bg-brand-600 text-white shadow-xs';
+      renderStudentFeeTable();
+    }
+
+    function handleFiltersChange() {
+      const cSel = document.getElementById('feeClassFilter');
+      if (cSel) currentClassFilter = cSel.value;
+      renderStudentFeeTable();
+    }
+
+    function handleSearchInput(val) {
+      currentSearchTerm = val;
+      const hInput = document.getElementById('headerFeeSearch');
+      const tInput = document.getElementById('feeLiveSearch');
+      if (hInput && hInput.value !== val) hInput.value = val;
+      if (tInput && tInput.value !== val) tInput.value = val;
+      renderStudentFeeTable();
+    }
+
+    // =========================================================================
+    // MODAL 1: VIEW STUDENT PROFILE & COMPLETE FEE LEDGER
+    // =========================================================================
+    function openStudentProfile(studentId) {
+      const student = HIGH_SCHOOL_STUDENTS.find(s => s.id === studentId);
+      if (!student) return;
+
+      activeProfileStudentId = studentId;
+      const summary = getStudentFeeSummary(studentId);
+
+      // Populate Header & Profile Banner
+      document.getElementById('modalProfileStudentName').innerText = `${student.name} - Profile & Ledger`;
+      document.getElementById('modalProfileStudentMeta').innerText = `Roll #: ${student.rollNo} • ${student.class} (${student.section})`;
+      document.getElementById('modalProfileAvatar').innerText = student.name.charAt(0);
+      document.getElementById('modalProfileFullName').innerText = student.name;
+      document.getElementById('modalProfileAdmNo').innerText = student.admissionNo || 'KIMS-ADM-000';
+      document.getElementById('modalProfileClass').innerText = `${student.class} - ${student.section}`;
+      document.getElementById('modalProfileFather').innerText = student.father || '-';
+      document.getElementById('modalProfilePhone').innerText = student.phone || '+92 333 0000000';
+      document.getElementById('modalProfileConcession').innerText = student.concession || 'Standard Full Payer';
+
+      // Status Badge
+      const statusBadge = document.getElementById('modalProfileStatusBadge');
+      if (summary.statusCategory === 'Paid') {
+        statusBadge.className = 'badge badge-success text-[10px] font-bold';
+        statusBadge.innerText = 'Paid in Full';
+      } else {
+        statusBadge.className = 'badge badge-danger text-[10px] font-bold';
+        statusBadge.innerText = `Remaining: Rs. ${summary.remainingDue.toLocaleString()}`;
+      }
+
+      // Financial Mini-Cards
+      document.getElementById('modalProfileTotalInvoiced').innerText = `PKR ${summary.totalInvoiced.toLocaleString()}`;
+      document.getElementById('modalProfileTotalPaid').innerText = `PKR ${summary.totalPaid.toLocaleString()}`;
+      document.getElementById('modalProfileRemainingDue').innerText = `PKR ${summary.remainingDue.toLocaleString()}`;
+      document.getElementById('modalProfileTotalFines').innerText = `PKR ${summary.totalFines.toLocaleString()}`;
+
+      // Fee Ledger Table
+      const ledgerBody = document.getElementById('modalProfileLedgerBody');
+      ledgerBody.innerHTML = '';
+      document.getElementById('modalProfileLedgerCount').innerText = `${summary.records.length} transactions recorded`;
+
+      if (summary.records.length === 0) {
+        ledgerBody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-6 text-slate-400 text-xs">
+              No fee transactions or updates found for this student.
+            </td>
+          </tr>
+        `;
+      } else {
+        summary.records.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-slate-50/70 dark:hover:bg-slate-800/40';
+
+          let statusSpan = '';
+          if (r.status === 'Paid') {
+            statusSpan = `<span class="badge badge-success text-[9px] font-bold">Paid</span>`;
+          } else if (r.status === 'Partial') {
+            statusSpan = `<span class="badge badge-warning text-[9px] font-bold">Partial</span>`;
+          } else {
+            statusSpan = `<span class="badge badge-danger text-[9px] font-bold">Unpaid</span>`;
+          }
+
+          tr.innerHTML = `
+            <td><span class="font-mono font-bold text-xs text-brand-700 dark:text-brand-400">${escapeHtml(r.receiptNo)}</span></td>
+            <td>
+              <div class="font-bold text-slate-900 dark:text-white">${escapeHtml(r.feeType)}</div>
+              <div class="text-[10px] text-slate-400">${escapeHtml(r.purpose)}</div>
+            </td>
+            <td><span class="text-slate-500">${escapeHtml(r.date)}</span></td>
+            <td><span class="font-bold text-slate-800 dark:text-white">Rs. ${(r.amount || 0).toLocaleString()}</span></td>
+            <td><span class="font-extrabold text-emerald-600">Rs. ${(r.paid || 0).toLocaleString()}</span></td>
+            <td><span class="${r.due > 0 ? 'text-rose-600 font-bold' : 'text-slate-400'}">Rs. ${(r.due || 0).toLocaleString()}</span></td>
+            <td>${statusSpan}</td>
+            <td class="text-right">
+              <button type="button" onclick="viewFeeRecord('${escapeHtml(r.id)}')" class="p-1 rounded bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 dark:bg-slate-800 dark:text-slate-300 text-xs transition" title="Print Cash Receipt">
+                <i class="fa-solid fa-print text-[11px]"></i>
+              </button>
+            </td>
+          `;
+          ledgerBody.appendChild(tr);
+        });
+      }
+
+      openModal('studentProfileFeeModal');
+    }
+
+    function handleProfileQuickUpdateClick() {
+      closeModal('studentProfileFeeModal');
+      if (activeProfileStudentId) {
+        openFeeUpdateForStudent(activeProfileStudentId);
+      }
+    }
+
+    function printStudentCompleteLedger() {
+      if (!activeProfileStudentId) return;
+      const summary = getStudentFeeSummary(activeProfileStudentId);
+      if (summary.latestRecord) {
+        viewFeeRecord(summary.latestRecord.id);
+      } else {
+        showToast('Ledger', 'No transactions found to print for this student.', 'info');
+      }
+    }
+
+    // =========================================================================
+    // MODAL 2: FORM WITH EACH PROFILE FOR FEE UPDATES
+    // =========================================================================
+    function openStudentFeeUpdateModal() {
+      populateUpdateStudentDropdown();
+      document.getElementById('formUpdateDate').value = new Date().toISOString().slice(0, 10);
+      handleUpdateFeeTypeChange(document.getElementById('formUpdateFeeType').value);
+      openModal('studentFeeUpdateModal');
+    }
+
+    function openFeeUpdateForStudent(studentId) {
+      populateUpdateStudentDropdown();
+      const select = document.getElementById('formUpdateStudentSelect');
+      if (select) select.value = studentId;
+      handleUpdateStudentChange(studentId);
+      document.getElementById('formUpdateDate').value = new Date().toISOString().slice(0, 10);
+      handleUpdateFeeTypeChange(document.getElementById('formUpdateFeeType').value);
+      openModal('studentFeeUpdateModal');
+    }
+
+    function populateUpdateStudentDropdown() {
+      const select = document.getElementById('formUpdateStudentSelect');
+      if (!select) return;
+
+      select.innerHTML = '';
+      HIGH_SCHOOL_STUDENTS.forEach(s => {
+        const summary = getStudentFeeSummary(s.id);
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        const dueText = summary.remainingDue > 0 ? ` [Due: Rs. ${summary.remainingDue}]` : ' [Paid]';
+        opt.innerText = `${s.name} (Roll: ${s.rollNo} • ${s.class})${dueText}`;
+        select.appendChild(opt);
+      });
+
+      if (HIGH_SCHOOL_STUDENTS.length > 0) {
+        handleUpdateStudentChange(HIGH_SCHOOL_STUDENTS[0].id);
+      }
+    }
+
+    function handleUpdateStudentChange(studentId) {
+      const student = HIGH_SCHOOL_STUDENTS.find(s => s.id === studentId);
+      if (!student) return;
+
+      const summary = getStudentFeeSummary(studentId);
+      const dueEl = document.getElementById('formUpdateCurrentDueText');
+      if (dueEl) {
+        dueEl.innerText = `PKR ${summary.remainingDue.toLocaleString()}`;
+        dueEl.className = summary.remainingDue > 0 ? 'font-extrabold text-rose-600 text-sm' : 'font-extrabold text-emerald-600 text-sm';
+      }
+
+      handleUpdateFeeTypeChange(document.getElementById('formUpdateFeeType').value);
+    }
+
+    function handleUpdateFeeTypeChange(feeType) {
+      const studentId = document.getElementById('formUpdateStudentSelect').value;
+      const student = HIGH_SCHOOL_STUDENTS.find(s => s.id === studentId);
+      const targetClass = student ? student.class : 'Class 10 (SSC-II Matric)';
+      const standardTuition = HIGH_SCHOOL_TUITION[targetClass] || 5500;
+
+      const amtInput = document.getElementById('formUpdateAmount');
+      const paidInput = document.getElementById('formUpdatePaid');
+      const purposeInput = document.getElementById('formUpdatePurpose');
+
+      if (feeType === 'Monthly Tuition Fee') {
+        amtInput.value = standardTuition;
+        paidInput.value = standardTuition;
+        purposeInput.value = "September 2026 Tuition";
+      } else if (feeType === 'Admission Fee') {
+        amtInput.value = 8000;
+        paidInput.value = 8000;
+        purposeInput.value = "Session 2026-2027 Admission Package";
+      } else if (feeType === 'Examination Fee') {
+        amtInput.value = 2500;
+        paidInput.value = 2500;
+        purposeInput.value = "Send-Up Board Exam Clearance";
+      } else if (feeType === 'Direct Fine') {
+        amtInput.value = 300;
+        paidInput.value = 300;
+        purposeInput.value = "Late Fee / Discipline Fine";
+      } else if (feeType === 'Outstanding Arrears') {
+        const summary = getStudentFeeSummary(studentId);
+        amtInput.value = summary.remainingDue;
+        paidInput.value = summary.remainingDue;
+        purposeInput.value = "Clear Outstanding Arrears";
+      }
+
+      calculateUpdateBalance();
+    }
+
+    function calculateUpdateBalance() {
+      const amount = parseFloat(document.getElementById('formUpdateAmount').value) || 0;
+      const paid = parseFloat(document.getElementById('formUpdatePaid').value) || 0;
+      const remaining = Math.max(0, amount - paid);
+      document.getElementById('formUpdateRemaining').value = remaining;
+    }
+
+    function handleSaveFeeUpdate(e) {
+      e.preventDefault();
+
+      const studentId = document.getElementById('formUpdateStudentSelect').value;
+      const student = HIGH_SCHOOL_STUDENTS.find(s => s.id === studentId);
+      if (!student) return false;
+
+      const feeType = document.getElementById('formUpdateFeeType').value;
+      const purpose = document.getElementById('formUpdatePurpose').value.trim();
+      const amount = parseFloat(document.getElementById('formUpdateAmount').value) || 0;
+      const paid = parseFloat(document.getElementById('formUpdatePaid').value) || 0;
+      const due = Math.max(0, amount - paid);
+      const date = document.getElementById('formUpdateDate').value;
+      const cashier = document.getElementById('formUpdateCashier').value.trim();
+      const notes = document.getElementById('formUpdateNotes').value.trim();
+
+      const status = (due === 0 && paid > 0) ? "Paid" : (paid > 0 ? "Partial" : "Unpaid");
+      const rcpNum = `RCP-2026-${String(serialReceiptCounter++).padStart(4, '0')}`;
+
+      const newRecord = {
+        id: `REC-2026-${Date.now().toString().slice(-4)}`,
+        receiptNo: rcpNum,
+        studentId: student.id,
+        studentName: student.name,
+        rollNo: student.rollNo,
+        class: student.class,
+        section: student.section,
+        father: student.father,
+        feeType: feeType,
+        purpose: purpose,
+        amount: amount,
+        paid: paid,
+        due: due,
+        status: status,
+        date: date,
+        cashier: cashier,
+        notes: notes || "Direct cash update at counter"
+      };
+
+      feeRecords.unshift(newRecord);
+      saveFeeRecords();
+      renderStudentFeeTable();
+      closeModal('studentFeeUpdateModal');
+      document.getElementById('studentFeeUpdateForm').reset();
+
+      showToast('Fee Update Recorded', `Receipt ${rcpNum} created for ${student.name}. Balance: Rs. ${due}`, 'success');
+
+      // Prompt official receipt
+      viewFeeRecord(newRecord.id);
+
+      return false;
+    }
+
+    // =========================================================================
+    // MODAL 3: ADD DIRECT FINE FORM
+    // =========================================================================
+    function openAddFineModal() {
+      const select = document.getElementById('formFineStudentSelect');
+      select.innerHTML = '';
+      HIGH_SCHOOL_STUDENTS.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.innerText = `${s.name} (Roll: ${s.rollNo} • ${s.class})`;
+        select.appendChild(opt);
+      });
+
+      document.getElementById('formFineDate').value = new Date().toISOString().slice(0, 10);
+      handleFinePresetChange(document.getElementById('formFineReasonSelect').value);
+      openModal('addDirectFineModal');
+    }
+
+    function handleFinePresetChange(val) {
+      const select = document.getElementById('formFineReasonSelect');
+      const opt = select.options[select.selectedIndex];
+      const amount = opt.getAttribute('data-amount') || 300;
+      document.getElementById('formFineAmount').value = amount;
+    }
+
+    function handleCreateDirectFine(e) {
+      e.preventDefault();
+
+      const studentId = document.getElementById('formFineStudentSelect').value;
+      const student = HIGH_SCHOOL_STUDENTS.find(s => s.id === studentId);
+      if (!student) return false;
+
+      const reason = document.getElementById('formFineReasonSelect').value;
+      const amount = parseFloat(document.getElementById('formFineAmount').value) || 0;
+      const paidStatus = document.getElementById('formFinePaidStatus').value;
+      const date = document.getElementById('formFineDate').value;
+      const officer = document.getElementById('formFineOfficer').value.trim();
+      const notes = document.getElementById('formFineNotes').value.trim();
+
+      const isPaid = (paidStatus === 'Paid');
+      const paid = isPaid ? amount : 0;
+      const due = isPaid ? 0 : amount;
+      const status = isPaid ? "Paid" : "Unpaid";
+      const rcpNum = `RCP-2026-${String(serialReceiptCounter++).padStart(4, '0')}`;
+
+      const newFineRecord = {
+        id: `REC-2026-${Date.now().toString().slice(-4)}`,
+        receiptNo: rcpNum,
+        studentId: student.id,
+        studentName: student.name,
+        rollNo: student.rollNo,
+        class: student.class,
+        section: student.section,
+        father: student.father,
+        feeType: "Direct Fine",
+        purpose: reason,
+        amount: amount,
+        paid: paid,
+        due: due,
+        status: status,
+        date: date,
+        cashier: officer,
+        notes: notes || `Direct fine for ${reason}`
+      };
+
+      feeRecords.unshift(newFineRecord);
+      saveFeeRecords();
+      renderStudentFeeTable();
+      closeModal('addDirectFineModal');
+      document.getElementById('addFineForm').reset();
+
+      showToast('Fine Recorded', `Rs. ${amount} fine recorded for ${student.name} (${status}).`, 'info');
+      return false;
+    }
+
+    // =========================================================================
+    // MODAL 4: VIEW & PRINT OFFICIAL CASH RECEIPT
+    // =========================================================================
+    function printLatestStudentReceipt(studentId) {
+      const summary = getStudentFeeSummary(studentId);
+      if (summary.latestRecord) {
+        viewFeeRecord(summary.latestRecord.id);
+      } else {
+        showToast('Receipt', 'No payment record found for this student.', 'info');
+      }
+    }
+
+    function viewFeeRecord(recordId) {
+      const record = feeRecords.find(r => r.id === recordId);
+      if (!record) return;
+
+      document.getElementById('viewFeeBadge').innerText = record.status === 'Paid' ? 'Paid in Cash' : `${record.status} Status`;
+      document.getElementById('viewReceiptNo').innerText = record.receiptNo;
+
+      document.getElementById('printReceiptNo').innerText = record.receiptNo;
+      document.getElementById('printDate').innerText = record.date;
+      document.getElementById('printStudent').innerText = record.studentName;
+      document.getElementById('printRoll').innerText = record.rollNo;
+      document.getElementById('printClass').innerText = `${record.class} (${record.section || 'A'})`;
+      document.getElementById('printFather').innerText = record.father || '-';
+      document.getElementById('printStatus').innerText = record.status;
+
+      document.getElementById('printHead').innerText = record.feeType;
+      document.getElementById('printPurpose').innerText = record.purpose;
+      document.getElementById('printAmount').innerText = `Rs. ${(record.amount || 0).toLocaleString()}`;
+      document.getElementById('printPaid').innerText = `PKR ${(record.paid || 0).toLocaleString()}`;
+      document.getElementById('printDue').innerText = `PKR ${(record.due || 0).toLocaleString()}`;
+
+      document.getElementById('printWords').innerText = convertNumberToWords(record.paid) + " Only";
+      document.getElementById('printCashier').innerText = record.cashier || 'Accounts Clerk';
+
+      openModal('viewFeeRecordModal');
+    }
+
+    // Number to words helper for Pakistani Rupees
+    function convertNumberToWords(amount) {
+      const words = [
+        "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+        "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+      ];
+      const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+      if (!amount || amount === 0) return "Rupees Zero";
+
+      function toWords(num) {
+        if (num < 20) return words[num];
+        if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? " " + words[num % 10] : "");
+        if (num < 1000) return words[Math.floor(num / 100)] + " Hundred" + (num % 100 !== 0 ? " and " + toWords(num % 100) : "");
+        if (num < 100000) return toWords(Math.floor(num / 1000)) + " Thousand" + (num % 1000 !== 0 ? " " + toWords(num % 1000) : "");
+        if (num < 10000000) return toWords(Math.floor(num / 100000)) + " Lakh" + (num % 100000 !== 0 ? " " + toWords(num % 100000) : "");
+        return toWords(Math.floor(num / 10000000)) + " Crore" + (num % 10000000 !== 0 ? " " + toWords(num % 10000000) : "");
+      }
+
+      return "Rupees " + toWords(amount);
+    }
+
+    // =========================================================================
+    // DOM READY INITIALIZATION
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFeeRecords();
+      renderStudentFeeTable();
+      updateStats();
+    });
+  </script>
+</body>
+</html>

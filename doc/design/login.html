@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Portal Login - Kohat Institute of Modern Sciences (KIMS)</title>
+    <meta name="description" content="Access the KIMS School Digital Operating System. Unified single sign-on portal for Students, Parents, Teachers, Administrators, and Public Users.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .portal-bg-pattern {
+            background-color: #022c22;
+            background-image: radial-gradient(rgba(5, 150, 105, 0.25) 1px, transparent 1px), radial-gradient(rgba(245, 158, 11, 0.15) 1px, #022c22 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .role-btn.active-role {
+            background-color: #064e3b;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.3);
+            border-color: #064e3b;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Top Simplified Bar -->
+    <nav class="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-8 sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-xl object-cover">
+                </div>
+                <div>
+                    <span class="font-black text-slate-900 text-xl tracking-tight leading-none block">KIMS</span>
+                    <span class="text-[10px] text-emerald-700 font-bold uppercase tracking-wider">Digital Operating System</span>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="index.html" class="text-slate-600 hover:text-kimsEmerald transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i> Return to Website
+                </a>
+                <a href="register.html" class="hidden sm:inline-block bg-emerald-50 text-kimsEmerald hover:bg-emerald-100 border border-emerald-200 px-3.5 py-1.5 rounded-lg transition font-bold">
+                    <i class="fa-solid fa-user-plus mr-1"></i> Register Public User
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px]">
+            
+            <!-- Left Side: Brand Visual & Operating System Principles (5 Cols) -->
+            <div class="lg:col-span-5 portal-bg-pattern p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Brand Top Details -->
+                <div class="relative z-10 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>ONE UNIFIED SYSTEM • 5 PANELS</span>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                            One Common Login <br><span class="gold-shimmer">Role-Based Access</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-emerald-100/80 mt-2 leading-relaxed">
+                            Sign in with your institutional or public credentials. The system automatically identifies your role and routes you to your dedicated operating workspace.
+                        </p>
+                    </div>
+
+                    <!-- 5 Panel Destination Matrix -->
+                    <div class="space-y-2 pt-2 text-xs">
+                        <div class="flex items-center justify-between bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-user-shield text-amber-400 w-4"></i> Admin
+                            </span>
+                            <span class="text-amber-300 font-mono text-[11px]">→ Admin Panel</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-chalkboard-user text-blue-400 w-4"></i> Teacher
+                            </span>
+                            <span class="text-blue-300 font-mono text-[11px]">→ Teacher Panel</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-graduation-cap text-emerald-400 w-4"></i> Student
+                            </span>
+                            <span class="text-emerald-300 font-mono text-[11px]">→ Student Panel</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-people-roof text-purple-400 w-4"></i> Parent
+                            </span>
+                            <span class="text-purple-300 font-mono text-[11px]">→ Parent Panel</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-user-astronaut text-teal-400 w-4"></i> Public User
+                            </span>
+                            <span class="text-teal-300 font-mono text-[11px]">→ Public User Area</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left Bottom Support Note -->
+                <div class="relative z-10 pt-6 border-t border-white/10 text-[11px] text-emerald-200/80 flex items-center justify-between">
+                    <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> ISO 27001 Security Ready</span>
+                    <a href="tel:+923330299920" class="hover:text-white transition">IT Desk: 0333-0299920</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Multi-Role Login Interface (7 Cols) -->
+            <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
+                
+                <div class="space-y-5">
+                    <!-- Heading -->
+                    <div>
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                                Central Authentication
+                            </span>
+                            <span class="text-xs text-slate-400">EduOS Unified Login</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Sign In to KIMS</h1>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5" id="role-subtitle">Select your institution role or sign in as a registered public user.</p>
+                    </div>
+
+                    <!-- 5 Roles Horizontal Selector -->
+                    <div class="p-1 bg-slate-100 rounded-2xl border border-slate-200 grid grid-cols-3 sm:grid-cols-5 gap-1" id="role-tabs-container">
+                        <button type="button" onclick="selectRole('student')" id="role-btn-student" class="role-btn active-role font-bold text-xs py-2.5 px-2 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-1.5 transition text-slate-600">
+                            <i class="fa-solid fa-graduation-cap"></i> <span>Student</span>
+                        </button>
+                        <button type="button" onclick="selectRole('parent')" id="role-btn-parent" class="role-btn font-bold text-xs py-2.5 px-2 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-1.5 transition text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-people-roof"></i> <span>Parent</span>
+                        </button>
+                        <button type="button" onclick="selectRole('teacher')" id="role-btn-teacher" class="role-btn font-bold text-xs py-2.5 px-2 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-1.5 transition text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-chalkboard-user"></i> <span>Teacher</span>
+                        </button>
+                        <button type="button" onclick="selectRole('admin')" id="role-btn-admin" class="role-btn font-bold text-xs py-2.5 px-2 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-1.5 transition text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-user-shield"></i> <span>Admin</span>
+                        </button>
+                        <button type="button" onclick="selectRole('public')" id="role-btn-public" class="role-btn font-bold text-xs py-2.5 px-2 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-1.5 transition text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-user"></i> <span>Public</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Demo Credentials Hint (Clickable Auto-Fill) -->
+                    <div class="bg-amber-50 border border-amber-200/80 rounded-2xl p-3 text-xs text-amber-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-key text-amber-600 flex-shrink-0"></i>
+                            <span id="demo-credentials-text">Demo: <strong>KIMS-2024-1042</strong> | PIN: <strong>1234</strong></span>
+                        </div>
+                        <button type="button" onclick="autoFillCurrentRole()" class="text-[11px] font-bold text-amber-800 bg-amber-200/70 hover:bg-amber-200 px-3 py-1 rounded-lg transition whitespace-nowrap">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Auto-Fill Demo
+                        </button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="unified-login-form" onsubmit="handleUnifiedLogin(event)" class="space-y-4">
+                        
+                        <!-- Primary Identifier Input -->
+                        <div>
+                            <label for="user-identifier" class="block text-xs font-bold text-slate-700 mb-1.5" id="label-identifier">
+                                Student Roll Number / Admission ID *
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                    <i class="fa-solid fa-id-card" id="icon-identifier"></i>
+                                </div>
+                                <input type="text" id="user-identifier" required placeholder="e.g. KIMS-2024-1042" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                            </div>
+                        </div>
+
+                        <!-- Password / Security PIN Input -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <label for="user-password" class="block text-xs font-bold text-slate-700" id="label-password">
+                                    Password / PIN *
+                                </label>
+                                <button type="button" onclick="openForgotModal()" class="text-xs font-semibold text-kimsEmerald hover:underline">
+                                    Forgot Credentials?
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <input type="password" id="user-password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition">
+                                <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 text-sm focus:outline-none" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye" id="toggle-eye-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Options row -->
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <label class="flex items-center gap-2 cursor-pointer text-slate-600">
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-kimsEmerald focus:ring-kimsEmerald accent-kimsEmerald">
+                                <span>Remember this session</span>
+                            </label>
+                            <span class="text-emerald-700 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-shield-check text-xs"></i> 256-Bit SSL
+                            </span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="login-submit-btn" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-sm py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 mt-2">
+                            <span id="login-btn-text">Sign In as Student</span>
+                            <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                        </button>
+
+                    </form>
+
+                    <!-- Public User Registration Callout (Per Spec Module 3 & 4) -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 flex items-center justify-between text-xs">
+                        <div>
+                            <strong class="text-slate-800 font-bold block">New applicant or prospective parent?</strong>
+                            <span class="text-slate-500">Public accounts track admission applications and messages.</span>
+                        </div>
+                        <a href="register.html" class="bg-white hover:bg-emerald-50 text-kimsEmerald border border-emerald-300 font-bold px-3 py-1.5 rounded-xl transition whitespace-nowrap shadow-sm">
+                            Register Public User →
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Footer Help Note -->
+                <div class="pt-5 border-t border-slate-100 text-center text-xs text-slate-500 mt-4">
+                    Academic accounts are issued and managed by KIMS Admin. 
+                    <a href="contact.html" class="text-kimsEmerald font-bold hover:underline ml-1">Contact IT Helpdesk</a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simulated Logged-In Success Modal (Identifies Role & Destination Area) -->
+    <div id="auth-success-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 text-center space-y-5">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-block mb-1" id="success-badge">
+                    Role Verified
+                </span>
+                <h3 class="text-2xl font-black text-slate-900">Authentication Success</h3>
+                <p class="text-xs text-slate-500 mt-1" id="success-dest-desc">Directing to your authorized workspace...</p>
+            </div>
+
+            <!-- Role-Specific Information Card -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-left text-xs space-y-2.5">
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Authenticated Role:</span>
+                    <span class="font-extrabold text-kimsEmerald text-sm" id="success-role-title">Student</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Account ID / Username:</span>
+                    <span class="font-mono font-bold text-slate-800" id="success-account-id">KIMS-2024-1042</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Authorized Workspace:</span>
+                    <span class="font-bold text-slate-800" id="success-panel-dest">Student Panel</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-2">
+                    <span class="text-slate-400">System Permission:</span>
+                    <span class="font-bold text-emerald-600" id="success-permission-scope">Active Academic Session 2024-25</span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="simulateGoToPanel()" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white font-bold text-xs py-3.5 rounded-xl shadow-lg transition text-center flex items-center justify-center gap-2">
+                    <span id="panel-btn-text">Open Dedicated Workspace</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+                <button onclick="closeAuthSuccessModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs py-2.5 rounded-xl transition">
+                    Sign Out / Switch Role
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 sm:p-8 space-y-4">
+            
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-black text-slate-900">Credential Recovery</h3>
+                <button onclick="closeForgotModal()" class="text-slate-400 hover:text-slate-600 text-sm">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Enter your registered ID, Phone, or Email. Academic account resets require proctor or administration approval.
+            </p>
+
+            <form onsubmit="handleForgotSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Registered Identifier / Mobile</label>
+                    <input type="text" required placeholder="Roll Number, CNIC, or Email" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald">
+                </div>
+                <button type="submit" class="w-full bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-bold py-3 rounded-xl transition">
+                    Submit Recovery Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Simplified Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 px-4 text-center border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>&copy; 2026 Kohat Institute of Modern Sciences (KIMS). Dhoda Road, Kohat, KPK.</p>
+            <div class="flex items-center gap-4 text-slate-300 font-medium">
+                <a href="index.html" class="hover:text-emerald-400">Home</a>
+                <a href="about.html" class="hover:text-emerald-400">About</a>
+                <a href="admissions.html" class="hover:text-emerald-400">Admissions</a>
+                <a href="notices.html" class="hover:text-emerald-400">Notices</a>
+                <a href="register.html" class="hover:text-emerald-400">Register</a>
+                <a href="contact.html" class="hover:text-emerald-400">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script for 5-Role Authentication -->
+    <script>
+        // Configuration for all 5 roles defined in Module 4
+        const roleConfigs = {
+            student: {
+                title: 'Student',
+                destPanel: 'Student Panel',
+                subtitle: 'Sign in with your student Roll Number to view DMC, timetable, and assignments.',
+                labelId: 'Student Roll Number / Admission ID *',
+                iconId: 'fa-graduation-cap',
+                placeholderId: 'e.g. KIMS-2024-1042',
+                labelPass: 'Student Password / Security PIN *',
+                demoId: 'KIMS-2024-1042',
+                demoPass: '1234',
+                demoText: 'Demo Student: <strong>KIMS-2024-1042</strong> | PIN: <strong>1234</strong>',
+                btnText: 'Sign In as Student',
+                permission: 'Student Dossier & Academic Ledger Access'
+            },
+            parent: {
+                title: 'Parent / Guardian',
+                destPanel: 'Parent Panel',
+                subtitle: 'Sign in to monitor your child\'s attendance, fee challans, and academic progress.',
+                labelId: 'Parent Registered Mobile / CNIC *',
+                iconId: 'fa-people-roof',
+                placeholderId: 'e.g. 03330299920 or 14301-xxxxxxx-x',
+                labelPass: 'Parent Portal Password / PIN *',
+                demoId: '03330299920',
+                demoPass: '1234',
+                demoText: 'Demo Parent: <strong>03330299920</strong> | PIN: <strong>1234</strong>',
+                btnText: 'Sign In as Parent',
+                permission: 'Linked Children Dashboard & Fee Payments'
+            },
+            teacher: {
+                title: 'Teacher / Faculty',
+                destPanel: 'Teacher Panel',
+                subtitle: 'Sign in to mark daily attendance, enter examination marks, and manage class homework.',
+                labelId: 'Faculty Employee Code / Email *',
+                iconId: 'fa-chalkboard-user',
+                placeholderId: 'e.g. TCH-BIO-09 or faculty@kims.edu.pk',
+                labelPass: 'Teacher Portal Password *',
+                demoId: 'TCH-BIO-09',
+                demoPass: 'teacher123',
+                demoText: 'Demo Teacher: <strong>TCH-BIO-09</strong> | Pass: <strong>teacher123</strong>',
+                btnText: 'Sign In as Teacher',
+                permission: 'Assigned Classes, Attendance & Marks Entry'
+            },
+            admin: {
+                title: 'Administrator',
+                destPanel: 'Admin Panel',
+                subtitle: 'Complete institutional digital operating system: students, teachers, fees, and CMS control.',
+                labelId: 'Admin Username / Official Email *',
+                iconId: 'fa-user-shield',
+                placeholderId: 'e.g. admin@gmail.com',
+                labelPass: 'Admin Security Key / Password *',
+                demoId: 'admin@gmail.com',
+                demoPass: 'admin',
+                demoText: 'Demo Admin: <strong>admin@gmail.com</strong> | Pass: <strong>admin</strong> (<a href="admin/login.html" class="underline font-bold text-amber-300">Direct Admin Login</a>)',
+                btnText: 'Sign In as Administrator',
+                permission: 'Full Operational & CMS Institutional Control'
+            },
+            public: {
+                title: 'Public User',
+                destPanel: 'Public User Area',
+                subtitle: 'Sign in to track online admission applications and communicate with admissions desk.',
+                labelId: 'Registered Public Email / Mobile *',
+                iconId: 'fa-user',
+                placeholderId: 'e.g. applicant.wali@gmail.com',
+                labelPass: 'Public Account Password *',
+                demoId: 'applicant.wali@gmail.com',
+                demoPass: 'pass1234',
+                demoText: 'Demo Public: <strong>applicant.wali@gmail.com</strong> | Pass: <strong>pass1234</strong>',
+                btnText: 'Sign In as Public User',
+                permission: 'Admission Application Tracking & Inquiries'
+            }
+        };
+
+        let currentActiveRole = 'student';
+
+        function selectRole(roleKey) {
+            currentActiveRole = roleKey;
+            const config = roleConfigs[roleKey];
+            if (!config) return;
+
+            // Update Tab active styling
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('active-role');
+            });
+            const activeBtn = document.getElementById('role-btn-' + roleKey);
+            if (activeBtn) activeBtn.classList.add('active-role');
+
+            // Update UI elements
+            document.getElementById('role-subtitle').textContent = config.subtitle;
+            document.getElementById('label-identifier').textContent = config.labelId;
+            document.getElementById('label-password').textContent = config.labelPass;
+            document.getElementById('user-identifier').placeholder = config.placeholderId;
+            document.getElementById('icon-identifier').className = 'fa-solid ' + config.iconId;
+            document.getElementById('demo-credentials-text').innerHTML = config.demoText;
+            document.getElementById('login-btn-text').textContent = config.btnText;
+
+            // Clear inputs for clean state
+            document.getElementById('user-identifier').value = '';
+            document.getElementById('user-password').value = '';
+        }
+
+        function autoFillCurrentRole() {
+            const config = roleConfigs[currentActiveRole];
+            if (config) {
+                document.getElementById('user-identifier').value = config.demoId;
+                document.getElementById('user-password').value = config.demoPass;
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('user-password');
+            const icon = document.getElementById('toggle-eye-icon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function handleUnifiedLogin(e) {
+            e.preventDefault();
+            const config = roleConfigs[currentActiveRole];
+            const enteredId = document.getElementById('user-identifier').value;
+
+            // Populate Success Modal
+            document.getElementById('success-badge').textContent = 'Role: ' + config.title;
+            document.getElementById('success-dest-desc').textContent = 'Redirecting to ' + config.destPanel + ' area...';
+            document.getElementById('success-role-title').textContent = config.title;
+            document.getElementById('success-account-id').textContent = enteredId;
+            document.getElementById('success-panel-dest').textContent = config.destPanel;
+            document.getElementById('success-permission-scope').textContent = config.permission;
+            document.getElementById('panel-btn-text').textContent = 'Open ' + config.destPanel;
+
+            document.getElementById('auth-success-modal').classList.remove('hidden');
+        }
+
+        function closeAuthSuccessModal() {
+            document.getElementById('auth-success-modal').classList.add('hidden');
+        }
+
+        function simulateGoToPanel() {
+            const config = roleConfigs[currentActiveRole];
+            if (currentActiveRole === 'admin') {
+                window.location.href = 'admin/index.html';
+                return;
+            }
+            alert('Opening ' + config.destPanel + ' for ' + config.title + ' (' + document.getElementById('user-identifier').value + ').\n\nDesign Reference Mode: Academic dashboards will be integrated in Phase 2.');
+            closeAuthSuccessModal();
+        }
+
+        function openForgotModal() {
+            document.getElementById('forgot-modal').classList.remove('hidden');
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgot-modal').classList.add('hidden');
+        }
+
+        function handleForgotSubmit(e) {
+            e.preventDefault();
+            alert('Password reset instructions have been dispatched via SMS & Email.');
+            closeForgotModal();
+        }
+    </script>
+
+</body>
+
+</html>

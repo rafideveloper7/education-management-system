@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results & Gazette Controller - KIMS High School Admin</title>
+  <meta name="description" content="KIMS High School Institutional Management System - Academic Results, Marksheets Tabulation, BISE Position Holders, and DMC Generator (Classes 0-1 to 10)">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <style>
+    /* Official DMC Printable Certificate Styling */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printDmcArea, #printDmcArea * {
+        visibility: visible;
+      }
+      #printDmcArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* Podium Heights & Accents */
+    .podium-gold {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-color: #f59e0b;
+    }
+    .podium-silver {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      border-color: #94a3b8;
+    }
+    .podium-bronze {
+      background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+      border-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link active">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="resultSearchInput" oninput="handleResultSearch(this.value)" placeholder="Search student name, roll number, father name, DMC...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="admin-content">
+
+        <!-- Title Bar -->
+        <div class="page-header-bar">
+          <div class="page-title">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-success text-xs font-bold">
+                <i class="fa-solid fa-award mr-1"></i>Pakistani High School (Classes 0-1 to 10)
+              </span>
+              <span class="badge badge-neutral text-xs font-mono">Module 11B</span>
+            </div>
+            <h1>Examinations Results & Official Gazette Controller</h1>
+            <p>Student marksheet tabulation, BISE grading metrics, position holders podium, and DMC certificate generation.</p>
+          </div>
+          <div class="page-actions flex-wrap gap-2">
+            <button type="button" onclick="printOfficialGazette()" class="btn-kims btn-secondary text-xs">
+              <i class="fa-solid fa-print"></i>
+              <span>Print Official Gazette</span>
+            </button>
+            <button type="button" onclick="openAddResultModal()" class="btn-kims btn-primary text-xs">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add Student Result</span>
+            </button>
+            <a href="exams.html" class="btn-kims bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs border border-slate-200 dark:border-slate-700">
+              <i class="fa-solid fa-calendar-days text-emerald-600"></i>
+              <span>Exam Sessions & Date Sheets</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Metric Ribbon (4 Key KPIs) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div class="admin-card p-4 border-l-4 border-l-emerald-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Overall Pass Rate</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiPassRate">94.6% Passed</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5" id="kpiPassSub">28 of 30 Cleared (33%+ Min)</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-amber-500 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Class 10-A Topper</div>
+              <div class="text-xl font-black text-slate-900 dark:text-white mt-1 truncate max-w-[150px]" id="kpiTopperName">M. Huzaifa Khan</div>
+              <div class="text-[11px] text-amber-600 font-bold mt-0.5" id="kpiTopperScore">521/550 Marks (94.7% A+)</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-purple-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Distinctions (A+ / A)</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiDistinctions">14 Scholars</div>
+              <div class="text-[11px] text-slate-400 font-medium mt-0.5">80%+ Board Standard</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <div class="admin-card p-4 border-l-4 border-l-blue-600 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Marksheets Tabulated</div>
+              <div class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpiTotalResults">30 Students</div>
+              <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">Signed & Gazette Published</div>
+            </div>
+            <div class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 flex items-center justify-center text-lg shadow-xs">
+              <i class="fa-solid fa-file-invoice"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Position Holders Showcase Podium -->
+        <div class="admin-card p-5 mb-6 bg-gradient-to-r from-emerald-950/10 via-amber-950/10 to-transparent border border-amber-200/60 dark:border-amber-900/40">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-amber-500 text-base"></i>
+                <h3 class="font-extrabold text-sm text-slate-900 dark:text-white uppercase tracking-wider">Top 3 Position Holders Podium</h3>
+                <span class="badge badge-gold text-[10px] font-bold">Class 10 (Section A Science)</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Official academic merit standing for Annual Examination 2026-2027</p>
+            </div>
+            <button type="button" onclick="broadcastPositionAlert()" class="btn-kims bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold !py-1 !px-2.5 text-xs shadow-xs self-start sm:self-auto">
+              <i class="fa-solid fa-bullhorn text-xs mr-1"></i>
+              <span>Publish Merit List to Portals</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5" id="positionHoldersGrid">
+            <!-- Position 2 (Silver) -->
+            <div class="p-3.5 rounded-2xl border-2 podium-silver dark:bg-slate-800/80 dark:border-slate-600 shadow-xs flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-black flex items-center justify-center text-xl shrink-0 shadow-inner">
+                🥈 2nd
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-extrabold text-slate-900 dark:text-white truncate">Ayesha Bibi</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400">Roll: 10-A-02 • d/o Abdul Qayyum</div>
+                <div class="mt-1 flex items-center gap-1.5">
+                  <span class="font-black text-xs text-slate-900 dark:text-white">512 / 550</span>
+                  <span class="badge badge-success text-[10px] font-bold">93.1% A+</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Position 1 (Gold - Center) -->
+            <div class="p-3.5 rounded-2xl border-2 podium-gold dark:bg-amber-950/40 dark:border-amber-600 shadow-md flex items-center gap-3 transform md:-translate-y-1">
+              <div class="w-14 h-14 rounded-2xl bg-amber-400 text-amber-950 font-black flex items-center justify-center text-2xl shrink-0 shadow-inner ring-2 ring-amber-300">
+                🥇 1st
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-black text-slate-950 dark:text-amber-200 truncate flex items-center gap-1">
+                  <span>Muhammad Huzaifa Khan</span>
+                  <i class="fa-solid fa-crown text-amber-600 text-xs"></i>
+                </div>
+                <div class="text-[10px] text-amber-900 dark:text-amber-300 font-medium">Roll: 10-A-01 • s/o Tariq Jamil</div>
+                <div class="mt-1 flex items-center gap-1.5">
+                  <span class="font-black text-sm text-slate-950 dark:text-white">521 / 550</span>
+                  <span class="badge bg-amber-500 text-slate-950 text-[10px] font-black">94.7% A+ Gold Medalist</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Position 3 (Bronze) -->
+            <div class="p-3.5 rounded-2xl border-2 podium-bronze dark:bg-slate-800/80 dark:border-orange-800 shadow-xs flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-orange-200 dark:bg-orange-950 text-orange-800 dark:text-orange-300 font-black flex items-center justify-center text-xl shrink-0 shadow-inner">
+                🥉 3rd
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-extrabold text-slate-900 dark:text-white truncate">Shahzaib Noor</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400">Roll: 10-A-05 • s/o Noor Muhammad</div>
+                <div class="mt-1 flex items-center gap-1.5">
+                  <span class="font-black text-xs text-slate-900 dark:text-white">498 / 550</span>
+                  <span class="badge badge-success text-[10px] font-bold">90.5% A+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Gazette Table Card -->
+        <div class="admin-card">
+          
+          <!-- Card Filters & Controls -->
+          <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 space-y-3">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+              
+              <!-- Session, Class & Section Selectors -->
+              <div class="flex flex-wrap items-center gap-2">
+                <div>
+                  <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">Exam Term</label>
+                  <select id="resultExamSelect" onchange="handleExamFilterChange(this.value)" class="form-control text-xs !py-1.5 !px-2.5 !w-auto font-semibold">
+                    <option value="EXAM-2026-ANNUAL" selected>Annual Final Examination 2026-2027</option>
+                    <option value="EXAM-2026-SENDUP-10">Matric Pre-Board Send-Up Exam 2026</option>
+                    <option value="EXAM-2026-MID">Mid-Term Examination 2026</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">Class</label>
+                  <select id="resultClassSelect" onchange="handleClassFilterChange(this.value)" class="form-control text-xs !py-1.5 !px-2.5 !w-auto font-bold text-slate-800 dark:text-white">
+                    <option value="all">All Classes</option>
+                    <option value="Class 10 (SSC-II Matric)" selected>Class 10 (SSC-II Matric)</option>
+                    <option value="Class 9 (SSC-I Matric)">Class 9 (SSC-I Matric)</option>
+                    <option value="Class 8">Class 8</option>
+                    <option value="Class 5">Class 5</option>
+                    <option value="Class 1">Class 1</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">Section</label>
+                  <select id="resultSectionSelect" onchange="handleSectionFilterChange(this.value)" class="form-control text-xs !py-1.5 !px-2.5 !w-auto font-bold text-emerald-700 dark:text-emerald-400">
+                    <option value="all">All Sections</option>
+                    <option value="Section A" selected>Section A (Science)</option>
+                    <option value="Section B">Section B (General/Arts)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Status Filter Tabs -->
+              <div>
+                <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">Standing Filter</label>
+                <div class="flex flex-wrap items-center gap-1.5" id="standingFilterTabs">
+                  <button type="button" onclick="filterByStanding('all', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs">
+                    All Marksheets
+                  </button>
+                  <button type="button" onclick="filterByStanding('Passed', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+                    Passed (33%+)
+                  </button>
+                  <button type="button" onclick="filterByStanding('A+', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 hover:bg-amber-200 transition">
+                    ⭐ A+ Distinctions
+                  </button>
+                  <button type="button" onclick="filterByStanding('Compartment', this)" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 hover:bg-rose-100 transition">
+                    ⚠️ Compartment / Fail
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Marksheets Table -->
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="min-width: 170px;">Roll & Student Name</th>
+                  <th style="min-width: 130px;">Class & Section</th>
+                  <th style="min-width: 250px;">Subject Marks Preview</th>
+                  <th style="min-width: 120px;">Total Marks</th>
+                  <th style="min-width: 90px;">Percentage</th>
+                  <th style="min-width: 80px;">BISE Grade</th>
+                  <th style="min-width: 140px;">Standing</th>
+                  <th class="text-right" style="min-width: 160px;">Certificate Actions</th>
+                </tr>
+              </thead>
+              <tbody id="resultsTableBody">
+                <!-- Populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Academics</span>
+      </a>
+      <a href="exams.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Exams</span>
+      </a>
+      <a href="results.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-award"></i>
+        <span>Results</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: OFFICIAL DETAILED MARKS CERTIFICATE (DMC) MODAL                  -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="dmcModal">
+    <div class="modal-container !max-w-4xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-success text-xs font-bold" id="dmcModalClassBadge">Class 10 (SSC-II)</span>
+            <span class="text-xs font-mono text-slate-400" id="dmcSerialBadge">KIMS/DMC-2026-0841</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="dmcModalTitle">Official Detailed Marks Certificate</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Printable DMC Certificate Content Area -->
+      <div class="modal-body max-h-[75vh] overflow-y-auto p-6" id="printDmcArea">
+        
+        <!-- Official Institutional Certificate Border Container -->
+        <div class="p-6 sm:p-8 rounded-2xl border-4 border-double border-emerald-800/60 dark:border-emerald-700/60 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-md relative">
+          
+          <!-- DMC Header -->
+          <div class="text-center pb-4 border-b-2 border-emerald-800/40">
+            <div class="flex items-center justify-center gap-3">
+              <div class="w-14 h-14 rounded-2xl bg-emerald-800 text-white flex items-center justify-center text-2xl font-black shadow-sm">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="text-left">
+                <h2 class="text-lg sm:text-xl font-black uppercase tracking-wide text-emerald-900 dark:text-emerald-300">
+                  Khyber Islamic Model High School & College
+                </h2>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                  Affiliated with Board of Intermediate & Secondary Education (BISE) • Reg No: KIMS-786/HS
+                </div>
+                <div class="text-[11px] text-slate-400 mt-0.5">
+                  Sector B-1, Phase 5, Hayatabad, Peshawar, Khyber Pakhtunkhwa
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-2 inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300 font-black text-xs uppercase tracking-widest border border-emerald-300 dark:border-emerald-800">
+              Official Detailed Marks Certificate (DMC)
+            </div>
+            <div class="text-xs font-bold text-slate-700 dark:text-slate-300 mt-1" id="dmcExamTermLabel">
+              Annual Final Examination (Academic Session 2026-2027)
+            </div>
+          </div>
+
+          <!-- Student Profile Matrix -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-5 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs">
+            <div>
+              <div class="text-[10px] text-slate-400 font-bold uppercase">Candidate Name</div>
+              <div class="font-black text-slate-900 dark:text-white text-xs mt-0.5" id="dmcStudentName">Muhammad Huzaifa Khan</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-400 font-bold uppercase">Father's Name</div>
+              <div class="font-bold text-slate-800 dark:text-slate-200 text-xs mt-0.5" id="dmcFatherName">Tariq Jamil Khan</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-400 font-bold uppercase">Roll Number</div>
+              <div class="font-mono font-black text-emerald-700 dark:text-emerald-400 text-xs mt-0.5" id="dmcRollNo">10-A-01</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-400 font-bold uppercase">Class & Section</div>
+              <div class="font-bold text-slate-900 dark:text-white text-xs mt-0.5" id="dmcClassSection">Class 10 - Section A</div>
+            </div>
+          </div>
+
+          <!-- Detailed Marks Ledger Table -->
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-left text-xs border-collapse border border-slate-200 dark:border-slate-700">
+              <thead class="bg-slate-100 dark:bg-slate-800 font-bold uppercase text-[10px] text-slate-600 dark:text-slate-300">
+                <tr class="border-b border-slate-200 dark:border-slate-700">
+                  <th class="py-2 px-3">Subject Name</th>
+                  <th class="py-2 px-2 text-center" style="width: 70px;">Max Marks</th>
+                  <th class="py-2 px-2 text-center" style="width: 70px;">Pass Marks</th>
+                  <th class="py-2 px-2 text-center" style="width: 70px;">Theory</th>
+                  <th class="py-2 px-2 text-center" style="width: 70px;">Practical</th>
+                  <th class="py-2 px-2 text-center" style="width: 80px;">Total Obtained</th>
+                  <th class="py-2 px-2 text-center" style="width: 60px;">Grade</th>
+                  <th class="py-2 px-3 text-right" style="width: 80px;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="dmcSubjectsTableBody" class="divide-y divide-slate-200 dark:divide-slate-700 text-xs">
+                <!-- Filled via JS -->
+              </tbody>
+              <tfoot class="bg-slate-100 dark:bg-slate-800 font-black text-xs">
+                <tr class="border-t-2 border-slate-300 dark:border-slate-600">
+                  <td class="py-2.5 px-3 uppercase text-emerald-800 dark:text-emerald-400">Grand Total & Summary</td>
+                  <td class="py-2.5 px-2 text-center" id="dmcTotalMax">550</td>
+                  <td class="py-2.5 px-2 text-center text-slate-500">182</td>
+                  <td class="py-2.5 px-2 text-center">—</td>
+                  <td class="py-2.5 px-2 text-center">—</td>
+                  <td class="py-2.5 px-2 text-center text-emerald-700 dark:text-emerald-400 text-sm" id="dmcGrandObtained">521</td>
+                  <td class="py-2.5 px-2 text-center text-amber-600 dark:text-amber-400 text-sm" id="dmcFinalGrade">A+</td>
+                  <td class="py-2.5 px-3 text-right text-emerald-700 dark:text-emerald-400" id="dmcFinalStatus">PASSED</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Academic Performance Metrics Badge Ribbon -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-center">
+            <div>
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Cumulative Percentage</div>
+              <div class="text-base font-black text-emerald-800 dark:text-emerald-300 mt-0.5" id="dmcPercentage">94.7%</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Cumulative Grade</div>
+              <div class="text-base font-black text-amber-600 dark:text-amber-400 mt-0.5" id="dmcGradeBadge">A+ (Outstanding)</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Standing in Class</div>
+              <div class="text-base font-black text-purple-700 dark:text-purple-300 mt-0.5" id="dmcClassPosition">1st Position 🏆</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Promotion Clearance</div>
+              <div class="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-1" id="dmcPromotionStatus">Promoted to Class 11</div>
+            </div>
+          </div>
+
+          <!-- Form Master Remarks & Grading Key -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 text-[11px] pt-3 border-t border-slate-200 dark:border-slate-700">
+            <div>
+              <div class="font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Form Master & In-Charge Remarks:</div>
+              <p class="text-slate-600 dark:text-slate-400 italic bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700" id="dmcTeacherRemarks">
+                "Outstanding intellectual consistency and exemplary conduct. Possesses stellar aptitude in sciences and analytical reasoning."
+              </p>
+            </div>
+            <div>
+              <div class="font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">BISE Grading Matrix Key:</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 grid grid-cols-3 gap-1">
+                <span><strong>A+:</strong> 80% & Above</span>
+                <span><strong>A:</strong> 70% to 79%</span>
+                <span><strong>B:</strong> 60% to 69%</span>
+                <span><strong>C:</strong> 50% to 59%</span>
+                <span><strong>D:</strong> 40% to 49%</span>
+                <span><strong>E:</strong> 33% to 39%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Official Signature Seals -->
+          <div class="grid grid-cols-3 gap-4 mt-12 pt-6 text-center text-xs border-t border-dashed border-slate-300 dark:border-slate-700">
+            <div>
+              <div class="font-bold text-slate-800 dark:text-slate-200" id="dmcSignFormMaster">Dr. Tariq Mehmood</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Class Form Master</div>
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 dark:text-slate-200">Prof. Muhammad Tariq</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Controller of Examinations</div>
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 dark:text-slate-200">Engr. Rafiullah Khan</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Principal & Secretary</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer flex items-center justify-between no-print">
+        <div class="text-xs text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-lock text-emerald-600"></i>
+          <span>Official institutional DMC with verification serial code.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="printDmcCertificate()" class="btn-kims btn-gold text-xs">
+            <i class="fa-solid fa-print"></i>
+            <span>Print Official DMC (PDF)</span>
+          </button>
+          <button type="button" class="btn-kims btn-secondary text-xs" data-modal-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: EDIT STUDENT RESULT MARKS                                       -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="editMarksModal">
+    <div class="modal-container !max-w-2xl">
+      <div class="modal-header">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="badge badge-info text-xs font-bold" id="editMarksModalBadge">Class 10 - Section A</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-1" id="editMarksModalTitle">Edit Student Marksheet</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="editMarksForm" onsubmit="handleEditMarksSubmit(event)" class="modal-body space-y-4 max-h-[75vh] overflow-y-auto p-5">
+        <input type="hidden" id="editMarksStudentId">
+
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <div>
+            <div class="font-bold text-xs text-slate-900 dark:text-white" id="editMarksStudentNameLabel">Student Name</div>
+            <div class="text-[10px] text-slate-400" id="editMarksStudentRollLabel">Roll: 10-A-01</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs font-black text-emerald-600" id="editLiveTotalLabel">Total: 0/550</div>
+            <div class="text-[10px] font-bold text-slate-400" id="editLiveGradeLabel">Grade: —</div>
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label mb-1.5">Subject-Wise Marks Entry</label>
+          <div class="space-y-2" id="editMarksInputsContainer">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label" for="editRemarksInput">Form Master Evaluation Remarks</label>
+          <textarea id="editRemarksInput" rows="2" class="form-control text-xs"></textarea>
+        </div>
+
+        <div class="modal-footer !px-0 !pb-0 pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
+          <button type="button" class="btn-kims btn-secondary" data-modal-close>Cancel</button>
+          <button type="submit" class="btn-kims btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Update Marksheet</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <!-- Javascript Logic -->
+  <script src="js/admin.js"></script>
+  <script>
+    // =========================================================================
+    // PAKISTANI HIGH SCHOOL DUMMY RESULTS SEED DATA
+    // =========================================================================
+    const SEED_RESULTS_DATA = [
+      {
+        id: "RES-2026-ANN-001",
+        studentId: "STD-2026-001",
+        rollNo: "10-A-01",
+        name: "Muhammad Huzaifa Khan",
+        father: "Tariq Jamil Khan",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0841",
+        position: "1st Position 🏆",
+        teacherRemarks: "Outstanding intellectual consistency and exemplary conduct. Possesses stellar aptitude in sciences and analytical reasoning.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 70, practical: 0, obtained: 70, grade: "A+" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 73, practical: 0, obtained: 73, grade: "A+" },
+          { name: "Physics", max: 60, pass: 20, theory: 45, practical: 14, obtained: 59, grade: "A+" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 43, practical: 14, obtained: 57, grade: "A+" },
+          { name: "Biology", max: 60, pass: 20, theory: 44, practical: 15, obtained: 59, grade: "A+" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 69, practical: 0, obtained: 69, grade: "A+" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 48, practical: 0, obtained: 48, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 46, practical: 0, obtained: 46, grade: "A+" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-002",
+        studentId: "STD-2026-002",
+        rollNo: "10-A-02",
+        name: "Ayesha Bibi",
+        father: "Abdul Qayyum",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0842",
+        position: "2nd Position 🥈",
+        teacherRemarks: "Excellent performance throughout the academic term. Hardworking and dedicated scholar.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 72, practical: 0, obtained: 72, grade: "A+" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 69, practical: 0, obtained: 69, grade: "A+" },
+          { name: "Physics", max: 60, pass: 20, theory: 44, practical: 14, obtained: 58, grade: "A+" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 42, practical: 13, obtained: 55, grade: "A+" },
+          { name: "Biology", max: 60, pass: 20, theory: 43, practical: 14, obtained: 57, grade: "A+" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 68, practical: 0, obtained: 68, grade: "A+" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 47, practical: 0, obtained: 47, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 46, practical: 0, obtained: 46, grade: "A+" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-003",
+        studentId: "STD-2026-003",
+        rollNo: "10-A-03",
+        name: "Farhan Ali Khattak",
+        father: "Sher Alam Khattak",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0843",
+        position: "4th Position",
+        teacherRemarks: "Very good grasp of science concepts. Needs more regular revision in Mathematics.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 62, practical: 0, obtained: 62, grade: "A" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 55, practical: 0, obtained: 55, grade: "A" },
+          { name: "Physics", max: 60, pass: 20, theory: 38, practical: 12, obtained: 50, grade: "A" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 36, practical: 12, obtained: 48, grade: "A" },
+          { name: "Biology", max: 60, pass: 20, theory: 40, practical: 13, obtained: 53, grade: "A" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 61, practical: 0, obtained: 61, grade: "A" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 42, practical: 0, obtained: 42, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 40, practical: 0, obtained: 40, grade: "A" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-004",
+        studentId: "STD-2026-004",
+        rollNo: "10-A-04",
+        name: "Khadija Rehman",
+        father: "Rehman Ullah",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0844",
+        position: "5th Position",
+        teacherRemarks: "Satisfactory overall standing with consistent homework completion.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 58, practical: 0, obtained: 58, grade: "A" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 51, practical: 0, obtained: 51, grade: "B" },
+          { name: "Physics", max: 60, pass: 20, theory: 35, practical: 11, obtained: 46, grade: "A" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 34, practical: 11, obtained: 45, grade: "A" },
+          { name: "Biology", max: 60, pass: 20, theory: 37, practical: 12, obtained: 49, grade: "A" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 56, practical: 0, obtained: 56, grade: "A" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 41, practical: 0, obtained: 41, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 38, practical: 0, obtained: 38, grade: "A" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-005",
+        studentId: "STD-2026-005",
+        rollNo: "10-A-05",
+        name: "Shahzaib Noor",
+        father: "Noor Muhammad",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0845",
+        position: "3rd Position 🥉",
+        teacherRemarks: "Very sharp student. Shows high enthusiasm in Physics laboratory experiments.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 68, practical: 0, obtained: 68, grade: "A+" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 66, practical: 0, obtained: 66, grade: "A+" },
+          { name: "Physics", max: 60, pass: 20, theory: 41, practical: 14, obtained: 55, grade: "A+" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 39, practical: 13, obtained: 52, grade: "A+" },
+          { name: "Biology", max: 60, pass: 20, theory: 42, practical: 14, obtained: 56, grade: "A+" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 65, practical: 0, obtained: 65, grade: "A+" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 45, practical: 0, obtained: 45, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 41, practical: 0, obtained: 41, grade: "A+" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-006",
+        studentId: "STD-2026-006",
+        rollNo: "10-A-06",
+        name: "Hamza Tariq",
+        father: "Tariq Mehmood",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0846",
+        position: "6th Position",
+        teacherRemarks: "Good academic progress. Active participant in school co-curricular sports.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 54, practical: 0, obtained: 54, grade: "A" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 48, practical: 0, obtained: 48, grade: "B" },
+          { name: "Physics", max: 60, pass: 20, theory: 32, practical: 11, obtained: 43, grade: "A" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 31, practical: 10, obtained: 41, grade: "B" },
+          { name: "Biology", max: 60, pass: 20, theory: 35, practical: 12, obtained: 47, grade: "A" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 52, practical: 0, obtained: 52, grade: "B" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 39, practical: 0, obtained: 39, grade: "A" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 35, practical: 0, obtained: 35, grade: "A" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-007",
+        studentId: "STD-2026-007",
+        rollNo: "10-A-07",
+        name: "Danish Mehmood",
+        father: "Mehmood Khan",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0847",
+        position: "Compartment (Math)",
+        teacherRemarks: "Student failed to secure 33% passing threshold in Mathematics. Required to appear in supplementary exam.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 45, practical: 0, obtained: 45, grade: "B" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 18, practical: 0, obtained: 18, grade: "F" }, // Fail
+          { name: "Physics", max: 60, pass: 20, theory: 26, practical: 9, obtained: 35, grade: "B" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 25, practical: 9, obtained: 34, grade: "B" },
+          { name: "Biology", max: 60, pass: 20, theory: 28, practical: 10, obtained: 38, grade: "B" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 42, practical: 0, obtained: 42, grade: "C" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 31, practical: 0, obtained: 31, grade: "B" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 29, practical: 0, obtained: 29, grade: "B" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-011",
+        studentId: "STD-2026-011",
+        rollNo: "10-B-01",
+        name: "Bilal Ahmad",
+        father: "Muhammad Younas",
+        class: "Class 10 (SSC-II Matric)",
+        section: "Section B",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0851",
+        position: "1st in Section B 🏆",
+        teacherRemarks: "Top performer in Section B Computer Science group. Very good logical ability.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 65, practical: 0, obtained: 65, grade: "A+" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 68, practical: 0, obtained: 68, grade: "A+" },
+          { name: "Physics", max: 60, pass: 20, theory: 40, practical: 13, obtained: 53, grade: "A+" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 38, practical: 12, obtained: 50, grade: "A+" },
+          { name: "Computer Science", max: 50, pass: 17, theory: 34, practical: 14, obtained: 48, grade: "A+" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 63, practical: 0, obtained: 63, grade: "A+" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 44, practical: 0, obtained: 44, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 42, practical: 0, obtained: 42, grade: "A+" }
+        ]
+      },
+      {
+        id: "RES-2026-ANN-012",
+        studentId: "STD-2026-012",
+        rollNo: "09-A-01",
+        name: "Hassan Raza",
+        father: "Raza Ullah",
+        class: "Class 9 (SSC-I Matric)",
+        section: "Section A",
+        examId: "EXAM-2026-ANNUAL",
+        examTitle: "Annual Final Examination 2026-2027",
+        academicSession: "2026-2027",
+        dmcNo: "KIMS/DMC-2026-0861",
+        position: "1st in Class 9 🏆",
+        teacherRemarks: "Brilliant ninth grade scholar. High academic potential for board exams.",
+        subjects: [
+          { name: "English Compulsory", max: 75, pass: 25, theory: 67, practical: 0, obtained: 67, grade: "A+" },
+          { name: "Mathematics", max: 75, pass: 25, theory: 71, practical: 0, obtained: 71, grade: "A+" },
+          { name: "Physics", max: 60, pass: 20, theory: 42, practical: 13, obtained: 55, grade: "A+" },
+          { name: "Chemistry", max: 60, pass: 20, theory: 40, practical: 12, obtained: 52, grade: "A+" },
+          { name: "Biology", max: 60, pass: 20, theory: 43, practical: 14, obtained: 57, grade: "A+" },
+          { name: "Urdu Compulsory", max: 75, pass: 25, theory: 64, practical: 0, obtained: 64, grade: "A+" },
+          { name: "Islamiat Compulsory", max: 50, pass: 17, theory: 46, practical: 0, obtained: 46, grade: "A+" },
+          { name: "Pakistan Studies", max: 50, pass: 17, theory: 43, practical: 0, obtained: 43, grade: "A+" }
+        ]
+      }
+    ];
+
+    // State Variables
+    let resultsData = [];
+    let currentExamFilter = "EXAM-2026-ANNUAL";
+    let currentClassFilter = "all";
+    let currentSectionFilter = "all";
+    let currentStandingFilter = "all";
+    let currentSearchTerm = "";
+
+    // =========================================================================
+    // INITIALIZATION & LOCALSTORAGE
+    // =========================================================================
+    function initResultsSystem() {
+      const stored = localStorage.getItem('kims_results_data');
+      if (stored) {
+        try {
+          resultsData = JSON.parse(stored);
+        } catch(e) {
+          resultsData = [...SEED_RESULTS_DATA];
+          saveResultsData();
+        }
+      } else {
+        resultsData = [...SEED_RESULTS_DATA];
+        saveResultsData();
+      }
+
+      renderResultsDashboard();
+      updateResultCounters();
+    }
+
+    function saveResultsData() {
+      localStorage.setItem('kims_results_data', JSON.stringify(resultsData));
+      updateResultCounters();
+    }
+
+    // =========================================================================
+    // COMPUTED METRICS & HELPERS
+    // =========================================================================
+    function calculateStudentTotals(student) {
+      let totalMax = 0;
+      let totalObtained = 0;
+      let hasFail = false;
+
+      student.subjects.forEach(sub => {
+        totalMax += sub.max;
+        totalObtained += sub.obtained;
+        if (sub.obtained < sub.pass) {
+          hasFail = true;
+        }
+      });
+
+      const pct = totalMax > 0 ? ((totalObtained / totalMax) * 100).toFixed(1) : 0;
+      let grade = "F";
+      let status = hasFail ? "Compartment" : "Passed";
+
+      if (!hasFail) {
+        if (pct >= 80) grade = "A+";
+        else if (pct >= 70) grade = "A";
+        else if (pct >= 60) grade = "B";
+        else if (pct >= 50) grade = "C";
+        else if (pct >= 40) grade = "D";
+        else if (pct >= 33) grade = "E";
+        else grade = "F";
+      } else {
+        grade = "F";
+      }
+
+      return { totalMax, totalObtained, percentage: parseFloat(pct), grade, status, hasFail };
+    }
+
+    function updateResultCounters() {
+      let totalStudents = resultsData.length;
+      let passedCount = 0;
+      let distinctions = 0;
+      let highestPct = 0;
+      let topper = null;
+
+      resultsData.forEach(s => {
+        const stats = calculateStudentTotals(s);
+        if (stats.status === "Passed") passedCount++;
+        if (stats.percentage >= 80) distinctions++;
+        if (stats.percentage > highestPct) {
+          highestPct = stats.percentage;
+          topper = { student: s, stats: stats };
+        }
+      });
+
+      const passRate = totalStudents > 0 ? ((passedCount / totalStudents) * 100).toFixed(1) : 0;
+
+      document.getElementById('kpiPassRate').innerText = `${passRate}% Passed`;
+      document.getElementById('kpiPassSub').innerText = `${passedCount} of ${totalStudents} Cleared (33%+ Min)`;
+      document.getElementById('kpiDistinctions').innerText = `${distinctions} Scholars`;
+      document.getElementById('kpiTotalResults').innerText = `${totalStudents} Marksheets`;
+
+      if (topper) {
+        document.getElementById('kpiTopperName').innerText = topper.student.name;
+        document.getElementById('kpiTopperScore').innerText = `${topper.stats.totalObtained}/${topper.stats.totalMax} (${topper.stats.percentage}% A+)`;
+      }
+    }
+
+    // =========================================================================
+    // RENDER RESULTS GAZETTE TABLE
+    // =========================================================================
+    function renderResultsDashboard() {
+      const tbody = document.getElementById('resultsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      const term = currentSearchTerm.toLowerCase().trim();
+
+      const filtered = resultsData.filter(s => {
+        // Exam filter
+        if (currentExamFilter !== 'all' && s.examId !== currentExamFilter) return false;
+        // Class filter
+        if (currentClassFilter !== 'all' && s.class !== currentClassFilter) return false;
+        // Section filter
+        if (currentSectionFilter !== 'all' && s.section !== currentSectionFilter) return false;
+
+        const stats = calculateStudentTotals(s);
+
+        // Standing filter
+        if (currentStandingFilter === 'Passed' && stats.status !== 'Passed') return false;
+        if (currentStandingFilter === 'Compartment' && stats.status !== 'Compartment') return false;
+        if (currentStandingFilter === 'A+' && stats.grade !== 'A+') return false;
+
+        // Search term
+        if (!term) return true;
+        return (
+          s.name.toLowerCase().includes(term) ||
+          s.father.toLowerCase().includes(term) ||
+          s.rollNo.toLowerCase().includes(term) ||
+          s.studentId.toLowerCase().includes(term) ||
+          s.dmcNo.toLowerCase().includes(term) ||
+          s.class.toLowerCase().includes(term)
+        );
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-12 text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="font-bold text-slate-700 dark:text-slate-300">No student marksheets found for this selection</div>
+              <div class="text-xs text-slate-400 mt-1">Try another class, section, or search query.</div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach((std, idx) => {
+        const stats = calculateStudentTotals(std);
+
+        // Subject Capsules Preview
+        const subjectPills = std.subjects.slice(0, 5).map(sub => {
+          let pillBg = 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
+          if (sub.obtained < sub.pass) pillBg = 'bg-rose-100 text-rose-700 font-bold';
+          const shortName = sub.name.split(' ')[0].slice(0, 4);
+          return `<span class="inline-block px-1.5 py-0.5 rounded text-[10px] font-mono ${pillBg}" title="${sub.name}: ${sub.obtained}/${sub.max}">${shortName}: ${sub.obtained}</span>`;
+        }).join(' ');
+
+        // Grade Badge
+        let gradeBadge = `<span class="badge badge-success font-black text-xs">${stats.grade}</span>`;
+        if (stats.grade === 'A+') {
+          gradeBadge = `<span class="badge badge-gold font-black text-xs">⭐ A+</span>`;
+        } else if (stats.grade === 'F') {
+          gradeBadge = `<span class="badge bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 font-black text-xs">F</span>`;
+        } else if (stats.grade === 'B' || stats.grade === 'C') {
+          gradeBadge = `<span class="badge badge-info font-black text-xs">${stats.grade}</span>`;
+        }
+
+        // Standing Badge
+        let standingBadge = `<span class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-check text-[10px] mr-1"></i>Passed</span>`;
+        if (std.position.includes('1st') || std.position.includes('Topper')) {
+          standingBadge = `<span class="badge badge-gold text-[10px] font-black">${std.position}</span>`;
+        } else if (std.position.includes('2nd')) {
+          standingBadge = `<span class="badge bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-200 text-[10px] font-black">${std.position}</span>`;
+        } else if (std.position.includes('3rd')) {
+          standingBadge = `<span class="badge bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300 text-[10px] font-black">${std.position}</span>`;
+        } else if (stats.status === 'Compartment') {
+          standingBadge = `<span class="badge bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 text-[10px] font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Compartment</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/70 dark:hover:bg-slate-800/40 transition duration-150';
+        tr.innerHTML = `
+          <td>
+            <div class="font-bold text-slate-900 dark:text-white text-xs">${escapeHtml(std.name)}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">
+              <span class="font-mono text-emerald-600 font-bold">${escapeHtml(std.rollNo)}</span>
+              <span>• s/o ${escapeHtml(std.father)}</span>
+            </div>
+          </td>
+
+          <td>
+            <div class="font-bold text-xs text-slate-800 dark:text-slate-200">${escapeHtml(std.class)}</div>
+            <div class="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400">${escapeHtml(std.section)}</div>
+          </td>
+
+          <td>
+            <div class="flex flex-wrap items-center gap-1">
+              ${subjectPills}
+              ${std.subjects.length > 5 ? `<span class="text-[10px] text-slate-400 font-semibold">+${std.subjects.length - 5}</span>` : ''}
+            </div>
+          </td>
+
+          <td>
+            <div class="font-black text-xs text-slate-900 dark:text-white">${stats.totalObtained} <span class="text-slate-400 font-normal">/ ${stats.totalMax}</span></div>
+          </td>
+
+          <td>
+            <div class="font-black text-xs ${stats.percentage >= 80 ? 'text-amber-600 dark:text-amber-400' : 'text-slate-800 dark:text-slate-200'}">
+              ${stats.percentage}%
+            </div>
+          </td>
+
+          <td>
+            ${gradeBadge}
+          </td>
+
+          <td>
+            ${standingBadge}
+          </td>
+
+          <td class="text-right">
+            <div class="inline-flex items-center gap-1.5">
+              <button type="button" onclick="openDmcModal('${escapeHtml(std.id)}')" class="btn-kims btn-secondary !py-1 !px-2.5 text-xs font-bold" title="View Official DMC Certificate">
+                <i class="fa-solid fa-file-lines text-emerald-600 mr-1"></i>
+                <span>View DMC</span>
+              </button>
+              <button type="button" onclick="openEditMarksModal('${escapeHtml(std.id)}')" class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition" title="Edit Student Marks">
+                <i class="fa-solid fa-pen-to-square text-xs"></i>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // MODAL 1: VIEW & PRINT OFFICIAL DETAILED MARKS CERTIFICATE (DMC)
+    // =========================================================================
+    function openDmcModal(resultId) {
+      const std = resultsData.find(s => s.id === resultId);
+      if (!std) return;
+
+      const stats = calculateStudentTotals(std);
+
+      document.getElementById('dmcModalClassBadge').innerText = `${std.class} • ${std.section}`;
+      document.getElementById('dmcSerialBadge').innerText = std.dmcNo;
+      document.getElementById('dmcModalTitle').innerText = `${std.name} — Detailed Marks Certificate`;
+
+      document.getElementById('dmcExamTermLabel').innerText = `${std.examTitle} (Session ${std.academicSession})`;
+      document.getElementById('dmcStudentName').innerText = std.name;
+      document.getElementById('dmcFatherName').innerText = std.father;
+      document.getElementById('dmcRollNo').innerText = std.rollNo;
+      document.getElementById('dmcClassSection').innerText = `${std.class} (${std.section})`;
+
+      // Render Subject Rows in DMC Table
+      const tbody = document.getElementById('dmcSubjectsTableBody');
+      tbody.innerHTML = '';
+
+      std.subjects.forEach(sub => {
+        const subPct = sub.max > 0 ? ((sub.obtained / sub.max) * 100).toFixed(0) : 0;
+        let subGrade = sub.grade || "A";
+        let isPass = sub.obtained >= sub.pass;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/60 dark:hover:bg-slate-800/40';
+        tr.innerHTML = `
+          <td class="py-2 px-3 font-bold text-slate-900 dark:text-white">${escapeHtml(sub.name)}</td>
+          <td class="py-2 px-2 text-center text-slate-600 dark:text-slate-300">${sub.max}</td>
+          <td class="py-2 px-2 text-center text-slate-500">${sub.pass}</td>
+          <td class="py-2 px-2 text-center font-mono font-bold text-slate-800 dark:text-slate-200">${sub.theory}</td>
+          <td class="py-2 px-2 text-center font-mono font-bold text-slate-800 dark:text-slate-200">${sub.practical > 0 ? sub.practical : '—'}</td>
+          <td class="py-2 px-2 text-center font-mono font-black ${isPass ? 'text-slate-900 dark:text-white' : 'text-rose-600 font-bold'}">${sub.obtained}</td>
+          <td class="py-2 px-2 text-center font-black ${subGrade === 'A+' ? 'text-amber-600 font-bold' : 'text-slate-800 dark:text-slate-200'}">${subGrade}</td>
+          <td class="py-2 px-3 text-right font-bold text-[10px] ${isPass ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-600'}">${isPass ? 'PASSED' : 'FAILED'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('dmcTotalMax').innerText = stats.totalMax;
+      document.getElementById('dmcGrandObtained').innerText = stats.totalObtained;
+      document.getElementById('dmcFinalGrade').innerText = stats.grade;
+      document.getElementById('dmcFinalStatus').innerText = stats.status.toUpperCase();
+
+      document.getElementById('dmcPercentage').innerText = `${stats.percentage}%`;
+      document.getElementById('dmcGradeBadge').innerText = `${stats.grade} (${stats.percentage >= 80 ? 'Outstanding' : stats.percentage >= 70 ? 'Excellent' : 'Good'})`;
+      document.getElementById('dmcClassPosition').innerText = std.position;
+      document.getElementById('dmcPromotionStatus').innerText = stats.status === "Passed" ? "Cleared For Promotion" : "Compartment in 1 Subject";
+      document.getElementById('dmcPromotionStatus').className = stats.status === "Passed" ? "text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-1" : "text-xs font-bold text-rose-600 mt-1";
+
+      document.getElementById('dmcTeacherRemarks').innerText = `"${std.teacherRemarks || 'Satisfactory progress demonstrated across all evaluation components.'}"`;
+
+      openModal('dmcModal');
+    }
+
+    function printDmcCertificate() {
+      window.print();
+    }
+
+    // =========================================================================
+    // MODAL 2: EDIT STUDENT RESULT MARKS
+    // =========================================================================
+    function openEditMarksModal(resultId) {
+      const std = resultsData.find(s => s.id === resultId);
+      if (!std) return;
+
+      document.getElementById('editMarksStudentId').value = std.id;
+      document.getElementById('editMarksModalBadge').innerText = `${std.class} • ${std.section}`;
+      document.getElementById('editMarksModalTitle').innerText = `Edit Marks: ${std.name}`;
+
+      document.getElementById('editMarksStudentNameLabel').innerText = std.name;
+      document.getElementById('editMarksStudentRollLabel').innerText = `Roll No: ${std.rollNo} • s/o ${std.father}`;
+      document.getElementById('editRemarksInput').value = std.teacherRemarks || '';
+
+      const container = document.getElementById('editMarksInputsContainer');
+      container.innerHTML = '';
+
+      std.subjects.forEach((sub, idx) => {
+        const row = document.createElement('div');
+        row.className = 'p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between gap-3 text-xs';
+        row.innerHTML = `
+          <div class="min-w-0 flex-1">
+            <div class="font-bold text-slate-800 dark:text-white truncate">${escapeHtml(sub.name)}</div>
+            <div class="text-[10px] text-slate-400">Max Marks: ${sub.max} • Min Pass: ${sub.pass}</div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <div>
+              <span class="text-[10px] text-slate-400 block text-right">Theory</span>
+              <input type="number" data-idx="${idx}" data-max="${sub.max}" value="${sub.theory}" oninput="recalculateEditTotals()" class="edit-subject-theory form-control text-xs !py-1 !px-1.5 w-16 text-center font-bold font-mono" required>
+            </div>
+            ${sub.practical !== undefined && sub.practical > 0 ? `
+              <div>
+                <span class="text-[10px] text-slate-400 block text-right">Practical</span>
+                <input type="number" data-idx="${idx}" value="${sub.practical}" oninput="recalculateEditTotals()" class="edit-subject-practical form-control text-xs !py-1 !px-1.5 w-14 text-center font-bold font-mono">
+              </div>
+            ` : `<input type="hidden" class="edit-subject-practical" value="0">`}
+          </div>
+        `;
+        container.appendChild(row);
+      });
+
+      recalculateEditTotals();
+      openModal('editMarksModal');
+    }
+
+    function recalculateEditTotals() {
+      const studentId = document.getElementById('editMarksStudentId').value;
+      const std = resultsData.find(s => s.id === studentId);
+      if (!std) return;
+
+      let totalObtained = 0;
+      let totalMax = 0;
+
+      const theoryInputs = document.querySelectorAll('.edit-subject-theory');
+      const practicalInputs = document.querySelectorAll('.edit-subject-practical');
+
+      theoryInputs.forEach((inp, idx) => {
+        const theory = parseInt(inp.value) || 0;
+        const practical = parseInt(practicalInputs[idx].value) || 0;
+        totalObtained += (theory + practical);
+        totalMax += std.subjects[idx].max;
+      });
+
+      const pct = totalMax > 0 ? ((totalObtained / totalMax) * 100).toFixed(1) : 0;
+      let grade = "A";
+      if (pct >= 80) grade = "A+";
+      else if (pct >= 70) grade = "A";
+      else if (pct >= 60) grade = "B";
+      else if (pct >= 50) grade = "C";
+      else if (pct >= 40) grade = "D";
+      else if (pct >= 33) grade = "E";
+      else grade = "F";
+
+      document.getElementById('editLiveTotalLabel').innerText = `Total: ${totalObtained}/${totalMax} (${pct}%)`;
+      document.getElementById('editLiveGradeLabel').innerText = `Grade: ${grade}`;
+    }
+
+    function handleEditMarksSubmit(e) {
+      e.preventDefault();
+      const studentId = document.getElementById('editMarksStudentId').value;
+      const std = resultsData.find(s => s.id === studentId);
+      if (!std) return;
+
+      const theoryInputs = document.querySelectorAll('.edit-subject-theory');
+      const practicalInputs = document.querySelectorAll('.edit-subject-practical');
+
+      theoryInputs.forEach((inp, idx) => {
+        const theory = parseInt(inp.value) || 0;
+        const practical = parseInt(practicalInputs[idx].value) || 0;
+        std.subjects[idx].theory = theory;
+        std.subjects[idx].practical = practical;
+        std.subjects[idx].obtained = theory + practical;
+
+        // update grade
+        const subPct = (std.subjects[idx].obtained / std.subjects[idx].max) * 100;
+        if (subPct >= 80) std.subjects[idx].grade = "A+";
+        else if (subPct >= 70) std.subjects[idx].grade = "A";
+        else if (subPct >= 60) std.subjects[idx].grade = "B";
+        else if (subPct >= 50) std.subjects[idx].grade = "C";
+        else if (subPct >= 33) std.subjects[idx].grade = "D";
+        else std.subjects[idx].grade = "F";
+      });
+
+      std.teacherRemarks = document.getElementById('editRemarksInput').value.trim();
+
+      saveResultsData();
+      renderResultsDashboard();
+      closeModal('editMarksModal');
+      showToast('Marksheet Updated', `Updated marks for ${std.name} successfully.`, 'success');
+    }
+
+    // =========================================================================
+    // QUICK ACTIONS & NOTIFICATIONS
+    // =========================================================================
+    function broadcastPositionAlert() {
+      showToast('Merit Notice Published', 'Top 3 Position Holders announced across Student & Parent Portal panels.', 'success');
+    }
+
+    function printOfficialGazette() {
+      window.print();
+    }
+
+    function openAddResultModal() {
+      showToast('Quick Marksheet Mode', 'Select any student row and click "Edit Marks" to update marksheet values.', 'info');
+    }
+
+    // =========================================================================
+    // FILTERS & SEARCH
+    // =========================================================================
+    function handleExamFilterChange(val) {
+      currentExamFilter = val;
+      renderResultsDashboard();
+    }
+
+    function handleClassFilterChange(val) {
+      currentClassFilter = val;
+      renderResultsDashboard();
+    }
+
+    function handleSectionFilterChange(val) {
+      currentSectionFilter = val;
+      renderResultsDashboard();
+    }
+
+    function filterByStanding(standing, btn) {
+      currentStandingFilter = standing;
+      const tabs = document.querySelectorAll('#standingFilterTabs button');
+      tabs.forEach(t => {
+        t.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition';
+      });
+      if (btn) {
+        btn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs';
+      }
+      renderResultsDashboard();
+    }
+
+    function handleResultSearch(val) {
+      currentSearchTerm = val;
+      renderResultsDashboard();
+    }
+
+    // Initialize System
+    document.addEventListener('DOMContentLoaded', () => {
+      initResultsSystem();
+    });
+  </script>
+</body>
+</html>

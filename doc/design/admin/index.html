@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Kohat Institute of Modern Sciences (KIMS)</title>
+  <meta name="description" content="KIMS Institutional Management System Executive Dashboard">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kimsEmerald: '#064e3b',
+            kimsDark: '#022c22',
+            kimsAccent: '#059669',
+            kimsGold: '#f59e0b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-app-layout">
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay"></div>
+
+                <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="brand-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h2>KIMS Admin</h2>
+            <span>High School System</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-section-label">Core Overview</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="index.html" class="nav-link active">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">User Management</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="students.html" class="nav-link">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students Directory</span>
+                <span class="nav-badge">4,850</span>
+              </a>
+            </li>
+            <li>
+              <a href="faculty.html" class="nav-link">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Teachers & Staff</span>
+                <span class="nav-badge">182</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Academics & Operations</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="courses.html" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Classes & Subjects</span>
+              </a>
+            </li>
+            <li>
+              <a href="attendance.html" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+              </a>
+            </li>
+            <li>
+              <a href="exams.html" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Exams & Datesheet</span>
+              </a>
+            </li>
+            <li>
+              <a href="results.html" class="nav-link">
+                <i class="fa-solid fa-award"></i>
+                <span>Results & Gazette</span>
+                <span class="nav-badge badge-gold">Next</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Finance & Admissions</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="fees.html" class="nav-link">
+                <i class="fa-solid fa-coins"></i>
+                <span>Fee Management</span>
+              </a>
+            </li>
+            <li>
+              <a href="admissions.html" class="nav-link">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Admissions</span>
+                <span class="nav-badge badge-gold">28 New</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Communication & Desk</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="requests.html" class="nav-link">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Applications & Desk</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-section-label">Institutional Tools</div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="id-cards.html" class="nav-link">
+                <i class="fa-solid fa-id-card"></i>
+                <span>ID Card Studio</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Executive Admin</div>
+            <div class="sidebar-user-role">Super Administrator</div>
+          </div>
+          <button type="button" class="sidebar-logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-wrapper">
+
+      <!-- Top Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button type="button" class="sidebar-toggle-btn mobile-menu-trigger" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search students, roll #, courses...">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Active Academic Session Indicator & Switcher (BISE Kohat) -->
+          <div class="session-header-widget" id="headerSessionWidget">
+            <button type="button" class="session-badge-btn" id="sessionDropdownBtn" title="Current BISE Kohat Academic Session">
+              <span class="session-pulse-dot"></span>
+              <i class="fa-solid fa-graduation-cap text-emerald-600 dark:text-emerald-400"></i>
+              <div class="session-text-group">
+                <span class="session-mini-label">BISE Kohat</span>
+                <span class="session-current-year" id="topHeaderSessionLabel">Session 2025–2026</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+            </button>
+
+            <div class="session-quick-dropdown hidden" id="sessionQuickDropdown">
+              <div class="session-dropdown-header">
+                <span>Academic Sessions</span>
+                <span class="badge badge-success text-[10px] py-0.5">BISE Kohat</span>
+              </div>
+              <div class="session-options-list" id="headerSessionOptionsList"></div>
+              <div class="session-dropdown-footer">
+                <a href="settings.html" class="manage-sessions-link">
+                  <i class="fa-solid fa-sliders text-xs"></i>
+                  <span>Manage Academic Sessions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <!-- Public Portal Link -->
+          <a href="../index.html" class="public-site-link hidden sm:inline-flex">
+            <i class="fa-solid fa-globe"></i>
+            <span>Public Site</span>
+          </a>
+
+          <!-- Notifications Button & Popover -->
+          <div class="relative">
+            <button type="button" class="header-action-btn notification-toggle-btn" title="View Notifications">
+              <i class="fa-regular fa-bell text-slate-600"></i>
+              <span class="notification-indicator"></span>
+            </button>
+
+            <!-- Popover Panel -->
+            <div class="notification-popover hidden absolute right-0 mt-3 w-80 sm:w-96 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl z-50 overflow-hidden">
+              <div class="p-3.5 px-4 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <span class="text-sm font-bold text-slate-800 dark:text-white">Recent Notifications</span>
+                <span class="text-xs bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full">3 unread</span>
+              </div>
+              <div class="divide-y divide-slate-100 dark:divide-slate-800 max-h-80 overflow-y-auto">
+                <div class="p-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition cursor-pointer flex gap-3">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center shrink-0 text-xs">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">5 New Fall Admissions Submitted</p>
+                    <span class="text-[11px] text-slate-400">12 minutes ago &bull; BS Computer Science</span>
+                  </div>
+                </div>
+                <div class="p-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition cursor-pointer flex gap-3">
+                  <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center shrink-0 text-xs">
+                    <i class="fa-solid fa-receipt"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">Fee Clearance Verified</p>
+                    <span class="text-[11px] text-slate-400">45 minutes ago &bull; Finance Division</span>
+                  </div>
+                </div>
+                <div class="p-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition cursor-pointer flex gap-3">
+                  <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center shrink-0 text-xs">
+                    <i class="fa-solid fa-calendar-check"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">Midterm Exam Schedule Published</p>
+                    <span class="text-[11px] text-slate-400">2 hours ago &bull; Academic Controller</span>
+                  </div>
+                </div>
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 text-center">
+                <button type="button" onclick="showToast('Notifications Cleared', 'All marked as read', 'info')" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">Mark all as read</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Profile Dropdown / Card -->
+          <div class="header-profile-menu">
+            <button type="button" class="header-profile-btn" onclick="window.location.href='settings.html'">
+              <div class="profile-avatar">AD</div>
+              <div class="hidden md:block">
+                <div class="profile-name">Executive Admin</div>
+                <div class="profile-role">Super Admin</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Content -->
+      <main class="admin-content">
+
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-xl relative overflow-hidden">
+          <div class="absolute -right-8 -bottom-8 w-64 h-64 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <div class="inline-flex items-center gap-2 bg-emerald-700/50 border border-emerald-400/30 px-3 py-1 rounded-full text-xs font-semibold text-amber-300 mb-3">
+                <i class="fa-solid fa-award"></i>
+                <span>Academic Session: Fall 2026 - Active</span>
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Welcome back, Administrator</h1>
+              <p class="text-emerald-100 text-sm mt-1 max-w-xl">
+                Here is today's institutional executive summary. Campus operations, student admissions, and faculty schedules are proceeding normally.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <a href="students.html#add-student" class="btn-kims btn-gold text-xs sm:text-sm">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Add Student</span>
+              </a>
+              <a href="admissions.html" class="btn-kims btn-secondary text-xs sm:text-sm !bg-white/10 !border-white/20 !text-white hover:!bg-white/20">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>View Applications</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Metrics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+          
+          <!-- Metric 1 -->
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                <i class="fa-solid fa-user-graduate"></i>
+              </div>
+              <span class="metric-trend trend-up">
+                <i class="fa-solid fa-arrow-trend-up"></i> +12.4%
+              </span>
+            </div>
+            <div>
+              <div class="metric-value">4,850</div>
+              <div class="metric-label">Total Enrolled Students</div>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 84%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 2 -->
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </div>
+              <span class="metric-trend trend-up">
+                <i class="fa-solid fa-check"></i> 98% Present
+              </span>
+            </div>
+            <div>
+              <div class="metric-value">182</div>
+              <div class="metric-label">Active Faculty & Staff</div>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+              <div class="bg-blue-500 h-full rounded-full" style="width: 98%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 3 -->
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
+                <i class="fa-solid fa-book-bookmark"></i>
+              </div>
+              <span class="metric-trend trend-up">
+                <i class="fa-solid fa-arrow-trend-up"></i> 36 Degrees
+              </span>
+            </div>
+            <div>
+              <div class="metric-value">142</div>
+              <div class="metric-label">Active Course Sections</div>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+              <div class="bg-purple-500 h-full rounded-full" style="width: 76%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 4 -->
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <div class="metric-icon-box bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <span class="metric-trend trend-up">
+                <i class="fa-solid fa-arrow-trend-up"></i> 89.4%
+              </span>
+            </div>
+            <div>
+              <div class="metric-value">PKR 14.8M</div>
+              <div class="metric-label">Tuition Fee Recovery</div>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+              <div class="bg-amber-500 h-full rounded-full" style="width: 89%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Charts Section (Interactive SVG Visualizations) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          
+          <!-- Enrollment & Admission Trends (2 Columns) -->
+          <div class="admin-card lg:col-span-2">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Institutional Enrollment Trends</div>
+                <div class="card-subtitle">Monthly student admission volume across 2025 - 2026 academic sessions</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-semibold">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Undergrad
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-xs text-amber-500 font-semibold ml-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Postgraduate
+                </span>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- SVG Visual Graph -->
+              <div class="h-64 w-full relative">
+                <svg class="w-full h-full" viewBox="0 0 700 240" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="emeraldGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#059669" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#059669" stop-opacity="0.0"/>
+                    </linearGradient>
+                    <linearGradient id="amberGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Horizontal Grid Lines -->
+                  <line x1="40" y1="40" x2="680" y2="40" stroke="currentColor" class="text-slate-200 dark:text-slate-800" stroke-dasharray="3 3"/>
+                  <line x1="40" y1="90" x2="680" y2="90" stroke="currentColor" class="text-slate-200 dark:text-slate-800" stroke-dasharray="3 3"/>
+                  <line x1="40" y1="140" x2="680" y2="140" stroke="currentColor" class="text-slate-200 dark:text-slate-800" stroke-dasharray="3 3"/>
+                  <line x1="40" y1="190" x2="680" y2="190" stroke="currentColor" class="text-slate-200 dark:text-slate-800" stroke-dasharray="3 3"/>
+
+                  <!-- Undergrad Area & Line -->
+                  <path d="M 60 170 Q 150 140, 230 110 T 400 80 T 560 50 T 660 35 L 660 210 L 60 210 Z" fill="url(#emeraldGradient)"/>
+                  <path d="M 60 170 Q 150 140, 230 110 T 400 80 T 560 50 T 660 35" fill="none" stroke="#059669" stroke-width="3.5" stroke-linecap="round"/>
+
+                  <!-- Postgrad Line -->
+                  <path d="M 60 190 Q 150 170, 230 150 T 400 135 T 560 110 T 660 95 L 660 210 L 60 210 Z" fill="url(#amberGradient)"/>
+                  <path d="M 60 190 Q 150 170, 230 150 T 400 135 T 560 110 T 660 95" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+
+                  <!-- Data Markers -->
+                  <circle cx="230" cy="110" r="5" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+                  <circle cx="400" cy="80" r="5" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+                  <circle cx="560" cy="50" r="5" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+                  <circle cx="660" cy="35" r="5" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <!-- Month Labels -->
+              <div class="flex justify-between text-xs text-slate-400 font-medium px-4 mt-2">
+                <span>Jan</span>
+                <span>Mar</span>
+                <span>May</span>
+                <span>Jul</span>
+                <span>Sep (Peak)</span>
+                <span>Nov</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Department Distribution Breakdown -->
+          <div class="admin-card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Department Share</div>
+                <div class="card-subtitle">Student enrollment split</div>
+              </div>
+              <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1.5">
+                    <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                      Computer Science & IT
+                    </span>
+                    <span class="text-slate-500">42% (2,037)</span>
+                  </div>
+                  <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-emerald-500 h-full rounded-full" style="width: 42%;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1.5">
+                    <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+                      Health Sciences & Pharmacy
+                    </span>
+                    <span class="text-slate-500">26% (1,261)</span>
+                  </div>
+                  <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-teal-500 h-full rounded-full" style="width: 26%;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1.5">
+                    <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                      Management & Commerce
+                    </span>
+                    <span class="text-slate-500">18% (873)</span>
+                  </div>
+                  <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-amber-500 h-full rounded-full" style="width: 18%;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-semibold mb-1.5">
+                    <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                      Arts & Natural Sciences
+                    </span>
+                    <span class="text-slate-500">14% (679)</span>
+                  </div>
+                  <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-indigo-500 h-full rounded-full" style="width: 14%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                <span class="text-slate-400">Target intake: 5,200</span>
+                <a href="courses.html" class="text-emerald-600 dark:text-emerald-400 font-bold hover:underline">View Programs &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Admissions & Quick Actions Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          
+          <!-- Recent Admissions Table (2 Columns) -->
+          <div class="admin-card lg:col-span-2">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Recent Admission Applications</div>
+                <div class="card-subtitle">Pending executive review for Fall 2026 Batch</div>
+              </div>
+              <a href="admissions.html" class="btn-kims btn-secondary !py-1.5 !px-3 text-xs">
+                <span>View All (28)</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Applicant</th>
+                    <th>Program</th>
+                    <th>Merit Score</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-xs">
+                          MK
+                        </div>
+                        <div>
+                          <div class="font-bold text-slate-800 dark:text-white">Muhammad Kamil</div>
+                          <div class="text-[11px] text-slate-400">APP-2026-0891</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>BS Computer Science</td>
+                    <td><span class="font-bold text-emerald-600">88.4%</span> (FSc)</td>
+                    <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> Under Review</span></td>
+                    <td class="text-right">
+                      <div class="inline-flex gap-1.5">
+                        <button onclick="showToast('Application Approved', 'Muhammad Kamil accepted for BS CS', 'success')" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:hover:bg-emerald-900 transition" title="Accept">
+                          <i class="fa-solid fa-check text-xs"></i>
+                        </button>
+                        <a href="admissions.html" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 transition" title="Inspect">
+                          <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-400 font-bold flex items-center justify-center text-xs">
+                          ZA
+                        </div>
+                        <div>
+                          <div class="font-bold text-slate-800 dark:text-white">Zainab Afridi</div>
+                          <div class="text-[11px] text-slate-400">APP-2026-0892</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Doctor of Pharmacy (Pharm-D)</td>
+                    <td><span class="font-bold text-emerald-600">91.2%</span> (FSc Pre-Med)</td>
+                    <td><span class="badge badge-success"><i class="fa-solid fa-circle-check text-[10px]"></i> Interview Ready</span></td>
+                    <td class="text-right">
+                      <div class="inline-flex gap-1.5">
+                        <button onclick="showToast('Interview Confirmed', 'Notification sent to Zainab Afridi', 'success')" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:hover:bg-emerald-900 transition" title="Accept">
+                          <i class="fa-solid fa-check text-xs"></i>
+                        </button>
+                        <a href="admissions.html" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 transition" title="Inspect">
+                          <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-xs">
+                          HK
+                        </div>
+                        <div>
+                          <div class="font-bold text-slate-800 dark:text-white">Hamza Khattak</div>
+                          <div class="text-[11px] text-slate-400">APP-2026-0893</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>BBA Business Administration</td>
+                    <td><span class="font-bold text-slate-700 dark:text-slate-300">79.5%</span> (FA/FSc)</td>
+                    <td><span class="badge badge-warning"><i class="fa-solid fa-clock text-[10px]"></i> Documents Verification</span></td>
+                    <td class="text-right">
+                      <div class="inline-flex gap-1.5">
+                        <button onclick="showToast('Application Approved', 'Hamza Khattak approved for BBA', 'success')" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:hover:bg-emerald-900 transition" title="Accept">
+                          <i class="fa-solid fa-check text-xs"></i>
+                        </button>
+                        <a href="admissions.html" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 transition" title="Inspect">
+                          <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-bold flex items-center justify-center text-xs">
+                          SB
+                        </div>
+                        <div>
+                          <div class="font-bold text-slate-800 dark:text-white">Sana Bibi</div>
+                          <div class="text-[11px] text-slate-400">APP-2026-0894</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>BS Software Engineering</td>
+                    <td><span class="font-bold text-emerald-600">86.7%</span> (ICS)</td>
+                    <td><span class="badge badge-info"><i class="fa-solid fa-hourglass-start text-[10px]"></i> Fee Awaited</span></td>
+                    <td class="text-right">
+                      <div class="inline-flex gap-1.5">
+                        <button onclick="showToast('Challan Dispatched', 'Fee voucher sent via SMS & Email', 'info')" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-950 dark:hover:bg-emerald-900 transition" title="Notify">
+                          <i class="fa-solid fa-bell text-xs"></i>
+                        </button>
+                        <a href="admissions.html" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 transition" title="Inspect">
+                          <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right Column: Quick Management Shortcuts & Campus Calendar -->
+          <div class="space-y-6">
+            
+            <!-- Quick Actions Card -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div class="card-title">Institutional Actions</div>
+              </div>
+              <div class="card-body">
+                <div class="grid grid-cols-2 gap-3">
+                  <a href="students.html" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-500 bg-slate-50 dark:bg-slate-800/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 transition text-center group">
+                    <i class="fa-solid fa-id-card text-xl text-emerald-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Register Student</div>
+                  </a>
+
+                  <a href="attendance.html" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 bg-slate-50 dark:bg-slate-800/50 hover:bg-blue-50/50 dark:hover:bg-blue-950/30 transition text-center group">
+                    <i class="fa-solid fa-clipboard-user text-xl text-blue-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Take Attendance</div>
+                  </a>
+
+                  <a href="courses.html" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-purple-500 bg-slate-50 dark:bg-slate-800/50 hover:bg-purple-50/50 dark:hover:bg-purple-950/30 transition text-center group">
+                    <i class="fa-solid fa-book-medical text-xl text-purple-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Add Course</div>
+                  </a>
+
+                  <button type="button" onclick="showToast('Export Started', 'Generating official CSV enrollment report...', 'info')" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500 bg-slate-50 dark:bg-slate-800/50 hover:bg-amber-50/50 dark:hover:bg-amber-950/30 transition text-center group">
+                    <i class="fa-solid fa-file-excel text-xl text-amber-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Export Ledger</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Campus Events & Notices -->
+            <div class="admin-card">
+              <div class="card-header">
+                <div class="card-title">Campus Deadlines</div>
+                <span class="text-xs text-slate-400">This Week</span>
+              </div>
+              <div class="card-body p-0">
+                <div class="divide-y divide-slate-100 dark:divide-slate-800">
+                  <div class="p-3.5 px-4 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 font-bold flex flex-col items-center justify-center shrink-0">
+                      <span class="text-[10px] uppercase leading-none">Sep</span>
+                      <span class="text-xs leading-none font-extrabold mt-0.5">05</span>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200">Tuition Installment Deadline</h4>
+                      <p class="text-[11px] text-slate-400 mt-0.5">Late fee fine applied automatically thereafter</p>
+                    </div>
+                  </div>
+
+                  <div class="p-3.5 px-4 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 font-bold flex flex-col items-center justify-center shrink-0">
+                      <span class="text-[10px] uppercase leading-none">Sep</span>
+                      <span class="text-xs leading-none font-extrabold mt-0.5">10</span>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200">HEC Compliance Faculty Review</h4>
+                      <p class="text-[11px] text-slate-400 mt-0.5">Auditor delegation arriving at KIMS Main Campus</p>
+                    </div>
+                  </div>
+
+                  <div class="p-3.5 px-4 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 font-bold flex flex-col items-center justify-center shrink-0">
+                      <span class="text-[10px] uppercase leading-none">Sep</span>
+                      <span class="text-xs leading-none font-extrabold mt-0.5">18</span>
+                    </div>
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200">Annual Sports Gala Meeting</h4>
+                      <p class="text-[11px] text-slate-400 mt-0.5">Auditorium hall, 11:30 AM</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <a href="index.html" class="bottom-nav-item active">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Home</span>
+      </a>
+      <a href="students.html" class="bottom-nav-item">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+      </a>
+      <a href="courses.html" class="bottom-nav-item">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses</span>
+      </a>
+      <a href="attendance.html" class="bottom-nav-item">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+      </a>
+      <button type="button" class="bottom-nav-item mobile-menu-trigger">
+        <i class="fa-solid fa-bars"></i>
+        <span>More</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-stack"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

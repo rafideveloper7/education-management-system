@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Programs (Nursery to 10th) - Kohat Institute of Modern Sciences (KIMS)</title>
+    <meta name="description" content="Academic programs at Kohat Institute of Modern Sciences (KIMS) - from Nursery, Kindergarten, Primary (1-5), Middle (6-8) to Matriculation Science 9th & 10th (BISE Kohat).">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .programs-hero-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.96) 0%, rgba(6, 78, 59, 0.90) 50%, rgba(2, 44, 34, 0.98) 100%), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-4xl tracking-tight leading-none">KIMS</h1>
+                    <!-- <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p> -->
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200/60"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-emerald-800 font-bold"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Cinematic Hero Header: Programs & Disciplines -->
+    <section class="programs-hero-bg text-white py-16 lg:py-24 px-4 sm:px-8 relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+                <span>NURSERY TO 10TH CLASS • ADMISSIONS 2024-25</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+                Comprehensive Schooling from <span class="gold-shimmer">Nursery to Matric</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-emerald-100/90 max-w-3xl mx-auto font-normal leading-relaxed">
+                Registered with KP-PSRA and affiliated with BISE Kohat. We nurture young minds through activity-based early education, a rigorous primary & middle school curriculum, and outstanding Matric Science preparation.
+            </p>
+
+            <!-- Key Feature Metrics -->
+            <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">ECE to 10th</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Complete Schooling</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">BISE Kohat Affiliated</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-emerald-300">Modern</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Science & IT Labs</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">Up to 100%</div>
+                    <div class="text-xs text-emerald-200 mt-1 font-medium">Merit Scholarships</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Interactive Category Filter & Search Section -->
+    <section class="py-12 px-4 sm:px-8 bg-slate-50 border-b border-slate-200" id="programs-list">
+        <div class="max-w-7xl mx-auto space-y-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Explore Academic Wings</h2>
+                    <p class="text-slate-500 text-sm mt-1">Select a grade wing or search specific subjects and skills.</p>
+                </div>
+
+                <!-- Search Input -->
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="program-search" placeholder="Search wing, e.g. Nursery, Biology..." class="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-kimsEmerald focus:border-transparent transition shadow-sm">
+                    <button id="clear-program-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Level Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto py-2 custom-scroll">
+                <button data-filter="all" class="prog-filter-pill active-pill bg-kimsEmerald text-white font-semibold text-xs px-4 py-2 rounded-xl transition shadow-sm whitespace-nowrap">
+                    All Wings
+                </button>
+                <button data-filter="ece" class="prog-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-shapes text-amber-500 mr-1"></i> Early Childhood (Nursery & Prep)
+                </button>
+                <button data-filter="primary" class="prog-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-book-open-reader text-emerald-600 mr-1"></i> Primary Wing (Class 1-5)
+                </button>
+                <button data-filter="middle" class="prog-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-calculator text-blue-600 mr-1"></i> Middle Wing (Class 6-8)
+                </button>
+                <button data-filter="matric" class="prog-filter-pill bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-xl border border-slate-200 transition shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-microscope text-purple-600 mr-1"></i> Secondary / Matric (Class 9-10)
+                </button>
+            </div>
+
+            <!-- Programs Grid -->
+            <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- No Results State -->
+            <div id="no-program-results" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl mb-3">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 mb-1">No Academic Programs Found</h3>
+                <p class="text-slate-500 text-xs mb-4">Try searching with another keyword or reset your filter.</p>
+                <button id="reset-program-filters" class="bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-semibold px-4 py-2 rounded-xl transition">
+                    <i class="fa-solid fa-rotate-left"></i> Reset Search & Filters
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Academic Pathway & Comparison Table -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto space-y-10">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">School Curriculum Guide</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Class-Wise Structure & Curriculum</h2>
+                <p class="text-slate-500 text-sm sm:text-base">Comprehensive learning progression from early childhood foundational stages to board examinations.</p>
+            </div>
+
+            <div class="overflow-x-auto shadow-md rounded-2xl border border-slate-200">
+                <table class="w-full text-left text-sm text-slate-600 bg-white">
+                    <thead class="text-xs text-white uppercase bg-kimsDark">
+                        <tr>
+                            <th scope="col" class="px-6 py-4">Academic Wing</th>
+                            <th scope="col" class="px-6 py-4">Classes / Grades</th>
+                            <th scope="col" class="px-6 py-4">Eligibility / Age</th>
+                            <th scope="col" class="px-6 py-4">Key Subjects & Focus</th>
+                            <th scope="col" class="px-6 py-4">Learning Outcomes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                Early Childhood (ECE)
+                            </td>
+                            <td class="px-6 py-4">Playgroup, Nursery & Prep</td>
+                            <td class="px-6 py-4 font-medium text-slate-700">3 to 5 Years Old</td>
+                            <td class="px-6 py-4">Phonics, Motor Skills, Numbers, Rhymes, Nazra Quran basics</td>
+                            <td class="px-6 py-4 text-amber-700 font-semibold">Confident speech, foundational literacy & social interaction</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                Primary Wing
+                            </td>
+                            <td class="px-6 py-4">Grade 1st to 5th</td>
+                            <td class="px-6 py-4 font-medium text-slate-700">Age 5+ / Passed ECE</td>
+                            <td class="px-6 py-4">English, Urdu, Mathematics, General Science, Social Studies, Islamiat, Computer</td>
+                            <td class="px-6 py-4 text-emerald-700 font-semibold">Strong bilingual reading, mental math & conceptual thinking</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                                Middle Wing
+                            </td>
+                            <td class="px-6 py-4">Grade 6th to 8th</td>
+                            <td class="px-6 py-4 font-medium text-slate-700">Passed Grade 5</td>
+                            <td class="px-6 py-4">General Science, Algebra & Geometry, English Composition, Computer, Pak Studies</td>
+                            <td class="px-6 py-4 text-blue-700 font-semibold">Analytical thinking, lab demonstrations & high school readiness</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+                                Secondary (Matric Bio)
+                            </td>
+                            <td class="px-6 py-4">Grade 9th & 10th (SSC)</td>
+                            <td class="px-6 py-4 font-medium text-slate-700">Passed Grade 8</td>
+                            <td class="px-6 py-4">Biology, Chemistry, Physics, Mathematics, English, Urdu, Islamiat, Pak Studies</td>
+                            <td class="px-6 py-4 text-purple-700 font-semibold">Board distinction in BISE Kohat & future medical pathways</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+                                Secondary (Matric Computer)
+                            </td>
+                            <td class="px-6 py-4">Grade 9th & 10th (SSC)</td>
+                            <td class="px-6 py-4 font-medium text-slate-700">Passed Grade 8</td>
+                            <td class="px-6 py-4">Computer Science (Programming & IT), Chemistry, Physics, Mathematics, Languages</td>
+                            <td class="px-6 py-4 text-teal-700 font-semibold">Board distinction in BISE Kohat & future computer science/engineering paths</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. The KIMS School Advantage -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-slate-100/70 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-6 space-y-6">
+                <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-star text-amber-500"></i> The KIMS School Advantage
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-snug">
+                    Strong Foundations from Nursery to <span class="text-kimsEmerald">Matric Board Honors</span>
+                </h2>
+
+                <p class="text-slate-600 text-base leading-relaxed">
+                    At KIMS School, we believe that academic excellence in Matriculation begins in the early nursery and primary years. Our child-centered curriculum combines modern educational technology with time-honored discipline and character values.
+                </p>
+
+                <div class="space-y-3.5 pt-2">
+                    <div class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-kimsEmerald flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Hands-on Science & Computer Labs</h4>
+                            <p class="text-xs text-slate-500">Equipped with physics, chemistry, and biology experimental apparatus plus a modern IT computing lab.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Rigorous BISE Kohat Board Test Series</h4>
+                            <p class="text-xs text-slate-500">Chapter-wise mock exams, model papers, and handwriting/presentation drills ensuring top board ranks.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-book-quran"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Nazra Quran, Tajweed & Tarbiyah</h4>
+                            <p class="text-xs text-slate-500">Integrated moral ethics, daily Duas, Quranic recitation, and character grooming from playgroup onwards.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Graphic / Image -->
+            <div class="lg:col-span-6">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Students in Classroom" class="w-full h-[450px] object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-8 text-white">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Modern Pedagogical Method</span>
+                        <h3 class="text-2xl font-black">"Every Child Is Nurtured to Lead"</h3>
+                        <p class="text-xs text-slate-200 mt-1 max-w-md">Small teacher-to-student ratios, individualized attention, and active parental communication.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. Admission Roadmap for School -->
+    <section class="py-16 lg:py-24 px-4 sm:px-8 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Simple Process</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">How to Enroll Your Child at KIMS</h2>
+                <p class="text-slate-500 text-sm sm:text-base">A straightforward 4-step admission journey from inquiry to first day of classes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Step 1 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow">
+                        1
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-900 mb-1">Submit Application</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Fill out the fast online application form or visit our admission office on Dhoda Road, Kohat.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow">
+                        2
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-900 mb-1">Assessment / Interview</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Informal readiness assessment for Nursery/Prep, or basic placement test for Grades 1-9.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow">
+                        3
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-900 mb-1">Document Verification</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Submit candidate's B-Form, parent's CNIC, previous school leaving certificate/DMC, and photos.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow">
+                        4
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-900 mb-1">Fee & Welcome Kit</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Receive student ID card, uniform handbook, booklist, and orientation schedule.</p>
+                </div>
+
+            </div>
+
+            <div class="text-center pt-4">
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white font-semibold text-sm px-8 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                    Start Online Application <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 8. Interactive Detail Modal for Program Syllabus & Structure -->
+    <div id="program-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform scale-95 transition-transform duration-300" id="program-modal-card">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-kimsDark to-kimsEmerald p-6 text-white relative">
+                <button id="prog-modal-close-btn" class="absolute top-4 right-4 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 w-8 h-8 rounded-full flex items-center justify-center transition" aria-label="Close Modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="flex items-center gap-4">
+                    <div id="prog-modal-icon" class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center text-2xl text-amber-300 border border-white/20">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div>
+                        <span id="prog-modal-badge" class="inline-block bg-amber-400 text-slate-900 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md mb-1">Level</span>
+                        <h3 id="prog-modal-title" class="text-xl font-extrabold text-white">Program Name</h3>
+                        <p id="prog-modal-duration" class="text-xs text-emerald-200 font-medium">Duration</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-5">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Overview & Learning Focus</h4>
+                    <p id="prog-modal-desc" class="text-xs text-slate-600 leading-relaxed"></p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Curriculum & Subjects</h4>
+                    <div id="prog-modal-subjects" class="space-y-1.5">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-500 font-semibold">Eligibility / Age:</span>
+                        <span id="prog-modal-eligibility" class="font-bold text-slate-800"></span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-500 font-semibold">Next Academic Stage:</span>
+                        <span id="prog-modal-careers" class="font-bold text-emerald-700"></span>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <a href="admissions.html" class="flex-1 text-center bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-semibold py-3 rounded-xl shadow-md transition">
+                        Apply for this Wing
+                    </a>
+                    <button id="prog-modal-secondary-close" class="px-5 py-3 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Call to Action: Scholarship Banner -->
+    <section class="py-16 px-4 sm:px-8 bg-kimsDark text-white relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto bg-gradient-to-r from-emerald-900/60 to-emerald-950/80 border border-emerald-700/40 rounded-3xl p-8 sm:p-12 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-3 text-center md:text-left">
+                <span class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">
+                    <i class="fa-solid fa-hand-holding-dollar"></i> Up to 100% Merit Scholarships
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Admissions Open: Nursery to 10th Class</h2>
+                <p class="text-emerald-100/80 text-sm sm:text-base max-w-xl">
+                    Give your child the finest education in Kohat with quality faculty, well-equipped science and computer laboratories, and strong moral values.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <a href="admissions.html" class="text-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 whitespace-nowrap">
+                    Apply for Admission <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                </a>
+                <a href="toppers.html" class="text-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl backdrop-blur-md transition whitespace-nowrap">
+                    View Matric Toppers
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Kohat Institute of Modern Sciences (KIMS) School provides complete education from Nursery to 10th Class (Matriculation - SSC) with science laboratories and verified character building.
+                </p>
+                <div class="flex items-center gap-3 text-slate-400 text-sm">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/923330299920" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Public Directory -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Public Directory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Institute</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition text-emerald-400 font-bold">Academic Programs</a></li>
+                    <li><a href="faculty.html" class="hover:text-emerald-400 transition">Faculty & Departments</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold"><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Hall of Fame / Toppers</a></li>
+                    <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions 2024-25</a></li>
+                </ul>
+            </div>
+
+            <!-- Portals & Resources -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Portals & Resources</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                    <li><a href="notices.html" class="hover:text-emerald-400 transition">Notices & Circulars</a></li>
+                    <li><a href="gallery.html" class="hover:text-emerald-400 transition">Campus Gallery</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact Us & Map</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition font-bold text-white"><i class="fa-solid fa-right-to-bracket text-emerald-400 mr-1"></i> Portal Login (All Roles)</a></li>
+                    <li><a href="register.html" class="hover:text-emerald-400 transition">Register Public Account</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Registration -->
+            <div class="space-y-2 text-xs">
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p><i class="fa-solid fa-envelope text-emerald-400 mr-1.5"></i> info@kimskohat.edu.pk</p>
+                <p class="pt-2 text-[11px] text-emerald-300">KP-PSRA Registered & BISE Kohat Affiliated</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript: Dataset, Filter & Modal Logic -->
+    <script>
+        const programsData = [
+            {
+                id: 1,
+                title: "Early Childhood Education (ECE)",
+                category: "ece",
+                badge: "Playgroup, Nursery & Prep",
+                badgeColor: "bg-amber-100 text-amber-800",
+                icon: "fa-shapes",
+                iconColor: "text-amber-600 bg-amber-50",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80",
+                description: "Joyful, activity-based early childhood environment fostering curiosity, motor skills, social etiquette, and language development through interactive games, phonics, and sensory toys.",
+                eligibility: "Age 3 to 5 Years Old",
+                careers: "Smooth progression to Primary School (Grade 1)",
+                subjects: [
+                    "English Phonics, Letter Sounds & Vocabulary",
+                    "Urdu Alphabet, Recognition & Basic Penmanship",
+                    "Basic Numeracy, Shapes & Color Recognition",
+                    "Nazra Quran, Daily Duas & Social Manners"
+                ],
+                highlights: "Spacious activity area, child-safe educational toys, audiovisual rhymes, and loving caring teachers."
+            },
+            {
+                id: 2,
+                title: "Primary Wing (Class 1st to 5th)",
+                category: "primary",
+                badge: "Primary Level • Grade 1 - 5",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                icon: "fa-book-open-reader",
+                iconColor: "text-emerald-600 bg-emerald-50",
+                image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80",
+                description: "Comprehensive primary education instilling strong foundational literacy in English and Urdu, solid mental arithmetic, introductory science exploration, and basic computer skills.",
+                eligibility: "Age 5+ / Successful completion of Prep or Placement Assessment",
+                careers: "Advancement to Middle School (Grade 6th)",
+                subjects: [
+                    "English (Reading Comprehension, Grammar & Creative Writing)",
+                    "Urdu (Literature, Grammar & Dictation)",
+                    "Mathematics (Arithmetic, Fractions, Word Problems)",
+                    "General Science & Social Studies",
+                    "Computer Literacy & Keyboarding",
+                    "Islamiat & Nazra Quran with Tajweed"
+                ],
+                highlights: "Weekly mental math contests, spelling bees, cursive handwriting training, and activity worksheets."
+            },
+            {
+                id: 3,
+                title: "Middle Wing (Class 6th to 8th)",
+                category: "middle",
+                badge: "Middle Level • Grade 6 - 8",
+                badgeColor: "bg-blue-100 text-blue-800",
+                icon: "fa-calculator",
+                iconColor: "text-blue-600 bg-blue-50",
+                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80",
+                description: "A transformative middle school program bridging primary foundations to secondary academic rigor. Introduces students to dedicated science labs, introductory physics/chemistry, and algebra.",
+                eligibility: "Passed Class 5th Examination",
+                careers: "Pathway to Matriculation Science (Grade 9th & 10th)",
+                subjects: [
+                    "General Science (Physics, Chemistry & Biology modules)",
+                    "Mathematics (Pre-Algebra, Geometry & Statistics)",
+                    "Computer Science (Hardware, Office Tools, Basic Logic)",
+                    "English Language & Literature",
+                    "Urdu, Islamiat & Pakistan Studies"
+                ],
+                highlights: "Science demonstration labs, project exhibitions, debate contests, and board preparation groundwork."
+            },
+            {
+                id: 4,
+                title: "Matriculation (Science - Biology Track)",
+                category: "matric",
+                badge: "SSC • 2 Years (9th & 10th)",
+                badgeColor: "bg-purple-100 text-purple-800",
+                icon: "fa-microscope",
+                iconColor: "text-purple-600 bg-purple-50",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80",
+                description: "Kohat's premier Matric Science Biology stream affiliated with BISE Kohat. High-yield conceptual instruction, chapter-wise test series, and comprehensive laboratory practicals.",
+                eligibility: "Passed Grade 8 / Middle School Examination",
+                careers: "Foundation for FSc Pre-Medical & Healthcare Professions",
+                subjects: [
+                    "Biology (Cell Structure, Genetics, Physiology & Lab Experiments)",
+                    "Chemistry (Atomic Structure, Chemical Reactions, Periodic Table)",
+                    "Physics (Kinematics, Force, Heat, Optics & Electrical Labs)",
+                    "Mathematics (Algebra, Matrices, Trigonometry, Geometry)",
+                    "English, Urdu, Islamic Studies, Pakistan Studies"
+                ],
+                highlights: "BISE Kohat board model paper drills, individual mentoring, and consistent position-holding records."
+            },
+            {
+                id: 5,
+                title: "Matriculation (Science - Computer Track)",
+                category: "matric",
+                badge: "SSC • 2 Years (9th & 10th)",
+                badgeColor: "bg-teal-100 text-teal-800",
+                icon: "fa-code",
+                iconColor: "text-teal-600 bg-teal-50",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRudrJsVnWEHopW6BcbZPKl2Qfrn6Twb-sdAmSPDvT60Q&s=10",
+                description: "Prepares tech-inclined secondary students with fundamental computer programming, algorithms, flowchart logic, and digital systems alongside core physics, chemistry, and math.",
+                eligibility: "Passed Grade 8 / Middle School Examination",
+                careers: "Foundation for ICS, Software Engineering, AI & Tech Fields",
+                subjects: [
+                    "Computer Science (Data Processing, Algorithms, C/C++ Basics)",
+                    "Physics (Mechanics, Wave Motion, Electricity & Labs)",
+                    "Chemistry (Theory & Analytical Laboratory Practicals)",
+                    "Mathematics (Trigonometry, Calculus Foundations, Algebra)",
+                    "English, Urdu, Islamic Studies, Pakistan Studies"
+                ],
+                highlights: "Dedicated hands-on PC workstations, programming logic practice, and board practical exams."
+            },
+            {
+                id: 6,
+                title: "Character Building & Hifz / Nazra Program",
+                category: "ece",
+                badge: "Integrated All Grades",
+                badgeColor: "bg-rose-100 text-rose-800",
+                icon: "fa-book-quran",
+                iconColor: "text-rose-600 bg-rose-50",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+                description: "Specialized integrated moral education and Quranic recitation program running alongside mainstream academics, instilling high moral character, honesty, respect, and Islamic values.",
+                eligibility: "Open to All Enrolled Students (Nursery to 10th)",
+                careers: "Holistic Spiritual, Ethical & Leadership Development",
+                subjects: [
+                    "Nazra Quran with proper Tajweed articulation",
+                    "Daily Masnoon Duas & Hadith Memorization",
+                    "Seerat-un-Nabi (PBUH) and Islamic Ethics",
+                    "Moral Leadership, Empathy & Civic Responsibility"
+                ],
+                highlights: "Dedicated Qari and Islamic scholars, annual Qirat and Naat competitions, and character awards."
+            }
+        ];
+
+        // DOM elements
+        const programsGrid = document.getElementById('programs-grid');
+        const noResults = document.getElementById('no-program-results');
+        const searchInput = document.getElementById('program-search');
+        const clearSearchBtn = document.getElementById('clear-program-search');
+        const filterPills = document.querySelectorAll('.prog-filter-pill');
+        const resetFiltersBtn = document.getElementById('reset-program-filters');
+
+        // Modal Elements
+        const programModal = document.getElementById('program-modal');
+        const modalCard = document.getElementById('program-modal-card');
+        const modalCloseBtn = document.getElementById('prog-modal-close-btn');
+        const modalSecondaryClose = document.getElementById('prog-modal-secondary-close');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderPrograms() {
+            programsGrid.innerHTML = '';
+
+            const filtered = programsData.filter(prog => {
+                const matchesFilter = currentFilter === 'all' || prog.category === currentFilter;
+                const matchesSearch = searchQuery === '' || 
+                    prog.title.toLowerCase().includes(searchQuery) ||
+                    prog.description.toLowerCase().includes(searchQuery) ||
+                    prog.careers.toLowerCase().includes(searchQuery) ||
+                    prog.subjects.some(sub => sub.toLowerCase().includes(searchQuery));
+
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach(prog => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1";
+                    
+                    card.innerHTML = `
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${prog.image}" alt="${prog.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+                            <span class="absolute top-4 left-4 ${prog.badgeColor} text-[11px] font-extrabold uppercase px-3 py-1 rounded-lg shadow-sm">
+                                ${prog.badge}
+                            </span>
+                            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                                <h3 class="text-lg font-bold drop-shadow-sm">${prog.title}</h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                ${prog.description}
+                            </p>
+
+                            <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1.5 text-xs">
+                                <div class="flex items-center gap-2 text-slate-700">
+                                    <i class="fa-solid fa-check text-emerald-600"></i>
+                                    <span class="font-semibold text-slate-500">Eligibility:</span>
+                                    <span class="font-bold text-slate-800 truncate">${prog.eligibility}</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-slate-700">
+                                    <i class="fa-solid fa-arrow-right text-amber-500"></i>
+                                    <span class="font-semibold text-slate-500">Progression:</span>
+                                    <span class="font-bold text-emerald-800 truncate">${prog.careers}</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-3">
+                                <button onclick="openProgramModal(${prog.id})" class="text-xs font-bold text-kimsEmerald hover:text-kimsDark flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-circle-info"></i> Syllabus & Details
+                                </button>
+                                <a href="admissions.html" class="bg-emerald-50 hover:bg-kimsEmerald hover:text-white text-emerald-800 text-xs font-bold px-3.5 py-2 rounded-xl transition border border-emerald-200/80 shadow-sm">
+                                    Enroll Now
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    programsGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Open Modal
+        window.openProgramModal = function(id) {
+            const prog = programsData.find(p => p.id === id);
+            if (!prog) return;
+
+            document.getElementById('prog-modal-title').textContent = prog.title;
+            document.getElementById('prog-modal-badge').textContent = prog.badge;
+            document.getElementById('prog-modal-duration').textContent = prog.category.toUpperCase() + " WING";
+            document.getElementById('prog-modal-desc').textContent = prog.description;
+            document.getElementById('prog-modal-eligibility').textContent = prog.eligibility;
+            document.getElementById('prog-modal-careers').textContent = prog.careers;
+
+            const subjectsContainer = document.getElementById('prog-modal-subjects');
+            subjectsContainer.innerHTML = '';
+            prog.subjects.forEach(sub => {
+                const subItem = document.createElement('div');
+                subItem.className = "flex items-start gap-2 text-xs text-slate-700 bg-slate-50 p-2 rounded-lg border border-slate-100";
+                subItem.innerHTML = `<i class="fa-solid fa-book-open text-emerald-600 mt-0.5"></i> <span>${sub}</span>`;
+                subjectsContainer.appendChild(subItem);
+            });
+
+            programModal.classList.remove('hidden');
+            setTimeout(() => {
+                programModal.classList.remove('opacity-0');
+                modalCard.classList.remove('scale-95');
+                modalCard.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeProgramModal() {
+            programModal.classList.add('opacity-0');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            setTimeout(() => {
+                programModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        modalCloseBtn.addEventListener('click', closeProgramModal);
+        modalSecondaryClose.addEventListener('click', closeProgramModal);
+        programModal.addEventListener('click', (e) => {
+            if (e.target === programModal) closeProgramModal();
+        });
+
+        // Filter Pills Handler
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                filterPills.forEach(p => {
+                    p.classList.remove('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.add('bg-white', 'text-slate-700');
+                });
+                pill.classList.remove('bg-white', 'text-slate-700');
+                pill.classList.add('active-pill', 'bg-kimsEmerald', 'text-white');
+
+                currentFilter = pill.dataset.filter;
+                renderPrograms();
+            });
+        });
+
+        // Search Handlers
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            if (searchQuery.length > 0) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+            renderPrograms();
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            renderPrograms();
+        });
+
+        resetFiltersBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            currentFilter = 'all';
+            filterPills.forEach((p, idx) => {
+                if (idx === 0) {
+                    p.classList.add('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.remove('bg-white', 'text-slate-700');
+                } else {
+                    p.classList.remove('active-pill', 'bg-kimsEmerald', 'text-white');
+                    p.classList.add('bg-white', 'text-slate-700');
+                }
+            });
+            renderPrograms();
+        });
+
+        // Mobile Nav Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            } else {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Initial render
+        renderPrograms();
+    </script>
+</body>
+
+</html>

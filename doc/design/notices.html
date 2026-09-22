@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Notices & Circulars - Kohat Institute of Modern Sciences (KIMS)</title>
+    <meta name="description" content="View official notices, examination datesheets, holiday announcements, academic circulars, and downloadable documents from Kohat Institute of Modern Sciences (KIMS) School.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kimsEmerald: '#064e3b',
+                        kimsDark: '#022c22',
+                        kimsAccent: '#059669',
+                        kimsGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .notices-hero-bg {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.95) 0%, rgba(6, 78, 59, 0.88) 50%, rgba(2, 44, 34, 0.97) 100%), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fef08a 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .notice-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .notice-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px -10px rgba(6, 78, 59, 0.12);
+        }
+
+        .category-tab.active-tab {
+            background-color: #064e3b;
+            color: #ffffff;
+            border-color: #064e3b;
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- 1. Top Utility & Announcement Bar -->
+    <div class="bg-kimsDark text-emerald-100 text-xs py-2.5 px-4 sm:px-8 border-b border-emerald-950/40">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> Dhoda Road, Dheri Banda, Kohat, KPK</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400"></i> +92 333 0299920</span>
+                <span class="hidden lg:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-emerald-400"></i> info@kimskohat.edu.pk</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-block bg-emerald-900/60 text-emerald-300 px-2.5 py-0.5 rounded text-[11px] font-medium border border-emerald-700/50">KP-PSRA Registered & BISE Kohat Affiliated</span>
+                <span class="italic font-medium text-emerald-200">"Come to Read, Go to Lead"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Sticky Glassmorphism Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-kimsEmerald to-kimsDark flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-12 h-12 rounded-xl">
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-4xl tracking-tight leading-none">KIMS</h1>
+                    <!-- <p class="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase mt-0.5">School (Nursery to 10th)</p> -->
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold transition">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition">About</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition">Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition">Faculty</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition flex items-center gap-1.5 font-bold text-emerald-800 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200/60"><i class="fa-solid fa-trophy text-amber-500 text-xs"></i> Toppers</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition">Admissions</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition">Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition">Notices</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition">Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition">Contact</a>
+            </nav>
+
+            <!-- Desktop Action Items -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="login.html" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-200 transition">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald"></i> Portal Login
+                </a>
+                <a href="admissions.html" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+                    Apply Online
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button id="hamburger-btn" class="xl:hidden text-slate-700 text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-700">
+                <a href="index.html" class="text-kimsEmerald font-bold py-1">Home</a>
+                <a href="about.html" class="hover:text-kimsEmerald transition py-1">About Us</a>
+                <a href="programs.html" class="hover:text-kimsEmerald transition py-1">Academic Programs</a>
+                <a href="faculty.html" class="hover:text-kimsEmerald transition py-1">Faculty & Departments</a>
+                <a href="toppers.html" class="hover:text-kimsEmerald transition py-1 flex items-center gap-2 text-emerald-800 font-bold"><i class="fa-solid fa-trophy text-amber-500 text-sm"></i> Toppers (Hall of Fame)</a>
+                <a href="admissions.html" class="hover:text-kimsEmerald transition py-1">Admissions 2024-25</a>
+                <a href="events.html" class="hover:text-kimsEmerald transition py-1">School Events</a>
+                <a href="notices.html" class="hover:text-kimsEmerald transition py-1">Notices & Circulars</a>
+                <a href="gallery.html" class="hover:text-kimsEmerald transition py-1">Campus Gallery</a>
+                <a href="contact.html" class="hover:text-kimsEmerald transition py-1">Contact Us</a>
+            </nav>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <a href="login.html" class="w-full text-center bg-slate-100 text-slate-800 text-sm font-semibold py-2.5 rounded-xl border border-slate-200">
+                    <i class="fa-solid fa-right-to-bracket text-kimsEmerald mr-2"></i> Portal Login (All Roles)
+                </a>
+                <a href="register.html" class="w-full text-center bg-emerald-50 text-emerald-800 text-sm font-semibold py-2.5 rounded-xl border border-emerald-200">
+                    <i class="fa-solid fa-user-plus text-kimsEmerald mr-2"></i> Register Public Account
+                </a>
+                <a href="admissions.html" class="w-full text-center bg-kimsEmerald text-white text-sm font-semibold py-2.5 rounded-xl shadow-md">
+                    Apply Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- 3. Notices Cinematic Hero Header -->
+        <section class="notices-hero-bg text-white py-14 sm:py-20 px-4 sm:px-8 relative overflow-hidden">
+            <div class="absolute -top-32 -right-32 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto text-center space-y-5 relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>OFFICIAL INSTITUTIONAL BULLETIN</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
+                    Notices, Circulars & <span class="gold-shimmer">Downloads</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-emerald-100/90 max-w-2xl mx-auto font-normal leading-relaxed">
+                    Stay informed with verified institutional circulars, BISE Kohat board notifications, examination timetables, holiday schedules, and downloadable resource forms.
+                </p>
+
+                <!-- Search & Quick Counts Bar -->
+                <div class="max-w-2xl mx-auto pt-4">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl flex flex-col sm:flex-row items-center gap-2 shadow-2xl">
+                        <div class="relative w-full">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-emerald-300 text-sm"></i>
+                            <input type="text" id="notice-search" oninput="filterNotices()" placeholder="Search notices by keyword, title, or ref number (e.g. BISE, Datesheet, Fee)..." class="w-full pl-11 pr-4 py-3 bg-white/90 text-slate-800 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-400 transition">
+                        </div>
+                        <button onclick="clearSearch()" class="w-full sm:w-auto px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition whitespace-nowrap">
+                            Reset Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Urgent Pinned Alert Banner -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-8 -mt-6 relative z-20">
+            <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-2xl p-4 sm:p-5 shadow-xl border border-amber-400/40 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-left">
+                    <div class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-xl flex-shrink-0">
+                        <i class="fa-solid fa-bullhorn animate-bounce"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-white text-amber-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">URGENT ANNOUNCEMENT</span>
+                            <span class="text-xs text-amber-100 font-mono">Ref: KIMS/EXM/2024/114</span>
+                        </div>
+                        <h4 class="font-bold text-sm sm:text-base mt-0.5 text-white">
+                            BISE Kohat SSC Matriculation Registration 2024-25 Deadline Approaching
+                        </h4>
+                        <p class="text-xs text-amber-100/90 hidden sm:block">
+                            Students of 9th & 10th science must submit CNIC/B-Form copies and photographs to the school administration by September 15.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 w-full md:w-auto">
+                    <button onclick="openNoticeModal('114')" class="w-full md:w-auto text-center bg-white text-amber-800 hover:bg-amber-50 font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition">
+                        Read Circular
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Category Filter Navigation -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-8 pt-10 pb-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4 flex-wrap gap-4">
+                <!-- Filter Tabs -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full" id="category-tabs">
+                    <button onclick="setCategory('all')" class="category-tab active-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 transition" data-category="all">
+                        <i class="fa-solid fa-layer-group mr-1.5"></i> All Notices
+                    </button>
+                    <button onclick="setCategory('academic')" class="category-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition" data-category="academic">
+                        <i class="fa-solid fa-book-open mr-1.5"></i> Academic & Exams
+                    </button>
+                    <button onclick="setCategory('admissions')" class="category-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition" data-category="admissions">
+                        <i class="fa-solid fa-user-graduate mr-1.5"></i> Admissions
+                    </button>
+                    <button onclick="setCategory('holidays')" class="category-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition" data-category="holidays">
+                        <i class="fa-solid fa-umbrella-beach mr-1.5"></i> Holidays & Schedules
+                    </button>
+                    <button onclick="setCategory('fee')" class="category-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition" data-category="fee">
+                        <i class="fa-solid fa-receipt mr-1.5"></i> Fee Circulars
+                    </button>
+                    <button onclick="setCategory('general')" class="category-tab text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition" data-category="general">
+                        <i class="fa-solid fa-circle-info mr-1.5"></i> General & Admin
+                    </button>
+                </div>
+
+                <!-- Active Count Indicator -->
+                <div class="text-xs text-slate-500 font-medium">
+                    Showing <span id="visible-count" class="font-bold text-kimsEmerald">8</span> notices
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Notices Grid Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="notices-grid">
+
+                <!-- Notice Card 1 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="academic" data-search="bise kohat matriculation registration 9th 10th 114">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-red-50 text-red-700 border border-red-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Urgent
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/EXM/2024/114</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>September 02, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Exams Department</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            BISE Kohat SSC Matriculation Online Registration Deadline 2024-25
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Final reminder for students enrolled in Class 9th and 10th (Science Group). Form submission with original B-Form and three photographs must be finalized before the board cut-off date.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('114')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Circular_BISE_Kohat_Registration_114.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (240 KB)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 2 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="academic" data-search="mid term examination datesheet schedule syllabus 113">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-emerald-50 text-kimsEmerald border border-emerald-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Academic
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/ACD/2024/113</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>August 28, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Academic Wing</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Mid-Term Examination Datesheet & Syllabus Coverage (Nursery to 10th)
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Mid-term examinations for all academic wings are scheduled to commence from September 22. Download the complete subject-wise datesheet and examination syllabus guidelines.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('113')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Datesheet_MidTerm_2024_KIMS.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (480 KB)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 3 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="admissions" data-search="admissions open 2024 2025 merit scholarship 112">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Admissions
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/ADM/2024/112</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>August 20, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Admissions Directorate</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Second Phase Admissions Open with Merit Scholarship Scheme
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Limited seats available for Pre-School, Primary, and Matriculation Science (Biology/Computer science tracks). Free-ship available for 90%+ position holders from recognized institutions.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('112')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="admissions.html" class="inline-flex items-center gap-1.5 text-white bg-kimsEmerald hover:bg-kimsDark px-3 py-1.5 rounded-lg font-medium transition">
+                            Apply Online
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 4 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="holidays" data-search="defence day holiday 6th september circular 111">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Holiday Notice
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/GEN/2024/111</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>August 15, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">General Administration</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            National Holiday: Defence Day of Pakistan Observance (September 06)
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            The institute will remain closed on Friday, 6th September on account of Defence Day. Special tribute assemblies and speech contests will be held on Thursday, 5th September.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('111')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Holiday_Notice_DefenceDay_111.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (180 KB)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 5 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="fee" data-search="monthly tuition fee challan deadline bank alfalah 110">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-purple-50 text-purple-700 border border-purple-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Accounts & Fee
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/ACC/2024/110</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>August 10, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Finance Department</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Submission of September 2024 Monthly Tuition Fee Challans
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Monthly tuition challans have been issued to students and uploaded to the digital parent portal. Due date without surcharge is the 10th of each calendar month at Bank Alfalah Kohat.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('110')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="login.html" class="inline-flex items-center gap-1.5 text-kimsEmerald hover:text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg font-bold transition">
+                            Check Fee on Portal
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 6 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="general" data-search="school uniform code winter transition discipline 109">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Discipline & Uniform
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/GEN/2024/109</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>August 05, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Chief Proctor Office</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Student Dress Code, Grooming & Identity Card Regulations
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Strict compliance with proper school uniform, ID card lanyard, and disciplined hair cut is mandatory for all students from morning assembly check.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('109')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Uniform_Code_Of_Conduct_2024.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (210 KB)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 7 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="academic" data-search="science practical laboratory schedule biology physics chemistry 108">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-emerald-50 text-kimsEmerald border border-emerald-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Academic
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/SCI/2024/108</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>July 28, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Science Faculty</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Science Practical Laboratory Timetable for Classes 9th & 10th
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Practical laboratory rotations for Physics, Chemistry, and Biology will be conducted during periods 5 and 6 on Tuesdays and Thursdays. Practical notebooks must be countersigned weekly.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('108')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Science_Lab_Practical_Schedule_108.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (310 KB)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Notice Card 8 -->
+                <article class="notice-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between" data-category="general" data-search="van transport routes dhoda road kda cantt city pick drop 107">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Transport
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">KIMS/TRN/2024/107</span>
+                        </div>
+                        <div class="text-xs text-slate-500 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar text-emerald-600"></i>
+                            <span>July 20, 2024</span>
+                            <span>•</span>
+                            <span class="text-emerald-700 font-semibold">Transport Incharge</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg leading-snug">
+                            Campus Pick-and-Drop School Van Route Extensions
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Two additional dedicated school transport vans have been inducted covering KDA Sector 4 & 5, Cantt area, and Bannu Road junction. Parents may apply for seat reservation at the admin desk.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <button onclick="openNoticeModal('107')" class="font-bold text-kimsEmerald hover:text-emerald-700 inline-flex items-center gap-1 transition">
+                            View Circular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                        <a href="javascript:void(0)" onclick="simulateDownload('Transport_Routes_Van_Schedule_107.pdf')" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-file-pdf text-red-500"></i> PDF (260 KB)
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="hidden text-center py-16 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h4 class="text-lg font-bold text-slate-700">No Matching Notices Found</h4>
+                <p class="text-xs text-slate-500 max-w-sm mx-auto">
+                    Try using a different keyword or reset the category filter to view all institutional announcements.
+                </p>
+                <button onclick="clearSearch()" class="bg-kimsEmerald text-white text-xs font-semibold px-4 py-2 rounded-xl">
+                    View All Notices
+                </button>
+            </div>
+        </section>
+
+        <!-- 7. Downloadable Documents & Resource Center (Module 1 Spec Requirement) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16">
+            <div class="bg-gradient-to-br from-emerald-900 to-kimsDark rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+                <!-- Background ambient circles -->
+                <div class="absolute -top-24 -right-24 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-3xl mb-10 space-y-3 relative z-10">
+                    <span class="bg-white/10 text-emerald-300 text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full border border-white/20 inline-block">
+                        DOCUMENT REPOSITORY
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white">
+                        Official Downloadable Documents & Forms
+                    </h2>
+                    <p class="text-xs sm:text-sm text-emerald-100/80 leading-relaxed">
+                        Authorized official PDFs, forms, syllabi, and administrative handbooks for parents, enrolled students, and prospective applicants.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10">
+
+                    <!-- Document Item 1 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Admission Application Form (Offline)</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Official printable 4-page student admission form with document checklist.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 1.2 MB • Updated 2024</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: ADM-DOC-01</span>
+                            <button onclick="simulateDownload('KIMS_Admission_Application_Form_2024_25.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Document Item 2 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Annual Academic Calendar 2024-25</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Term schedules, exam dates, vacation periods, and national observances.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 850 KB • Session 2024-25</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: ACD-CAL-24</span>
+                            <button onclick="simulateDownload('KIMS_Academic_Calendar_2024_25.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Document Item 3 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-money-check-dollar"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Fee Structure & Concession Policy</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Class-wise tuition breakdown, admission fees, and 100% free-ship rules.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 620 KB • Valid 2024-25</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: FIN-POL-04</span>
+                            <button onclick="simulateDownload('KIMS_Fee_Structure_Concessions_2024.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Document Item 4 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">BISE Kohat SSC Matric Guidelines</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Board examination rules, grading criteria, and roll slip generation protocol.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 1.4 MB • BISE Kohat</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: BISE-GUI-09</span>
+                            <button onclick="simulateDownload('BISE_Kohat_Matric_SSC_Guidelines.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Document Item 5 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Class-wise Booklist & Syllabus</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Textbook list, Oxford English curriculum, and science laboratory workbooks.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 980 KB • Complete Wings</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: ACD-BKL-12</span>
+                            <button onclick="simulateDownload('KIMS_Booklist_Syllabus_2024_25.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Document Item 6 -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 p-5 rounded-2xl transition duration-200 flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Student Code of Conduct & Rules</h4>
+                                <p class="text-xs text-emerald-200/70 mt-1">Campus discipline, attendance regulations, lab safety protocols, and ethics.</p>
+                                <span class="text-[10px] text-emerald-300 font-mono mt-2 inline-block">PDF • 450 KB • KIMS Handbook</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-200/60">Ref: DIS-RUL-03</span>
+                            <button onclick="simulateDownload('KIMS_Code_of_Conduct_Handbook.pdf')" class="text-xs font-bold text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Notice Full-View Modal -->
+    <div id="notice-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[90vh]">
+            <!-- Modal Header -->
+            <div class="bg-kimsDark text-white p-5 sm:p-6 flex items-center justify-between border-b border-emerald-800">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-9 h-9 rounded-lg">
+                    <div>
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-emerald-300 block">Kohat Institute of Modern Sciences</span>
+                        <h4 class="font-bold text-sm text-white" id="modal-ref">Official Notice</h4>
+                    </div>
+                </div>
+                <button onclick="closeNoticeModal()" class="text-emerald-300 hover:text-white text-xl p-1 focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 sm:p-8 space-y-4 overflow-y-auto text-slate-800 text-sm leading-relaxed" id="modal-body">
+                <div class="flex justify-between items-center text-xs text-slate-500 border-b border-slate-100 pb-3">
+                    <span id="modal-dept" class="font-bold text-kimsEmerald">Department</span>
+                    <span id="modal-date">Date</span>
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900" id="modal-title">Notice Title</h3>
+                <div class="prose prose-sm max-w-none text-slate-600 space-y-3" id="modal-content">
+                    Notice text...
+                </div>
+
+                <!-- Simulated Seal & Signature -->
+                <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div>
+                        <p class="font-bold text-slate-900">Engr. Rafiullah Khattak</p>
+                        <p class="text-[11px]">Principal / Managing Director</p>
+                        <p class="text-[10px] text-slate-400">Kohat Institute of Modern Sciences</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="inline-block border-2 border-dashed border-emerald-600/40 text-emerald-800 text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">
+                            <i class="fa-solid fa-stamp mr-1"></i> Verified Circular
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 p-4 px-6 border-t border-slate-100 flex items-center justify-between">
+                <button onclick="closeNoticeModal()" class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 transition">
+                    Close Notice
+                </button>
+                <button onclick="simulateModalDownload()" class="inline-flex items-center gap-2 bg-kimsEmerald hover:bg-kimsDark text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow transition">
+                    <i class="fa-solid fa-file-pdf"></i> Download Official PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Complete Unified Footer Across All Pages -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 px-4 sm:px-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtsn7jlsf/image/upload/v1788238431/images_umj8tk.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-xl font-bold text-white tracking-tight">KIMS KOHAT</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Kohat Institute of Modern Sciences (KIMS) School provides premier education from Nursery to 10th Class (Matriculation - SSC) with modern laboratories, qualified faculty, and character building.
+                </p>
+                <div class="flex items-center gap-3 text-slate-400 text-sm">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/923330299920" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Navigation -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Public Directory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-emerald-400 transition">About Institute</a></li>
+                    <li><a href="programs.html" class="hover:text-emerald-400 transition">Academic Wings & Programs</a></li>
+                    <li><a href="faculty.html" class="hover:text-emerald-400 transition">Faculty & Departments</a></li>
+                    <li><a href="toppers.html" class="hover:text-emerald-400 transition text-emerald-400 font-semibold"><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Hall of Fame / Toppers</a></li>
+                    <li><a href="admissions.html" class="hover:text-emerald-400 transition">Admissions & Online Apply</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources & Portals -->
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Portals & Resources</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="events.html" class="hover:text-emerald-400 transition">Events & Activities</a></li>
+                    <li><a href="notices.html" class="hover:text-emerald-400 transition text-emerald-400 font-bold">Notices & Circulars</a></li>
+                    <li><a href="gallery.html" class="hover:text-emerald-400 transition">Campus Gallery</a></li>
+                    <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact & Helpdesk</a></li>
+                    <li><a href="login.html" class="hover:text-emerald-400 transition font-bold text-white"><i class="fa-solid fa-right-to-bracket text-emerald-400 mr-1"></i> Portal Login (All Roles)</a></li>
+                    <li><a href="register.html" class="hover:text-emerald-400 transition">Public User Registration</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Registration -->
+            <div class="space-y-2 text-xs">
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact & Registration</h4>
+                <p><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i> Dhoda Road, Dheri Banda, Kohat, KPK</p>
+                <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +92 333 0299920</p>
+                <p><i class="fa-solid fa-envelope text-emerald-400 mr-1.5"></i> info@kimskohat.edu.pk</p>
+                <p class="pt-2 text-[11px] text-emerald-300 font-medium">KP-PSRA Registered & BISE Kohat Affiliated</p>
+                <p class="text-[11px] text-slate-500">School Timings: Mon-Sat 08:00 AM - 02:00 PM</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Kohat Institute of Modern Sciences (KIMS). All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Interactive Notices Script -->
+    <script>
+        // Notice Data Repository for Details Modal
+        const noticeData = {
+            '114': {
+                ref: 'Ref: KIMS/EXM/2024/114',
+                dept: 'Examination & Board Affiliation Wing',
+                date: 'September 02, 2024',
+                title: 'BISE Kohat SSC Matriculation Online Registration Deadline 2024-25',
+                content: `
+                    <p>All students enrolled in Class 9th and 10th Science Group (Biology & Computer Science disciplines) are hereby notified that the Board of Intermediate & Secondary Education (BISE) Kohat has issued the final cut-off schedule for annual examination 2025 registration.</p>
+                    <p><strong>Required Documents:</strong></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Attested copy of Student NADRA B-Form / CNIC.</li>
+                        <li>Attested copy of Father / Guardian CNIC.</li>
+                        <li>3 passport-sized photographs with sky-blue background.</li>
+                        <li>Original School Leaving Certificate (for transfer admissions).</li>
+                    </ul>
+                    <p>Failure to submit documents before September 15 will incur board late registration penalties. Please consult the examinations office between 09:00 AM and 01:00 PM.</p>
+                `
+            },
+            '113': {
+                ref: 'Ref: KIMS/ACD/2024/113',
+                dept: 'Academic Directorate',
+                date: 'August 28, 2024',
+                title: 'Mid-Term Examination Datesheet & Syllabus Coverage (Nursery to 10th)',
+                content: `
+                    <p>The Mid-Term Examinations for academic session 2024-25 will commence from Monday, September 22, 2024. All papers will be conducted during the morning shift from 08:30 AM to 11:30 AM.</p>
+                    <p><strong>Examination Guidelines:</strong></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Students must bring their original KIMS Roll Number Slip daily.</li>
+                        <li>Smart watches, mobile devices, and unauthorized notes are strictly prohibited in the examination hall.</li>
+                        <li>Parent-Teacher Meeting (PTM) for result distribution and DMC issuance will be held on October 08.</li>
+                    </ul>
+                `
+            },
+            '112': {
+                ref: 'Ref: KIMS/ADM/2024/112',
+                dept: 'Admissions Directorate',
+                date: 'August 20, 2024',
+                title: 'Second Phase Admissions Open with Merit Scholarship Scheme',
+                content: `
+                    <p>Applications are invited for the limited vacant seats across Early Childhood, Primary, Middle, and Secondary Wings (Classes Nursery through 10th).</p>
+                    <p><strong>Scholarship Incentive:</strong> 100% Free tuition fee concession is awarded to position holders scoring 90% or above in previous board or centralized school evaluations.</p>
+                    <p>Online admission forms may be submitted directly through our admissions portal or in-person at the campus admissions desk.</p>
+                `
+            },
+            '111': {
+                ref: 'Ref: KIMS/GEN/2024/111',
+                dept: 'General Administration',
+                date: 'August 15, 2024',
+                title: 'National Holiday: Defence Day of Pakistan Observance',
+                content: `
+                    <p>In accordance with the notification from the Government of Khyber Pakhtunkhwa, Kohat Institute of Modern Sciences will remain closed on Friday, 6th September 2024 on account of Defence Day.</p>
+                    <p>A special institutional ceremony honoring national heroes and martyrs will be conducted during morning assembly on Thursday, 5th September. Normal classes will resume on Saturday, 7th September at 08:00 AM.</p>
+                `
+            },
+            '110': {
+                ref: 'Ref: KIMS/ACC/2024/110',
+                dept: 'Accounts & Finance Wing',
+                date: 'August 10, 2024',
+                title: 'Submission of September 2024 Monthly Tuition Fee Challans',
+                content: `
+                    <p>Monthly fee challans for September 2024 have been handed to students and are also available in digital PDF format via the KIMS Parent Portal.</p>
+                    <p>Parents are requested to deposit the tuition fees on or before the 10th of September at Bank Alfalah Kohat branch or via online banking bill-payment options. Surcharge applies after the due date.</p>
+                `
+            },
+            '109': {
+                ref: 'Ref: KIMS/GEN/2024/109',
+                dept: 'Chief Proctor Office',
+                date: 'August 05, 2024',
+                title: 'Student Dress Code, Grooming & Identity Card Regulations',
+                content: `
+                    <p>Clean and proper institutional uniform reflecting discipline and pride is compulsory. All students must wear the designated school uniform along with their official student ID card lanyard.</p>
+                    <p>Boys must maintain proper disciplined haircuts, and girls must follow the designated scarf/dupatta standards. Disciplinary proctors will inspect adherence at morning entry gates.</p>
+                `
+            },
+            '108': {
+                ref: 'Ref: KIMS/SCI/2024/108',
+                dept: 'Science Faculty & Laboratories',
+                date: 'July 28, 2024',
+                title: 'Science Practical Laboratory Timetable for Classes 9th & 10th',
+                content: `
+                    <p>Hands-on practical sessions in Physics, Chemistry, and Biology laboratories will follow the updated timetable effective immediately.</p>
+                    <p>All students are instructed to bring their lab coats, practical notebooks, and dissection/geometry kits. Safety eyewear must be used in the chemistry lab during acid-base titration experiments.</p>
+                `
+            },
+            '107': {
+                ref: 'Ref: KIMS/TRN/2024/107',
+                dept: 'Campus Transport Division',
+                date: 'July 20, 2024',
+                title: 'Campus Pick-and-Drop School Van Route Extensions',
+                content: `
+                    <p>To serve our expanding student body across Kohat city, two newly acquired Toyota HiAce vans have been added to the school fleet with verified drivers and GPS fleet tracking.</p>
+                    <p>Routes covered: Dhoda Road, KDA Sector 4, Sector 5, Kohat Cantt, Bannu Road, and City Circular road. Contact Transport Incharge at 0333-0299920 for route stops.</p>
+                `
+            }
+        };
+
+        let currentCategory = 'all';
+        let activeNoticeId = '114';
+
+        function setCategory(category) {
+            currentCategory = category;
+            
+            // Update Tab UI
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                if (tab.getAttribute('data-category') === category) {
+                    tab.classList.add('active-tab');
+                } else {
+                    tab.classList.remove('active-tab');
+                }
+            });
+
+            filterNotices();
+        }
+
+        function filterNotices() {
+            const query = (document.getElementById('notice-search').value || '').toLowerCase().trim();
+            const cards = document.querySelectorAll('#notices-grid .notice-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const cardSearch = (card.getAttribute('data-search') || '') + ' ' + card.innerText.toLowerCase();
+
+                const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
+                const matchesQuery = !query || cardSearch.includes(query);
+
+                if (matchesCategory && matchesQuery) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('visible-count').textContent = visibleCount;
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('notice-search').value = '';
+            setCategory('all');
+        }
+
+        function openNoticeModal(id) {
+            const notice = noticeData[id];
+            if (!notice) return;
+
+            activeNoticeId = id;
+            document.getElementById('modal-ref').textContent = notice.ref;
+            document.getElementById('modal-dept').textContent = notice.dept;
+            document.getElementById('modal-date').textContent = notice.date;
+            document.getElementById('modal-title').textContent = notice.title;
+            document.getElementById('modal-content').innerHTML = notice.content;
+
+            const modal = document.getElementById('notice-modal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeNoticeModal() {
+            document.getElementById('notice-modal').classList.add('hidden');
+        }
+
+        function simulateDownload(filename) {
+            alert('Downloading Official Document:\n' + filename + '\n\nVerified by Kohat Institute of Modern Sciences (KIMS).');
+        }
+
+        function simulateModalDownload() {
+            const notice = noticeData[activeNoticeId];
+            if (notice) {
+                alert('Downloading Official Circular PDF:\n' + notice.ref.replace('Ref: ', '') + '.pdf\n\nVerified and digitally signed by Principal Office.');
+            }
+        }
+
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerIcon.classList.remove('fa-xmark');
+                    hamburgerIcon.classList.add('fa-bars');
+                } else {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-xmark');
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
