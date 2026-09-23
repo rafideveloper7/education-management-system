@@ -1,14 +1,8 @@
 /**
  * ============================================================================
  * FILE: src/Pages/HomePage.jsx
- * PURPOSE: Public Landing & Welcome Page
+ * PURPOSE: Public Landing Welcome Hero with clear brief message & quick links
  * ============================================================================
- * 
- * Demonstrates:
- * - Publicly accessible homepage for all visitors.
- * - Dynamic call-to-action (CTA) buttons:
- *   If not logged in -> "Sign In" and "Create Account"
- *   If logged in -> Direct jump to role-based dashboard panel.
  */
 
 import React from 'react';
@@ -19,143 +13,104 @@ export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
 
   return (
-    <div style={{ padding: '60px 20px', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-      {/* Hero Badge */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '6px 16px',
-        borderRadius: '24px',
-        background: 'var(--accent-bg)',
-        border: '1px solid var(--accent-border)',
-        color: 'var(--accent)',
-        fontWeight: '600',
-        fontSize: '14px',
-        marginBottom: '24px'
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      {/* Hero Container */}
+      <section style={{
+        padding: '70px 20px',
+        maxWidth: '1100px',
+        margin: '0 auto',
+        textAlign: 'center',
+        width: '100%',
       }}>
-        <span>🚀</span>
-        <span>Next-Gen Education Management</span>
-      </div>
+        {/* Institutional Pill Badge */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '6px 18px',
+          borderRadius: '9999px',
+          background: 'var(--kims-accent-light)',
+          border: '1px solid rgba(5, 150, 105, 0.25)',
+          color: 'var(--kims-emerald)',
+          fontWeight: '700',
+          fontSize: '13px',
+          marginBottom: '28px',
+          boxShadow: '0 2px 8px rgba(6, 78, 59, 0.06)'
+        }}>
+          <span style={{ color: 'var(--kims-gold)' }}>★</span>
+          <span>Kohat Institute of Modern Sciences • Digital Campus</span>
+        </div>
 
-      <h1 style={{ marginBottom: '16px', fontSize: '42px', fontWeight: '800', lineHeight: '1.2' }}>
-        Empower Learning & School Administration
-      </h1>
+        {/* Main Title */}
+        <h1 style={{
+          fontSize: 'clamp(32px, 5vw, 54px)',
+          fontWeight: '800',
+          color: 'var(--kims-dark)',
+          lineHeight: '1.15',
+          letterSpacing: '-1px',
+          marginBottom: '20px'
+        }}>
+          Come to Read, <span style={{ color: 'var(--kims-accent)' }}>Go to Lead.</span>
+        </h1>
 
-      <p style={{ fontSize: '18px', color: 'var(--text)', maxWidth: '650px', margin: '0 auto 36px', lineHeight: '1.6' }}>
-        A unified platform connecting administrators, teachers, students, and parents with 
-        seamless role-based dashboards, secure authentication, and real-time updates.
-      </p>
+        {/* Concise Message requested by user */}
+        <p style={{
+          fontSize: 'clamp(16px, 2vw, 19px)',
+          color: 'var(--text-muted)',
+          maxWidth: '680px',
+          margin: '0 auto 36px',
+          lineHeight: '1.6'
+        }}>
+          Welcome to the official digital portal of KIMS. Connect to your institutional workspace, 
+          manage school operations, track student progress, or apply online for admissions.
+        </p>
 
-      {/* Dynamic CTA depending on Auth state */}
-      <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        {isAuthenticated ? (
-          <div style={{
-            background: 'var(--code-bg)',
-            border: '1px solid var(--border)',
-            padding: '24px 32px',
-            borderRadius: '16px',
-            maxWidth: '450px',
-            width: '100%',
-            textAlign: 'left'
-          }}>
-            <h3 style={{ margin: '0 0 8px', color: 'var(--text-h)' }}>
-              Welcome back, {user?.fullName}! 👋
-            </h3>
-            <p style={{ margin: '0 0 16px', fontSize: '14px', color: 'var(--text)' }}>
-              Logged in as: <strong style={{ color: 'var(--accent)' }}>{user?.role}</strong> ({user?.email})
-            </p>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              {user?.role === 'ADMIN' && (
-                <Link to="/admin" className="btn-submit" style={{ textDecoration: 'none', padding: '10px 20px', width: 'auto' }}>
-                  Open Admin Panel →
-                </Link>
-              )}
-              {user?.role === 'TEACHER' && (
-                <Link to="/teacher" className="btn-submit" style={{ textDecoration: 'none', padding: '10px 20px', width: 'auto' }}>
-                  Open Teacher Panel →
-                </Link>
-              )}
-              {user?.role === 'STUDENT' && (
-                <Link to="/student" className="btn-submit" style={{ textDecoration: 'none', padding: '10px 20px', width: 'auto' }}>
-                  Open Student Panel →
-                </Link>
-              )}
-              {user?.role === 'PARENT' && (
-                <Link to="/parent" className="btn-submit" style={{ textDecoration: 'none', padding: '10px 20px', width: 'auto' }}>
-                  Open Parent Panel →
-                </Link>
-              )}
-              {user?.role === 'PUBLIC_USER' && (
-                <span style={{ fontSize: '13px', color: 'var(--text)' }}>
-                  Your account has public access. Contact school admin for staff/student enrollment roles.
-                </span>
-              )}
+       
+
+        {/* 5 Workspaces Showcase Cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '16px',
+          textAlign: 'left'
+        }}>
+          {[
+            { role: 'Admin', desc: 'Control institutional settings, staff & records', icon: 'fa-user-shield', color: '#f59e0b' },
+            { role: 'Teacher', desc: 'Manage syllabus, attendance & grade books', icon: 'fa-chalkboard-user', color: '#3b82f6' },
+            { role: 'Student', desc: 'Access subjects, homework & report cards', icon: 'fa-graduation-cap', color: '#10b981' },
+            { role: 'Parent', desc: 'Track child performance, dues & notices', icon: 'fa-people-roof', color: '#8b5cf6' },
+            { role: 'Public', desc: 'Online admissions, inquiries & updates', icon: 'fa-user', color: '#14b8a6' },
+          ].map((item) => (
+            <div key={item.role} style={{
+              background: '#ffffff',
+              border: '1px solid var(--border-card)',
+              borderRadius: '16px',
+              padding: '20px',
+              boxShadow: 'var(--shadow-subtle)',
+              transition: 'transform 0.2s ease'
+            }}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '10px',
+                background: 'rgba(6, 78, 59, 0.06)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '12px'
+              }}>
+                <i className={`fa-solid ${item.icon}`} style={{ color: item.color, fontSize: '18px' }}></i>
+              </div>
+              <h4 style={{ margin: '0 0 6px', color: 'var(--text-dark)', fontSize: '15px', fontWeight: '800' }}>
+                {item.role} Portal
+              </h4>
+              <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                {item.desc}
+              </p>
             </div>
-          </div>
-        ) : (
-          <>
-            <Link
-              to="/register"
-              style={{
-                background: 'var(--accent)',
-                color: '#fff',
-                padding: '14px 28px',
-                borderRadius: '10px',
-                textDecoration: 'none',
-                fontWeight: '600',
-                fontSize: '16px',
-                boxShadow: '0 4px 14px rgba(170, 59, 255, 0.3)'
-              }}
-            >
-              Get Started Free →
-            </Link>
-            <Link
-              to="/login"
-              style={{
-                background: 'var(--code-bg)',
-                color: 'var(--text-h)',
-                border: '1px solid var(--border)',
-                padding: '14px 28px',
-                borderRadius: '10px',
-                textDecoration: 'none',
-                fontWeight: '600',
-                fontSize: '16px'
-              }}
-            >
-              Sign In to Your Panel
-            </Link>
-          </>
-        )}
-      </div>
-
-      {/* Role Panel Cards Preview */}
-      <div style={{
-        marginTop: '60px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-        gap: '20px',
-        textAlign: 'left'
-      }}>
-        {[
-          { role: 'Admin', desc: 'School operations, staff, & master settings', icon: '🏛️' },
-          { role: 'Teacher', desc: 'Attendance, gradebook, & assignments', icon: '📚' },
-          { role: 'Student', desc: 'Courses, submissions, & report cards', icon: '🎒' },
-          { role: 'Parent', desc: 'Child progress, notices, & fee tracking', icon: '👨‍👩‍👧' },
-        ].map((item) => (
-          <div key={item.role} style={{
-            background: 'var(--bg)',
-            border: '1px solid var(--border)',
-            borderRadius: '12px',
-            padding: '20px',
-            boxShadow: 'var(--shadow)'
-          }}>
-            <div style={{ fontSize: '28px', marginBottom: '8px' }}>{item.icon}</div>
-            <h4 style={{ margin: '0 0 6px', color: 'var(--text-h)', fontSize: '16px' }}>{item.role} Panel</h4>
-            <p style={{ margin: 0, fontSize: '13px', color: 'var(--text)', lineHeight: '1.4' }}>{item.desc}</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

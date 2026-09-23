@@ -1,19 +1,14 @@
 /**
  * ============================================================================
  * FILE: src/Pages/RegisterPage.jsx
- * PURPOSE: New User Registration Screen
+ * PURPOSE: Clean, Modern, Focused Public Registration Screen
  * ============================================================================
  * 
- * STEP-BY-STEP BREAKDOWN:
- * 1. Collects fullName, email, phone, password, confirmPassword.
- * 2. Matches backend Zod schema validation:
- *    - fullName: min 2 chars
- *    - email: valid email pattern
- *    - password: min 8 chars
- *    - confirmPassword: must match password
- * 3. Sends data to `register()` in AuthContext (POST /api/v1/auth/register).
- * 4. Displays real-time validation and backend errors (e.g. duplicate email).
- * 5. Automatically logs user in upon registration and routes to homepage or panel.
+ * Preserves 100% of auth logic:
+ * - Controlled input states
+ * - Zod schema contract matching
+ * - `register()` via AuthContext
+ * - Automatic session storage & redirection
  */
 
 import React, { useState } from 'react';
@@ -45,14 +40,13 @@ export default function RegisterPage() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Reset error banners when user makes corrections
     if (errorMessage) setErrorMessage('');
     if (fieldErrors[name]) {
       setFieldErrors((prev) => ({ ...prev, [name]: null }));
     }
   };
 
-  // Client-side quick validation before API call
+  // Client-side quick validation
   const validate = () => {
     const errors = {};
 
@@ -89,7 +83,6 @@ export default function RegisterPage() {
     try {
       setIsLoading(true);
 
-      // Call register in AuthContext
       await register({
         fullName: formData.fullName.trim(),
         email: formData.email.trim(),
@@ -98,10 +91,8 @@ export default function RegisterPage() {
         confirmPassword: formData.confirmPassword,
       });
 
-      // On success, redirect to home page
       navigate('/', { replace: true });
     } catch (err) {
-      // Backend error (e.g., "An account with this email already exists")
       setErrorMessage(err.message || 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
@@ -109,147 +100,165 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className="pure-auth-container">
+      <div className="pure-auth-card pure-card-register">
         {/* Header */}
-        <div className="auth-header">
-          <h1 className="auth-title">Create Account</h1>
-          <p className="auth-subtitle">Join the Education Management Platform</p>
+        <div className="pure-auth-header">
+          <div className="pure-auth-icon-wrap">
+            <i className="fa-solid fa-user-plus"></i>
+          </div>
+          <h1 className="pure-auth-title">Create Account</h1>
+          <p className="pure-auth-subtitle">Fill in the details below to register</p>
         </div>
 
-        {/* Global error banner */}
+        {/* Global Error Banner */}
         {errorMessage && (
-          <div className="auth-alert auth-alert-error" role="alert">
-            <span>⚠️</span>
+          <div className="kims-alert-banner alert-error" role="alert">
+            <i className="fa-solid fa-circle-exclamation"></i>
             <span>{errorMessage}</span>
           </div>
         )}
 
         {/* Registration Form */}
-        <form onSubmit={handleSubmit} className="auth-form" noValidate>
+        <form onSubmit={handleSubmit} className="pure-auth-form" noValidate>
           {/* Full Name */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="fullName">
+          <div className="pure-field-group">
+            <label className="pure-field-label" htmlFor="fullName">
               Full Name *
             </label>
-            <input
-              id="fullName"
-              name="fullName"
-              type="text"
-              required
-              placeholder="e.g. John Doe"
-              value={formData.fullName}
-              onChange={handleChange}
-              className="form-input"
-              disabled={isLoading}
-            />
-            {fieldErrors.fullName && <span className="field-error">{fieldErrors.fullName}</span>}
+            <div className="pure-input-wrapper">
+              <i className="fa-solid fa-user pure-left-icon"></i>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                required
+                placeholder="e.g. Shahid Khan"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="pure-input"
+                disabled={isLoading}
+              />
+            </div>
+            {fieldErrors.fullName && <span className="pure-field-error">{fieldErrors.fullName}</span>}
           </div>
 
           {/* Email Address */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="email">
+          <div className="pure-field-group">
+            <label className="pure-field-label" htmlFor="email">
               Email Address *
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              placeholder="e.g. john@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="form-input"
-              disabled={isLoading}
-            />
-            {fieldErrors.email && <span className="field-error">{fieldErrors.email}</span>}
+            <div className="pure-input-wrapper">
+              <i className="fa-solid fa-envelope pure-left-icon"></i>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="pure-input"
+                disabled={isLoading}
+              />
+            </div>
+            {fieldErrors.email && <span className="pure-field-error">{fieldErrors.email}</span>}
           </div>
 
           {/* Phone Number (Optional) */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="phone">
-              Phone Number <span style={{ opacity: 0.6, fontWeight: 400 }}>(Optional)</span>
+          <div className="pure-field-group">
+            <label className="pure-field-label" htmlFor="phone">
+              Mobile Number <span className="label-optional">(Optional)</span>
             </label>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              placeholder="e.g. +1 234 567 8900"
-              value={formData.phone}
-              onChange={handleChange}
-              className="form-input"
-              disabled={isLoading}
-            />
-          </div>
-
-          {/* Password */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="password">
-              Password * (Min 8 characters)
-            </label>
-            <div className="input-wrapper">
+            <div className="pure-input-wrapper">
+              <i className="fa-solid fa-phone pure-left-icon"></i>
               <input
-                id="password"
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                required
-                placeholder="At least 8 characters"
-                value={formData.password}
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="0333 1234567"
+                value={formData.phone}
                 onChange={handleChange}
-                className="form-input"
+                className="pure-input"
                 disabled={isLoading}
               />
-              <button
-                type="button"
-                className="toggle-password-btn"
-                onClick={() => setShowPassword(!showPassword)}
-                tabIndex="-1"
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
-              >
-                {showPassword ? '👁️' : '🔒'}
-              </button>
             </div>
-            {fieldErrors.password && <span className="field-error">{fieldErrors.password}</span>}
           </div>
 
-          {/* Confirm Password */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="confirmPassword">
-              Confirm Password *
-            </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type={showPassword ? 'text' : 'password'}
-              required
-              placeholder="Repeat your password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="form-input"
-              disabled={isLoading}
-            />
-            {fieldErrors.confirmPassword && (
-              <span className="field-error">{fieldErrors.confirmPassword}</span>
-            )}
+          {/* Password Fields Row */}
+          <div className="pure-two-col">
+            <div className="pure-field-group">
+              <label className="pure-field-label" htmlFor="password">
+                Password * (Min 8 chars)
+              </label>
+              <div className="pure-input-wrapper">
+                <i className="fa-solid fa-key pure-left-icon"></i>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="pure-input"
+                  disabled={isLoading}
+                />
+                <button
+                  type="button"
+                  className="pure-toggle-eye"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex="-1"
+                >
+                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                </button>
+              </div>
+              {fieldErrors.password && <span className="pure-field-error">{fieldErrors.password}</span>}
+            </div>
+
+            <div className="pure-field-group">
+              <label className="pure-field-label" htmlFor="confirmPassword">
+                Confirm Password *
+              </label>
+              <div className="pure-input-wrapper">
+                <i className="fa-solid fa-key pure-left-icon"></i>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  placeholder="Repeat password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="pure-input"
+                  disabled={isLoading}
+                />
+              </div>
+              {fieldErrors.confirmPassword && (
+                <span className="pure-field-error">{fieldErrors.confirmPassword}</span>
+              )}
+            </div>
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn-submit" disabled={isLoading}>
+          <button type="submit" className="pure-btn-submit" disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className="spinner"></span>
                 <span>Creating Account...</span>
               </>
             ) : (
-              'Create Account'
+              <span>Create Account</span>
             )}
           </button>
         </form>
 
-        {/* Switch to Login */}
-        <div className="auth-footer">
-          Already have an account?
-          <Link to="/login">Sign in here</Link>
+        {/* Footer switch to Login */}
+        <div className="pure-auth-footer">
+          Already have an account?{' '}
+          <Link to="/login" className="pure-link-highlight">
+            Sign In here
+          </Link>
         </div>
       </div>
     </div>

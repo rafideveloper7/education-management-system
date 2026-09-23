@@ -1,20 +1,14 @@
 /**
  * ============================================================================
  * FILE: src/Pages/LoginPage.jsx
- * PURPOSE: User Login Screen
+ * PURPOSE: Clean, Modern, Focused Login Screen (Pure Email & Password)
  * ============================================================================
  * 
- * STEP-BY-STEP BREAKDOWN:
- * 1. Collects email and password from user via controlled input fields.
- * 2. On submit, calls `login({ email, password })` from AuthContext.
- * 3. Shows informative spinner during API request.
- * 4. Displays clear error messages if backend returns 401 or invalid credentials.
- * 5. On success, redirects the user based on their assigned role:
- *    - ADMIN    -> /admin
- *    - TEACHER  -> /teacher
- *    - STUDENT  -> /student
- *    - PARENT   -> /parent
- *    - Other    -> /
+ * Preserves 100% of auth logic:
+ * - Controlled email & password state
+ * - `login({ email, password })` from AuthContext
+ * - Automatic token saving & role-based dashboard redirects
+ * - Instant error handling (401, 403, network errors)
  */
 
 import React, { useState } from 'react';
@@ -42,7 +36,6 @@ export default function LoginPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error banner when user starts typing again
     if (errorMessage) setErrorMessage('');
   };
 
@@ -51,16 +44,14 @@ export default function LoginPage() {
     e.preventDefault();
     setErrorMessage('');
 
-    // Basic frontend checks before sending network request
     if (!formData.email.trim() || !formData.password) {
-      setErrorMessage('Please enter both email and password.');
+      setErrorMessage('Please enter your email and password.');
       return;
     }
 
     try {
       setIsLoading(true);
 
-      // Call login function in AuthContext
       const response = await login({
         email: formData.email.trim(),
         password: formData.password,
@@ -68,13 +59,14 @@ export default function LoginPage() {
 
       const user = response?.data?.user;
 
-      // Smart Redirect based on role or original intended page
+      // Check if user came from a guarded route
       const from = location.state?.from?.pathname;
       if (from) {
         navigate(from, { replace: true });
         return;
       }
 
+      // Redirect by role
       switch (user?.role) {
         case 'ADMIN':
           navigate('/admin', { replace: true });
@@ -93,57 +85,63 @@ export default function LoginPage() {
           break;
       }
     } catch (err) {
-      // Backend error message (e.g. "Invalid email or password" or "This account is disabled")
-      setErrorMessage(err.message || 'Login failed. Please check your credentials.');
+      setErrorMessage(err.message || 'Invalid email or password.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className="pure-auth-container">
+      <div className="pure-auth-card">
         {/* Header */}
-        <div className="auth-header">
-          <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Sign in to your Education Management account</p>
+        <div className="pure-auth-header">
+          <div className="pure-auth-icon-wrap">
+            <i className="fa-solid fa-lock"></i>
+          </div>
+          <h1 className="pure-auth-title">Welcome Back</h1>
+          <p className="pure-auth-subtitle">Sign in to your account to continue</p>
         </div>
 
         {/* Error notification alert */}
         {errorMessage && (
-          <div className="auth-alert auth-alert-error" role="alert">
-            <span>⚠️</span>
+          <div className="kims-alert-banner alert-error" role="alert">
+            <i className="fa-solid fa-circle-exclamation"></i>
             <span>{errorMessage}</span>
           </div>
         )}
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="auth-form" noValidate>
-          {/* Email field */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="email">
+        <form onSubmit={handleSubmit} className="pure-auth-form" noValidate>
+          {/* Email Address */}
+          <div className="pure-field-group">
+            <label className="pure-field-label" htmlFor="email">
               Email Address
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              placeholder="e.g. teacher@school.edu"
-              value={formData.email}
-              onChange={handleChange}
-              className="form-input"
-              disabled={isLoading}
-            />
+            <div className="pure-input-wrapper">
+              <i className="fa-solid fa-envelope pure-left-icon"></i>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="pure-input"
+                disabled={isLoading}
+              />
+            </div>
           </div>
 
-          {/* Password field with show/hide toggle */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="password">
+          {/* Password with Show/Hide */}
+          <div className="pure-field-group">
+            <label className="pure-field-label" htmlFor="password">
               Password
             </label>
-            <div className="input-wrapper">
+            <div className="pure-input-wrapper">
+              <i className="fa-solid fa-key pure-left-icon"></i>
               <input
                 id="password"
                 name="password"
@@ -153,38 +151,40 @@ export default function LoginPage() {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
-                className="form-input"
+                className="pure-input"
                 disabled={isLoading}
               />
               <button
                 type="button"
-                className="toggle-password-btn"
+                className="pure-toggle-eye"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex="-1"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? '👁️' : '🔒'}
+                <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
               </button>
             </div>
           </div>
 
-          {/* Submit button with loading spinner */}
-          <button type="submit" className="btn-submit" disabled={isLoading}>
+          {/* Submit button */}
+          <button type="submit" className="pure-btn-submit" disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className="spinner"></span>
-                <span>Signing in...</span>
+                <span>Signing In...</span>
               </>
             ) : (
-              'Sign In'
+              <span>Sign In</span>
             )}
           </button>
         </form>
 
-        {/* Switch to Register */}
-        <div className="auth-footer">
-          Don't have an account yet?
-          <Link to="/register">Create an account</Link>
+        {/* Footer switch to Register */}
+        <div className="pure-auth-footer">
+          Don't have an account?{' '}
+          <Link to="/register" className="pure-link-highlight">
+            Register here
+          </Link>
         </div>
       </div>
     </div>
