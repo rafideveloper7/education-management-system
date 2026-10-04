@@ -1,0 +1,16 @@
+const { hasAllPermissions } = require('../services/permission.service');
+const ApiError = require('../../utils/ApiError');
+
+const requirePermissions = (...permissions) => (req, res, next) => {
+  if (!req.user) {
+    return next(new ApiError(401, 'Authentication required'));
+  }
+
+  if (!hasAllPermissions(req.user, permissions)) {
+    return next(new ApiError(403, 'You do not have permission to perform this action'));
+  }
+
+  return next();
+};
+
+module.exports = { requirePermissions };

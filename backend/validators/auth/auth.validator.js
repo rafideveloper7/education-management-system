@@ -3,7 +3,7 @@ const { z } = require('zod');
 const credentialsSchema = z.object({
   email: z.string().trim().email('A valid email is required'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
-});
+}).strict();
 
 const registrationSchema = credentialsSchema.extend({
   fullName: z.string().trim().min(2, 'Full name is required'),
@@ -12,7 +12,19 @@ const registrationSchema = credentialsSchema.extend({
 }).refine((payload) => payload.confirmPassword === payload.password, {
   message: 'Passwords do not match',
   path: ['confirmPassword'],
-});
+}).strict();
+
+const refreshTokenSchema = z.object({
+  refreshToken: z.string().min(1, 'Refresh token is required'),
+}).strict();
+
+const logoutSchema = z.object({
+  refreshToken: z.string().min(1, 'Refresh token must not be empty').optional(),
+}).strict();
+
+const forgotPasswordSchema = z.object({
+  email: z.string().trim().email('A valid email is required'),
+}).strict();
 
 const passwordResetSchema = z.object({
   token: z.string().min(1, 'Password reset token is required'),
@@ -21,32 +33,13 @@ const passwordResetSchema = z.object({
 }).refine((payload) => payload.confirmPassword === payload.password, {
   message: 'Passwords do not match',
   path: ['confirmPassword'],
-});
-
-const toValidationError = (error) => {
-  const validationError = new Error(error.issues[0]?.message || 'Invalid request data');
-  validationError.statusCode = 400;
-  return validationError;
-};
-
-const parse = (schema, payload) => {
-  const result = schema.safeParse(payload || {});
-
-  if (!result.success) {
-    throw toValidationError(result.error);
-  }
-
-  return result.data;
-};
-
-const validateCredentials = (payload) => parse(credentialsSchema, payload);
-
-const validateRegistration = (payload) => parse(registrationSchema, payload);
-
-const validatePasswordReset = (payload) => parse(passwordResetSchema, payload);
+}).strict();
 
 module.exports = {
-  validateCredentials,
-  validateRegistration,
-  validatePasswordReset,
+  credentialsSchema,
+  registrationSchema,
+  refreshTokenSchema,
+  logoutSchema,
+  forgotPasswordSchema,
+  passwordResetSchema,
 };

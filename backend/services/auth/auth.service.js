@@ -17,12 +17,6 @@ const {
   hashToken,
   verifyRefreshToken,
 } = require('./token.service');
-const {
-  validateCredentials,
-  validatePasswordReset,
-  validateRegistration,
-} = require('../../validators/auth/auth.validator');
-
 const normalizeEmail = (email) => email.trim().toLowerCase();
 
 const sanitizeUser = (user) => ({
@@ -55,13 +49,11 @@ const issueTokens = async (user) => {
 };
 
 const registerPublicUser = async (payload) => {
-  validateRegistration(payload);
-
   const email = normalizeEmail(payload.email);
   const existingUser = await User.exists({ email });
 
   if (existingUser) {
-    throw new ApiError(409, 'An account with this email already exists');
+    throw new ApiError(409, 'An account with this email already exists', { code: 'EMAIL_ALREADY_EXISTS' });
   }
 
   const user = await User.create({
@@ -73,17 +65,12 @@ const registerPublicUser = async (payload) => {
     status: 'ACTIVE',
   });
 
-  const tokens = await issueTokens(user);
-
   return {
     user: sanitizeUser(user),
-    ...tokens,
   };
 };
 
 const login = async (payload) => {
-  validateCredentials(payload);
-
   const email = normalizeEmail(payload.email);
   const user = await User.findOne({ email }).select('+passwordHash');
   const invalidCredentialsError = new ApiError(401, 'Invalid email or password');
@@ -187,8 +174,6 @@ const forgotPassword = async (email) => {
 };
 
 const resetPassword = async (payload) => {
-  validatePasswordReset(payload);
-
   if (!payload.token) {
     throw new ApiError(400, 'Password reset token is required');
   }
