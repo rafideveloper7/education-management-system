@@ -1,0 +1,4 @@
+schema: 1
+id: 01M5VTPYCZMVYJ6FJR6S7X26DX
+name: api.http
+baseUrl: //localhost:5000/api/v1/auth/register

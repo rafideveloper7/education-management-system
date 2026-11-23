@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "argon2": "^0.45.1",
+    "bullmq": "^5.66.5",
+    "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
+    "file-type": "^22.1.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.1",
+    "multer": "^2.4.0",
+    "nodemailer": "^7.0.12",
     "zod": "^4.6.5"
   },
   "devDependencies": {

@@ -1,12 +1,16 @@
 const app = require('./app');
 const connectDatabase = require('./config/db');
 const env = require('./config/env');
+const { startNotificationWorker } = require('./workers/notification.worker');
+const { closeNotificationQueue } = require('./config/queue');
 
 let server;
+let notificationWorker;
 
 const startServer = async () => {
   try {
     await connectDatabase(env.mongodbUri);
+    notificationWorker = startNotificationWorker();
 
     console.log('MongoDB connected ✅');
 
@@ -27,6 +31,8 @@ const shutdown = (signal) => {
   }
 
   server.close(async () => {
+    if (notificationWorker) await notificationWorker.close();
+    await closeNotificationQueue();
     await require('mongoose').connection.close();
     console.log('Server and MongoDB connection closed');
     process.exit(0);

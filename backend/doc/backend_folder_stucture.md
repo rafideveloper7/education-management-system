@@ -948,3 +948,56 @@ Workflow
 ```
 
 This structure is technically stronger for EduOS because it supports real institutional workflows, avoids duplicated logic, keeps controllers clean, and gives backend security proper ownership.
+
+# Group 13: Examination & Results Files
+
+The examination feature uses the existing modular-monolith, Mongoose, validation, permission, and error-handling patterns.
+
+```text
+controllers/examination.controller.js
+-> Thin HTTP handlers for examination, marks, grading, results, and student/parent access.
+
+routes/examination.routes.js
+-> Versioned REST endpoints with authentication, permission checks, and request validation.
+
+validators/examination/examination.validator.js
+-> Strict request schemas for exams, schedules, marks, grade scales, results, and corrections.
+
+models/examination/Exam.js
+-> Examination definition and its separate examination lifecycle.
+
+models/examination/ExamSchedule.js
+-> Subject, class, section, teacher, time, room, and maximum-mark schedule.
+
+models/examination/Mark.js
+-> One current present/absent marks record per student and examination schedule.
+
+models/examination/GradeScale.js
+-> Configured academic-session grading bands; no grade labels or thresholds are hard-coded.
+
+models/examination/Result.js
+-> Calculated subject and overall values with independent draft/finalized/published states.
+
+models/examination/ExamAudit.js
+-> Before/after history for examination, schedule, marks, grading, publication, and correction changes.
+
+services/examination/examination.helpers.js
+-> Shared transaction, permission, cursor, identifier, date, and grading-rule helpers.
+
+services/examination/exam.service.js
+-> Examination and schedule workflows, academic-context checks, eligibility, and schedule conflict checks.
+
+services/examination/marks.service.js
+-> Assigned-teacher marks entry, eligibility checks, validation, duplicate protection, and marks audit.
+
+services/examination/result.service.js
+-> Grade-scale management, weighted result calculation, and result finalization.
+
+services/examination/resultPublishing.service.js
+-> Result publication, ownership/parent relationship checks, student-facing reads, and controlled corrections.
+
+tests/examination.test.js
+-> Validation, authorization, eligibility, grading, missing/absent marks, and result-access regression tests.
+```
+
+The module is registered in `app.js`. It reuses the existing academic, enrollment, teacher-assignment, parent-child, and permission domains. The internal `examScheduleRevision` field on `AcademicSession` serializes schedule writes so concurrent requests cannot bypass overlap checks.

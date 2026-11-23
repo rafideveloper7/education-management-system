@@ -1,6 +1,11 @@
 const ParentStudent = require('../models/parent/ParentStudent');
 const StudentEnrollment = require('../models/student/StudentEnrollment');
 const TeacherAssignment = require('../models/teacher/TeacherAssignment');
+const AcademicSession = require('../models/academic/AcademicSession');
+const AcademicClass = require('../models/academic/Class');
+const Section = require('../models/academic/Section');
+const Subject = require('../models/academic/Subject');
+const ClassSubject = require('../models/academic/ClassSubject');
 const User = require('../models/user/User');
 const ApiError = require('../utils/ApiError');
 const { createRelationshipLifecycleService } = require('../authorization/services/relationship-lifecycle.service');
@@ -33,7 +38,17 @@ const decodeCursor = (cursor) => {
 };
 
 const createRelationshipService = ({
-  models = { ParentStudent, StudentEnrollment, TeacherAssignment, User },
+  models = {
+    ParentStudent,
+    StudentEnrollment,
+    TeacherAssignment,
+    AcademicSession,
+    AcademicClass,
+    Section,
+    Subject,
+    ClassSubject,
+    User,
+  },
   lifecycle = createRelationshipLifecycleService({
     ParentStudent: models.ParentStudent,
     StudentEnrollment: models.StudentEnrollment,
@@ -51,6 +66,32 @@ const createRelationshipService = ({
     const user = await models.User.exists({ _id: userId, role, status: 'ACTIVE' });
     if (!user) {
       throw new ApiError(404, `${field} does not identify an active ${role.toLowerCase()} account`);
+    }
+  };
+
+  const requireAcademicPlacement = async ({ academicSessionId, classId, sectionId, subjectId }) => {
+    const [session, academicClass, section] = await Promise.all([
+      models.AcademicSession.exists({ _id: academicSessionId, status: { $in: ['PLANNED', 'ACTIVE'] } }),
+      models.AcademicClass.exists({ _id: classId, status: 'ACTIVE' }),
+      models.Section.exists({ _id: sectionId, classId, status: 'ACTIVE' }),
+    ]);
+
+    if (!session || !academicClass || !section) {
+      throw new ApiError(400, 'Academic session, class, or section is invalid or inactive', {
+        code: 'INVALID_ACADEMIC_CONTEXT',
+      });
+    }
+
+    if (subjectId) {
+      const [subject, classSubject] = await Promise.all([
+        models.Subject.exists({ _id: subjectId, status: 'ACTIVE' }),
+        models.ClassSubject.exists({ classId, subjectId, status: 'ACTIVE' }),
+      ]);
+      if (!subject || !classSubject) {
+        throw new ApiError(400, 'Subject must be active and offered in the selected class', {
+          code: 'INVALID_ACADEMIC_SUBJECT',
+        });
+      }
     }
   };
 
@@ -149,6 +190,7 @@ const createRelationshipService = ({
     for (const field of ['academicSessionId', 'classId', 'sectionId']) {
       requireObjectId(payload[field], field);
     }
+    await requireAcademicPlacement(payload);
 
     const data = {
       studentUserId: payload.studentUserId,
@@ -172,6 +214,7 @@ const createRelationshipService = ({
     for (const field of ['academicSessionId', 'subjectId', 'classId', 'sectionId']) {
       requireObjectId(payload[field], field);
     }
+    await requireAcademicPlacement(payload);
 
     const data = {
       teacherUserId: payload.teacherUserId,

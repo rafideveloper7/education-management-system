@@ -10,21 +10,25 @@ const teacherAssignmentSchema = new mongoose.Schema(
     },
     academicSessionId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'AcademicSession',
       required: true,
       index: true,
     },
     subjectId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subject',
       required: true,
       index: true,
     },
     classId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'Class',
       required: true,
       index: true,
     },
     sectionId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'Section',
       required: true,
       index: true,
     },

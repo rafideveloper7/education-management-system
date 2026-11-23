@@ -73,6 +73,20 @@ const createTestService = () => {
     ParentStudent: createModel(),
     StudentEnrollment: createModel(),
     TeacherAssignment: createModel(),
+    AcademicSession: {
+      exists: async ({ _id, status }) => {
+        const sessionStatus = ({ [ids.session]: 'ACTIVE', [ids.otherSession]: 'PLANNED' })[_id];
+        return status?.$in ? status.$in.includes(sessionStatus) : sessionStatus === status;
+      },
+    },
+    AcademicClass: { exists: async ({ _id, status }) => _id === ids.class && status === 'ACTIVE' },
+    Section: { exists: async ({ _id, classId, status }) => _id === ids.section && classId === ids.class && status === 'ACTIVE' },
+    Subject: { exists: async ({ _id, status }) => [ids.subject, ids.secondSubject].includes(_id) && status === 'ACTIVE' },
+    ClassSubject: {
+      exists: async ({ classId, subjectId, status }) => classId === ids.class
+        && [ids.subject, ids.secondSubject].includes(subjectId)
+        && status === 'ACTIVE',
+    },
   };
   const closeCalls = [];
   const lifecycle = {
@@ -120,8 +134,9 @@ test('enrollment allows session history but prevents two active placements in on
   assert.equal(current.status, 'ACTIVE');
   await assert.rejects(service.createStudentEnrollment(parseStudentEnrollmentCreate({
     ...base,
-    classId: ids.otherSession,
-  })), { statusCode: 409 });
+    sectionId: ids.otherSession,
+  })), { statusCode: 400, code: 'INVALID_ACADEMIC_CONTEXT' });
+  await assert.rejects(service.createStudentEnrollment(parseStudentEnrollmentCreate(base)), { statusCode: 409 });
 
   const nextSession = await service.createStudentEnrollment(parseStudentEnrollmentCreate({
     ...base,
@@ -143,6 +158,10 @@ test('teacher can hold multiple assignments while exact active duplicates are re
 
   await service.createTeacherAssignment(first);
   await assert.rejects(service.createTeacherAssignment(first), { statusCode: 409 });
+  await assert.rejects(service.createTeacherAssignment(parseTeacherAssignmentCreate({
+    ...first,
+    subjectId: '64b000000000000000000010',
+  })), { statusCode: 400, code: 'INVALID_ACADEMIC_SUBJECT' });
   const second = await service.createTeacherAssignment(parseTeacherAssignmentCreate({
     ...first,
     subjectId: ids.secondSubject,

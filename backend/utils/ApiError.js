@@ -19,4 +19,5 @@ class ApiError extends Error {
   }
 }
 
+ApiError.ApiError = ApiError;
 module.exports = ApiError;
