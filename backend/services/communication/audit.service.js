@@ -80,6 +80,20 @@ const createCommunicationAuditService = ({ model = CommunicationAudit } = {}) =>
     }
   };
 
+  const recordRead = async (entry) => {
+    try {
+      await model.create([{
+        ...entry,
+        previousValue: sanitizeAuditValue(entry.previousValue),
+        newValue: sanitizeAuditValue(entry.newValue),
+      }]);
+    } catch {
+      throw new ApiError(503, 'Document audit write failed', {
+        code: 'AUDIT_WRITE_FAILED',
+      });
+    }
+  };
+
   const list = async ({ actor, filters }) => {
     requireAdmin(actor);
     const query = {};
@@ -141,7 +155,7 @@ const createCommunicationAuditService = ({ model = CommunicationAudit } = {}) =>
     filters: { ...filters, entityType, entityId },
   });
 
-  return { record, list, getById, listByEntity, listHistory };
+  return { record, recordRead, list, getById, listByEntity, listHistory };
 };
 
 module.exports = {

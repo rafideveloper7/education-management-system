@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { sanitizeAuditValue } = require('../../utils/sanitizeAuditValue');
 
 const communicationAuditSchema = new mongoose.Schema({
-  entityType: { type: String, enum: ['MESSAGE', 'CONVERSATION', 'COMPLAINT', 'LEAVE_REQUEST', 'ANNOUNCEMENT'], required: true, index: true },
+  entityType: { type: String, enum: ['MESSAGE', 'CONVERSATION', 'COMPLAINT', 'LEAVE_REQUEST', 'ANNOUNCEMENT', 'DOCUMENT', 'TIMETABLE'], required: true, index: true },
   entityId: { type: mongoose.Schema.Types.ObjectId, required: true, index: true },
   action: { type: String, required: true, trim: true, maxlength: 100, index: true },
   performedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },

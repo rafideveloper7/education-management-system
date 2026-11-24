@@ -28,6 +28,8 @@ app.use('/api/v1/attendance', require('./routes/attendance.routes'));
 app.use('/api/v1/admin/attendance', require('./routes/admin/attendance.routes'));
 app.use('/api/v1/admin/relationships', require('./routes/admin/relationships.routes'));
 app.use('/api/v1', require('./routes/communication.routes'));
+app.use('/api/v1', require('./routes/document.routes'));
+app.use('/api/v1', require('./routes/timetable.routes'));
 app.use('/api/v1', require('./routes/notification.routes'));
 
 // Group 14 — Fees & Finance
